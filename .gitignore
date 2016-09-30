@@ -1,5 +1,6 @@
 # vim buffer stuff 
 *.un~
+*~
 
 # Logs
 logs
