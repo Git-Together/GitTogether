@@ -28,7 +28,7 @@ after(function(done) {
 	done()
 })
 
-describe('result of running \'git branch\' through node', function() {
+describe('parsing the results of running \`git branch\` through node', function() {
 	var branchResult
 
 	before('run branch command', function(done) {
@@ -60,7 +60,7 @@ describe('result of running \'git branch\' through node', function() {
 })
 
 
-describe('function for parsing \'git diff\' run from node', function() {
+describe('parsing the results of running \`git diff\` through node', function() {
 	var diffResult,
 		//function for paring the result of 'git diff' down to useful information
 		readoutParser = function(readout) {
@@ -157,3 +157,46 @@ describe('function for parsing \'git diff\' run from node', function() {
 			})
 	})
 })
+
+describe('parsing results of running \`git log\` through node', function() {
+	let gitLogResult;
+
+	function logParser(logs) {
+		let parsedLogs = logs.all.map( logLine => {
+			let lineArr = logLine.hash.split(" ");
+			return [lineArr.shift(), lineArr.join(" ")]
+		})
+
+		return parsedLogs
+	}
+
+	before('run git log and store results', function(done) {
+		git()
+			.log(['--oneline'], ( err, logReadout ) => {
+				gitLogResult = logParser( logReadout )
+				done()
+			})
+	})
+
+	it('should return an array', function() {
+		expect(gitLogResult).to.be.an('array')
+	})
+
+	it('should have an entry for every commit', function() {
+		expect(gitLogResult).to.have.lengthOf(3)
+	})
+
+	it('should store the hashes for each commit', function() {
+		//this test is a little ambiguous—should be made more specific
+		expect(gitLogResult[0][0]).to.have.lengthOf(7)
+		expect(gitLogResult[1][0]).to.have.lengthOf(7)
+		expect(gitLogResult[2][0]).to.have.lengthOf(7)
+	})
+
+	it('should store the messages for each commit', function() {
+		expect(gitLogResult[0][1]).to.equal('Updating')
+		expect(gitLogResult[1][1]).to.equal('Stage empty file')
+		expect(gitLogResult[2][1]).to.equal('Test commit')
+	})
+})
+
