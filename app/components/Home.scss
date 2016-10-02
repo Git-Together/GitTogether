@@ -1,0 +1,53 @@
+.grey {
+	background-color: grey;
+}
+
+.blue {
+	background-color: skyblue;
+}
+
+.green {
+	background-color: lightgreen;
+}
+
+.purple {
+	background-color: purple;
+}
+
+.flex {
+	display: flex;
+	position: absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0
+}
+
+.flex > * {
+
+}
+
+.teams {
+	width: 20%;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	padding: 1em;
+}
+
+.main {
+	display: flex;
+	justify-content:center;
+	width: 100%;
+	padding: 1em;
+}
+
+.repos {
+	width: 100%;
+	flex: 1 0 auto;
+}
+
+.members {
+	width: 100%;
+	flex: 5 0 auto;
+}
