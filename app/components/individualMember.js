@@ -27,6 +27,13 @@ export default function IndividualMember(props) {
 
       </div> {/* id */}
 
+      <div className={[styles.edit, 'orange'].join(" ")}>
+
+          <div onClick={props.changeActiveTeamMember} className='glyphicon glyphicon-pencil'></div>
+
+
+      </div> {/* update */}
+
       <div className={[styles.delete, 'blue'].join(" ")}>
         <Link className="dark button" to="/">
           <div onClick={props.delete} className='glyphicon glyphicon-trash'></div>
