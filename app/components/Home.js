@@ -7,6 +7,14 @@ console.log("stylesScss", stylesScss)
 
 import IndividualRepo from './individualRepo.js';
 import IndividualMember from './individualMember.js';
+import Dashboard from './Dashboard.js';
+import Repos from './Repos.js';
+import Chat from './Chat.js';
+import Team from './Team.js';
+import Conventions from './Conventions.js';
+import Branches from './Branches.js';
+import FileView from './FileView.js';
+import Settings from './Settings.js';
 
 export default class Home extends Component {
   constructor (props) {
@@ -21,8 +29,9 @@ export default class Home extends Component {
     addTeamMember: PropTypes.func.isRequired,
     removeTeamMember: PropTypes.func.isRequired,
     refreshTeamMembers: PropTypes.func.isRequired,
-    team: PropTypes.array.isRequired,
-    repo: PropTypes.array.isRequired
+    team: PropTypes.object.isRequired,
+    repo: PropTypes.array.isRequired,
+    ui: PropTypes.string.isRequired
   };
 
   display (array, type) {
@@ -41,10 +50,17 @@ export default class Home extends Component {
   };
 
   render() {
+    const { addRepo, removeRepo, addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
+    const { toggleComponent, ui } = this.props;
+    const { updateSettings, addSettings, removeSettings, refreshSettings, settings } = this.props;
+    const { updateConventions, addConventions, removeConventions, refreshConventions, conventions } = this.props;
+    const { changeActiveFile,  refreshFiles, files } = this.props;
+    const { changeActiveBranch,  refreshBranches, branches } = this.props;
 
-    const { addRepo, removeRepo, addTeamMember, removeTeamMember, refreshTeamMembers, team, repo } = this.props;
+    let uiSwitch;
     let inputRepo;
     let inputMember;
+
 
     return (
       <div className={stylesScss.flex}>
@@ -79,7 +95,7 @@ export default class Home extends Component {
           <div className={[stylesScss.members, 'orange'].join(" ")}>
 
             <span>Team</span>
-            {this.display(team, 'team')}
+            {this.display(team.team, 'team')}
             <div>
               <form onSubmit={e => {
                 e.preventDefault()
@@ -104,7 +120,88 @@ export default class Home extends Component {
 
         <div className={[stylesScss.main, 'blue'].join(" ")}>
 
-          Main View
+          <div className={[stylesScss.nav, 'pink'].join(" ")}>
+            <ul>
+              <li onClick={toggleComponent.bind(null,'Dashboard')}
+                className="btn">Dashboard
+              </li>
+              <li onClick={toggleComponent.bind(null,'Repos')}
+                className="btn">Repos
+              </li>
+              <li onClick={toggleComponent.bind(null,'Chat')}
+                className="btn">Chat
+              </li>
+              <li onClick={toggleComponent.bind(null,'Team')}
+                className="btn">Team
+              </li>
+              <li onClick={toggleComponent.bind(null,'Conventions')}
+                className="btn">Conventions
+              </li>
+              <li onClick={toggleComponent.bind(null,'Branches')}
+                className="btn">Branches
+              </li>
+              <li onClick={toggleComponent.bind(null,'FileView')}
+                className="btn">File View
+              </li>
+              <li onClick={toggleComponent.bind(null,'Settings')}
+                className="btn">Settings
+              </li>
+            </ul>
+          </div>{/* nav */}
+
+          <div className={[stylesScss.uiSwitch, 'pink'].join(" ")}>
+            { (() => {
+                    switch (ui) {
+                      case 'Dashboard':
+                        return <Dashboard />;
+                      case 'Repos':
+                        return <Repos repos={this.props.repo} />;
+                      case 'Chat':
+                        return <Chat />;
+                      case 'Team':
+                        return <Team
+                          delete = {removeTeamMember}
+                          changeActiveTeamMember = {changeActiveTeamMember}
+                          team = {team.team}
+                          activeTeamMember = {team.activeTeamMember}
+                        />;
+                      case 'Conventions':
+                        return <Conventions
+                        updateConventions = {updateConventions}
+                        addConventions = {addConventions}
+                        removeConventions = {removeConventions}
+                        refreshConventions = {refreshConventions}
+                        conventions = {conventions}
+                        />;
+                      case 'Branches':
+                       return <Branches
+                        refreshBranches = {refreshBranches}
+                        changeActiveBranch = {changeActiveBranch}
+                        branches = {branches.branches}
+                        activeBranch = {branches.activeBranch}
+                       />;
+                      case 'FileView':
+                        return <FileView
+                          refreshFiles = {refreshFiles}
+                          changeActiveFile = {changeActiveFile}
+                          files = {files.files}
+                          activeFile = {files.activeFile}
+                        />;
+                      case 'Settings':
+                        return <Settings
+                         updateSettings = {updateSettings}
+                         addSettings = {addSettings}
+                         removeSettings = {removeSettings}
+                         refreshSettings = {refreshSettings}
+                         settings= {settings}
+                        />;
+                      default:
+                        return <Dashboard />;
+                    }
+                })()
+            }
+
+          </div>
 
         </div>{/* main */}
 
@@ -113,17 +210,3 @@ export default class Home extends Component {
   }
 }
 
-
-// export default class Home extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <div className={styles.container}>
-//           <h2>Home</h2>
-//           <div className={stylesScss.test}>test <span>test</span></div>
-//           <Link to="/counter">to Counter</Link>
-//         </div>
-//       </div>
-//     );
-//   }
-// }

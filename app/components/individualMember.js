@@ -15,7 +15,7 @@ export default function IndividualMember(props) {
 
       </div> {/* pic */}
 
-      <div className={[styles.name, 'purple'].join(" ")}>
+      <div className={[styles.name, 'blue'].join(" ")}>
 
         <span>{props.name}</span>
 
