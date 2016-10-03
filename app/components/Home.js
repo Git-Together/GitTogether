@@ -56,6 +56,7 @@ export default class Home extends Component {
     const { updateConventions, addConventions, removeConventions, refreshConventions, conventions } = this.props;
     const { changeActiveFile,  refreshFiles, files } = this.props;
     const { changeActiveBranch,  refreshBranches, branches } = this.props;
+    const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
 
     let uiSwitch;
     let inputRepo;
@@ -157,7 +158,12 @@ export default class Home extends Component {
                       case 'Repos':
                         return <Repos repos={this.props.repo} />;
                       case 'Chat':
-                        return <Chat />;
+                        return <Chat
+                        postMessage = {postMessage}
+                        refreshMessages = {refreshMessages}
+                        changeActiveMessage = {changeActiveMessage}
+                        chat = {chat}
+                        />;
                       case 'Team':
                         return <Team
                           delete = {removeTeamMember}

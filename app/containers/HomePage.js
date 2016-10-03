@@ -8,12 +8,14 @@ import * as settingsActions from '../actions/settings'
 import * as filesActions from '../actions/files'
 import * as branchActions from '../actions/branch'
 import * as conventionActions from '../actions/conventions'
+import * as chatActions from '../actions/chat'
 import Home from '../components/Home';
 
-const actionsObj = Object.assign({}, repoActions, teamActions, ui, settingsActions, filesActions, branchActions, conventionActions);
+const actionsObj = Object.assign({}, repoActions, teamActions, ui, settingsActions, filesActions, branchActions, conventionActions, chatActions);
 
 function mapStateToProps(state) {
   return {
+    chat: state.chat,
     team: state.team,
     repo: state.repo,
     settings: state.settings,
