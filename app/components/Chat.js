@@ -9,8 +9,19 @@ export default class Chat extends Component {
   render() {
     return (
       <div>
-        Chat
+        {this.props.chat.messages.map(e => (
+          <div key={e.id}>
+            {e.message}
+            {e.userID}
+            {e.id}
+            {e.timeStamp.toString()}
+          </div>
+          ))}
       </div>
-    )
-  };
+    );
+  }
 }
+
+Chat.propTypes = {
+  chat: React.PropTypes.any
+};

@@ -7,6 +7,7 @@ import files from './files';
 import settings from './settings';
 import conventions from './conventions';
 import branches from './branches';
+import chat from './chat';
 
 const rootReducer = combineReducers({
   team,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   settings,
   conventions,
   branches,
-  routing
+  routing,
+  chat
 });
 
 export default rootReducer;
