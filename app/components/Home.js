@@ -30,7 +30,7 @@ export default class Home extends Component {
     removeTeamMember: PropTypes.func.isRequired,
     refreshTeamMembers: PropTypes.func.isRequired,
     team: PropTypes.object.isRequired,
-    repo: PropTypes.array.isRequired,
+    repo: PropTypes.object.isRequired,
     ui: PropTypes.string.isRequired
   };
 
@@ -72,7 +72,7 @@ export default class Home extends Component {
           <div className={[stylesScss.repos, 'green'].join(" ")}>
 
             <span>Repos</span>
-            {this.display(repo, 'repo')}
+            {this.display(repo.repos, 'repo')}
             <div>
               <form onSubmit={e => {
                 e.preventDefault()

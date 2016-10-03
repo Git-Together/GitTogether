@@ -1,32 +1,40 @@
-import { ADD_REPO, REMOVE_REPO } from '../actions/repo';
+import { ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO } from '../actions/repo';
 
 const initState =
-  [
-    {
+  { 
+    activeRepo: 1,
+    repos: [{
       name: 'ourGit',
       id: 1
     },
     {
-      name: 'Not ourGit',
+      name: 'GitIt',
       id: 2
     },
     {
-      name: 'Really not ourGit',
+      name: 'GitOffMe',
       id: 3
-    },
-  ]
-;
+    }]
+  };
 
 export default function repo(state = initState, action) {
   switch (action.type) {
     case ADD_REPO:
-      let id = ++state.map(e => e.id)[state.length-1];
-      let newRepo = {...action.repo, id:id}
-      return [...state, newRepo];
+      // let id = ++state.map(e => e.id)[state.length - 1];
+      // let newRepo = {...action.repo, id: id }
+      // return [...state, newRepo];
+      // Deep clone state, add new repo to repos array
+      action.repo.id = state.repos.map(e => e.id).reduce((e, cur) => {
+        return Math.max(e, cur);
+      })
+      action.repo.id++;
+      return {...state, repos: [...state.repos, action.repo]}
     case REMOVE_REPO:
-      let idx = state.map(e => e.id).indexOf(action.id);
+      let idx = state.repos.map(repo => repo.id).indexOf(action.id);
       if (idx === -1) return state;
-      return [...state.slice(0, idx), ...state.slice(idx + 1)];
+      return {...state, repos: [...state.repos.slice(0, idx), ...state.repos.slice(idx + 1)]};
+    case SWITCH_ACTIVE_REPO:
+      return {...state, activeRepo: action.id}
     default:
       return state;
   }
