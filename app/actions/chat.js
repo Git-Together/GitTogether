@@ -3,10 +3,13 @@ export const REFRESH_MESSAGES = 'REFRESH_MESSAGES';
 export const CHANGE_ACTIVEMESSAGE = 'CHANGE_ACTIVEMESSAGE';
 
 // creates an action to post message
-export function postMessage(message) {
+export function postMessage(message, userId, postId) {
   return {
     type: POST_MESSAGE,
-    message
+    message,
+    userId,
+    postId,
+    timeStamp: new Date()
   };
 }
 
