@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   position: relative;
   color: white;
@@ -34,4 +38,32 @@ a:hover {
   opacity: 1;
   text-decoration: none;
   cursor: pointer;
+}
+
+.grey {
+  background-color: grey;
+}
+
+.blue {
+  background-color: skyblue;
+}
+
+.green {
+  background-color: darkgreen;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.pink {
+  background-color: pink;
+}
+
+.orange {
+  background-color: orange;
 }
