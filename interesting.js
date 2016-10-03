@@ -325,6 +325,35 @@ render(
 </Provider>,
 document.getElementById('root')
 )
+//HIGHER ORDER COMPONENT
+import { connect } from 'react-redux'
+
+export defaul function(ComposedComponent) {
+  class Authentication extends Component {
+    render() {
+      return <ComposedComponent {...this.props} />
+    }
+  }
+
+  function mapStateToProps(state) {
+    return { autheticated: state.authenticated };
+}
+
+  return connect(mapStateToProps)(Authentication)
+
+}
+import Authentication // this is my Hoc
+import Resources // The componenet I want to wrap
+const ComposedComponent = Authentication(Resources);
+<ComposedComponent />
+//HOC IS A FUNCTION CALLED WITH ANOTHER COMP
+
+//to get access to context you need to define them.
+static contextTypes = {
+    router: React.PropTypes.object
+}
+
+
 
 
 

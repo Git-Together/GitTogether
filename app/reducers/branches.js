@@ -44,7 +44,7 @@ export default function branches(state = initState, action) {
     case CHANGE_ACTIVE_BRANCH:
       return {...state, activeBranch: activeBranch(state.activeBranch, action)};
     case REFRESH_BRANCHES:
-      return {...state, files: action.branches};
+      return {...state, branches: action.branches};
     default:
       return state;
   }
