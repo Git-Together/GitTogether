@@ -9,6 +9,7 @@ export const SET_USER = "SET_USER"
 let gh;
 
 export function setUser(currentUser, token) {
+	console.log(currentUser)
 	let storageObj = { currentUser, token }
 		return {
 			type: SET_USER,
@@ -58,7 +59,7 @@ export function login() {
 							return githubTokenUser(token)
 						})
 					.then(githubUser => {
-							username = githubUser
+							username = githubUser.login
 							dispatch(setUser(username, token))
 						},
 						err => console.error(err)

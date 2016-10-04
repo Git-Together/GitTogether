@@ -14,7 +14,6 @@ export default class Login extends Component{
 		if (!this.props.currentUser) {
 			this.context.router.push('/')
 		}
-		console.log(this.props)
 	}
 
 	render() {
@@ -27,4 +26,8 @@ export default class Login extends Component{
 			</div>
 		)
 	}
+}
+
+Login.propTypes = {
+	auth: React.PropTypes.any
 }
