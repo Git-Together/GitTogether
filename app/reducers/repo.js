@@ -1,7 +1,8 @@
-import { ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO } from '../actions/repo';
+
+import { ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS } from '../actions/repo';
 
 const initState =
-  { 
+  {
     activeRepo: 1,
     repos: [{
       type: 'document',
@@ -56,6 +57,8 @@ export default function repo(state = initState, action) {
       return {...state, repos: [...state.repos.slice(0, idx), ...state.repos.slice(idx + 1)]};
     case SWITCH_ACTIVE_REPO:
       return {...state, activeRepo: action.id}
+    case GET_USER_REPOS:
+      return {...state, repos: action.repos}
     default:
       return state;
   }
