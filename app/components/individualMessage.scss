@@ -1,0 +1,29 @@
+.flex {
+	display: flex;
+	flex-flow: row;
+	align-content: stretch;
+	align-items: stretch;
+	justify-content: space-around;
+	margin-bottom: .5em;
+	margin-top: .5em;
+}
+
+.message {
+	flex: 5 0 2%;
+	padding: .5em;
+	// align-self: center;
+}
+
+.userId {
+	flex: 1 0 2%;
+	padding: .5em;
+	// align-self: center;
+	// margin-left: auto;
+}
+
+.timeStamp {
+	flex: 4 0 2%;
+	padding: .5em;
+	// align-self: center;
+	// margin-left: auto;
+}
