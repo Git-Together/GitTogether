@@ -50,7 +50,8 @@ export function login() {
 				}
 
 				let token, username
-				return fetch('http://localhost:1337/api/auth/github', fetchRequest)
+
+				return fetch(process.env.SERVER_URL + '/api/auth/github', fetchRequest)
 					.then(r => r.json())
 					.then(response => {
 							console.log(response)
