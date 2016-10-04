@@ -34,6 +34,7 @@ export default validate({
   plugins: [],
 
   externals: [
-    'bootstrap'
+	  'bootstrap',
+	  'dotenv'
   ]
 });

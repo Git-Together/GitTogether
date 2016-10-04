@@ -8,8 +8,10 @@ import settings from './settings';
 import conventions from './conventions';
 import branches from './branches';
 import chat from './chat';
+import auth from './auth';
 
 const rootReducer = combineReducers({
+  auth,
   team,
   repo,
   ui,

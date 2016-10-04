@@ -1,4 +1,7 @@
 import { app, BrowserWindow, Menu, shell } from 'electron';
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 let menu;
 let template;
