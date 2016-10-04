@@ -28,7 +28,7 @@ export default class FileView extends Component {
   };
 
   activeFile (array) {
-    return array.filter(e=>e.id === this.props.activeFile)[0]
+    return array.filter(e=>e.fileName === this.props.activeFile)[0] || array[0]
   }
 
   render() {

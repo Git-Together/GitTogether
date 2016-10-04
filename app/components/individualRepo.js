@@ -15,7 +15,7 @@ export default function IndividualRepo(props) {
 
       </div> {/* pic */}
 
-      <div className={[styles.name, 'purple'].join(" ")}>
+      <div className={[styles.name, 'orange'].join(" ")}>
 
         <span>{props.name}</span>
 

@@ -19,7 +19,7 @@ const initState = {
       id: 3
     },
     {
-      fileName: 'Ten.txt',
+      fileName: 'app.js',
       lastUpdated: new Date(),
       id: 4
     },

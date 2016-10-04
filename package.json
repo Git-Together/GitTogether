@@ -108,6 +108,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "css-modules-require-hook": "^4.0.3",
+    "d3-state-visualizer": "^1.1.1",
     "electron-debug": "^1.0.1",
     "font-awesome": "^4.6.3",
     "postcss": "^5.1.2",
