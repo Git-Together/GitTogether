@@ -17,6 +17,17 @@ const initState =
           type: 'document',
           name: 'GitItOn',
           id: 4
+        },{
+          type: 'folder',
+          name: 'GitFolder',
+          id: 5,
+          repos: [
+            {
+              type: 'document',
+              name: 'GitWhaaat',
+              id: 6,
+            }
+          ]
         }
       ]
     },

@@ -1,0 +1,325 @@
+{
+  "sha": "b197cd51e1204e65f9289f89717864eac53e0b52",
+  "url": "https://api.github.com/repos/tenloh/flack/git/trees/b197cd51e1204e65f9289f89717864eac53e0b52",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c3629e647f5ddf82548912e337bea9826b434af",
+      "size": 13,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/3c3629e647f5ddf82548912e337bea9826b434af"
+    },
+    {
+      "path": "app.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7911c157c8c4082272ffb5fcd6b3d9e436c52184",
+      "size": 3727,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/7911c157c8c4082272ffb5fcd6b3d9e436c52184"
+    },
+    {
+      "path": "browser",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bb8ca96cc539c8a8720d8dd7312d532e02de395c",
+      "url": "https://api.github.com/repos/tenloh/flack/git/trees/bb8ca96cc539c8a8720d8dd7312d532e02de395c"
+    },
+    {
+      "path": "browser/app.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5952861f92cf936b4fa373f42403f71525fc2ddb",
+      "size": 558,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/5952861f92cf936b4fa373f42403f71525fc2ddb"
+    },
+    {
+      "path": "browser/index.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2edccd02e8e513bf305421e83ea5b3fa2cb14a7",
+      "size": 2130,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/a2edccd02e8e513bf305421e83ea5b3fa2cb14a7"
+    },
+    {
+      "path": "browser/main",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3e3abd38fb6fbebeec5b3afabe9376ffd2209412",
+      "url": "https://api.github.com/repos/tenloh/flack/git/trees/3e3abd38fb6fbebeec5b3afabe9376ffd2209412"
+    },
+    {
+      "path": "browser/main/chatroom.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dfe375bb80ed879acb5febbdefb132a4386248f0",
+      "size": 375,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/dfe375bb80ed879acb5febbdefb132a4386248f0"
+    },
+    {
+      "path": "browser/main/header.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80b5501c44d3c12109018c814f4988d35ae8c0d7",
+      "size": 224,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/80b5501c44d3c12109018c814f4988d35ae8c0d7"
+    },
+    {
+      "path": "browser/main/main.controller.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+      "size": 1,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/8b137891791fe96927ad78e64b0aad7bded08bdc"
+    },
+    {
+      "path": "browser/main/main.directive.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bded2287ee04ee5908fe87a3e9bf00b2cdda10e3",
+      "size": 701,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/bded2287ee04ee5908fe87a3e9bf00b2cdda10e3"
+    },
+    {
+      "path": "browser/main/text.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2dc311ef82562963fdd284c2cdc97530b01c5b8",
+      "size": 532,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/a2dc311ef82562963fdd284c2cdc97530b01c5b8"
+    },
+    {
+      "path": "browser/message",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d1f24378391561832da0ae7e334aef2388821f3a",
+      "url": "https://api.github.com/repos/tenloh/flack/git/trees/d1f24378391561832da0ae7e334aef2388821f3a"
+    },
+    {
+      "path": "browser/message/message.controller.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "999395f8ee3451e5460dfa845af8578c88cf7953",
+      "size": 679,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/999395f8ee3451e5460dfa845af8578c88cf7953"
+    },
+    {
+      "path": "browser/message/message.factory.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06e3586da8d808acff495a1a30e2b1edde78c7d4",
+      "size": 1120,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/06e3586da8d808acff495a1a30e2b1edde78c7d4"
+    },
+    {
+      "path": "browser/message/message.state.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31f4cc49c48f3fecbfeaafc7209664b70f6356b6",
+      "size": 317,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/31f4cc49c48f3fecbfeaafc7209664b70f6356b6"
+    },
+    {
+      "path": "browser/message/templates",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bb9000b221d6936fe66f5a2467033ec87599e1ef",
+      "url": "https://api.github.com/repos/tenloh/flack/git/trees/bb9000b221d6936fe66f5a2467033ec87599e1ef"
+    },
+    {
+      "path": "browser/message/templates/message.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1289e3695b93db81672b90a6306f0caa505680e9",
+      "size": 248,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/1289e3695b93db81672b90a6306f0caa505680e9"
+    },
+    {
+      "path": "browser/sidebar",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "13cf6d034ad549c472952c9d688e6fe249ddb5de",
+      "url": "https://api.github.com/repos/tenloh/flack/git/trees/13cf6d034ad549c472952c9d688e6fe249ddb5de"
+    },
+    {
+      "path": "browser/sidebar/index.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "753cdabaab7e3564826a85b839cda0d8e67209fc",
+      "size": 247,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/753cdabaab7e3564826a85b839cda0d8e67209fc"
+    },
+    {
+      "path": "browser/sidebar/sidebar.controller.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f71c126b400bd9b7ac892489d407983457d8d96",
+      "size": 293,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/0f71c126b400bd9b7ac892489d407983457d8d96"
+    },
+    {
+      "path": "browser/sidebar/sidebar.directive.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3cc9b56f96a35a68be0318dddd7775ed73c350d",
+      "size": 117,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/c3cc9b56f96a35a68be0318dddd7775ed73c350d"
+    },
+    {
+      "path": "browser/sidebar/sidebar.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2020345ef040b23305171658676d314b070eb26a",
+      "size": 440,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/2020345ef040b23305171658676d314b070eb26a"
+    },
+    {
+      "path": "browser/socket",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "505291451a0a9d2ae77486231472870ac1bf4bc0",
+      "url": "https://api.github.com/repos/tenloh/flack/git/trees/505291451a0a9d2ae77486231472870ac1bf4bc0"
+    },
+    {
+      "path": "browser/socket/socket.factory.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b412a2606df1b50f4b19d8fd2fdfb7b7a97b582e",
+      "size": 943,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/b412a2606df1b50f4b19d8fd2fdfb7b7a97b582e"
+    },
+    {
+      "path": "groups",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "895f95f9367a726f0b0c9408247762e2d1a0f1c0",
+      "url": "https://api.github.com/repos/tenloh/flack/git/trees/895f95f9367a726f0b0c9408247762e2d1a0f1c0"
+    },
+    {
+      "path": "groups/index.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e4569587919ecbcdbef2d959aa2210e843e76bd",
+      "size": 2367,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/4e4569587919ecbcdbef2d959aa2210e843e76bd"
+    },
+    {
+      "path": "models",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ffa7403eb05e4d6a120949413784752a10df26e7",
+      "url": "https://api.github.com/repos/tenloh/flack/git/trees/ffa7403eb05e4d6a120949413784752a10df26e7"
+    },
+    {
+      "path": "models/_db.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b948f617ddfe5f0f9401c3b2071a29de6eae734",
+      "size": 141,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/2b948f617ddfe5f0f9401c3b2071a29de6eae734"
+    },
+    {
+      "path": "models/index.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1b52588e57ded20c437e8088f9bc30301851495",
+      "size": 159,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/a1b52588e57ded20c437e8088f9bc30301851495"
+    },
+    {
+      "path": "models/message.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ba3072958c160eccb7e0838cdd2b7e53886c872",
+      "size": 162,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/3ba3072958c160eccb7e0838cdd2b7e53886c872"
+    },
+    {
+      "path": "models/room.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c02a88d51c6a307e4b0ff592f2dd7e0154abcdb",
+      "size": 364,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/1c02a88d51c6a307e4b0ff592f2dd7e0154abcdb"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "644695a82c4effe8a9375f7411b8788dfd914e81",
+      "size": 969,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/644695a82c4effe8a9375f7411b8788dfd914e81"
+    },
+    {
+      "path": "public",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fe7eb46db76b1394e096d5aa76810f275b24d908",
+      "url": "https://api.github.com/repos/tenloh/flack/git/trees/fe7eb46db76b1394e096d5aa76810f275b24d908"
+    },
+    {
+      "path": "public/bootstrap.min.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ddc0b4194433480237b3500cb00176944c852e6",
+      "size": 125618,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/5ddc0b4194433480237b3500cb00176944c852e6"
+    },
+    {
+      "path": "public/flack_logo.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8ca434d58f13ab2dca527a5a3c625c3bfa4f25d",
+      "size": 20673,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/e8ca434d58f13ab2dca527a5a3c625c3bfa4f25d"
+    },
+    {
+      "path": "public/flackicon.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7fca569c656fb46837490a7cb088295bcbc685ab",
+      "size": 21452,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/7fca569c656fb46837490a7cb088295bcbc685ab"
+    },
+    {
+      "path": "public/flackname.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e2287aa11f9f956f003ba581ac4ee8baf497f82",
+      "size": 36113,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/8e2287aa11f9f956f003ba581ac4ee8baf497f82"
+    },
+    {
+      "path": "public/simple-sidebar.css",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "449ebafc3c51473430db040ca766243bfaa212c5",
+      "size": 2221,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/449ebafc3c51473430db040ca766243bfaa212c5"
+    },
+    {
+      "path": "public/style.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8a841865192fd512a6aef4ad0e05c68e0d8b521",
+      "size": 1526,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/a8a841865192fd512a6aef4ad0e05c68e0d8b521"
+    },
+    {
+      "path": "synonyms",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "49f35a375d9e810506608a4c9a238925b34e5eac",
+      "url": "https://api.github.com/repos/tenloh/flack/git/trees/49f35a375d9e810506608a4c9a238925b34e5eac"
+    },
+    {
+      "path": "synonyms/index.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e283470081362151425e212b006098846337b414",
+      "size": 1592,
+      "url": "https://api.github.com/repos/tenloh/flack/git/blobs/e283470081362151425e212b006098846337b414"
+    }
+  ],
+  "truncated": false
+}

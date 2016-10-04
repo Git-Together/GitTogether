@@ -54,7 +54,7 @@ export default class Home extends Component {
     const { toggleComponent, ui } = this.props;
     const { updateSettings, addSettings, removeSettings, refreshSettings, settings } = this.props;
     const { updateConventions, addConventions, removeConventions, refreshConventions, conventions } = this.props;
-    const { changeActiveFile,  refreshFiles, files } = this.props;
+    const { changeActiveFile,  refreshFiles, changeActiveFileAsync, files } = this.props;
     const { changeActiveBranch,  refreshBranches, branches } = this.props;
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
 
@@ -79,7 +79,7 @@ export default class Home extends Component {
                 if (!inputRepo.value.trim()) {
                   return
                 }
-                addRepo({name: inputRepo.value})
+                addRepo({name: inputRepo.value, type: 'document'})
                 inputRepo.value = ''
               }}>
                 <input style={{color:"black"}}ref={node => {
@@ -156,7 +156,9 @@ export default class Home extends Component {
                       case 'Dashboard':
                         return <Dashboard />;
                       case 'Repos':
-                        return <Repos repos={this.props.repo} />;
+                        return <Repos repos={this.props.repo} 
+                        changeActiveFileAsync = {changeActiveFileAsync}
+                        />;
                       case 'Chat':
                         return <Chat
                         postMessage = {postMessage}
