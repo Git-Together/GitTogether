@@ -5,14 +5,14 @@ const initialState = {
 	token: null
 }
 
-export default function login(state = initialState, action) {
+export default function auth(state = initialState, action) {
 	switch (action.type) {
 		case LOGIN:
 			return 
 		case LOGOUT:
 			return null
 		case SET_USER:
-			return { currentuser: action.currentUser, token: action.token}
+			return { currentUser: action.currentUser, token: action.token}
 		default:
 			return state
 	}

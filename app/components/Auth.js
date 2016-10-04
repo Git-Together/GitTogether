@@ -11,9 +11,10 @@ export default class Login extends Component{
 	}
 
 	componentWillMount() {
-		if (!this.props.authenticated) {
+		if (!this.props.currentUser) {
 			this.context.router.push('/')
 		}
+		console.log(this.props)
 	}
 
 	render() {
@@ -22,6 +23,7 @@ export default class Login extends Component{
 		return (
 			<div>	
 				<button onClick={login}>Login</button>
+				<div>{this.props.currentUser}</div>
 			</div>
 		)
 	}

@@ -1,3 +1,7 @@
+# vim files
+*.un~
+*~
+
 # Logs
 logs
 *.log
