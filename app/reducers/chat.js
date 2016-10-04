@@ -4,13 +4,13 @@ const initialState = {
   activeMessage: 1,
   messages: [{
     message: 'This is the initial message',
-    userID: 1,
+    userId: 1,
     id: 1,
     timeStamp: new Date()
   },
   {
     message: 'This is the second message',
-    userID: 2,
+    userId: 2,
     id: 2,
     timeStamp: new Date()
   }]
@@ -19,7 +19,7 @@ const initialState = {
 export default function chat(state = initialState, action) {
   switch (action.type) {
     case POST_MESSAGE:
-      return { ...state, messages: [...state.messages, action.message] };
+      return { ...state, messages: [...state.messages, {message: action.message, userId: action.userId, id: action.id, timeStamp: action.timeStamp}] };
     case REFRESH_MESSAGES:
       return { ...state, messages: [...action.messages] };
     case CHANGE_ACTIVEMESSAGE:

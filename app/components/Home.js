@@ -22,16 +22,15 @@ export default class Home extends Component {
     this.display = this.display.bind(this);
   }
 
-
   static propTypes = {
     addRepo: PropTypes.func.isRequired,
     removeRepo: PropTypes.func.isRequired,
     addTeamMember: PropTypes.func.isRequired,
     removeTeamMember: PropTypes.func.isRequired,
-    refreshTeamMembers: PropTypes.func.isRequired,
+	refreshTeamMembers: PropTypes.func.isRequired,
     team: PropTypes.object.isRequired,
     repo: PropTypes.array.isRequired,
-    ui: PropTypes.string.isRequired
+	  ui: PropTypes.string.isRequired,
   };
 
   display (array, type) {

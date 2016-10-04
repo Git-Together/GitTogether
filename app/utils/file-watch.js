@@ -18,9 +18,29 @@ let githubName;
 //		return;
 //	}
 //
+<<<<<<< HEAD
 //	githubName = data.name
 //	channels = data.channels
 //	repoPaths = data.repoPaths
+=======
+//	githubName = data
+//})
+//storage.get('channels', ( err, data ) => {
+//	if (err) {
+//		console.error(err)
+//		return;
+//	}
+//
+//	channels = data
+//})
+//storage.get('repoPaths', ( err, data ) => {
+//	if (err) {
+//		console.error(err)
+//		return;
+//	}
+//
+//	repoPaths = data
+>>>>>>> 4650caf8a32b030e74ccdf02261d9a963ccd6271
 //})
 //n.b.: This assumes that repos and channels will be stored in separate arrays, where
 //the channel at a given index value is linked to the path at the same index value in
