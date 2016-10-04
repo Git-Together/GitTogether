@@ -4,14 +4,24 @@ const initState =
   { 
     activeRepo: 1,
     repos: [{
+      type: 'document',
       name: 'ourGit',
       id: 1
     },
     {
+      type: 'folder',
       name: 'GitIt',
-      id: 2
+      id: 2,
+      repos: [
+        {
+          type: 'document',
+          name: 'GitItOn',
+          id: 4
+        }
+      ]
     },
     {
+      type: 'document',
       name: 'GitOffMe',
       id: 3
     }]
