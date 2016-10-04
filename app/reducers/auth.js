@@ -8,9 +8,9 @@ const initialState = {
 export default function auth(state = initialState, action) {
 	switch (action.type) {
 		case LOGIN:
-			return 
+			return state
 		case LOGOUT:
-			return null
+			return state
 		case SET_USER:
 			return { currentUser: action.currentUser, token: action.token}
 		default:

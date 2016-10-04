@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import styles from './Auth.scss'
+import * as AuthActions from '../actions/Auth.js'
+import { bindActionCreators } from 'redux';
+import { push } from 'react-router-redux'
+import { connect } from 'react-redux'
 
-export default class Login extends Component{
+class Login extends Component{
 	constructor(props) {
 		super(props)
 	}
@@ -10,9 +14,9 @@ export default class Login extends Component{
 		router: React.PropTypes.object
 	}
 
-	componentWillMount() {
-		if (!this.props.currentUser) {
-			this.context.router.push('/')
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.auth.currentUser) {
+			this.context.router.push('/Home')
 		}
 	}
 
@@ -28,6 +32,16 @@ export default class Login extends Component{
 	}
 }
 
+function mapStateToProps(state) {
+	return { auth : state.auth }
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators(AuthActions, dispatch)	
+}
+
 Login.propTypes = {
 	auth: React.PropTypes.any
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login) 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-export default function(CheckUser) {
+export default function authCheck(checkLogin) {
+	console.log('IN AUTH CHECK UTIL')
 	class Authentication extends Component {
 
 		static contextTypes = {
@@ -9,21 +10,25 @@ export default function(CheckUser) {
 		}
 
 		componentWillMount() {
-			if (!this.props.auth.currentUser) {
-				this.context.router.push('/')
+			console.log("LOGGING CURRENT USER" + this.props.auth.currentUser)
+			if (this.props.auth.currentUser) {
+				this.context.router.push('/Home')
 			}
 		}
 
 		componentWillUpdate(nextProps) {
-			if (!nextProps.auth.currentUser) {
-				this.context.router.push('/')
+			console.log("LOGGING CURRENT USER COMPONENTWILLUPDATE" + this.props.auth.currentUser)
+			if (nextProps.auth.currentUser) {
+				this.context.router.push('/Home')
 			}
 		}
 	
 		render() {
-			return <CheckUser {...this.props} />
+			console.log("LOGGING CURRENT USER IN RENDER" + this.props.auth.currentUser)
+			return <checkLogin {...this.props} />
 		}
 	}
+
 	function mapStateToProps(state) {
 		return { auth: state.auth }
 	}

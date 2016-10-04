@@ -1,21 +1,19 @@
 import storage from 'electron-json-storage'
 const { BrowserWindow } = require('electron').remote
-import GitHub from 'github-api'
-import githubTokenUser from 'github-token-user'
 export const LOGIN = "LOGIN"
 export const LOGOUT = "LOGOUT"
 export const SET_USER = "SET_USER"
 
-let gh;
-
 export function setUser(currentUser, token) {
-	console.log(currentUser)
-	let storageObj = { currentUser, token }
-		return {
-			type: SET_USER,
-			currentUser,
-			token
-		}
+	storage.set('user', {
+		currentUser: currentUser,
+		token: token
+	}, err => console.error)
+	return {
+		type: SET_USER,
+		currentUser,
+		token
+	}
 }
 
 export function login() {
@@ -55,15 +53,9 @@ export function login() {
 				return fetch('http://localhost:1337/api/auth/github', fetchRequest)
 					.then(r => r.json())
 					.then(response => {
-						 	token = response.token
-							return githubTokenUser(token)
+							console.log(response)
+							dispatch(setUser(response.username, response.token))
 						})
-					.then(githubUser => {
-							username = githubUser.login
-							dispatch(setUser(username, token))
-						},
-						err => console.error(err)
-					)
 
 			} else if (error) {
 				alert('Oops! Something went wrong and we couldn\'t' +
