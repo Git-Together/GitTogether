@@ -33,7 +33,7 @@ export default class Repos extends Component {
   };
 
   activeRepo(array) {
-    return array.filter(e => e.id === this.props.repos.activeRepo)[0]
+    return array.filter(e => e.id === this.props.repos.activeRepo)
   }
 
 

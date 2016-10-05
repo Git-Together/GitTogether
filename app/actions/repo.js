@@ -6,7 +6,7 @@ export const GET_USER_REPOS = 'GET_USER_REPOS';
 //Github API call
 import GitHub from 'github-api';
 
-export default function getUserRepos() {
+export function getUserRepos() {
 
   return dispatch => {
     const gh = new GitHub({});

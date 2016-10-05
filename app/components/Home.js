@@ -39,7 +39,7 @@ export default class Home extends Component {
         e => {
           let displayValue = type === 'repo'? (
             <div key={e.id}>
-              <IndividualRepo name={e.name} id={e.id} delete={this.props.removeRepo.bind(this,e.id)} />
+              <IndividualRepo name={e.name} id={e.id} delete={this.props.removeRepo.bind(this,e.id)} switch={this.props.switchActive.bind(this, e.id)} />
             </div>):
             (<div key={e.id}>
               <IndividualMember name={e.name} id={e.id} delete={this.props.removeTeamMember.bind(this,e.id)} />
@@ -49,8 +49,12 @@ export default class Home extends Component {
     )
   };
 
+  componentWillMount(){
+    this.props.getUserRepos();
+  }
+
   render() {
-    const { addRepo, removeRepo, addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
+    const { switchActive, addRepo, removeRepo, getUserRepos,addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
     const { toggleComponent, ui } = this.props;
     const { updateSettings, addSettings, removeSettings, refreshSettings, settings } = this.props;
     const { updateConventions, addConventions, removeConventions, refreshConventions, conventions } = this.props;
@@ -156,7 +160,7 @@ export default class Home extends Component {
                       case 'Dashboard':
                         return <Dashboard />;
                       case 'Repos':
-                        return <Repos repos={this.props.repo} 
+                        return <Repos repos={this.props.repo}
                         changeActiveFileAsync = {changeActiveFileAsync}
                         />;
                       case 'Chat':

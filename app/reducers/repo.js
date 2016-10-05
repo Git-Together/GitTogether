@@ -58,7 +58,7 @@ export default function repo(state = initState, action) {
     case SWITCH_ACTIVE_REPO:
       return {...state, activeRepo: action.id}
     case GET_USER_REPOS:
-      return {...state, repos: action.repos}
+      return {...state, repos: action.repos.data}
     default:
       return state;
   }

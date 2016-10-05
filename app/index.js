@@ -7,22 +7,6 @@ import routes from './routes';
 import configureStore from './store/configureStore';
 import './app.global.css';
 
-
-//Github API call test
-import axios from 'axios';
-import GitHub from 'github-api';
-
-const gh = new GitHub({});
-
-const kintsang = gh.getUser('kintsang');
-
-kintsang.listRepos()
-  .then(function (result) {
-  console.log(result);
-  });
-
-
-
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
 
