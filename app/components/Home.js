@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import styles from './Home.css';
 import stylesScss from './Home.scss';
-import storage from 'electron-json-storage'
 import * as AuthActions from '../actions/Auth.js'
-
+import Promise from 'bluebird';
+const storage = Promise.promisifyAll(require('electron-json-storage'))
 import IndividualRepo from './individualRepo.js';
 import IndividualMember from './individualMember.js';
 import Dashboard from './Dashboard.js';
@@ -38,9 +38,6 @@ export default class Home extends Component {
 	  auth: PropTypes.object.isRequired
   };
 
-	componentWillMount() {
-		fileWatcher()
-	}
 
   display (array, type) {
     return array.map(
@@ -57,17 +54,18 @@ export default class Home extends Component {
     )
   };
 
-  componentWillMount(){
-        storage.get('user', (err, result) => {
-          console.log("This is result for auth",result);
-          if (err) console.error(err)
-          AuthActions.setUser(result.currentUser, result.token)
-          this.props.getUserRepos()
-        })
+	componentWillMount(){
+		fileWatcher()
+		return storage.getAsync('user')
+		.then(result => {
+			console.log("This is result for auth",result);
+			AuthActions.setUser(result.currentUser, result.token)
+			this.props.getUserRepos()
+			return result
+		})
+	}
 
-
-  }
-  componentWillReceiveProps(nextProps){
+	componentWillReceiveProps(nextProps){
     this.setState({
       repos: nextProps.repo.repos
     })

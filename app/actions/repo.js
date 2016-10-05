@@ -5,10 +5,15 @@ export const GET_USER_REPOS = 'GET_USER_REPOS';
 export const SWITCH_ACTIVE_TREE = 'SWITCH_ACTIVE_TREE';
 
 //Github API call
+import Promise from 'bluebird';
+const storage = Promise.promisifyAll(require('electron-json-storage'))
 import GitHub from 'github-api';
 import axios from 'axios';
-import { TOGGLE_COMPONENT } from './ui'
+import { TOGGLE_COMPONENT } from './ui';
+
 export function getUserRepos() {
+	let user, token
+	
 
   // return dispatch => {
   //   const gh = new GitHub({});
@@ -21,11 +26,17 @@ export function getUserRepos() {
   //         repos
   //       }));
   return (dispatch, getState) => {
-    axios.get(`https://api.github.com/users/${getState().auth.currentUser}/repos?access_token=${getState().auth.token}`)
-    .then(repos => dispatch({
-          type: GET_USER_REPOS,
-          repos: repos.data
-    }));
+	storage.getAsync('user', (err, result) => {
+		return {user, token}
+	})
+		  .then(userObj =>{
+			  console.log(userObj)
+			  return axios.get(`https://api.github.com/users/${userObj.user}/repos?access_token=${userObj.token}`)
+		  })
+		  .then(repos => dispatch({
+			  type: GET_USER_REPOS,
+			  repos: repos.data
+		  }));
   };
 }
 
@@ -34,6 +45,7 @@ export function getRepoTree(repo){
   return (dispatch, getState) => {
     axios.get(`https://api.github.com/repos/${repo.full_name}/git/refs/?access_token=${getState().auth.token}`)
       .then(repoSha => {
+        console.log('repoSha', repoSha.data);
         return axios.get(`https://api.github.com/repos/${repo.full_name}/git/trees/${repoSha.data[0].object.sha}?recursive=1&access_token=${getState().auth.token}`);
       }).then(tree => dispatch({
         type: SWITCH_ACTIVE_TREE,
