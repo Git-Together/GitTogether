@@ -42,11 +42,6 @@ export default class Repos extends Component {
     //Call to visualize tree logic
     // let visual = changeObjectArrayToKeys(this.props.repos);
     let testObject = changeObjectTreeToKey(this.props.repos);
-
-
-
-
-
     //Render chart.
     this.renderChart = tree(findDOMNode(this), {
       // state: {repos: this.props.repos.repos},

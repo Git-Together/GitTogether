@@ -2,7 +2,7 @@ import gaze from 'gaze';
 import storage from 'electron-json-storage';
 import io from 'socket.io-client'
 //TOCHANGE: connecting socket to local host for testing for the time being—wire to server once ready
-const socket = io.connect('http://localhost:1337');
+const socket = io.connect(process.env.SERVER_URL + ':1337');
 import git from 'simple-git';
 import Promise from 'bluebird';
 import { logParser, diffParser } from './git-command-parsers.js';
