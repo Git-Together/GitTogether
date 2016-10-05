@@ -22,16 +22,16 @@ export default class Home extends Component {
     this.display = this.display.bind(this);
   }
 
-
   static propTypes = {
     addRepo: PropTypes.func.isRequired,
     removeRepo: PropTypes.func.isRequired,
     addTeamMember: PropTypes.func.isRequired,
     removeTeamMember: PropTypes.func.isRequired,
-    refreshTeamMembers: PropTypes.func.isRequired,
+	refreshTeamMembers: PropTypes.func.isRequired,
     team: PropTypes.object.isRequired,
-    repo: PropTypes.object.isRequired,
-    ui: PropTypes.string.isRequired
+    repo: PropTypes.array.isRequired,
+	  ui: PropTypes.string.isRequired,
+	  auth: PropTypes.object.isRequired
   };
 
   display (array, type) {
@@ -52,6 +52,7 @@ export default class Home extends Component {
   render() {
     const { addRepo, removeRepo, addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
     const { toggleComponent, ui } = this.props;
+    const { logout, auth } = this.props;
     const { updateSettings, addSettings, removeSettings, refreshSettings, settings } = this.props;
     const { updateConventions, addConventions, removeConventions, refreshConventions, conventions } = this.props;
     const { changeActiveFile,  refreshFiles, changeActiveFileAsync, files } = this.props;
@@ -146,6 +147,9 @@ export default class Home extends Component {
               </li>
               <li onClick={toggleComponent.bind(null,'Settings')}
                 className="btn">Settings
+              </li>
+              <li onClick={logout} 
+                className="btn">Logout
               </li>
             </ul>
           </div>{/* nav */}
