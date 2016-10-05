@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './individualActiveRepo.scss';
 
 export default function IndividualActiveRepo (props) {
-    console.log(props);
     return (
     <div className={[styles.flex, 'grey'].join(" ")}>
       <div className={[styles.details, 'yellow'].join(" ")}>

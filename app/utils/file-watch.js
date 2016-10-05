@@ -12,14 +12,6 @@ let channels;
 let repoPaths;
 //TOCHANGE: once we've integrated local storage of a user's channels, use the logic below
 //
-//storage.get('githubName', ( err, data ) => {
-//	if (err) {
-//		console.error(err)
-//		return;
-//	}
-//
-//	githubName = data
-//})
 //storage.get('channels', ( err, data ) => {
 //	if (err) {
 //		console.error(err)
@@ -52,27 +44,8 @@ export function fileWatcher() {
 		username = info.currentUser
 	})
 
-	// gaze('**/*', {
-	// 	//Don't watch npm packages in a repo—it's prohibitively expensive and they shouldn't be
-	// 	//doing anything in there anyway.
-	// 	cwd: '/Users/gewl/Desktop/gitclones/projects/rivers',
-	// 	ignore: ['**/node_modules/**', 'node_modules/**']
-	// }, function(err, watcher) {
-	// 	var watched = this.watched()
-	// 	console.log(watched)
-	// 	this.on('ready', function() {
-	// 		console.log('filewatcher watching' + repoPaths)
-	// 	})
-	// 	this.on('all', function(event, filepath) {
-	// 		console.log('file changed')
-	// 	})
-	// })
-	
-
-
 	channels.forEach((channel, index) => {
 		let repoPath = repoPaths[index]
-		console.log('foreach hit' + repoPath)
 
 		gaze('**/*', {
 			//Don't watch npm packages in a repo—it's prohibitively expensive and they shouldn't be
@@ -168,17 +141,7 @@ export function fileWatcher() {
 		})
 	})
 
-	//TOCHANGE: Upon logging in, the client should send login name to the server—
-	//this will be used to add the client to a number of rooms, which will be
-	//used for broadcasting filechange events.
-	//
-	//socket.emit('login', { githubId: githubId })
-
-	//Additionally, on window close (in main electron process?), should emit:
-	//
-	//socket.emit('logout', { githubId: githubId })
-
-	//Logic for handling incoming socket events—this will probably be moved to
+	//Logic for handling incoming socket events—this may need to be moved to
 	//a parent react component.
 
 	socket.on('fileChanges', payload => {

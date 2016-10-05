@@ -34,7 +34,6 @@ export function getRepoTree(repo){
   return (dispatch, getState) => {
     axios.get(`https://api.github.com/repos/${repo.full_name}/git/refs/?access_token=${getState().auth.token}`)
       .then(repoSha => {
-        console.log('repoSha', repoSha.data);
         return axios.get(`https://api.github.com/repos/${repo.full_name}/git/trees/${repoSha.data[0].object.sha}?recursive=1&access_token=${getState().auth.token}`);
       }).then(tree => dispatch({
         type: SWITCH_ACTIVE_TREE,
@@ -57,7 +56,6 @@ export function addRepo(repo) {
 }
 
 export function removeRepo(id) {
-    console.log("running removeRepo");
     return {
         type: REMOVE_REPO,
         id

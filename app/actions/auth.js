@@ -4,12 +4,17 @@ export const LOGIN = "LOGIN"
 export const LOGOUT = "LOGOUT"
 export const SET_USER = "SET_USER"
 import { push } from 'react-router-redux'
+import io from 'socket.io-client'
 
 export function setUser(currentUser, token) {
 	storage.set('user', {
 		currentUser: currentUser,
 		token: token
 	}, err => console.error)
+	if (currentUser) {
+		let socket = io('http://localhost:1337')
+		socket.emit('passLogin', currentUser)
+	}
 	return {
 		type: SET_USER,
 		currentUser,

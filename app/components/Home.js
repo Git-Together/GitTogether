@@ -3,8 +3,6 @@ import { Link } from 'react-router';
 import styles from './Home.css';
 import stylesScss from './Home.scss';
 
-console.log("stylesScss", stylesScss)
-
 import IndividualRepo from './individualRepo.js';
 import IndividualMember from './individualMember.js';
 import Dashboard from './Dashboard.js';
@@ -43,7 +41,6 @@ export default class Home extends Component {
 	}
 
   display (array, type) {
-    console.log("array", array)
     return array.map(
         e => {
           let displayValue = type === 'repo'? (
@@ -63,7 +60,6 @@ export default class Home extends Component {
 
   }
   componentWillReceiveProps(nextProps){
-    console.log("HERE IN COMPONENET WILL GET NEW PROPS")
     this.setState({
       repos: nextProps.repo.repos
     })
@@ -78,12 +74,10 @@ export default class Home extends Component {
     const { changeActiveFile,  refreshFiles, changeActiveFileAsync, files } = this.props;
     const { changeActiveBranch,  refreshBranches, branches } = this.props;
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
-    console.log("REPO", repo)
     let uiSwitch;
     let inputRepo;
     let inputMember;
 
-    console.log("THIS STATE", this.state.repos)
     return (
       <div className={stylesScss.flex}>
         <div className={[stylesScss.teams, 'grey'].join(" ")}>
