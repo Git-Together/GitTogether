@@ -1,9 +1,14 @@
 import { app, BrowserWindow, Menu, shell } from 'electron';
+import { ipcMain } from 'electron'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 let menu;
 let template;
 let mainWindow = null;
 
+let cache;
 
 if (process.env.NODE_ENV === 'development') {
   require('electron-debug')(); // eslint-disable-line global-require
@@ -32,8 +37,19 @@ const installExtensions = async () => {
   }
 };
 
+
 app.on('ready', async () => {
-  await installExtensions();
+	await installExtensions();
+	createWindow()
+});
+
+app.on('activate', () => {
+	if (mainWindow === null) {
+		createWindow()
+	}
+})
+
+function createWindow() {
 
   mainWindow = new BrowserWindow({
     show: false,
@@ -44,8 +60,9 @@ app.on('ready', async () => {
   mainWindow.loadURL(`file://${__dirname}/app/app.html`);
 
   mainWindow.webContents.on('did-finish-load', () => {
-    mainWindow.show();
-    mainWindow.focus();
+	  mainWindow.webContents.send('cachedUserInfo', cache)
+	  mainWindow.show();
+	  mainWindow.focus();
   });
 
   mainWindow.on('closed', () => {
@@ -265,4 +282,4 @@ app.on('ready', async () => {
     menu = Menu.buildFromTemplate(template);
     mainWindow.setMenu(menu);
   }
-});
+}

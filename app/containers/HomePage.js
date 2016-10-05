@@ -9,9 +9,10 @@ import * as filesActions from '../actions/files'
 import * as branchActions from '../actions/branch'
 import * as conventionActions from '../actions/conventions'
 import * as chatActions from '../actions/chat'
+import * as authActions from '../actions/auth'
 import Home from '../components/Home';
 
-const actionsObj = Object.assign({}, repoActions, teamActions, ui, settingsActions, filesActions, branchActions, conventionActions, chatActions);
+const actionsObj = Object.assign({}, repoActions, authActions, teamActions, ui, settingsActions, filesActions, branchActions, conventionActions, chatActions);
 
 function mapStateToProps(state) {
   return {
@@ -22,7 +23,8 @@ function mapStateToProps(state) {
     conventions: state.conventions,
     files: state.files,
     branches: state.branches,
-    ui: state.ui
+	ui: state.ui,
+	auth: state.auth
   };
 }
 
@@ -31,16 +33,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
-
-
-
-
-
-// export default class HomePage extends Component {
-//   render() {
-//     return (
-//       <Home />
-//     );
-//   }
-// }
-
