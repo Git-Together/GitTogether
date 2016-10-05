@@ -39,7 +39,7 @@ export default class Home extends Component {
         e => {
           let displayValue = type === 'repo'? (
             <div key={e.id}>
-              <IndividualRepo name={e.name} id={e.id} delete={this.props.removeRepo.bind(this,e.id)} switch={this.props.switchActive.bind(this, e.id)} />
+              <IndividualRepo name={e.name} id={e.id} delete={this.props.removeRepo.bind(this,e.id)} switch={this.props.getRepoTree.bind(this, e)} />
             </div>):
             (<div key={e.id}>
               <IndividualMember name={e.name} id={e.id} delete={this.props.removeTeamMember.bind(this,e.id)} />
@@ -54,7 +54,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { switchActive, addRepo, removeRepo, getUserRepos,addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
+    const { getRepoTree, switchActive, addRepo, removeRepo, getUserRepos,addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
     const { toggleComponent, ui } = this.props;
     const { logout, auth } = this.props;
     const { updateSettings, addSettings, removeSettings, refreshSettings, settings } = this.props;
@@ -164,8 +164,8 @@ export default class Home extends Component {
                       case 'Dashboard':
                         return <Dashboard />;
                       case 'Repos':
-                        return <Repos repos={this.props.repo}
-                        changeActiveFileAsync = {changeActiveFileAsync}
+                        return <Repos repos={this.props.repo.tree.tree}
+                        changeActiveFileAsync={changeActiveFileAsync}
                         />;
                       case 'Chat':
                         return <Chat

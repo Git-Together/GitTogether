@@ -39,13 +39,16 @@ export default class Repos extends Component {
 
 
   componentDidMount() {
-    console.log(this.props.repos.repos);
-    console.log('PROPS', this.props);
+    // console.log(this.props.repos.repos);
+    // console.log('PROPS', this.props);
     var self = this.props;
-    let testObject = changeObjectTreeToKey(sampleJson.tree);
+    //Call to visualize tree logic
+    // let visual = changeObjectArrayToKeys(this.props.repos);
+    // console.log('Visual Object', visual);
+    let testObject = changeObjectTreeToKey(this.props.repos);
     console.log('Test Object', changeObjectTreeToKey(sampleJson.tree));
 
-    
+
 
 
 
@@ -76,13 +79,13 @@ export default class Repos extends Component {
     });
     this.renderChart();
 
-    
+
 
   }
 
   componentWillReceiveProps(nextProps) {
     console.log('next props', nextProps);
-    let visual = changeObjectArrayToKeys(nextProps.repos.repos);
+    let visual = changeObjectTreeToKey(nextProps.repos);
     this.renderChart(visual);
   }
 
