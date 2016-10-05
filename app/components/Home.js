@@ -15,6 +15,7 @@ import Conventions from './Conventions.js';
 import Branches from './Branches.js';
 import FileView from './FileView.js';
 import Settings from './Settings.js';
+import { fileWatcher } from '../utils/file-watch.js'
 
 export default class Home extends Component {
   constructor (props) {
@@ -29,10 +30,14 @@ export default class Home extends Component {
     removeTeamMember: PropTypes.func.isRequired,
 	refreshTeamMembers: PropTypes.func.isRequired,
     team: PropTypes.object.isRequired,
-    repo: PropTypes.array.isRequired,
+    repo: PropTypes.object.isRequired,
 	  ui: PropTypes.string.isRequired,
 	  auth: PropTypes.object.isRequired
   };
+
+	componentWillMount() {
+		fileWatcher()
+	}
 
   display (array, type) {
     return array.map(
