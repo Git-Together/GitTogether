@@ -55,7 +55,7 @@ export default class Home extends Component {
     const { logout, auth } = this.props;
     const { updateSettings, addSettings, removeSettings, refreshSettings, settings } = this.props;
     const { updateConventions, addConventions, removeConventions, refreshConventions, conventions } = this.props;
-    const { changeActiveFile,  refreshFiles, files } = this.props;
+    const { changeActiveFile,  refreshFiles, changeActiveFileAsync, files } = this.props;
     const { changeActiveBranch,  refreshBranches, branches } = this.props;
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
 
@@ -73,14 +73,14 @@ export default class Home extends Component {
           <div className={[stylesScss.repos, 'green'].join(" ")}>
 
             <span>Repos</span>
-            {this.display(repo, 'repo')}
+            {this.display(repo.repos, 'repo')}
             <div>
               <form onSubmit={e => {
                 e.preventDefault()
                 if (!inputRepo.value.trim()) {
                   return
                 }
-                addRepo({name: inputRepo.value})
+                addRepo({name: inputRepo.value, type: 'document'})
                 inputRepo.value = ''
               }}>
                 <input style={{color:"black"}}ref={node => {
@@ -158,7 +158,15 @@ export default class Home extends Component {
             { (() => {
                     switch (ui) {
                       case 'Dashboard':
+<<<<<<< HEAD
                         return <Dashboard />; case 'Repos': return <Repos repos={this.props.repo} />;
+=======
+                        return <Dashboard />;
+                      case 'Repos':
+                        return <Repos repos={this.props.repo} 
+                        changeActiveFileAsync = {changeActiveFileAsync}
+                        />;
+>>>>>>> 96fab5464df690b53b838d1fa6feebc525577d9a
                       case 'Chat':
                         return <Chat
                         postMessage = {postMessage}

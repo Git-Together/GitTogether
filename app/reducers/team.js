@@ -34,14 +34,18 @@ export default function team(state = initState, action) {
       return {...state, activeTeamMember: activeTeamMember(state.activeTeamMember, action)};
 
     case ADD_TEAM_MEMBER:
-      let id = ++state.team.map(e => e.id)[state.length-1];
+      // let id = ++state.team.map(e => e.id)[state.length-1];
+      let id = state.team.map(e => e.id).reduce((e, cur) => {
+        return Math.max(e, cur);
+      })
+      id++;
       let newMember = {...action.member, id}
       return {...state, team: [...state.team, newMember]};
 
     case REMOVE_TEAM_MEMBER:
       let idx = state.team.map(e => e.id).indexOf(action.id);
       if (idx === -1) return state;
-      return {...state, team: [...state.slice(0, idx), ...state.slice(idx + 1)]};
+      return {...state, team: [...state.team.slice(0, idx), ...state.team.slice(idx + 1)]};
 
     case REFRESH_TEAM_MEMBERS:
       return {...state, team: [...action.team]};
