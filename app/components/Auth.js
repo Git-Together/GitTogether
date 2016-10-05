@@ -4,6 +4,7 @@ import * as AuthActions from '../actions/Auth.js'
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux'
 import { connect } from 'react-redux'
+import storage from 'electron-json-storage'
 
 class Login extends Component{
 	constructor(props) {
@@ -12,6 +13,16 @@ class Login extends Component{
 	
 	static contextTypes = {
 		router: React.PropTypes.object
+	}
+
+	componentWillMount() {
+		storage.get('user', (err, result) => {
+			if (err) console.error(err)
+			AuthActions.setUser(result.currentUser, result.token)
+			if (result.currentUser) {
+				this.context.router.push('/Home')
+			}
+		})
 	}
 
 	componentWillReceiveProps(nextProps) {

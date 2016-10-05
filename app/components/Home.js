@@ -31,6 +31,7 @@ export default class Home extends Component {
     team: PropTypes.object.isRequired,
     repo: PropTypes.array.isRequired,
 	  ui: PropTypes.string.isRequired,
+	  auth: PropTypes.object.isRequired
   };
 
   display (array, type) {
@@ -51,6 +52,7 @@ export default class Home extends Component {
   render() {
     const { addRepo, removeRepo, addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
     const { toggleComponent, ui } = this.props;
+    const { logout, auth } = this.props;
     const { updateSettings, addSettings, removeSettings, refreshSettings, settings } = this.props;
     const { updateConventions, addConventions, removeConventions, refreshConventions, conventions } = this.props;
     const { changeActiveFile,  refreshFiles, files } = this.props;
@@ -146,6 +148,9 @@ export default class Home extends Component {
               <li onClick={toggleComponent.bind(null,'Settings')}
                 className="btn">Settings
               </li>
+              <li onClick={logout} 
+                className="btn">Logout
+              </li>
             </ul>
           </div>{/* nav */}
 
@@ -153,9 +158,7 @@ export default class Home extends Component {
             { (() => {
                     switch (ui) {
                       case 'Dashboard':
-                        return <Dashboard />;
-                      case 'Repos':
-                        return <Repos repos={this.props.repo} />;
+                        return <Dashboard />; case 'Repos': return <Repos repos={this.props.repo} />;
                       case 'Chat':
                         return <Chat
                         postMessage = {postMessage}

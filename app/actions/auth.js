@@ -3,6 +3,7 @@ const { BrowserWindow } = require('electron').remote
 export const LOGIN = "LOGIN"
 export const LOGOUT = "LOGOUT"
 export const SET_USER = "SET_USER"
+import { push } from 'react-router-redux'
 
 export function setUser(currentUser, token) {
 	storage.set('user', {
@@ -54,7 +55,6 @@ export function login() {
 				return fetch(process.env.SERVER_URL + '/api/auth/github', fetchRequest)
 					.then(r => r.json())
 					.then(response => {
-							console.log(response)
 							dispatch(setUser(response.username, response.token))
 						})
 
@@ -78,5 +78,6 @@ export function login() {
 export function logout(githubUsername) {
 	return function(dispatch, getState) {
 		dispatch(setUser(null, null))
+		dispatch(push('/'))
 	}
 }

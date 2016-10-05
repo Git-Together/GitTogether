@@ -85,11 +85,8 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "fbjs-scripts": "^0.7.1",
     "gaze": "^1.1.2",
-<<<<<<< HEAD
     "github": "^3.1.1",
     "github-api": "^2.3.0",
-=======
->>>>>>> 4650caf8a32b030e74ccdf02261d9a963ccd6271
     "jsdom": "^9.4.3",
     "json-loader": "^0.5.4",
     "minimist": "^1.2.0",
