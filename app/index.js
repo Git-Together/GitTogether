@@ -6,13 +6,27 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import routes from './routes';
 import configureStore from './store/configureStore';
 import './app.global.css';
+import storage from 'electron-json-storage';
 
-const store = configureStore();
-const history = syncHistoryWithStore(hashHistory, store);
+let state = {
+  auth: {}
+};
 
-render(
-  <Provider store={store}>
-    <Router history={history} routes={routes} />
-  </Provider>,
-  document.getElementById('root')
-);
+storage.get('user', (err, result) => {
+  console.log("This is result for auth in index",result);
+  if (err) console.error(err)
+  state.auth.currentUser = result.currentUser;
+  state.auth.token = result.token;
+  const store = configureStore(state);
+  const history = syncHistoryWithStore(hashHistory, store);
+
+  render(
+    <Provider store={store}>
+      <Router history={history} routes={routes} />
+    </Provider>,
+    document.getElementById('root')
+  );
+
+
+})
+

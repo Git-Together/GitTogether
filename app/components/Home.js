@@ -56,21 +56,15 @@ export default class Home extends Component {
   };
 
   componentWillMount(){
-        storage.get('user', (err, result) => {
-          console.log("This is result for auth",result);
-          if (err) console.error(err)
-          AuthActions.setUser(result.currentUser, result.token)
           this.props.getUserRepos()
-        })
+  };
 
-
-  }
   componentWillReceiveProps(nextProps){
     console.log("HERE IN COMPONENET WILL GET NEW PROPS")
     this.setState({
       repos: nextProps.repo.repos
     })
-  }
+  };
 
   render() {
     const { getRepoTree, switchActive, addRepo, removeRepo, getUserRepos,addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
