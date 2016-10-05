@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import styles from './Home.css';
 import stylesScss from './Home.scss';
+import storage from 'electron-json-storage'
+import * as AuthActions from '../actions/Auth.js'
 
 import IndividualRepo from './individualRepo.js';
 import IndividualMember from './individualMember.js';
@@ -56,7 +58,13 @@ export default class Home extends Component {
   };
 
   componentWillMount(){
-    this.props.getUserRepos()
+        storage.get('user', (err, result) => {
+          console.log("This is result for auth",result);
+          if (err) console.error(err)
+          AuthActions.setUser(result.currentUser, result.token)
+          this.props.getUserRepos()
+        })
+
 
   }
   componentWillReceiveProps(nextProps){
