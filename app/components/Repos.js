@@ -5,6 +5,7 @@ import IndividualActiveRepo from './individualActiveRepo.js';
 import {tree} from 'd3-state-visualizer';
 import { findDOMNode } from 'react-dom';
 import sampleJson from '../../test/sampleApiPayload.json'
+import d3tooltip from 'd3tooltip';
 
 export default class Repos extends Component {
   constructor(props) {
@@ -41,39 +42,49 @@ export default class Repos extends Component {
     console.log(this.props.repos.repos);
     console.log('PROPS', this.props);
     var self = this.props;
-    //Call to visualize tree logic
-    let visual = changeObjectArrayToKeys(this.props.repos.repos);
-    console.log('Visual Object', visual);
     let testObject = changeObjectTreeToKey(sampleJson.tree);
     console.log('Test Object', changeObjectTreeToKey(sampleJson.tree));
+
+    
+
+
+
     //Render chart.
     this.renderChart = tree(findDOMNode(this), {
       // state: {repos: this.props.repos.repos},
-      state: testObject,
+      state: testObject,//CURRENTLY USING TEST OBJECT
       id: 'repoTree',
       size: 1000,
       aspectRatio: 0.5,
       isSorted: false,
       widthBetweenNodesCoeff: 1.5,
       heightBetweenNodesCoeff: 2,
-      style: { border: '1px solid black' },
+      style: { border: '1px solid blue' },
       tooltipOptions: { offset: { left: 100, top: 100 }, indentationSize: 2 },
-      rootKeyName: 'Head',
+      rootKeyName: '/',
       onClickText: function(){
-        //Change Active file
-        //Go to active component
-        console.dir(this);
-        self.changeActiveFileAsync(this.textContent);
+        //Change Active file & go to active component
+        let nodeSelf = this.__data__;
+        let fileName = [];
+        while(nodeSelf.parent){
+          fileName.unshift(nodeSelf.name);
+          nodeSelf = nodeSelf.parent;
+        }
+        let filePath = fileName.join('/');
+        self.changeActiveFileAsync('/' + filePath);
       }
     });
     this.renderChart();
+
+    
+
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   console.log('next props', nextProps);
-  //   let visual = changeObjectArrayToKeys(nextProps.repos.repos);
-  //   this.renderChart(visual);
-  // }
+  componentWillReceiveProps(nextProps) {
+    console.log('next props', nextProps);
+    let visual = changeObjectArrayToKeys(nextProps.repos.repos);
+    this.renderChart(visual);
+  }
 
 
 
@@ -81,29 +92,10 @@ export default class Repos extends Component {
   render() {
     console.log(this.props)
     return (
-      // <div className={[styles.container, 'purple'].join(' ')}>
-      //   {this.display(this.props.repos.repos)}
-      //   <IndividualActiveRepo repo={this.activeRepo(this.props.repos.repos)}/>
-      // </div>
       <div />
     )
   };
 }
-
-//Helper function to change from list of arrays to keys to display on tree
-let changeObjectArrayToKeys = function (array) {
-  let rtnObj = {}
-  array = array.forEach(element => {
-    let arrayObj;
-    if (Array.isArray(element.repos)) arrayObj = changeObjectArrayToKeys(element.repos);
-    let newObj = {}
-    newObj[element.type] = element.type;
-    rtnObj[element.name] = newObj;
-    if(arrayObj) rtnObj[element.name].repos = arrayObj;
-  });
-  return rtnObj;
-}
-
 
 //Helper function to change github api 'tree' from array tree
 let changeObjectTreeToKey = function (array) {
