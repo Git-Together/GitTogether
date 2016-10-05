@@ -10,13 +10,14 @@ class Login extends Component{
 	constructor(props) {
 		super(props)
 	}
-	
+
 	static contextTypes = {
 		router: React.PropTypes.object
 	}
 
 	componentWillMount() {
 		storage.get('user', (err, result) => {
+      console.log("This is result for auth",result);
 			if (err) console.error(err)
 			AuthActions.setUser(result.currentUser, result.token)
 			if (result.currentUser) {
@@ -31,11 +32,17 @@ class Login extends Component{
 		}
 	}
 
+  componentWillUpdate(){
+    if (this.props.auth.currentUser) {
+    this.context.router.push('/Home')
+    }
+  }
+
 	render() {
 		const { login, Auth } = this.props
 
 		return (
-			<div>	
+			<div>
 				<button onClick={login}>Login</button>
 				<div>{this.props.currentUser}</div>
 			</div>
@@ -48,11 +55,11 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators(AuthActions, dispatch)	
+	return bindActionCreators(AuthActions, dispatch)
 }
 
 Login.propTypes = {
 	auth: React.PropTypes.any
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login) 
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

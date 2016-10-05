@@ -20,6 +20,9 @@ export default class Home extends Component {
   constructor (props) {
     super(props);
     this.display = this.display.bind(this);
+    this.state = {
+      repos: null
+    }
   }
 
   static propTypes = {
@@ -27,19 +30,20 @@ export default class Home extends Component {
     removeRepo: PropTypes.func.isRequired,
     addTeamMember: PropTypes.func.isRequired,
     removeTeamMember: PropTypes.func.isRequired,
-	refreshTeamMembers: PropTypes.func.isRequired,
+	  refreshTeamMembers: PropTypes.func.isRequired,
     team: PropTypes.object.isRequired,
-    repo: PropTypes.array.isRequired,
+    repo: PropTypes.object.isRequired,
 	  ui: PropTypes.string.isRequired,
 	  auth: PropTypes.object.isRequired
   };
 
   display (array, type) {
+    console.log("array", array)
     return array.map(
         e => {
           let displayValue = type === 'repo'? (
             <div key={e.id}>
-              <IndividualRepo name={e.name} id={e.id} delete={this.props.removeRepo.bind(this,e.id)} />
+              <IndividualRepo name={e.name} id={e.id} delete={this.props.removeRepo.bind(this,e.id)} switch={this.props.getRepoTree.bind(this, e)} />
             </div>):
             (<div key={e.id}>
               <IndividualMember name={e.name} id={e.id} delete={this.props.removeTeamMember.bind(this,e.id)} />
@@ -49,8 +53,19 @@ export default class Home extends Component {
     )
   };
 
+  componentWillMount(){
+    this.props.getUserRepos()
+
+  }
+  componentWillReceiveProps(nextProps){
+    console.log("HERE IN COMPONENET WILL GET NEW PROPS")
+    this.setState({
+      repos: nextProps.repo.repos
+    })
+  }
+
   render() {
-    const { addRepo, removeRepo, addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
+    const { getRepoTree, switchActive, addRepo, removeRepo, getUserRepos,addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
     const { toggleComponent, ui } = this.props;
     const { logout, auth } = this.props;
     const { updateSettings, addSettings, removeSettings, refreshSettings, settings } = this.props;
@@ -58,12 +73,12 @@ export default class Home extends Component {
     const { changeActiveFile,  refreshFiles, changeActiveFileAsync, files } = this.props;
     const { changeActiveBranch,  refreshBranches, branches } = this.props;
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
-
+    console.log("REPO", repo)
     let uiSwitch;
     let inputRepo;
     let inputMember;
 
-
+    console.log("THIS STATE", this.state.repos)
     return (
       <div className={stylesScss.flex}>
         <div className={[stylesScss.teams, 'grey'].join(" ")}>
@@ -73,7 +88,7 @@ export default class Home extends Component {
           <div className={[stylesScss.repos, 'green'].join(" ")}>
 
             <span>Repos</span>
-            {this.display(repo.repos, 'repo')}
+            {this.state.repos?this.display(this.state.repos, 'repo'):''}
             <div>
               <form onSubmit={e => {
                 e.preventDefault()
@@ -148,7 +163,7 @@ export default class Home extends Component {
               <li onClick={toggleComponent.bind(null,'Settings')}
                 className="btn">Settings
               </li>
-              <li onClick={logout} 
+              <li onClick={logout}
                 className="btn">Logout
               </li>
             </ul>
@@ -160,8 +175,8 @@ export default class Home extends Component {
                       case 'Dashboard':
                         return <Dashboard />;
                       case 'Repos':
-                        return <Repos repos={this.props.repo} 
-                        changeActiveFileAsync = {changeActiveFileAsync}
+                        return <Repos repos={this.props.repo.tree.tree}
+                        changeActiveFileAsync={changeActiveFileAsync}
                         />;
                       case 'Chat':
                         return <Chat

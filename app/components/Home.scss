@@ -17,6 +17,7 @@
 	flex-flow: column;
 	align-items: center;
 	padding: 1em;
+
 	span {
 		margin-bottom: 1em;
 	}
@@ -38,8 +39,9 @@
 
 .repos {
 	width: 100%;
-	flex: 1 0 auto;
+	flex: 6 0 0;
 	padding: 1em;
+	overflow-y: scroll;
 }
 
 .members {

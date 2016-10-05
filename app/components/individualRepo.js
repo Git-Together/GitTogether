@@ -11,7 +11,7 @@ export default function IndividualRepo(props) {
     <div className={styles.flex}>
       <div className={[styles.pic, 'grey'].join(" ")}>
 
-        <span className={iconArray[Math.floor(Math.random()*3)]}></span>
+        <button className={iconArray[Math.floor(Math.random()*3)]} onClick={props.switch}></button>
 
       </div> {/* pic */}
 
