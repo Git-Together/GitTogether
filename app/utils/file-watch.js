@@ -18,11 +18,6 @@ let githubName;
 //		return;
 //	}
 //
-<<<<<<< HEAD
-//	githubName = data.name
-//	channels = data.channels
-//	repoPaths = data.repoPaths
-=======
 //	githubName = data
 //})
 //storage.get('channels', ( err, data ) => {

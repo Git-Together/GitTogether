@@ -158,15 +158,11 @@ export default class Home extends Component {
             { (() => {
                     switch (ui) {
                       case 'Dashboard':
-<<<<<<< HEAD
-                        return <Dashboard />; case 'Repos': return <Repos repos={this.props.repo} />;
-=======
                         return <Dashboard />;
                       case 'Repos':
                         return <Repos repos={this.props.repo} 
                         changeActiveFileAsync = {changeActiveFileAsync}
                         />;
->>>>>>> 96fab5464df690b53b838d1fa6feebc525577d9a
                       case 'Chat':
                         return <Chat
                         postMessage = {postMessage}

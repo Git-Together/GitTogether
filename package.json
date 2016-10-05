@@ -113,11 +113,8 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "css-modules-require-hook": "^4.0.3",
-<<<<<<< HEAD
     "dotenv": "^2.0.0",
-=======
     "d3-state-visualizer": "^1.1.1",
->>>>>>> 96fab5464df690b53b838d1fa6feebc525577d9a
     "electron-debug": "^1.0.1",
     "font-awesome": "^4.6.3",
     "postcss": "^5.1.2",
