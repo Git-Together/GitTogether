@@ -1,7 +1,8 @@
-import { ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO } from '../actions/repo';
+
+import { ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIVE_TREE } from '../actions/repo';
 
 const initState =
-  { 
+  {
     activeRepo: 1,
     repos: [{
       type: 'document',
@@ -35,7 +36,8 @@ const initState =
       type: 'document',
       name: 'GitOffMe',
       id: 3
-    }]
+    }],
+    tree: {}
   };
 
 export default function repo(state = initState, action) {
@@ -55,7 +57,11 @@ export default function repo(state = initState, action) {
       if (idx === -1) return state;
       return {...state, repos: [...state.repos.slice(0, idx), ...state.repos.slice(idx + 1)]};
     case SWITCH_ACTIVE_REPO:
-      return {...state, activeRepo: action.id}
+      return {...state, activeRepo: action.id};
+    case GET_USER_REPOS:
+      return {...state, repos: action.repos};
+    case SWITCH_ACTIVE_TREE:
+      return {...state, tree: action.tree.data};
     default:
       return state;
   }
