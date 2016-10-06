@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './individualRepo.scss';
 import { Link } from 'react-router';
 
-console.log("styles repo", styles)
 
 const iconArray = [ 'glyphicon glyphicon-home', 'glyphicon glyphicon-time', 'glyphicon glyphicon-road' ];
 

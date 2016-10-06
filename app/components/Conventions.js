@@ -47,7 +47,6 @@ export default class Conventions extends Component {
 
   render() {
 
-    console.log("editId", this.state)
     return (
        <div className={[styles.container, 'purple'].join(' ')}>
 

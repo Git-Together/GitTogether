@@ -8,20 +8,10 @@ export const SWITCH_ACTIVE_TREE = 'SWITCH_ACTIVE_TREE';
 import GitHub from 'github-api';
 import axios from 'axios';
 import { TOGGLE_COMPONENT } from './ui'
+
 export function getUserRepos() {
-
-  // return dispatch => {
-  //   const gh = new GitHub({});
-
-  //   const ghAccountName = gh.getUser('kintsang'); //TODO: update userName to actual user.
-
-  //   ghAccountName.listRepos()
-  //       .then(repos => dispatch({
-  //         type: GET_USER_REPOS,
-  //         repos
-  //       }));
   return (dispatch, getState) => {
-    axios.get(`https://api.github.com/users/${getState().auth.currentUser}/repos?access_token=${getState().auth.token}`)
+	axios.get(`https://api.github.com/users/${getState().auth.currentUser}/repos?access_token=${getState().auth.token}`)
     .then(repos => dispatch({
           type: GET_USER_REPOS,
           repos: repos.data
@@ -44,7 +34,7 @@ export function getRepoTree(repo){
         id: repo.id
       })).then(() => dispatch({
           type: TOGGLE_COMPONENT,
-          component: 'Repos'
+          component: 'Repo View'
     }))
   }
 }
@@ -57,7 +47,6 @@ export function addRepo(repo) {
 }
 
 export function removeRepo(id) {
-    console.log("running removeRepo");
     return {
         type: REMOVE_REPO,
         id

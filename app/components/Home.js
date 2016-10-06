@@ -2,11 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import styles from './Home.css';
 import stylesScss from './Home.scss';
-import storage from 'electron-json-storage'
 import * as AuthActions from '../actions/Auth.js'
-
-console.log("stylesScss", stylesScss)
-
+import Promise from 'bluebird';
+const storage = Promise.promisifyAll(require('electron-json-storage'))
 import IndividualRepo from './individualRepo.js';
 import IndividualCreateChannel from './individualCreateChannel.js';
 import IndividualMember from './individualMember.js';
@@ -19,6 +17,7 @@ import CreateChannel from './CreateChannel.js';
 import Branches from './Branches.js';
 import FileView from './FileView.js';
 import Settings from './Settings.js';
+import { fileWatcher } from '../utils/file-watch.js';
 
 export default class Home extends Component {
   constructor (props) {
@@ -151,7 +150,7 @@ export default class Home extends Component {
               <li onClick={toggleComponent.bind(null,'Dashboard')}
                 className="btn">Dashboard
               </li>
-              <li onClick={toggleComponent.bind(null,'Repos')}
+              <li onClick={toggleComponent.bind(null,'Repo View')}
                 className="btn">Repo View
               </li>
               <li onClick={toggleComponent.bind(null,'Chat')}
@@ -160,8 +159,8 @@ export default class Home extends Component {
               <li onClick={toggleComponent.bind(null,'Team')}
                 className="btn">Team
               </li>
-              <li onClick={toggleComponent.bind(null,'Channels')}
-                className="btn">Create Channel
+              <li onClick={toggleComponent.bind(null,'Channel')}
+                className="btn">New Channel
               </li>
               <li onClick={toggleComponent.bind(null,'Branches')}
                 className="btn">Branches
@@ -184,15 +183,16 @@ export default class Home extends Component {
                       case 'Dashboard':
                         return <Dashboard />;
                       case 'Repo View':
-                        return <Repos repos={this.props.repo.tree.tree}
-                        changeActiveFileAsync={changeActiveFileAsync}
+                        return <Repos
+                          repos={this.props.repo.tree.tree}
+                          changeActiveFileAsync={changeActiveFileAsync}
                         />;
                       case 'Chat':
                         return <Chat
-                        postMessage = {postMessage}
-                        refreshMessages = {refreshMessages}
-                        changeActiveMessage = {changeActiveMessage}
-                        chat = {chat}
+                          postMessage = {postMessage}
+                          refreshMessages = {refreshMessages}
+                          changeActiveMessage = {changeActiveMessage}
+                          chat = {chat}
                         />;
                       case 'Team':
                         return <Team
@@ -201,11 +201,11 @@ export default class Home extends Component {
                           team = {team.team}
                           activeTeamMember = {team.activeTeamMember}
                         />;
-                      case 'Create Channel':
+                      case 'Channel':
                         return <CreateChannel
-                        addChannel = {addChannel}
-                        removeChannel = {removeChannel}
-                        repos = {this.props.repo.repos}
+                          addChannel = {addChannel}
+                          removeChannel = {removeChannel}
+                          repos = {this.props.repo.repos}
                         />;
                       case 'Branches':
                        return <Branches
