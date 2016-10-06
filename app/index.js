@@ -17,6 +17,7 @@ storage.get('user', (err, result) => {
   if (err) console.error(err)
   state.auth.currentUser = result.currentUser;
   state.auth.token = result.token;
+  state.auth.id = result.id;
   const store = configureStore(state);
   const history = syncHistoryWithStore(hashHistory, store);
 

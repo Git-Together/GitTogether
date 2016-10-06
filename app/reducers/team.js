@@ -2,7 +2,20 @@ import { CHANGE_ACTIVE_TEAM_MEMBER, ADD_TEAM_MEMBER, REMOVE_TEAM_MEMBER, REFRESH
 
 const initState =  {
   activeTeamMember: 1,
-  team: []
+  team: [
+    {
+      name: 'Mike Thomas',
+      id: 1
+    },
+    {
+      name: 'Dave Thomas',
+      id: 2
+    },
+    {
+      name: 'Milad Pilaf',
+      id: 3
+    },
+  ]
 };
 
 function activeTeamMember(state = 1, action){

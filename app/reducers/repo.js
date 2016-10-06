@@ -4,7 +4,7 @@ import { ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIV
 const initState =
   {
     activeRepo: 1,
-	channelName: 'test/channel',
+	channelName: 'none',
     repos: [{
       type: 'document',
       name: 'ourGit',

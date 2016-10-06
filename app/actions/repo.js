@@ -20,6 +20,7 @@ export function getUserRepos() {
 }
 
 export function getRepoTree(repo){
+	console.log(repo)
   return (dispatch, getState) => {
     axios.get(`https://api.github.com/repos/${repo.full_name}/git/refs/?access_token=${getState().auth.token}`)
       .then(repoSha => {

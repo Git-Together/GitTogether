@@ -6,10 +6,11 @@ export const SET_USER = "SET_USER"
 import { push } from 'react-router-redux'
 import io from 'socket.io-client'
 
-export function setUser(currentUser, token) {
+export function setUser(currentUser, token, id) {
 	storage.set('user', {
 		currentUser: currentUser,
-		token: token
+		token: token,
+		id: id
 	}, err => console.error)
 	if (currentUser) {
 		let socket = io(process.env.SOCKET_URL)
@@ -18,7 +19,8 @@ export function setUser(currentUser, token) {
 	return {
 		type: SET_USER,
 		currentUser,
-		token
+		token,
+		id
 	}
 }
 
@@ -55,12 +57,11 @@ export function login() {
 					})
 				}
 
-				let token, username
-
 				return fetch(process.env.SERVER_URL + '/api/auth/github', fetchRequest)
 					.then(r => r.json())
 					.then(response => {
-							dispatch(setUser(response.username, response.token))
+							console.log(response)
+							dispatch(setUser(response.username, response.token, response.id))
 						})
 
 			} else if (error) {
