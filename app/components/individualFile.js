@@ -20,8 +20,6 @@ export default function individualSettings(props) {
 
       <div className={[styles.value, 'green'].join(" ")}>
 
-        <span>{props.lastUpdated.toString()}</span>
-
       </div> {/* name */}
 
       <div className={[styles.id, 'grey'].join(" ")}>

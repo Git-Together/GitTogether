@@ -81,6 +81,7 @@ export default class Home extends Component {
     const { changeActiveBranch,  refreshBranches, branches } = this.props;
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
     const { addChannel, removeChannel, channels } = this.props;
+    const { addComment, editComment, removeComment} = this.props;
 
     let uiSwitch;
     let inputRepo;
@@ -218,8 +219,11 @@ export default class Home extends Component {
                         return <FileView
                           refreshFiles = {refreshFiles}
                           changeActiveFile = {changeActiveFile}
-                          files = {files.files}
+                          files = {this.props.repo.tree.tree}
                           activeFile = {files.activeFile}
+                          addComment= {addComment}
+                          editComment = {editComment}
+                          removeComment = {removeComment}
                         />;
                       case 'Settings':
                         return <Settings

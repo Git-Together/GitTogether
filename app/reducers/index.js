@@ -10,6 +10,7 @@ import branches from './branches';
 import chat from './chat';
 import auth from './auth';
 import channels from './channels';
+import comment from './comment';
 
 const rootReducer = combineReducers({
   auth,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   branches,
   routing,
   channels,
-  chat
+  chat,
+  comment
 });
 
 export default rootReducer;
