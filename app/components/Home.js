@@ -24,7 +24,7 @@ export default class Home extends Component {
     super(props);
     this.display = this.display.bind(this);
     this.state = {
-      repos: null
+      repos: []
     }
   }
 
@@ -41,10 +41,8 @@ export default class Home extends Component {
   };
 
   display (array, type) {
-    console.log("array", array)
     return array.map(
         e => {
-          console.log("THIS E", e)
           let displayValue = type === 'channels'? (
             <div key={e.id}>
               <IndividualCreateChannel name={e.name} id={e.id} addChannel={this.props.addChannel.bind(this,e)}
@@ -61,11 +59,11 @@ export default class Home extends Component {
   };
 
   componentWillMount(){
-    this.props.getUserRepos()
+
   };
 
   componentWillReceiveProps(nextProps){
-    console.log("HERE IN COMPONENET WILL GET NEW PROPS")
+    fileWatcher();
     this.setState({
       repos: nextProps.repo.repos
     })
@@ -86,7 +84,6 @@ export default class Home extends Component {
     let inputRepo;
     let inputMember;
 
-    console.log("THIS STATE", this.state.repos)
     return (
       <div className={stylesScss.flex}>
         <div className={[stylesScss.teams, 'grey'].join(" ")}>
@@ -206,6 +203,7 @@ export default class Home extends Component {
                           addChannel = {addChannel}
                           removeChannel = {removeChannel}
                           repos = {this.props.repo.repos}
+                          getUserRepos = {getUserRepos}
                         />;
                       case 'Branches':
                        return <Branches
