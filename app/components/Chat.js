@@ -18,7 +18,6 @@ export default class Chat extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log("This.props.postMessage: ", this.props.postMessage);
     this.props.postMessage(this.state.inputValue, 1, 1);
   }
 
@@ -36,7 +35,6 @@ export default class Chat extends Component {
 
   static propTypes = {};
   render() {
-    console.log("THIS IS THIS.PROPS", this.props.chat.messages)
     return (
       <div className={styles.container}>
         {this.display(this.props.chat.messages)}

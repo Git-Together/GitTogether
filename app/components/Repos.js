@@ -20,7 +20,6 @@ export default class Repos extends Component {
 
     return array.map(
       e => {
-        console.log("e", e)
         return (
           <div key={e.id}>
             <IndividualRepo
@@ -39,19 +38,10 @@ export default class Repos extends Component {
 
 
   componentDidMount() {
-    // console.log(this.props.repos.repos);
-    // console.log('PROPS', this.props);
     var self = this.props;
     //Call to visualize tree logic
     // let visual = changeObjectArrayToKeys(this.props.repos);
-    // console.log('Visual Object', visual);
     let testObject = changeObjectTreeToKey(this.props.repos);
-    console.log('Test Object', changeObjectTreeToKey(sampleJson.tree));
-
-
-
-
-
     //Render chart.
     this.renderChart = tree(findDOMNode(this), {
       // state: {repos: this.props.repos.repos},
@@ -84,7 +74,6 @@ export default class Repos extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('next props', nextProps);
     let visual = changeObjectTreeToKey(nextProps.repos);
     this.renderChart(visual);
   }
@@ -93,7 +82,6 @@ export default class Repos extends Component {
 
 
   render() {
-    console.log(this.props)
     return (
       <div />
     )

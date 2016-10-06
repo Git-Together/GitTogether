@@ -11,10 +11,8 @@ export default class Branches extends Component {
   static propTypes = {};
 
   display (array) {
-    console.log("props", this.props)
     return array.map(
         e => {
-          console.log("e", e)
           return (
             <div key={e.id}>
               <IndividualBranch

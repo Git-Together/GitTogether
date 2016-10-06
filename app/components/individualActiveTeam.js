@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './individualActiveFile.scss';
 
 export default function IndividualActiveFile(props) {
-  console.log("props", props)
   return (
     <div className={[styles.flex, 'grey'].join(" ")}>
       <div className={[styles.details, 'yellow'].join(" ")}>

@@ -13,7 +13,6 @@ export default class FileView extends Component {
 
     return array.map(
         e => {
-          console.log("e", e)
           return (
             <div key={e.id}>
               <IndividualFile
@@ -32,7 +31,6 @@ export default class FileView extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className={[styles.container, 'purple'].join(' ')}>
         {this.display(this.props.files)}

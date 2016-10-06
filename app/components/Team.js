@@ -13,7 +13,6 @@ export default class Team extends Component {
 
     return array.map(
         e => {
-          console.log("e", e)
           return (
             <div key={e.id}>
               <IndividualMember
@@ -31,7 +30,6 @@ export default class Team extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className={[styles.container, 'purple'].join(' ')}>
         {this.display(this.props.team)}
