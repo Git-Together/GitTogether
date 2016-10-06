@@ -8,12 +8,14 @@ import * as AuthActions from '../actions/Auth.js'
 console.log("stylesScss", stylesScss)
 
 import IndividualRepo from './individualRepo.js';
+import IndividualCreateChannel from './individualCreateChannel.js';
 import IndividualMember from './individualMember.js';
 import Dashboard from './Dashboard.js';
 import Repos from './Repos.js';
 import Chat from './Chat.js';
 import Team from './Team.js';
 import Conventions from './Conventions.js';
+import CreateChannel from './CreateChannel.js';
 import Branches from './Branches.js';
 import FileView from './FileView.js';
 import Settings from './Settings.js';
@@ -43,9 +45,13 @@ export default class Home extends Component {
     console.log("array", array)
     return array.map(
         e => {
-          let displayValue = type === 'repo'? (
+          console.log("THIS E", e)
+          let displayValue = type === 'channels'? (
             <div key={e.id}>
-              <IndividualRepo name={e.name} id={e.id} delete={this.props.removeRepo.bind(this,e.id)} switch={this.props.getRepoTree.bind(this, e)} />
+              <IndividualCreateChannel name={e.name} id={e.id} addChannel={this.props.addChannel.bind(this,e)}
+                removeChannel={this.props.removeChannel.bind(this,e.id)} switch={this.props.getRepoTree.bind(this, e)}
+                channelView={true}
+                />
             </div>):
             (<div key={e.id}>
               <IndividualMember name={e.name} id={e.id} delete={this.props.removeTeamMember.bind(this,e.id)} />
@@ -56,7 +62,7 @@ export default class Home extends Component {
   };
 
   componentWillMount(){
-          this.props.getUserRepos()
+    this.props.getUserRepos()
   };
 
   componentWillReceiveProps(nextProps){
@@ -75,7 +81,8 @@ export default class Home extends Component {
     const { changeActiveFile,  refreshFiles, changeActiveFileAsync, files } = this.props;
     const { changeActiveBranch,  refreshBranches, branches } = this.props;
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
-    console.log("REPO", repo)
+    const { addChannel, removeChannel, channels } = this.props;
+
     let uiSwitch;
     let inputRepo;
     let inputMember;
@@ -85,12 +92,12 @@ export default class Home extends Component {
       <div className={stylesScss.flex}>
         <div className={[stylesScss.teams, 'grey'].join(" ")}>
 
-          <span>Repos and Members</span>
+          <span>Channels and Members</span>
 
           <div className={[stylesScss.repos, 'green'].join(" ")}>
 
-            <span>Repos</span>
-            {this.state.repos?this.display(this.state.repos, 'repo'):''}
+            <span>Channels</span>
+            {channels?this.display(channels, 'channels'):''}
             <div>
               <form onSubmit={e => {
                 e.preventDefault()
@@ -153,8 +160,8 @@ export default class Home extends Component {
               <li onClick={toggleComponent.bind(null,'Team')}
                 className="btn">Team
               </li>
-              <li onClick={toggleComponent.bind(null,'Conventions')}
-                className="btn">Conventions
+              <li onClick={toggleComponent.bind(null,'Channels')}
+                className="btn">Channels
               </li>
               <li onClick={toggleComponent.bind(null,'Branches')}
                 className="btn">Branches
@@ -194,13 +201,11 @@ export default class Home extends Component {
                           team = {team.team}
                           activeTeamMember = {team.activeTeamMember}
                         />;
-                      case 'Conventions':
-                        return <Conventions
-                        updateConventions = {updateConventions}
-                        addConventions = {addConventions}
-                        removeConventions = {removeConventions}
-                        refreshConventions = {refreshConventions}
-                        conventions = {conventions}
+                      case 'Channels':
+                        return <CreateChannel
+                        addChannel = {addChannel}
+                        removeChannel = {removeChannel}
+                        repos = {this.props.repo.repos}
                         />;
                       case 'Branches':
                        return <Branches
