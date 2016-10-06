@@ -33,7 +33,7 @@ let repoPaths;
 //repoPaths
 
 //TOCHANGE: for the time being, using this to watch files in this directory:
-channels = ['rgit-testing']
+channels = []
 repoPaths = []
 
 //Iterate through the user's repos and set up a watcher for each one.
@@ -116,7 +116,7 @@ export function fileWatcher() {
 						//with the value:
 						//	[ [hash for commit, commit msg], [hash for commit, commit msg], etc.]
 					})
-					.diff( (err, diffReadout) => {
+					.diff((err, diffReadout) => {
 						if (err) {
 							console.log(err)
 							payload.diff ={
