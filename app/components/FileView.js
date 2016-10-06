@@ -6,20 +6,21 @@ import IndividualActiveFile from './individualActiveFile.js';
 export default class FileView extends Component {
   constructor(props){
     super(props)
+    console.log("THIS IS PROPS FOR FILEVIEW: ", this.props)
   }
   static propTypes = {};
 
   display (array) {
 
-    console.log("This is the array being passed into FileView: ", array)
     return array.map(
         e => {
           return (
-            <div key={e.sha}>
+            <div key={e.path}>
               <IndividualFile
                 fileName={e.path}
                 id={e.sha}
                 changeActiveFile={this.props.changeActiveFile.bind(this, e.sha)}
+                checkoutFile = {this.props.checkoutFile.bind(this, this.props.repo.activeRepo, e.path, this.props.auth.currentUser)}
                />
             </div>
          )}

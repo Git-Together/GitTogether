@@ -11,9 +11,10 @@ import * as conventionActions from '../actions/conventions';
 import * as chatActions from '../actions/chat';
 import * as authActions from '../actions/auth';
 import * as channelActions from '../actions/channels';
+import * as checkoutActions from '../actions/checkout';
 import Home from '../components/Home';
 
-const actionsObj = Object.assign({}, repoActions, authActions, teamActions, ui, settingsActions, filesActions, branchActions, conventionActions, chatActions, channelActions);
+const actionsObj = Object.assign({}, repoActions, authActions, teamActions, ui, settingsActions, filesActions, branchActions, conventionActions, chatActions, channelActions, checkoutActions);
 
 function mapStateToProps(state) {
   return {
@@ -26,7 +27,8 @@ function mapStateToProps(state) {
     files: state.files,
     branches: state.branches,
 	  ui: state.ui,
-	  auth: state.auth
+	  auth: state.auth,
+    checkoutList: state.checkout
   };
 }
 

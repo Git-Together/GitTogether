@@ -82,6 +82,7 @@ export default class Home extends Component {
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
     const { addChannel, removeChannel, channels } = this.props;
     const { addComment, editComment, removeComment} = this.props;
+    const { checkoutFile, returnFile, checkoutList } = this.props;
 
     let uiSwitch;
     let inputRepo;
@@ -224,6 +225,11 @@ export default class Home extends Component {
                           addComment= {addComment}
                           editComment = {editComment}
                           removeComment = {removeComment}
+                          checkoutFile = {checkoutFile}
+                          returnFile = {returnFile}
+                          auth = {auth}
+                          checkoutList = {checkoutList}
+                          repo = {repo}
                         />;
                       case 'Settings':
                         return <Settings

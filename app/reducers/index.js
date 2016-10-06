@@ -11,6 +11,7 @@ import chat from './chat';
 import auth from './auth';
 import channels from './channels';
 import comment from './comment';
+import checkout from './checkout';
 
 const rootReducer = combineReducers({
   auth,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   routing,
   channels,
   chat,
-  comment
+  comment,
+  checkout
 });
 
 export default rootReducer;

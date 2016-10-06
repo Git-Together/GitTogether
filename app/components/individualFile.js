@@ -28,11 +28,12 @@ export default function individualSettings(props) {
 
       </div> {/* id */}
 
+      <div className={[styles.checkout, 'blue'].join(' ')}>
+        <div onClick={props.checkoutFile} className="glyphicon glyphicon-level-up"></div>
+      </div>
+
       <div className={[styles.update, 'orange'].join(" ")}>
-
-          <div onClick={props.changeActiveFile} className='glyphicon glyphicon-pencil'></div>
-
-
+        <div onClick={props.changeActiveFile} className='glyphicon glyphicon-pencil'></div>
       </div> {/* update */}
 
     </div>
