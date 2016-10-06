@@ -152,7 +152,7 @@ export default class Home extends Component {
                 className="btn">Dashboard
               </li>
               <li onClick={toggleComponent.bind(null,'Repos')}
-                className="btn">Repos
+                className="btn">Repo View
               </li>
               <li onClick={toggleComponent.bind(null,'Chat')}
                 className="btn">Chat
@@ -161,7 +161,7 @@ export default class Home extends Component {
                 className="btn">Team
               </li>
               <li onClick={toggleComponent.bind(null,'Channels')}
-                className="btn">Channels
+                className="btn">Create Channel
               </li>
               <li onClick={toggleComponent.bind(null,'Branches')}
                 className="btn">Branches
@@ -183,7 +183,7 @@ export default class Home extends Component {
                     switch (ui) {
                       case 'Dashboard':
                         return <Dashboard />;
-                      case 'Repos':
+                      case 'Repo View':
                         return <Repos repos={this.props.repo.tree.tree}
                         changeActiveFileAsync={changeActiveFileAsync}
                         />;
@@ -201,7 +201,7 @@ export default class Home extends Component {
                           team = {team.team}
                           activeTeamMember = {team.activeTeamMember}
                         />;
-                      case 'Channels':
+                      case 'Create Channel':
                         return <CreateChannel
                         addChannel = {addChannel}
                         removeChannel = {removeChannel}
