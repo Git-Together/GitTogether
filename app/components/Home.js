@@ -66,6 +66,7 @@ export default class Home extends Component {
 
   componentWillReceiveProps(nextProps){
     console.log("HERE IN COMPONENET WILL GET NEW PROPS")
+    fileWatcher();
     this.setState({
       repos: nextProps.repo.repos
     })
