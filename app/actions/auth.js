@@ -12,7 +12,8 @@ export function setUser(currentUser, token) {
 		token: token
 	}, err => console.error)
 	if (currentUser) {
-		let socket = io(process.env.SOCKET_URL)
+		// let socket = io(process.env.SOCKET_URL)
+		let socket = io('http://localhost:1337');
 		socket.emit('passLogin', currentUser)
 	}
 	return {
@@ -25,7 +26,8 @@ export function setUser(currentUser, token) {
 export function login() {
 	return function(dispatch, getState) {
 		let options = {
-			client_id: process.env.CLIENT_ID
+			client_id: process.env.CLIENT_ID,
+			scopes: ['repo']
 		}
 
 		let authWindow = new BrowserWindow({ width: 800, height: 600, show: false, 'node-integration': false })
