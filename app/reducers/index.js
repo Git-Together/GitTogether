@@ -9,6 +9,7 @@ import conventions from './conventions';
 import branches from './branches';
 import chat from './chat';
 import auth from './auth';
+import channels from './channels';
 
 const rootReducer = combineReducers({
   auth,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   conventions,
   branches,
   routing,
+  channels,
   chat
 });
 
