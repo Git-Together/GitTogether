@@ -43,7 +43,6 @@ describe('parsing the results of running \`git branch\` through node', function(
 	})
 
 	it('should return an object', function() {
-		console.log(branchResult)
 		expect(branchResult).to.be.an('object')
 	});
 

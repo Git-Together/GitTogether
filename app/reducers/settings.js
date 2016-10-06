@@ -33,10 +33,8 @@ export default function team(state = initState, action) {
       return [...state.slice(0, updateIdx), action.setting, ...state.slice(updateIdx + 1)];
 
     case REMOVE_SETTINGS:
-      console.log("in remove settings");
       let removeIdx = state.map(e => e.id).indexOf(action.id);
       if (removeIdx === -1) return state;
-      console.log("removeIdx", removeIdx)
       return [...state.slice(0, removeIdx), ...state.slice(removeIdx + 1)];
 
     case REFRESH_SETTINGS:

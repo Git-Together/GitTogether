@@ -11,7 +11,7 @@ import { TOGGLE_COMPONENT } from './ui'
 
 export function getUserRepos() {
   return (dispatch, getState) => {
-    axios.get(`https://api.github.com/users/${getState().auth.currentUser}/repos?access_token=${getState().auth.token}`)
+	axios.get(`https://api.github.com/users/${getState().auth.currentUser}/repos?access_token=${getState().auth.token}`)
     .then(repos => dispatch({
           type: GET_USER_REPOS,
           repos: repos.data
@@ -47,7 +47,6 @@ export function addRepo(repo) {
 }
 
 export function removeRepo(id) {
-    console.log("running removeRepo");
     return {
         type: REMOVE_REPO,
         id

@@ -17,7 +17,6 @@ export function refreshFiles(files) {
 }
 
 export function changeActiveFileAsync(fileName){
-  console.log('FileName', fileName);
   return (dispatch) =>{
     //Change active file
     dispatch(changeActiveFile(fileName));

@@ -17,7 +17,6 @@ class Login extends Component{
 
 	componentWillMount() {
 		storage.get('user', (err, result) => {
-      console.log("This is result for auth",result);
 			if (err) console.error(err)
 			AuthActions.setUser(result.currentUser, result.token)
 			if (result.currentUser) {
