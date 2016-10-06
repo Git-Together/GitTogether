@@ -4,6 +4,7 @@ import { ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIV
 const initState =
   {
     activeRepo: 1,
+	channelName: 'test/channel',
     repos: [{
       type: 'document',
       name: 'ourGit',
@@ -57,7 +58,7 @@ export default function repo(state = initState, action) {
       if (idx === -1) return state;
       return {...state, repos: [...state.repos.slice(0, idx), ...state.repos.slice(idx + 1)]};
     case SWITCH_ACTIVE_REPO:
-      return {...state, activeRepo: action.id};
+      return {...state, activeRepo: action.id, channelName: action.name};
     case GET_USER_REPOS:
       return {...state, repos: action.repos};
     case SWITCH_ACTIVE_TREE:

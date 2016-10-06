@@ -20,7 +20,6 @@ export function getUserRepos() {
 }
 
 export function getRepoTree(repo){
-
   return (dispatch, getState) => {
     axios.get(`https://api.github.com/repos/${repo.full_name}/git/refs/?access_token=${getState().auth.token}`)
       .then(repoSha => {
@@ -31,7 +30,8 @@ export function getRepoTree(repo){
         tree
       })).then(() => dispatch({
         type: SWITCH_ACTIVE_REPO,
-        id: repo.id
+		  id: repo.id,
+		  name: repo.full_name
       })).then(() => dispatch({
           type: TOGGLE_COMPONENT,
           component: 'Repos'
