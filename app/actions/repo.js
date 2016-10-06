@@ -34,7 +34,7 @@ export function getRepoTree(repo){
 		  name: repo.full_name
       })).then(() => dispatch({
           type: TOGGLE_COMPONENT,
-          component: 'Repos'
+          component: 'Repo View'
     }))
   }
 }

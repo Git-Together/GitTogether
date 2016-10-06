@@ -7,6 +7,38 @@ import { findDOMNode } from 'react-dom';
 import sampleJson from '../../test/sampleApiPayload.json'
 import d3tooltip from 'd3tooltip';
 
+const DOMNode = document.getElementById('repoTree');
+const root = d3.select(DOMNode);
+const vis = root.append('svg');
+
+let options = {
+  offset: {left: 30, top: 10}
+};
+
+vis.selectAll('circle').data("someData").enter()
+  .append('circle')
+  .attr('r', 10)
+  .call(
+    d3tooltip(d3, 'tooltipClassName', options)
+      .text((d, i) => toStringOrHtml(d))
+      .attr({ 'class': 'anotherClassName' })
+      .style({ 'min-width': '50px', 'border-radius': '5px' })
+  )
+  .on({
+    mouseover(d, i) {
+      d3.select(this).style({
+        fill: 'skyblue'
+      });
+    },
+    mouseout(d, i) {
+      d3.select(this).style({
+        fill: 'black'
+      });
+    }
+  });
+
+
+
 export default class Repos extends Component {
   constructor(props) {
     super(props)
