@@ -2,7 +2,7 @@ import gaze from 'gaze';
 import storage from 'electron-json-storage';
 import io from 'socket.io-client'
 //TOCHANGE: connecting socket to local host for testing for the time being—wire to server once ready
-const socket = io.connect(process.env.SERVER_URL);
+const socket = io.connect(process.env.SOCKET_URL);
 import git from 'simple-git';
 import Promise from 'bluebird';
 import { logParser, diffParser } from './git-command-parsers.js';
@@ -34,7 +34,7 @@ let repoPaths;
 
 //TOCHANGE: for the time being, using this to watch files in this directory:
 channels = ['rgit-testing']
-repoPaths = ['/Users/gewl/Desktop/gitclones/projects/rivers']
+repoPaths = []
 
 //Iterate through the user's repos and set up a watcher for each one.
 export function fileWatcher() {
