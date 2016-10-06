@@ -2,8 +2,7 @@ import gaze from 'gaze';
 import storage from 'electron-json-storage';
 import io from 'socket.io-client'
 //TOCHANGE: connecting socket to local host for testing for the time being—wire to server once ready
-// const socket = io.connect(process.env.SOCKET_URL);
-const socket = io.connect('http://localhost:1337');
+const socket = io.connect(process.env.SOCKET_URL);
 import git from 'simple-git';
 import Promise from 'bluebird';
 import { logParser, diffParser } from './git-command-parsers.js';
@@ -34,8 +33,8 @@ let repoPaths;
 //repoPaths
 
 //TOCHANGE: for the time being, using this to watch files in this directory:
-channels = ['rgit-testing']
-repoPaths = ['/Users/tenloh/Senior/Stackathon']
+channels = []
+repoPaths = []
 
 //Iterate through the user's repos and set up a watcher for each one.
 export function fileWatcher() {

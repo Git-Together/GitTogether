@@ -12,8 +12,7 @@ export function setUser(currentUser, token) {
 		token: token
 	}, err => console.error)
 	if (currentUser) {
-		// let socket = io(process.env.SOCKET_URL)
-		let socket = io('http://localhost:1337');
+		let socket = io(process.env.SOCKET_URL)
 		socket.emit('passLogin', currentUser)
 	}
 	return {
