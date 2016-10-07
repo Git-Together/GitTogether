@@ -31,7 +31,7 @@ export function login() {
 
 		let authWindow = new BrowserWindow({ width: 800, height: 600, show: false, 'node-integration': false })
 		let githubUrl = 'https://github.com/login/oauth/authorize?' 
-		let authUrl = githubUrl + 'client_id=' + options.client_id 
+		let authUrl = githubUrl + 'client_id=' + options.client_id + '&scope=' + options.scopes;
 		authWindow.loadURL(authUrl)
 		authWindow.show()
 

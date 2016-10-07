@@ -65,7 +65,7 @@ export default class Repos extends Component {
   };
 
   activeRepo(array) {
-    return array.filter(e => e.id === this.props.repos.activeRepo)
+    return array.filter(e =>  e.id === this.props.repos.activeRepo)
   }
 
 
@@ -96,7 +96,8 @@ export default class Repos extends Component {
           nodeSelf = nodeSelf.parent;
         }
         let filePath = fileName.join('/');
-        self.changeActiveFileAsync('/' + filePath);
+        console.log('FilePath', filePath);
+        self.changeActiveFileAsync(null, '/' + filePath);
       }
     });
     this.renderChart();

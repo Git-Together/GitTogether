@@ -1,4 +1,4 @@
-import { CHANGE_ACTIVE_FILE, REFRESH_FILES } from '../actions/files';
+import { CHANGE_ACTIVE_FILE, REFRESH_FILES, GET_FILE_CHANGES } from '../actions/files';
 
 const initState = {
   activeFile: 1,
@@ -29,7 +29,9 @@ const initState = {
 function activeFile(state = 1, action){
   switch (action.type) {
     case CHANGE_ACTIVE_FILE:
-      return action.id
+      console.log('Action', action);
+      if (action.id) return action.id
+      return action.name
     default:
       return state
   }
