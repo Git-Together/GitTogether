@@ -8,7 +8,6 @@ import axios from 'axios';
 
 export function addChannel(channel) {
 	let channelName = channel.full_name
-	console.log('this is the channel', channelName)
 	return (dispatch, getState) => {
 		let currentUser = getState().auth.currentUser
 		let userId = getState().auth.id
@@ -30,7 +29,6 @@ export function addChannel(channel) {
 			repoId: channelName
 		})	
 			.then(createdChannel => {
-				console.log(createdChannel)
 				dispatch({
 					type: ADD_CHANNEL,
 					channel: channelName
@@ -40,31 +38,35 @@ export function addChannel(channel) {
 }
 
 export function removeChannel(id) {
-	console.log(id)
 	return (dispatch, getState) => {
+		console.log('id to delete ', id)
 		let userStorage = getState().channels.filter(e => e != id)
-		console.log(userStorage)
+		console.log('user storage ', userStorage)
 		let currentUser = getState().auth.currentUser	
 		let userId = getState().auth.id	
 		storage.get('channels', (err, result) => {
+			if (err) console.error
 			let channelStorage = result
-			storage.set('channels', {...channelStorage, [currentUser]: userStorage})
-		})
-
-		return axios.put(process.env.SERVER_URL + `/api/channels/remove?channelId=${id}&userId=${userId}`)
-			.then(() => {
-			dispatch({
-				type: LOAD_CHANNELS,
-				userStorage
+			console.log({...channelStorage, [currentUser]: userStorage})
+			channelStorage[currentUser] = userStorage
+			console.log('userstorage here ', channelStorage[currentUser])
+			storage.set('channels', channelStorage)
+			return axios.put(process.env.SERVER_URL + `/api/channels/remove?channelId=${id}&userId=${userId}`)
+				.then(() => {
+				dispatch({
+					type: LOAD_CHANNELS,
+					channels: userStorage
+				})
 			})
 		})
+
 	}
 }
 
 export function loadChannels() {
+	// storage.clear(err => console.error)
 	return (dispatch, getState) => {
 		storage.get('channels', (err, cachedChannels) => {
-			console.log('cached channels here', cachedChannels)
 			if (err) console.error(err)
 
 			let currentUser = getState().auth.currentUser	

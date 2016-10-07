@@ -88,7 +88,6 @@ export default class Home extends Component {
     let inputRepo;
     let inputMember;
 
-	console.log(this.props)
     return (
       <div className={stylesScss.flex}>
         <div className={[stylesScss.teams, 'grey'].join(" ")}>

@@ -8,7 +8,7 @@ export default function channel(state = [], action) {
       let idx = state.map(e => e.id).indexOf(action.id);
       return [...state.slice(0,idx),...state.slice(idx+1)];
 	case LOAD_CHANNELS:
-		return state.concat(action.channels)
+		return action.channels
     default:
       return state;
   }
