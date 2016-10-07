@@ -20,8 +20,6 @@ export default function individualSettings(props) {
 
       <div className={[styles.value, 'green'].join(" ")}>
 
-        <span>{props.lastUpdated.toString()}</span>
-
       </div> {/* name */}
 
       <div className={[styles.id, 'grey'].join(" ")}>
@@ -30,11 +28,12 @@ export default function individualSettings(props) {
 
       </div> {/* id */}
 
+      <div className={[styles.checkout, 'blue'].join(' ')}>
+        <div onClick={props.checkoutFile} className="glyphicon glyphicon-level-up"></div>
+      </div>
+
       <div className={[styles.update, 'orange'].join(" ")}>
-
-          <div onClick={props.changeActiveFile} className='glyphicon glyphicon-pencil'></div>
-
-
+        <div onClick={props.changeActiveFile} className='glyphicon glyphicon-pencil'></div>
       </div> {/* update */}
 
     </div>

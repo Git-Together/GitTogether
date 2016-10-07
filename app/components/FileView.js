@@ -6,6 +6,7 @@ import IndividualActiveFile from './individualActiveFile.js';
 export default class FileView extends Component {
   constructor(props){
     super(props)
+    console.log("THIS IS PROPS FOR FILEVIEW: ", this.props)
   }
   static propTypes = {};
 
@@ -14,12 +15,12 @@ export default class FileView extends Component {
     return array.map(
         e => {
           return (
-            <div key={e.id}>
+            <div key={e.path}>
               <IndividualFile
-                fileName={e.fileName}
-                id={e.id}
-                lastUpdated={e.lastUpdated}
-                changeActiveFile={this.props.changeActiveFile.bind(this,e.id)}
+                fileName={e.path}
+                id={e.sha}
+                changeActiveFile={this.props.changeActiveFile.bind(this, e.sha)}
+                checkoutFile = {this.props.checkoutFile.bind(this, this.props.repo.activeRepo, e.path, this.props.auth.currentUser)}
                />
             </div>
          )}
@@ -27,15 +28,20 @@ export default class FileView extends Component {
   };
 
   activeFile (array) {
-    return array.filter(e=>e.fileName === this.props.activeFile)[0] || array[0]
+    return array.filter(e=>e.sha === this.props.activeFile)[0] || array[0]
   }
 
   render() {
     return (
       <div className={[styles.container, 'purple'].join(' ')}>
-        {this.display(this.props.files)}
+        <div className={styles.fileList}>
+         {this.display(this.props.files)}
+        </div>
         <IndividualActiveFile
           file={this.activeFile(this.props.files)}
+          addComment={this.props.addCommment}
+          editComment={this.props.editComment}
+          removeComment={this.props.removeComment}
         />
 
       </div>

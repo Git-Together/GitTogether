@@ -10,6 +10,8 @@ import branches from './branches';
 import chat from './chat';
 import auth from './auth';
 import channels from './channels';
+import comment from './comment';
+import checkout from './checkout';
 
 const rootReducer = combineReducers({
   auth,
@@ -22,7 +24,9 @@ const rootReducer = combineReducers({
   branches,
   routing,
   channels,
-  chat
+  chat,
+  comment,
+  checkout
 });
 
 export default rootReducer;

@@ -127,6 +127,7 @@ let changeObjectTreeToKey = function (array) {
     var strArray = element.path.split('/');
     return addObjectIntoKey(strArray, rtnObj);
   });
+  console.log("THis is the return obj for individualFile.js", rtnObj)
   return rtnObj;
 }
 

@@ -83,6 +83,8 @@ export default class Home extends Component {
     const { changeActiveFile,  refreshFiles, changeActiveFileAsync, files } = this.props;
     const { changeActiveBranch,  refreshBranches, branches } = this.props;
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
+    const { addComment, editComment, removeComment} = this.props;
+    const { checkoutFile, unsubscribe, checkoutList } = this.props;
     const { addChannel, removeChannel, loadChannels, channels } = this.props;
 
     let uiSwitch;
@@ -183,7 +185,11 @@ export default class Home extends Component {
             { (() => {
                     switch (ui) {
                       case 'Dashboard':
-                        return <Dashboard />;
+                        return <Dashboard
+                          repo = {repo}
+                          checkoutList = {checkoutList}
+                          unsubscribe = {unsubscribe}
+                        />;
                       case 'Repo View':
                         return <Repos
                           repos={this.props.repo.tree.tree}
@@ -221,8 +227,16 @@ export default class Home extends Component {
                         return <FileView
                           refreshFiles = {refreshFiles}
                           changeActiveFile = {changeActiveFile}
-                          files = {files.files}
+                          files = {this.props.repo.tree.tree}
                           activeFile = {files.activeFile}
+                          addComment= {addComment}
+                          editComment = {editComment}
+                          removeComment = {removeComment}
+                          checkoutFile = {checkoutFile}
+                          unsubscribe = {unsubscribe}
+                          auth = {auth}
+                          checkoutList = {checkoutList}
+                          repo = {repo}
                         />;
                       case 'Settings':
                         return <Settings
