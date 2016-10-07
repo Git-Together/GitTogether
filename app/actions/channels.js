@@ -27,7 +27,7 @@ export function addChannel(channel) {
 
 			return axios.post(process.env.SERVER_URL + `/api/channels/${userId}`, {
 				repoId: channelName
-			})	
+			})
 				.then(createdChannel => {
 					dispatch({
 						type: LOAD_CHANNELS,
@@ -40,8 +40,8 @@ export function addChannel(channel) {
 
 export function removeChannel(id) {
 	return (dispatch, getState) => {
-		let currentUser = getState().auth.currentUser	
-		let userId = getState().auth.id	
+		let currentUser = getState().auth.currentUser
+		let userId = getState().auth.id
 		let channelStorage
 		storage.get('channels', (err, result) => {
 			if (err) {
@@ -49,7 +49,7 @@ export function removeChannel(id) {
 				channelStorage = {}
 			}
 			channelStorage = result
-			delete channelStorage[currentUser][id] 
+			delete channelStorage[currentUser][id]
 			storage.set('channels', channelStorage, err => console.error)
 			let channels = Object.keys(channelStorage[currentUser])
 			return axios.put(process.env.SERVER_URL + `/api/channels/remove?channelId=${id}&userId=${userId}`)
@@ -65,12 +65,11 @@ export function removeChannel(id) {
 }
 
 export function loadChannels() {
-	// storage.clear(err => console.error)
 	return (dispatch, getState) => {
 		storage.get('channels', (err, channelStorage) => {
 			if (err) console.error(err)
 			let userId = getState().auth.id
-			let currentUser = getState().auth.currentUser	
+			let currentUser = getState().auth.currentUser
 			let userStorage = channelStorage[currentUser] ? channelStorage[ currentUser ] : {}
 			let channels
 			return axios.get(process.env.SERVER_URL + `/api/users/${userId}`)

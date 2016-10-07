@@ -6,11 +6,11 @@ export const CHANGE_ACTIVE_TEAM_MEMBER = 'CHANGE_ACTIVE_TEAM_MEMBER'
 import GitHub from 'github-api';
 import axios from 'axios';
 
-export function addTeamMember(member) {
+export function addTeamMember(name) {
 	return (dispatch, getState) => {
 		dispatch({
 			type: ADD_TEAM_MEMBER,
-			member
+			name
 		})
 	};
 }

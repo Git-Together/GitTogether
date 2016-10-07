@@ -2,20 +2,7 @@ import { CHANGE_ACTIVE_TEAM_MEMBER, ADD_TEAM_MEMBER, REMOVE_TEAM_MEMBER, REFRESH
 
 const initState =  {
   activeTeamMember: 1,
-  team: [
-    {
-      name: 'Mike Thomas',
-      id: 1
-    },
-    {
-      name: 'Dave Thomas',
-      id: 2
-    },
-    {
-      name: 'Milad Pilaf',
-      id: 3
-    },
-  ]
+  team: []
 };
 
 function activeTeamMember(state = 1, action){
@@ -35,12 +22,7 @@ export default function team(state = initState, action) {
 
     case ADD_TEAM_MEMBER:
       // let id = ++state.team.map(e => e.id)[state.length-1];
-      let id = state.team.map(e => e.id).reduce((e, cur) => {
-        return Math.max(e, cur);
-      })
-      id++;
-      let newMember = {...action.member, id}
-      return {...state, team: [...state.team, newMember]};
+      return {...state, team: [...state.team, action.name]};
 
     case REMOVE_TEAM_MEMBER:
       let idx = state.team.map(e => e.id).indexOf(action.id);

@@ -11,7 +11,7 @@ import IndividualMember from './individualMember.js';
 import Dashboard from './Dashboard.js';
 import Repos from './Repos.js';
 import Chat from './Chat.js';
-import Team from './Team.js';
+import Collaborators from './Collaborators.js';
 import Conventions from './Conventions.js';
 import CreateChannel from './CreateChannel.js';
 import Branches from './Branches.js';
@@ -75,7 +75,7 @@ export default class Home extends Component {
   };
 
   render() {
-    const { getRepoTree, switchActive, addRepo, removeRepo, getUserRepos,addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
+    const { getRepoTree, switchActive, addRepo, removeRepo, getUserRepos,addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, addCollaborator, team, repo } = this.props;
     const { toggleComponent, ui } = this.props;
     const { logout, auth } = this.props;
     const { updateSettings, addSettings, removeSettings, refreshSettings, settings } = this.props;
@@ -160,8 +160,8 @@ export default class Home extends Component {
               <li onClick={toggleComponent.bind(null,'Chat')}
                 className="btn">Chat
               </li>
-              <li onClick={toggleComponent.bind(null,'Team')}
-                className="btn">Team
+              <li onClick={toggleComponent.bind(null,'Collaborators')}
+                className="btn">Collaborators
               </li>
               <li onClick={toggleComponent.bind(null,'Channel')}
                 className="btn">New Channel
@@ -202,11 +202,12 @@ export default class Home extends Component {
                           changeActiveMessage = {changeActiveMessage}
                           chat = {chat}
                         />;
-                      case 'Team':
-                        return <Team
+                      case 'Collaborators':
+                        return <Collaborators
                           delete = {removeTeamMember}
+                          addTeamMember = {addTeamMember}
                           changeActiveTeamMember = {changeActiveTeamMember}
-                          team = {team.team}
+                          team = {this.props.repo.activeRepoCollaborators}
                           activeTeamMember = {team.activeTeamMember}
                         />;
                       case 'Channel':
