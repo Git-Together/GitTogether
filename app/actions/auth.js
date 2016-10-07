@@ -64,7 +64,8 @@ export function setUser(currentUser, token, id) {
 export function login() {
 	return function(dispatch, getState) {
 		let options = {
-			client_id: process.env.CLIENT_ID
+			client_id: process.env.CLIENT_ID,
+			scopes: ['repo']
 		}
 
 		let authWindow = new BrowserWindow({ width: 800, height: 600, show: false, 'node-integration': false })

@@ -68,6 +68,7 @@ export default class Home extends Component {
   };
 
   componentWillReceiveProps(nextProps){
+    fileWatcher();
     this.setState({
       repos: nextProps.repo.repos
     })
