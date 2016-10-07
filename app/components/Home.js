@@ -24,7 +24,7 @@ export default class Home extends Component {
     super(props);
     this.display = this.display.bind(this);
     this.state = {
-      repos: null
+      repos: []
     }
   }
 
@@ -208,6 +208,7 @@ export default class Home extends Component {
                           addChannel = {addChannel}
                           removeChannel = {removeChannel}
                           repos = {this.props.repo.repos}
+                          getUserRepos = {getUserRepos}
                         />;
                       case 'Branches':
                        return <Branches
