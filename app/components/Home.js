@@ -86,6 +86,8 @@ export default class Home extends Component {
     const { addChannel, removeChannel, loadChannels, channels } = this.props;
     const { addComment, editComment, removeComment} = this.props;
     const { checkoutFile, returnFile, checkoutList } = this.props;
+    const { checkoutFile, unsubscribe, checkoutList } = this.props;
+
 
     let uiSwitch;
     let inputRepo;
@@ -185,7 +187,11 @@ export default class Home extends Component {
             { (() => {
                     switch (ui) {
                       case 'Dashboard':
-                        return <Dashboard />;
+                        return <Dashboard
+                          repo = {repo}
+                          checkoutList = {checkoutList}
+                          unsubscribe = {unsubscribe}
+                        />;
                       case 'Repo View':
                         return <Repos
                           repos={this.props.repo.tree.tree}
@@ -229,7 +235,7 @@ export default class Home extends Component {
                           editComment = {editComment}
                           removeComment = {removeComment}
                           checkoutFile = {checkoutFile}
-                          returnFile = {returnFile}
+                          unsubscribe = {unsubscribe}
                           auth = {auth}
                           checkoutList = {checkoutList}
                           repo = {repo}

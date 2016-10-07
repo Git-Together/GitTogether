@@ -25,7 +25,7 @@ export default class Chat extends Component {
     return array.map(
          e => {
            return (
-            <div key={e.id}>
+            <div>
               <IndividualMessage {...e} key="e.id" />
             </div>
                   )
