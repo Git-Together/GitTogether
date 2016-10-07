@@ -27,7 +27,8 @@ export function diffParser (readout) {
 	let parsedObj = {}, filenames = [], match
 
 	//regexp to isolate files that diff flags as having changed
-	let filenameRegexp = /--git a\/([\w]+.[\w]+)/g
+	// let filenameRegexp = /--git a\/([\w]+.[\w]+)/g
+	let filenameRegexp = /--git a\/([\S]+)/g
 	//put each into an array
 	while (match = filenameRegexp.exec(readout)) {
 		filenames.push(match[1])
@@ -52,7 +53,7 @@ export function diffParser (readout) {
 		//that have changed since last commit
 		while (lineNumbers = lineRegexp.exec(diffChunk)) {
 			let startLine = +lineNumbers[1]
-			let endLine = +lineNumbers[1] + lineNumbers[2]
+			let endLine = +lineNumbers[1] + +lineNumbers[0].split(',')[1];
 			if (isNaN(endLine)) endLine = startLine
 			lines.push([startLine, endLine])
 		}
