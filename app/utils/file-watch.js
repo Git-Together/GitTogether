@@ -54,7 +54,7 @@ export function fileWatcher() {
 			ignore: ['**/node_modules/**', 'node_modules/**']
 		}, function(err, watcher) {
 			var watched = this.watched()
-			console.log(watched)
+			console.log('watching!')
 			this.on('ready', function() {
 				console.log('filewatcher watching' + repoPaths)
 			})

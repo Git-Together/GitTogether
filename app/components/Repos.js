@@ -73,6 +73,7 @@ export default class Repos extends Component {
     var self = this.props;
     //Call to visualize tree logic
     // let visual = changeObjectArrayToKeys(this.props.repos);
+	  console.log(this.props)
     let testObject = changeObjectTreeToKey(this.props.repos);
     //Render chart.
     this.renderChart = tree(findDOMNode(this), {
@@ -106,7 +107,7 @@ export default class Repos extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let visual = changeObjectTreeToKey(nextProps.repos);
+	  let visual = changeObjectTreeToKey(nextProps.repo.repos);
     this.renderChart(visual);
   }
 
@@ -122,6 +123,7 @@ export default class Repos extends Component {
 
 //Helper function to change github api 'tree' from array tree
 let changeObjectTreeToKey = function (array) {
+	console.log(array)
   let rtnObj = {}
   array.forEach(element => {
     var strArray = element.path.split('/');
