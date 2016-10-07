@@ -9,7 +9,7 @@
 }
 
 
-.userName {
+.timeStamp {
 	flex: 5 0 2%;
 	padding: .5em;
 	// align-self: center;
@@ -17,6 +17,13 @@
 
 .fileId {
 	flex: 4 0 2%;
+	padding: .5em;
+	// align-self: center;
+	// margin-left: auto;
+}
+
+.unsubscribe {
+	flex: 1 0 2%;
 	padding: .5em;
 	// align-self: center;
 	// margin-left: auto;

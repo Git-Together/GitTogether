@@ -84,7 +84,7 @@ export default class Home extends Component {
     const { changeActiveBranch,  refreshBranches, branches } = this.props;
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
     const { addComment, editComment, removeComment} = this.props;
-    const { checkoutFile, returnFile, checkoutList } = this.props;
+    const { checkoutFile, unsubscribe, checkoutList } = this.props;
     const { addChannel, removeChannel, loadChannels, channels } = this.props;
 
     let uiSwitch;
@@ -188,6 +188,7 @@ export default class Home extends Component {
                         return <Dashboard
                           repo = {repo}
                           checkoutList = {checkoutList}
+                          unsubscribe = {unsubscribe}
                         />;
                       case 'Repo View':
                         return <Repos
@@ -232,7 +233,7 @@ export default class Home extends Component {
                           editComment = {editComment}
                           removeComment = {removeComment}
                           checkoutFile = {checkoutFile}
-                          returnFile = {returnFile}
+                          unsubscribe = {unsubscribe}
                           auth = {auth}
                           checkoutList = {checkoutList}
                           repo = {repo}

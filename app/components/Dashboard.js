@@ -5,6 +5,7 @@ import IndividualCheckout from './individualCheckout.js';
 export default class Dashboard extends Component {
   constructor(props){
     super(props)
+    console.log("This is Daskboard props: ",this.props)
   }
 
   display(array) {
@@ -17,15 +18,12 @@ export default class Dashboard extends Component {
         if(e.repoId === this.props.repo.activeRepo) {
 
          return (
-          <div className={'grey'}>
-            <IndividualCheckout {...e} key={e.fileId} />
+          <div className={'grey'} key={e.fileId}>
+            <IndividualCheckout {...e} unsubscribe={this.props.unsubscribe.bind(this, e.repoId, e.fileId)} />
           </div>
           )
         }
-
-
       }
-
     )
   }
 }

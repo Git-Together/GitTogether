@@ -10,7 +10,7 @@ export default function checkout(state = initState, action){
       let newCheckout = {
         repoId: action.repoName,
         fileId: action.fileId,
-        userName: action.userName,
+        userId: action.userId,
         timeStamp: new Date()
       };
     return [...state, newCheckout];
@@ -20,12 +20,14 @@ export default function checkout(state = initState, action){
 
     case RETURN_FILE:
     for (let i = 0; i < state.length; i++){
-      if(state[i].repoId === action.repoName && state[i].fileId === action.fileId && state[i].userName === action.userName){
-        let indexToDelete = i;
-        break;
+      if(state[i].repoId === action.repoName && state[i].fileId === action.fileId && state[i].userId === action.userId){
+        var indexToDelete = i;
+        return [...state.slice(0, indexToDelete), ...state.slice(indexToDelete+1)]
       }
     }
-    return [...state.slice(0, indexToDelete), ...state(indexToDelete+1)]
+    return state;
+
+
 
     default:
       return state;
