@@ -10,7 +10,8 @@ export default function checkout(state = initState, action){
       let newCheckout = {
         repoId: action.repoName,
         fileId: action.fileId,
-        userName: action.userName
+        userName: action.userName,
+        timeStamp: new Date()
       };
     return [...state, newCheckout];
     } else{

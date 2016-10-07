@@ -184,7 +184,10 @@ export default class Home extends Component {
             { (() => {
                     switch (ui) {
                       case 'Dashboard':
-                        return <Dashboard />;
+                        return <Dashboard
+                          repo = {repo}
+                          checkoutList = {checkoutList}
+                        />;
                       case 'Repo View':
                         return <Repos
                           repos={this.props.repo.tree.tree}
