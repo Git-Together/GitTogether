@@ -20,12 +20,10 @@ export function getUserRepos() {
 }
 
 export function getRepoTree(repo){
-	console.log(repo)
   return (dispatch, getState) => {
 	let repoId;
-	axios.get(`https://api.github.com/repos/${repo}`)
+	axios.get(`https://api.github.com/repos/${repo}?access_token=${getState().auth.token}`)
 		  .then(fetchedRepo => {
-			  console.log('fetched repo ', fetchedRepo) 
 			  repoId = fetchedRepo.data.id
 			  return axios.get(`https://api.github.com/repos/${repo}/git/refs/?access_token=${getState().auth.token}`)
 		  })
