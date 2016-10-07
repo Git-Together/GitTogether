@@ -8,7 +8,6 @@ import axios from 'axios';
 
 export function addTeamMember(member) {
 	return (dispatch, getState) => {
-		console.log(getState().repo)
 		dispatch({
 			type: ADD_TEAM_MEMBER,
 			member

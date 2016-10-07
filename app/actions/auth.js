@@ -98,7 +98,6 @@ export function login() {
 				return fetch(process.env.SERVER_URL + '/api/auth/github', fetchRequest)
 					.then(r => r.json())
 					.then(response => {
-						console.log(response)
 						dispatch(setUser(response.username, response.token, response.id))
 					})
 

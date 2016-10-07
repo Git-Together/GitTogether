@@ -56,7 +56,7 @@ export function fileWatcher() {
 			var watched = this.watched()
 			console.log('watching!')
 			this.on('ready', function() {
-				console.log('filewatcher watching' + repoPaths)
+				console.log('filewatcher watching')
 			})
 			//TOCHANGE: To avoid giving other users the emitting user's file structure,
 			//going to need to isolate filepath relative to repo directory.
