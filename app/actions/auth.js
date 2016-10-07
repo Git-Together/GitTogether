@@ -6,19 +6,58 @@ export const SET_USER = "SET_USER"
 import { push } from 'react-router-redux'
 import io from 'socket.io-client'
 
-export function setUser(currentUser, token) {
+import GitHub from 'github-api';
+import axios from 'axios';
+
+export function setUser(currentUser, token, id) {
+	var channelStorage
 	storage.set('user', {
 		currentUser: currentUser,
-		token: token
+		token: token,
+		id: id
 	}, err => console.error)
 	if (currentUser) {
 		let socket = io(process.env.SOCKET_URL)
 		socket.emit('passLogin', currentUser)
-	}
-	return {
-		type: SET_USER,
-		currentUser,
-		token
+		storage.get('channels', (err, result) => {
+			if (err) {
+				console.error(err)
+				channelStorage = {}
+			}
+
+			channelStorage = result
+		})
+
+		return (dispatch, getState) => {
+			axios.get(process.env.SERVER_URL + `/api/users/${id}`)
+				.then(result => {
+					let user = result.data
+					let userStorage = channelStorage[currentUser] ? channelStorage[ currentUser ] : {}
+					if (user.channels) {
+						user.channels.forEach(channel => {
+							if (!userStorage.hasOwnProperty(channel.repoId)) {
+								userStorage[channel.repoId] = null
+							}
+						})
+						storage.set('channels', {...channelStorage, [currentUser]: userStorage})
+					} else {
+						storage.set('channels', {...channelStorage, [currentUser]: {}})
+					}
+				})
+				.then(() => dispatch({
+					type: SET_USER,
+					currentUser,
+					token,
+					id
+				}))
+		}
+	} else {
+		return {
+			type: SET_USER,
+			currentUser,
+			token,
+			id
+		}
 	}
 }
 
@@ -56,13 +95,11 @@ export function login() {
 					})
 				}
 
-				let token, username
-
 				return fetch(process.env.SERVER_URL + '/api/auth/github', fetchRequest)
 					.then(r => r.json())
 					.then(response => {
-							dispatch(setUser(response.username, response.token))
-						})
+						dispatch(setUser(response.username, response.token, response.id))
+					})
 
 			} else if (error) {
 				alert('Oops! Something went wrong and we couldn\'t' +
@@ -83,7 +120,7 @@ export function login() {
 
 export function logout(githubUsername) {
 	return function(dispatch, getState) {
-		dispatch(setUser(null, null))
+		dispatch(setUser(null, null, null))
 		dispatch(push('/'))
 	}
 }

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import styles from './Home.css';
 import stylesScss from './Home.scss';
-import * as AuthActions from '../actions/Auth.js'
+import * as ChannelActions from '../actions/channels.js'
 import Promise from 'bluebird';
 const storage = Promise.promisifyAll(require('electron-json-storage'))
 import IndividualRepo from './individualRepo.js';
@@ -29,6 +29,7 @@ export default class Home extends Component {
   }
 
   static propTypes = {
+	loadChannels: PropTypes.func.isRequired,
     addRepo: PropTypes.func.isRequired,
     removeRepo: PropTypes.func.isRequired,
     addTeamMember: PropTypes.func.isRequired,
@@ -41,12 +42,14 @@ export default class Home extends Component {
   };
 
   display (array, type) {
+	let counter = 0
     return array.map(
         e => {
+		  counter++
           let displayValue = type === 'channels'? (
-            <div key={e.id}>
-              <IndividualCreateChannel name={e.name} id={e.id} addChannel={this.props.addChannel.bind(this,e)}
-                removeChannel={this.props.removeChannel.bind(this,e.id)} switch={this.props.getRepoTree.bind(this, e)}
+            <div key={counter}>
+              <IndividualCreateChannel name={e} addChannel={this.props.addChannel.bind(this,e)}
+                removeChannel={this.props.removeChannel.bind(this,e)} switch={this.props.getRepoTree.bind(this, e)}
                 channelView={true}
                 />
             </div>):
@@ -59,7 +62,9 @@ export default class Home extends Component {
   };
 
   componentWillMount(){
-
+	fileWatcher()
+	this.props.loadChannels()
+    this.props.getUserRepos()
   };
 
   componentWillReceiveProps(nextProps){
@@ -78,7 +83,7 @@ export default class Home extends Component {
     const { changeActiveFile,  refreshFiles, changeActiveFileAsync, files } = this.props;
     const { changeActiveBranch,  refreshBranches, branches } = this.props;
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
-    const { addChannel, removeChannel, channels } = this.props;
+    const { addChannel, removeChannel, loadChannels, channels } = this.props;
 
     let uiSwitch;
     let inputRepo;
@@ -88,7 +93,7 @@ export default class Home extends Component {
       <div className={stylesScss.flex}>
         <div className={[stylesScss.teams, 'grey'].join(" ")}>
 
-          <span>Channels and Members</span>
+          <span>Current Channel</span>
 
           <div className={[stylesScss.repos, 'green'].join(" ")}>
 

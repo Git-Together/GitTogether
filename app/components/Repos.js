@@ -106,7 +106,7 @@ export default class Repos extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let visual = changeObjectTreeToKey(nextProps.repos);
+	  let visual = changeObjectTreeToKey(nextProps.repos);
     this.renderChart(visual);
   }
 
