@@ -29,7 +29,8 @@ export function setUser(currentUser, token, id) {
 		})
 
 		return (dispatch, getState) => {
-			axios.get(process.env.SERVER_URL + `/api/users/${id}`)
+			// axios.get(process.env.SERVER_URL + `/api/users/${id}`)
+			axios.get(`http://localhost:1337/api/users/${id}`)
 				.then(result => {
 					let user = result.data
 					let userStorage = channelStorage[currentUser] ? channelStorage[ currentUser ] : {}
@@ -95,7 +96,8 @@ export function login() {
 					})
 				}
 
-				return fetch(process.env.SERVER_URL + '/api/auth/github', fetchRequest)
+				// return fetch(process.env.SERVER_URL + '/api/auth/github', fetchRequest)
+				return fetch('http://localhost:1337/api/auth/github', fetchRequest)
 					.then(r => r.json())
 					.then(response => {
 						dispatch(setUser(response.username, response.token, response.id))

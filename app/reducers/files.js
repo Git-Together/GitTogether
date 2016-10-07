@@ -2,6 +2,7 @@ import { CHANGE_ACTIVE_FILE, REFRESH_FILES, GET_FILE_CHANGES } from '../actions/
 
 const initState = {
   activeFile: 1,
+  activeEvents: {},
   files: [
     {
       fileName: 'Milad.txt',
@@ -43,6 +44,8 @@ export default function files(state = initState, action) {
       return {...state, activeFile: activeFile(state.activeFile, action)};
     case REFRESH_FILES:
       return {...state, files: action.files};
+    case GET_FILE_CHANGES:
+      return {...state, activeEvents: action.fileChanges};
     default:
       return state;
   }

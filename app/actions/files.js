@@ -22,8 +22,8 @@ export function refreshFiles(files) {
 export function changeActiveFileAsync(id, fileName){
   return (dispatch, getState) =>{
     //Change active file
-    dispatch(changeActiveFile(id, fileName));
-    dispatch(getFileChanges(fileName));
+    dispatch(changeActiveFile(id, fileName))
+    dispatch(getFileChanges(fileName))
     dispatch({
           type: TOGGLE_COMPONENT,
           component: 'FileView'
@@ -37,14 +37,14 @@ export function changeActiveFileAsync(id, fileName){
 export function getFileChanges(name) {
   return (dispatch, getState) => {
   name = name.split('/').join('*');  
-  console.log('STATE', getState());
-	// axios.get(`https://our-git.herokuapp.com/api/files/${name}?repoId=${getState().repo.activeRepo}`)
-	axios.get(`http://localhost:1337/api/files/${name}?repoId=${getState().repo.activeRepo}`)
+  let channelName = getState().repo.channelName.split('/').join('*');
+	// axios.get(`https://our-git.herokuapp.com/api/files/${name}?repoId=${getState().repo.channelName}`)
+	axios.get(`http://localhost:1337/api/files/${name}?repoId=${channelName}`)
     .then(fileChanges => {
       console.log('FILE CHANGES', fileChanges);
       dispatch({
           type: GET_FILE_CHANGES,
-          fileChanges
+          fileChanges: fileChanges.data
       })
     });
   };

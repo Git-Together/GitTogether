@@ -20,6 +20,7 @@ export default function IndividualActiveFile(props) {
       </div>
       <div className={[styles.comments, 'green'].join(" ")}>
         <h1>Comments</h1>
+        {props.activeEvents()}
       </div>
 
 

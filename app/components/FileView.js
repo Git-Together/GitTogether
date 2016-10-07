@@ -20,7 +20,7 @@ export default class FileView extends Component {
               <IndividualFile
                 fileName={e.path}
                 id={e.sha}
-                changeActiveFile={this.props.changeActiveFileAsync.bind(this, e.sha, e.path)}
+                changeActiveFile={this.props.changeActiveFileAsync.bind(this, e.sha, '/' + e.path)}
                 checkoutFile = {this.props.checkoutFile.bind(this, this.props.repo.activeRepo, e.path, this.props.auth.currentUser)}
                />
             </div>
@@ -34,6 +34,26 @@ export default class FileView extends Component {
     return array.filter(e=> { return (e.sha === this.props.activeFile || ('/' + e.path) === this.props.activeFile)})[0] || array[0]
   }
 
+  activeEvents (activeEventsObj) {
+    console.log('ACTIVE EVENTS OBJ', activeEventsObj);
+    return (activeEventsObj && activeEventsObj.events) ? activeEventsObj.events.map(
+      e => {
+        let element;
+        element = (<div key={e.id}>
+          {e.eventType} --- {e.lineStart} --- {e.lineEnd} --- {e.user.name} --- {Date(e.createdAt)}
+        </div>
+        )
+        console.log('ELEMENT IS ', element)
+        console.log('E ', e);
+        return element;
+      }
+    ) : [(<div key={0}/>)]
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+  }
+
   render() {
     return (
       <div className={[styles.container, 'purple'].join(' ')}>
@@ -45,8 +65,8 @@ export default class FileView extends Component {
           addComment={this.props.addCommment}
           editComment={this.props.editComment}
           removeComment={this.props.removeComment}
+          activeEvents={this.activeEvents.bind(null,this.props.activeEvents)}
         />
-
       </div>
     )
   };

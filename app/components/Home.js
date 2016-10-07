@@ -234,6 +234,7 @@ export default class Home extends Component {
                           checkoutList = {checkoutList}
                           repo = {repo}
                           changeActiveFileAsync = {changeActiveFileAsync}
+                          activeEvents = {files.activeEvents}
                         />;
                       case 'Settings':
                         return <Settings
