@@ -18,7 +18,7 @@ class Login extends Component{
 	componentWillMount() {
 		storage.get('user', (err, result) => {
 			if (err) console.error(err)
-			AuthActions.setUser(result.currentUser, result.token)
+			AuthActions.setUser(result.currentUser, result.token, result.id)
 			if (result.currentUser) {
 				this.context.router.push('/Home')
 			}

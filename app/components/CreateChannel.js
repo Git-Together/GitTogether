@@ -40,6 +40,9 @@ export default class CreateChannel extends Component {
     )
   };
 
+  componentWillMount() {
+    this.props.getUserRepos()
+  }
   render() {
 
     return (

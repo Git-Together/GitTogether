@@ -20,37 +20,44 @@ export function getUserRepos() {
 }
 
 export function getRepoTree(repo){
-
   return (dispatch, getState) => {
-    axios.get(`https://api.github.com/repos/${repo.full_name}/git/refs/?access_token=${getState().auth.token}`)
-      .then(repoSha => {
-        console.log('repoSha', repoSha.data);
-        return axios.get(`https://api.github.com/repos/${repo.full_name}/git/trees/${repoSha.data[0].object.sha}?recursive=1&access_token=${getState().auth.token}`);
-      }).then(tree => dispatch({
-        type: SWITCH_ACTIVE_TREE,
-        tree
-      })).then(() => dispatch({
-        type: SWITCH_ACTIVE_REPO,
-        id: repo.id
-      })).then(() => dispatch({
-          type: TOGGLE_COMPONENT,
-          component: 'Repo View'
-    }))
+	let repoId;
+	axios.get(`https://api.github.com/repos/${repo}?access_token=${getState().auth.token}`)
+		  .then(fetchedRepo => {
+			  repoId = fetchedRepo.data.id
+			  return axios.get(`https://api.github.com/repos/${repo}/git/refs/?access_token=${getState().auth.token}`)
+		  })
+		  .then(repoSha => {
+			  console.log('repoSha', repoSha.data);
+			  return axios.get(`https://api.github.com/repos/${repo}/git/trees/${repoSha.data[0].object.sha}?recursive=1&access_token=${getState().auth.token}`);
+		  }).then(tree => {
+			  console.log('tree ', tree)
+			  dispatch({
+			  type: SWITCH_ACTIVE_TREE,
+			  tree
+		  })}).then(() => dispatch({
+			  type: SWITCH_ACTIVE_REPO,
+			  id: repoId,
+			  name: repo
+		  })).then(() => dispatch({
+			  type: TOGGLE_COMPONENT,
+			  component: 'Repo View'
+		  }))
   }
 }
 
 export function addRepo(repo) {
-    return {
-        type: ADD_REPO,
-        repo
-    };
+	return {
+		type: ADD_REPO,
+		repo
+	};
 }
 
 export function removeRepo(id) {
-    return {
-        type: REMOVE_REPO,
-        id
-    };
+	return {
+		type: REMOVE_REPO,
+		id
+	};
 }
 
 

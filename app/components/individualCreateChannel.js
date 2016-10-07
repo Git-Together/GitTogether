@@ -4,7 +4,6 @@ import styles from './individualCreateChannel.scss';
 // const iconArray = [ 'glyphicon glyphicon-home', 'glyphicon glyphicon-time', 'glyphicon glyphicon-road' ];
 
 export default function individualCreateChannel(props) {
-  console.log(props)
   return (
     <div className={styles.flex}>
       <div className={[styles.name, 'blue'].join(" ")}>
