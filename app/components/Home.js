@@ -83,9 +83,10 @@ export default class Home extends Component {
     const { changeActiveFile,  refreshFiles, changeActiveFileAsync, files } = this.props;
     const { changeActiveBranch,  refreshBranches, branches } = this.props;
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
-    const { addComment, editComment, removeComment} = this.props;
-    const { checkoutFile, unsubscribe, checkoutList } = this.props;
     const { addChannel, removeChannel, loadChannels, channels } = this.props;
+    const { addComment, editComment, removeComment} = this.props;
+    const { checkoutFile, returnFile, unsubscribe, checkoutList } = this.props;
+
 
     let uiSwitch;
     let inputRepo;
@@ -237,6 +238,8 @@ export default class Home extends Component {
                           auth = {auth}
                           checkoutList = {checkoutList}
                           repo = {repo}
+                          changeActiveFileAsync = {changeActiveFileAsync}
+                          activeEvents = {files.activeEvents}
                         />;
                       case 'Settings':
                         return <Settings
