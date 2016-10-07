@@ -2,7 +2,8 @@ import { LOGIN, LOGOUT, SET_USER } from '../actions/auth'
 
 const initialState = {
 	currentUser: null,
-	token: null
+	token: null,
+	id: null
 }
 
 export default function auth(state = initialState, action) {
@@ -12,7 +13,7 @@ export default function auth(state = initialState, action) {
 		case LOGOUT:
 			return state
 		case SET_USER:
-			return { currentUser: action.currentUser, token: action.token}
+			return { currentUser: action.currentUser, token: action.token, id: action.id}
 		default:
 			return state
 	}
