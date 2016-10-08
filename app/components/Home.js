@@ -12,7 +12,7 @@ import Dashboard from './Dashboard.js';
 import Repos from './Repos.js';
 import Chat from './Chat.js';
 import Collaborators from './Collaborators.js';
-import Conventions from './Conventions.js';
+// import Conventions from './Conventions.js';
 import CreateChannel from './CreateChannel.js';
 import Branches from './Branches.js';
 import FileView from './FileView.js';
@@ -64,7 +64,8 @@ export default class Home extends Component {
   componentWillMount(){
 	fileWatcher()
 	this.props.loadChannels()
-    this.props.getUserRepos()
+  this.props.getUserRepos()
+  this.props.refreshTeamMembers()
   };
 
   componentWillReceiveProps(nextProps){
@@ -79,7 +80,7 @@ export default class Home extends Component {
     const { toggleComponent, ui } = this.props;
     const { logout, auth } = this.props;
     const { updateSettings, addSettings, removeSettings, refreshSettings, settings } = this.props;
-    const { updateConventions, addConventions, removeConventions, refreshConventions, conventions } = this.props;
+    // const { updateConventions, addConventions, removeConventions, refreshConventions, conventions } = this.props;
     const { changeActiveFile,  refreshFiles, changeActiveFileAsync, files } = this.props;
     const { changeActiveBranch,  refreshBranches, branches } = this.props;
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
@@ -125,7 +126,7 @@ export default class Home extends Component {
           <div className={[stylesScss.members, 'orange'].join(" ")}>
 
             <span>Team</span>
-            {this.display(team.testTeam[repo.activeRepo] || team.testTeam[1], 'team')}
+            {this.display(team.testTeam[repo.channelName] || team.defaultTeam[1], 'team')}
             <div>
               <form onSubmit={e => {
                 e.preventDefault()

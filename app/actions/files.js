@@ -33,7 +33,6 @@ export function changeActiveFileAsync(id, fileName){
 
 
 // Get last 10 files changes for the given file, ordered.
-// TODO: ROUTE NOT YET CREATED
 export function getFileChanges(name) {
   return (dispatch, getState) => {
   name = name.split('/').join('*');  

@@ -7,14 +7,14 @@ import * as ui from '../actions/ui';
 import * as settingsActions from '../actions/settings';
 import * as filesActions from '../actions/files';
 import * as branchActions from '../actions/branch';
-import * as conventionActions from '../actions/conventions';
+// import * as conventionActions from '../actions/conventions';
 import * as chatActions from '../actions/chat';
 import * as authActions from '../actions/auth';
 import * as channelActions from '../actions/channels';
 import * as checkoutActions from '../actions/checkout';
 import Home from '../components/Home';
 
-const actionsObj = Object.assign({}, repoActions, authActions, teamActions, ui, settingsActions, filesActions, branchActions, conventionActions, chatActions, channelActions, checkoutActions);
+const actionsObj = Object.assign({}, repoActions, authActions, teamActions, ui, settingsActions, filesActions, branchActions, chatActions, channelActions, checkoutActions);
 
 function mapStateToProps(state) {
   return {
@@ -23,7 +23,7 @@ function mapStateToProps(state) {
     team: state.team,
     repo: state.repo,
     settings: state.settings,
-    conventions: state.conventions,
+    // conventions: state.conventions,
     files: state.files,
     branches: state.branches,
 	  ui: state.ui,
