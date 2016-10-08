@@ -10,7 +10,8 @@ export function addTeamMember(name) {
 	return (dispatch, getState) => {
 		dispatch({
 			type: ADD_TEAM_MEMBER,
-			name
+			repoId: getState().repo.activeRepo,
+			name,
 		})
 	};
 }
@@ -22,11 +23,14 @@ export function changeActiveTeamMember(id) {
 	};
 }
 
-export function removeTeamMember(id) {
-	return {
-		type: REMOVE_TEAM_MEMBER,
-		id
-	};
+export function removeTeamMember(id, repoId) {
+		return (dispatch, getState) => {
+			dispatch({
+			type: REMOVE_TEAM_MEMBER,
+			repoId: getState().repo.activeRepo,
+			id
+		});
+	}
 }
 
 export function refreshTeamMembers() {

@@ -42,10 +42,10 @@ export default class Home extends Component {
   };
 
   display (array, type) {
-	let counter = 0
+	let counter = 0;
     return array.map(
-        e => {
-		  counter++
+        (e, index) => {
+		      counter++
           let displayValue = type === 'channels'? (
             <div key={counter}>
               <IndividualCreateChannel name={e} addChannel={this.props.addChannel.bind(this,e)}
@@ -53,8 +53,8 @@ export default class Home extends Component {
                 channelView={true}
                 />
             </div>):
-            (<div key={e.id}>
-              <IndividualMember name={e.name} id={e.id} delete={this.props.removeTeamMember.bind(this,e.id)} />
+            (<div key={index}>
+              <IndividualMember name={e} id={e.id} delete={this.props.removeTeamMember.bind(this,e)} />
             </div>)
           return displayValue;
         }
@@ -125,7 +125,7 @@ export default class Home extends Component {
           <div className={[stylesScss.members, 'orange'].join(" ")}>
 
             <span>Team</span>
-            {this.display(team.team, 'team')}
+            {this.display(team.testTeam[repo.activeRepo] || team.testTeam[1], 'team')}
             <div>
               <form onSubmit={e => {
                 e.preventDefault()

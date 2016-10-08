@@ -59,7 +59,7 @@ export default function repo(state = initState, action) {
       if (idx === -1) return state;
       return {...state, repos: [...state.repos.slice(0, idx), ...state.repos.slice(idx + 1)]};
     case SWITCH_ACTIVE_REPO:
-      return {...state, activeRepo: action, channelName: action.name};
+      return {...state, activeRepo: action.id, channelName: action.name};
     case GET_USER_REPOS:
       return {...state, repos: action.repos};
     case SWITCH_ACTIVE_TREE:
