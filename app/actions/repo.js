@@ -9,20 +9,22 @@ export const CHANGE_CHANNEL_PATH = 'CHANGE_CHANNEL_PATH';
 import GitHub from 'github-api';
 import axios from 'axios';
 import { TOGGLE_COMPONENT } from './ui';
+import Promise from 'bluebird';
+const storage = Promise.promisifyAll(require('electron-json-storage'))
 
-export function changeChannelPath(path) {
-	console.log('new path: ', path)
-	return (dispatch, getState) => {
-		dispatch(actions.setPending('path'))
+// export function changeChannelPath(path) {
+// 	console.log('new path: ', path)
+// 	return (dispatch, getState) => {
+// 		dispatch(actions.setPending('path'))
 
-		console.log('in return')	
-		dispatch({
-			type: CHANGE_CHANNEL_PATH,
-			path
-		})
-		dispatch(actions.setPending('path', false))
-	}
-}
+// 		console.log('in return')	
+// 		dispatch({
+// 			type: CHANGE_CHANNEL_PATH,
+// 			path
+// 		})
+// 		dispatch(actions.setPending('path', false))
+// 	}
+// }
 
 export function getUserRepos() {
 	return (dispatch, getState) => {
@@ -36,6 +38,7 @@ export function getUserRepos() {
 
 export function getRepoTree(repo){
 	return (dispatch, getState) => {
+		let user = getState().auth.currentUser
 		let repoId;
 		axios.get(`https://api.github.com/repos/${repo}?access_token=${getState().auth.token}`)
 			.then(fetchedRepo => {
@@ -54,7 +57,13 @@ export function getRepoTree(repo){
 					type: SWITCH_ACTIVE_REPO,
 					id: repoId,
 					name: repo
-				})).then(() => dispatch({
+				})).then(() => {
+					return storage.getAsync('channels')
+				}).then(cachedChannels=>dispatch({
+					type: CHANGE_CHANNEL_PATH,
+					path: cachedChannels[user][repo]
+				}))
+				.then(() => dispatch({
 					type: TOGGLE_COMPONENT,
 					component: 'Repo View'
 				}))

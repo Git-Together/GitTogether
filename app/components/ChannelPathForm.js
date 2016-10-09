@@ -45,8 +45,6 @@ class changeChannelPathForm extends Component {
 	}
 
 	sendFormAction(values, event) {
-		console.log(values) 
-		console.log(this.props.dispatch)
 		let user = this.props.auth.currentUser
 		let channel = this.props.repo.channelName
 		let path = values.path.path
@@ -55,7 +53,9 @@ class changeChannelPathForm extends Component {
 		}
 		return storage.getAsync('channels')
 			.then(cachedChannels => {
+				console.log('got this from cache ', cachedChannels)
 				cachedChannels[user][channel] = path
+				console.log('going to cache this ', cachedChannels)
 				return storage.setAsync('channels', cachedChannels)
 			})
 			.then(() => {
