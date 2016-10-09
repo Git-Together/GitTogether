@@ -6,6 +6,7 @@ import IndividualActiveFile from './individualActiveFile.js';
 export default class FileView extends Component {
   constructor(props){
     super(props)
+    console.log("THIS IS PROPS FOR FILEVIEW: ", this.props)
   }
   static propTypes = {};
 
@@ -13,31 +14,59 @@ export default class FileView extends Component {
 
     return array.map(
         e => {
-          return (
-            <div key={e.id}>
+          let element;
+          e.path.indexOf('.') !== -1 ? element =  (
+            <div key={e.path}>
               <IndividualFile
-                fileName={e.fileName}
-                id={e.id}
-                lastUpdated={e.lastUpdated}
-                changeActiveFile={this.props.changeActiveFile.bind(this,e.id)}
+                fileName={e.path}
+                id={e.sha}
+                changeActiveFile={this.props.changeActiveFileAsync.bind(this, e.sha, '/' + e.path)}
+                checkoutFile = {this.props.checkoutFile.bind(this, this.props.repo.activeRepo, e.path, this.props.auth.currentUser)}
                />
             </div>
-         )}
+         ) : element =  '';
+        return element;
+      }
     )
   };
 
   activeFile (array) {
-    return array.filter(e=>e.fileName === this.props.activeFile)[0] || array[0]
+    return array.filter(e=> { return (e.sha === this.props.activeFile || ('/' + e.path) === this.props.activeFile)})[0] || array[0]
+  }
+
+  activeEvents (activeEventsObj) {
+    console.log('ACTIVE EVENTS OBJ', activeEventsObj);
+    return (activeEventsObj && activeEventsObj.events) ? activeEventsObj.events.map(
+      e => {
+        let element;
+        element = (<div key={e.id}>
+          {e.eventType} --- {e.lineStart} --- {e.lineEnd} --- {e.user.name} --- {Date(e.createdAt)}
+        </div>
+        )
+        console.log('ELEMENT IS ', element)
+        console.log('E ', e);
+        return element;
+      }
+    ) : [(<div key={0}/>)]
+  }
+
+  componentWillReceiveProps(nextProps) {
+
   }
 
   render() {
     return (
       <div className={[styles.container, 'purple'].join(' ')}>
-        {this.display(this.props.files)}
+        <div className={styles.fileList}>
+         {this.display(this.props.files)}
+        </div>
         <IndividualActiveFile
           file={this.activeFile(this.props.files)}
+          addComment={this.props.addCommment}
+          editComment={this.props.editComment}
+          removeComment={this.props.removeComment}
+          activeEvents={this.activeEvents.bind(null,this.props.activeEvents)}
         />
-
       </div>
     )
   };

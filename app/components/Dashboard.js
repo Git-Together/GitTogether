@@ -1,10 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import styles from './Dashboard.scss';
+<<<<<<< HEAD
 import Repos from './Repos.js';
 import { remote } from 'electron';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import ChannelPathForm from './ChannelPathForm.js'
+import IndividualCheckout from './individualCheckout.js';
 
 export default class Dashboard extends Component {
 	constructor(props){
@@ -34,11 +36,29 @@ export default class Dashboard extends Component {
 		return displayValue
 	}
 
+	display(array) {
+		if (array === undefined) {
+			return ''
+		} else {
+			return array.map(
+				e => {
+					if(e.repoId === this.props.repo.activeRepo) {
+						return (
+							<div className={'grey'} key={e.fileId}>
+								<IndividualCheckout {...e} unsubscribe={this.props.unsubscribe.bind(this, e.repoId, e.fileId)} />
+							</div>
+						)
+					}
+				}
+			)
+		}
+	}
+
 	render() {
 		return (
-			<div>
-				Dashboard
+			<div className={[styles.container, 'purple'].join(" ")}>
 				{ this.displayFilepath() }
+				{this.display(this.props.checkoutList)}
 			</div>
 		)
 	};

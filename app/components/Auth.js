@@ -31,11 +31,11 @@ class Login extends Component{
 		}
 	}
 
-  componentWillUpdate(){
-    if (this.props.auth.currentUser) {
-    this.context.router.push('/Home')
-    }
-  }
+	componentWillUpdate(){
+		if (this.props.auth.currentUser) {
+			this.context.router.push('/Home')
+		}
+	}
 
 	render() {
 		const { login, Auth } = this.props

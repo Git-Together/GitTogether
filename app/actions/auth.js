@@ -30,6 +30,7 @@ export function setUser(currentUser, token, id) {
 
 		return (dispatch, getState) => {
 			axios.get(process.env.SERVER_URL + `/api/users/${id}`)
+			// axios.get(`http://localhost:1337/api/users/${id}`)
 				.then(result => {
 					let user = result.data
 					let userStorage = channelStorage[currentUser] ? channelStorage[ currentUser ] : {}
@@ -70,7 +71,7 @@ export function login() {
 
 		let authWindow = new BrowserWindow({ width: 800, height: 600, show: false, 'node-integration': false })
 		let githubUrl = 'https://github.com/login/oauth/authorize?' 
-		let authUrl = githubUrl + 'client_id=' + options.client_id 
+		let authUrl = githubUrl + 'client_id=' + options.client_id + '&scope=' + options.scopes;
 		authWindow.loadURL(authUrl)
 		authWindow.show()
 
@@ -96,6 +97,7 @@ export function login() {
 				}
 
 				return fetch(process.env.SERVER_URL + '/api/auth/github', fetchRequest)
+				// return fetch('http://localhost:1337/api/auth/github', fetchRequest)
 					.then(r => r.json())
 					.then(response => {
 						dispatch(setUser(response.username, response.token, response.id))

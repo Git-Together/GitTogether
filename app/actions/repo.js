@@ -27,13 +27,13 @@ const storage = Promise.promisifyAll(require('electron-json-storage'))
 // }
 
 export function getUserRepos() {
-	return (dispatch, getState) => {
-		axios.get(`https://api.github.com/users/${getState().auth.currentUser}/repos?access_token=${getState().auth.token}`)
-			.then(repos => dispatch({
-				type: GET_USER_REPOS,
-				repos: repos.data
-			}));
-	};
+  return (dispatch, getState) => {
+	axios.get(`https://api.github.com/user/repos?affiliation=owner,collaborator&per_page=100&access_token=${getState().auth.token}`)
+    .then(repos => dispatch({
+          type: GET_USER_REPOS,
+          repos: repos.data
+    }));
+  };
 }
 
 export function getRepoTree(repo){

@@ -26,6 +26,7 @@ export function addChannel(channel) {
 			let channels = Object.keys(userStorage)
 
 			return axios.post(process.env.SERVER_URL + `/api/channels/${userId}`, {
+			// return axios.post(`http://localhost:1337/api/channels/${userId}`, {	
 				repoId: channelName
 			})	
 				.then(createdChannel => {
@@ -53,6 +54,7 @@ export function removeChannel(id) {
 			storage.set('channels', channelStorage, err => console.error)
 			let channels = Object.keys(channelStorage[currentUser])
 			return axios.put(process.env.SERVER_URL + `/api/channels/remove?channelId=${id}&userId=${userId}`)
+			// return axios.put(`http://localhost:1337/api/channels/remove?channelId=${id}&userId=${userId}`)
 				.then(() => {
 					dispatch({
 						type: LOAD_CHANNELS,
@@ -74,6 +76,7 @@ export function loadChannels() {
 			let userStorage = channelStorage[currentUser] ? channelStorage[ currentUser ] : {}
 			let channels
 			return axios.get(process.env.SERVER_URL + `/api/users/${userId}`)
+			// return axios.get(`http://localhost:1337/api/users/${userId}`)
 				.then(result => {
 					let user = result.data
 
