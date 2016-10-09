@@ -7,7 +7,12 @@ import GitHub from 'github-api';
 import axios from 'axios';
 
 export function addTeamMember(input) {
-	let name = input.name
+	let name
+	if (typeof input === "object") {
+		name = input.name
+	} else {
+		name = input
+	}
 	return (dispatch, getState) => {
 		axios.post(process.env.SERVER_URL + `/api/channels/${name}`, {repoId: getState().repo.channelName, userName: name})
 		// axios.post(`http://localhost:1337/api/channels/${name}`, {repoId: getState().repo.channelName, userName: name})
