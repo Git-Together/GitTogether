@@ -75,7 +75,7 @@ export default class Home extends Component {
   };
 
   render() {
-    const { getRepoTree, switchActive, addRepo, removeRepo, getUserRepos,addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
+    const { changeChannelPath, getRepoTree, switchActive, addRepo, removeRepo, getUserRepos,addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
     const { toggleComponent, ui } = this.props;
     const { logout, auth } = this.props;
     const { updateSettings, addSettings, removeSettings, refreshSettings, settings } = this.props;
@@ -93,7 +93,7 @@ export default class Home extends Component {
       <div className={stylesScss.flex}>
         <div className={[stylesScss.teams, 'grey'].join(" ")}>
 
-          <span>Current Channel</span>
+          <span>Current Channel: {repo.channelName}</span>
 
           <div className={[stylesScss.repos, 'green'].join(" ")}>
 
@@ -183,7 +183,10 @@ export default class Home extends Component {
             { (() => {
                     switch (ui) {
                       case 'Dashboard':
-                        return <Dashboard />;
+							return <Dashboard 
+								changeChannelPath={changeChannelPath}
+								repo={repo}
+								/>;
                       case 'Repo View':
                         return <Repos
                           repos={this.props.repo.tree.tree}

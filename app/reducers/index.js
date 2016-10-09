@@ -1,5 +1,6 @@
-import { combineReducers } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
+import { reducer as formReducer } from'redux-form';
 import team from './team';
 import repo from './repo';
 import ui from './ui';
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   branches,
   routing,
   channels,
-  chat
+	chat,
+	form: formReducer
 });
 
 export default rootReducer;

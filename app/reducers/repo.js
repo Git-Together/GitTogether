@@ -1,10 +1,11 @@
 
-import { ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIVE_TREE } from '../actions/repo';
+import { CHANGE_CHANNEL_PATH, ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIVE_TREE } from '../actions/repo';
 
 const initState =
   {
     activeRepo: 1,
 	channelName: 'none',
+	channelPath: null,
     repos: [{
       type: 'document',
       name: 'ourGit',
@@ -63,6 +64,8 @@ export default function repo(state = initState, action) {
       return {...state, repos: action.repos};
     case SWITCH_ACTIVE_TREE:
       return {...state, tree: action.tree.data};
+	case CHANGE_CHANNEL_PATH:
+	  return {...state, channelPath: action.path};
     default:
       return state;
   }
