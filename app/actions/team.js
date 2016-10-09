@@ -6,7 +6,8 @@ export const CHANGE_ACTIVE_TEAM_MEMBER = 'CHANGE_ACTIVE_TEAM_MEMBER'
 import GitHub from 'github-api';
 import axios from 'axios';
 
-export function addTeamMember(name) {
+export function addTeamMember(input) {
+	let name = input.name
 	return (dispatch, getState) => {
 		axios.post(process.env.SERVER_URL + `/api/channels/${name}`, {repoId: getState().repo.channelName, userName: name})
 		// axios.post(`http://localhost:1337/api/channels/${name}`, {repoId: getState().repo.channelName, userName: name})
@@ -46,7 +47,6 @@ export function refreshTeamMembers() {
 		axios.get(process.env.SERVER_URL + `/api/users/${getState().auth.id}`)
 		// axios.get(`http://localhost:1337/api/users/${getState().auth.id}`)
 		.then( user => {
-			console.log('USER AFTER REFRESH TEAM MEMBERS', user.data);
 			dispatch({
 				type: REFRESH_TEAM_MEMBERS,
 				channels: user.data.channels,

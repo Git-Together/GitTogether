@@ -30,7 +30,6 @@ const initState = {
 function activeFile(state = 1, action){
   switch (action.type) {
     case CHANGE_ACTIVE_FILE:
-      console.log('Action', action);
       if (action.id) return action.id
       return action.name
     default:

@@ -96,7 +96,6 @@ export default class Repos extends Component {
           nodeSelf = nodeSelf.parent;
         }
         let filePath = fileName.join('/');
-        console.log('FilePath', filePath);
         self.changeActiveFileAsync(null, '/' + filePath);
       }
     });
@@ -128,7 +127,6 @@ let changeObjectTreeToKey = function (array) {
     var strArray = element.path.split('/');
     return addObjectIntoKey(strArray, rtnObj);
   });
-  console.log("THis is the return obj for individualFile.js", rtnObj)
   return rtnObj;
 }
 

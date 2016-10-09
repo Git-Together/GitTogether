@@ -14,7 +14,6 @@ export function checkoutFile(repoId, fileId) {
 // process.env.SERVER_URL + `/api/users/${id}`
     axios.post(process.env.SERVER_URL + '/api/files/', payload)
       .then(fileWatch => {
-        console.log("updated file checkout: ", fileWatch.data[0])
         dispatch({
           type: CHECKOUT_FILE,
           repoName: repoId,
