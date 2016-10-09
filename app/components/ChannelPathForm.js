@@ -54,9 +54,7 @@ class changeChannelPathForm extends Component {
 		}
 		return storage.getAsync('channels')
 			.then(cachedChannels => {
-				console.log('got this from cache ', cachedChannels)
 				cachedChannels[user][channel] = path
-				console.log('going to cache this ', cachedChannels)
 				return storage.setAsync('channels', cachedChannels)
 			})
 			.then(() => { 

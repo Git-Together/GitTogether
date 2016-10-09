@@ -13,12 +13,10 @@ export function fileWatcher() {
 	let	channels = []
 	let repoPaths = []
 	let username;
-	console.log('in filewatcher')
 
 	return storage.getAsync('user')
 		.then(info => {
 			username = info.currentUser
-			console.log(`username: ${username}`)
 		})
 		.then(() => {
 			return storage.getAsync('channels') 
@@ -30,13 +28,10 @@ export function fileWatcher() {
 					repoPaths.push(cachedChannels[ username ][channel])
 				}
 			}
-			console.log(`channels: ${channels}`)
-			console.log(`repoPaths: ${repoPaths}`)
 		})
 		.then(() => {
 			channels.forEach((channel, index) => {
 				let repoPath = repoPaths[index]
-				console.log(`watching path number ${index} at ${ repoPath }`)
 				gaze('**/*', {
 					//Don't watch npm packages in a repo—it's prohibitively expensive and they shouldn't be
 					//doing anything in there anyway.
@@ -44,30 +39,20 @@ export function fileWatcher() {
 					ignore: ['**/node_modules/**', 'node_modules/**']
 				}, function(err, watcher) {
 					var watched = this.watched()
-					console.log('watching ', watched)
 					this.on('ready', function() {
 						console.log('filewatcher watching')
 					})
-					//TOCHANGE: To avoid giving other users the emitting user's file structure,
-					//going to need to isolate filepath relative to repo directory.
-					//
-					//let pathRegex = new RegExp( repoPath + '([\\s\\S]*)', 'g')
 
 					//'All' will fire the callback if any files are changed, added, or deleted.
-					this.on('all', function(event, filepath) {
-						console.log('file changed')
+					this.on('all', function (event, filepath) {
 						let payload = { event, channel, username }
 						//Check to see if the gaze trigger was a file being added.
 						//This can cut down on some logic downstream, because
 						//other people couldn't be watching a file that was just created.
-						let fileAdded = false
 
-						//TOCHANGE: once repo paths are being stored, add this bit
-						//let revisedPath = pathRegex.exec(filepath)
-						payload.filepath = filepath
-
-						if (event === "added") fileAdded = true
-						payload.fileAdded = fileAdded
+						let pathRegex = new RegExp( repoPath + '(\\S*)', 'g')
+						let revisedPath = pathRegex.exec(filepath)[1]
+						payload.filepath = revisedPath
 
 						git(repoPath)
 							.branch( (err, result) => {
@@ -124,7 +109,6 @@ export function fileWatcher() {
 								//	}
 							})
 							.then(() => {
-								console.log(payload)
 								socket.emit('fileChanges', payload)
 								return
 							})
