@@ -6,6 +6,7 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import * as RepoActions from '../actions/repo.js';
 import { bindActionCreators } from 'redux';
+import { fileWatcher } from '../utils/file-watch.js';
 
 import Promise from 'bluebird';
 const storage = Promise.promisifyAll(require('electron-json-storage'))
@@ -58,13 +59,16 @@ class changeChannelPathForm extends Component {
 				console.log('going to cache this ', cachedChannels)
 				return storage.setAsync('channels', cachedChannels)
 			})
+			.then(() => { 
+				return fileWatcher() 
+			})
 			.then(() => {
 				this.props.dispatch({
 					type: 'CHANGE_CHANNEL_PATH',
 					path
 				})
-				return
-		})
+			})
+			.catch(err => console.error)
 	}	
 
 	render() {

@@ -62,13 +62,12 @@ export default class Home extends Component {
   };
 
   componentWillMount(){
-	fileWatcher()
+    fileWatcher();
 	this.props.loadChannels()
     this.props.getUserRepos()
   };
 
   componentWillReceiveProps(nextProps){
-    fileWatcher();
     this.setState({
       repos: nextProps.repo.repos
     })
