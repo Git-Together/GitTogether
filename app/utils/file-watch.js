@@ -41,12 +41,23 @@ export function fileWatcher() {
 	let username;
 
 	storage.get('user', (err, info) => {
+		if (err) console.error(err)
 		username = info.currentUser
+	})
+
+	storage.get('channels', (err, cachedChannels) => {
+		if (err) console.error(err)
+		for (var channel in cachedChannels[username]) {
+			if (cachedChannels[username][channel]) {
+				channels.push(channel)
+				repoPaths.push(cachedChannels[ username ][channel])
+			}
+		}
 	})
 
 	channels.forEach((channel, index) => {
 		let repoPath = repoPaths[index]
-
+		console.log(`watching path number ${index} at ${ repoPath }`)
 		gaze('**/*', {
 			//Don't watch npm packages in a repo—it's prohibitively expensive and they shouldn't be
 			//doing anything in there anyway.
@@ -54,7 +65,7 @@ export function fileWatcher() {
 			ignore: ['**/node_modules/**', 'node_modules/**']
 		}, function(err, watcher) {
 			var watched = this.watched()
-			console.log('watching!')
+			console.log('watching ', watched)
 			this.on('ready', function() {
 				console.log('filewatcher watching')
 			})
