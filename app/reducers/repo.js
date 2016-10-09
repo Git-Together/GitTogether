@@ -1,11 +1,5 @@
 
-<<<<<<< HEAD
-import { CHANGE_CHANNEL_PATH, ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIVE_TREE } from '../actions/repo';
-||||||| merged common ancestors
-import { ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIVE_TREE } from '../actions/repo';
-=======
-import { ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIVE_TREE, GET_COLLABORATORS } from '../actions/repo';
->>>>>>> b4ea0b98a174f9e343548d0fd9b633f0b27bab51
+import { CHANGE_CHANNEL_PATH, ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIVE_TREE, GET_COLLABORATORS } from '../actions/repo';
 
 const initState =
   {
@@ -71,14 +65,10 @@ export default function repo(state = initState, action) {
       return {...state, repos: action.repos};
     case SWITCH_ACTIVE_TREE:
       return {...state, tree: action.tree.data};
-<<<<<<< HEAD
 	case CHANGE_CHANNEL_PATH:
 	  return {...state, channelPath: action.path};
-||||||| merged common ancestors
-=======
     case GET_COLLABORATORS:
       return {...state, activeRepoCollaborators: action.collaborators};
->>>>>>> b4ea0b98a174f9e343548d0fd9b633f0b27bab51
     default:
       return state;
   }

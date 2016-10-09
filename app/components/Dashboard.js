@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import styles from './Dashboard.scss';
-<<<<<<< HEAD
 import Repos from './Repos.js';
 import { remote } from 'electron';
 import { Field, reduxForm, formValueSelector } from 'redux-form';

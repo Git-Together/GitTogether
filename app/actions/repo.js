@@ -39,6 +39,7 @@ export function getUserRepos() {
 
 export function getRepoTree(repo){
 		return (dispatch, getState) => {
+			let user = getState().auth.currentUser
 			let repoId;
 			let fetchedRepo;
 			axios.get(`https://api.github.com/repos/${repo}?access_token=${getState().auth.token}`)
