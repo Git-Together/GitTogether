@@ -6,7 +6,6 @@ import IndividualActiveFile from './individualActiveFile.js';
 export default class FileView extends Component {
   constructor(props){
     super(props)
-    console.log("THIS IS PROPS FOR FILEVIEW: ", this.props)
   }
   static propTypes = {};
 
@@ -35,7 +34,6 @@ export default class FileView extends Component {
   }
 
   activeEvents (activeEventsObj) {
-    console.log('ACTIVE EVENTS OBJ', activeEventsObj);
     return (activeEventsObj && activeEventsObj.events) ? activeEventsObj.events.map(
       e => {
         let element;
@@ -43,8 +41,6 @@ export default class FileView extends Component {
           {e.eventType} --- {e.lineStart} --- {e.lineEnd} --- {e.user.name} --- {Date(e.createdAt)}
         </div>
         )
-        console.log('ELEMENT IS ', element)
-        console.log('E ', e);
         return element;
       }
     ) : [(<div key={0}/>)]
