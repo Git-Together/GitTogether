@@ -6,7 +6,7 @@ import repo from './repo';
 import ui from './ui';
 import files from './files';
 import settings from './settings';
-import conventions from './conventions';
+// import conventions from './conventions';
 import branches from './branches';
 import chat from './chat';
 import auth from './auth';
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
   ui,
   files,
   settings,
-  conventions,
+  // conventions,
   branches,
   routing,
   channels,

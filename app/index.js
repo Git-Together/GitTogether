@@ -11,7 +11,7 @@ import storage from 'electron-json-storage';
 let state = {
   auth: {}
 };
-
+// storage.clear(err => console.error)
 storage.get('user', (err, result) => {
   console.log("This is result for auth in index",result);
   if (err) console.error(err)

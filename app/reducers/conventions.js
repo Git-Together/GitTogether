@@ -20,7 +20,7 @@ const initState =
   ]
 ;
 
-export default function team(state = initState, action) {
+export default function conventions(state = initState, action) {
   switch (action.type) {
     case ADD_CONVENTIONS:
       let id = ++state.map(e => e.id)[state.length-1];

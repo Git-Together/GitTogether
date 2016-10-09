@@ -1,5 +1,11 @@
 
+<<<<<<< HEAD
 import { CHANGE_CHANNEL_PATH, ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIVE_TREE } from '../actions/repo';
+||||||| merged common ancestors
+import { ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIVE_TREE } from '../actions/repo';
+=======
+import { ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIVE_TREE, GET_COLLABORATORS } from '../actions/repo';
+>>>>>>> b4ea0b98a174f9e343548d0fd9b633f0b27bab51
 
 const initState =
   {
@@ -39,7 +45,8 @@ const initState =
       name: 'GitOffMe',
       id: 3
     }],
-    tree: {}
+    tree: {},
+    activeRepoCollaborators: []
   };
 
 export default function repo(state = initState, action) {
@@ -59,13 +66,19 @@ export default function repo(state = initState, action) {
       if (idx === -1) return state;
       return {...state, repos: [...state.repos.slice(0, idx), ...state.repos.slice(idx + 1)]};
     case SWITCH_ACTIVE_REPO:
-      return {...state, activeRepo: action, channelName: action.name};
+      return {...state, activeRepo: action.id, channelName: action.name};
     case GET_USER_REPOS:
       return {...state, repos: action.repos};
     case SWITCH_ACTIVE_TREE:
       return {...state, tree: action.tree.data};
+<<<<<<< HEAD
 	case CHANGE_CHANNEL_PATH:
 	  return {...state, channelPath: action.path};
+||||||| merged common ancestors
+=======
+    case GET_COLLABORATORS:
+      return {...state, activeRepoCollaborators: action.collaborators};
+>>>>>>> b4ea0b98a174f9e343548d0fd9b633f0b27bab51
     default:
       return state;
   }
