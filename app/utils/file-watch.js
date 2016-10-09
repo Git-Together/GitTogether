@@ -109,6 +109,7 @@ export function fileWatcher() {
 								//	}
 							})
 							.then(() => {
+								console.log(payload)
 								socket.emit('fileChanges', payload)
 								return
 							})
