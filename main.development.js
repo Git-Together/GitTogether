@@ -1,5 +1,5 @@
 import { app, BrowserWindow, Menu, shell } from 'electron';
-import { ipcMain } from 'electron'
+import { ipcMain, dialog } from 'electron'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -9,6 +9,12 @@ let template;
 let mainWindow = null;
 
 let cache;
+
+exports.selectDirectory = function() {
+	dialog.showOpenDialog(mainWindow, {
+		properties: ['openDirectory']
+	})
+}
 
 if (process.env.NODE_ENV === 'development') {
   require('electron-debug')(); // eslint-disable-line global-require

@@ -20,26 +20,26 @@ import Settings from './Settings.js';
 import { fileWatcher } from '../utils/file-watch.js';
 
 export default class Home extends Component {
-  constructor (props) {
-    super(props);
-    this.display = this.display.bind(this);
-    this.state = {
-      repos: []
-    }
-  }
+	constructor (props) {
+		super(props);
+		this.display = this.display.bind(this);
+		this.state = {
+			repos: []
+		}
+	}
 
-  static propTypes = {
-	loadChannels: PropTypes.func.isRequired,
-    addRepo: PropTypes.func.isRequired,
-    removeRepo: PropTypes.func.isRequired,
-    addTeamMember: PropTypes.func.isRequired,
-    removeTeamMember: PropTypes.func.isRequired,
-	  refreshTeamMembers: PropTypes.func.isRequired,
-    team: PropTypes.object.isRequired,
-    repo: PropTypes.object.isRequired,
-	  ui: PropTypes.string.isRequired,
-	  auth: PropTypes.object.isRequired
-  };
+	static propTypes = {
+		loadChannels: PropTypes.func.isRequired,
+		addRepo: PropTypes.func.isRequired,
+		removeRepo: PropTypes.func.isRequired,
+		addTeamMember: PropTypes.func.isRequired,
+		removeTeamMember: PropTypes.func.isRequired,
+		refreshTeamMembers: PropTypes.func.isRequired,
+		team: PropTypes.object.isRequired,
+		repo: PropTypes.object.isRequired,
+		ui: PropTypes.string.isRequired,
+		auth: PropTypes.object.isRequired
+	};
 
   display (array, type) {
 	let counter = 0;
@@ -68,15 +68,14 @@ export default class Home extends Component {
   this.props.refreshTeamMembers()
   };
 
-  componentWillReceiveProps(nextProps){
-    fileWatcher();
-    this.setState({
-      repos: nextProps.repo.repos
-    })
-  };
+	componentWillReceiveProps(nextProps){
+		this.setState({
+			repos: nextProps.repo.repos
+		})
+	};
 
   render() {
-    const { getRepoTree, switchActive, addRepo, removeRepo, getUserRepos,addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, addCollaborator, team, repo } = this.props;
+    const { changeChannelPath, getRepoTree, switchActive, addRepo, removeRepo, getUserRepos,addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, addCollaborator, team, repo } = this.props;
     const { toggleComponent, ui } = this.props;
     const { logout, auth } = this.props;
     const { updateSettings, addSettings, removeSettings, refreshSettings, settings } = this.props;
@@ -89,41 +88,41 @@ export default class Home extends Component {
     const { checkoutFile, returnFile, unsubscribe, checkoutList } = this.props;
 
 
-    let uiSwitch;
-    let inputRepo;
-    let inputMember;
+		let uiSwitch;
+		let inputRepo;
+		let inputMember;
 
-    return (
-      <div className={stylesScss.flex}>
-        <div className={[stylesScss.teams, 'grey'].join(" ")}>
+		return (
+			<div className={stylesScss.flex}>
+				<div className={[stylesScss.teams, 'grey'].join(" ")}>
 
-          <span>Current Channel</span>
+					<span>Current Channel: {repo.channelName}</span>
 
-          <div className={[stylesScss.repos, 'green'].join(" ")}>
+					<div className={[stylesScss.repos, 'green'].join(" ")}>
 
-            <span>Channels</span>
-            {channels?this.display(channels, 'channels'):''}
-            <div>
-              <form onSubmit={e => {
-                e.preventDefault()
-                if (!inputRepo.value.trim()) {
-                  return
-                }
-                addRepo({name: inputRepo.value, type: 'document'})
-                inputRepo.value = ''
-              }}>
-                <input style={{color:"black"}}ref={node => {
-                  inputRepo = node
-                }} />
-                <button className='btn btn-default' type="submit">
-                  Add Repo
-                </button>
-              </form>
-            </div>
+						<span>Channels</span>
+						{channels?this.display(channels, 'channels'):''}
+						<div>
+							<form onSubmit={e => {
+								e.preventDefault()
+								if (!inputRepo.value.trim()) {
+									return
+								}
+								addRepo({name: inputRepo.value, type: 'document'})
+								inputRepo.value = ''
+							}}>
+							<input style={{color:"black"}}ref={node => {
+								inputRepo = node
+							}} />
+						<button className='btn btn-default' type="submit">
+							Add Repo
+						</button>
+					</form>
+				</div>
 
-          </div>{/* repos */}
+			</div>{/* repos */}
 
-          <div className={[stylesScss.members, 'orange'].join(" ")}>
+			<div className={[stylesScss.members, 'orange'].join(" ")}>
 
             <span>Team</span>
             {this.display(team.testTeam[repo.channelName] || team.defaultTeam[1], 'team')}
@@ -145,11 +144,11 @@ export default class Home extends Component {
               </form>
             </div>
 
-          </div>{/* members */}
+	</div>{/* members */}
 
-        </div>{/* teams */}
+</div>{/* teams */}
 
-        <div className={[stylesScss.main, 'blue'].join(" ")}>
+<div className={[stylesScss.main, 'blue'].join(" ")}>
 
           <div className={[stylesScss.nav, 'pink'].join(" ")}>
             <ul>
@@ -189,6 +188,7 @@ export default class Home extends Component {
                       case 'Dashboard':
                         return <Dashboard
                           repo = {repo}
+						  changeChannelPath = {changeChannelPath}
                           checkoutList = {checkoutList}
                           unsubscribe = {unsubscribe}
                         />;
@@ -257,12 +257,12 @@ export default class Home extends Component {
                 })()
             }
 
-          </div>
+	</div>
 
-        </div>{/* main */}
+</div>{/* main */}
 
-      </div>
-    );
-  }
+</div>
+		);
+	}
 }
 
