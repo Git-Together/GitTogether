@@ -11,8 +11,8 @@ import IndividualMember from './individualMember.js';
 import Dashboard from './Dashboard.js';
 import Repos from './Repos.js';
 import Chat from './Chat.js';
-import Team from './Team.js';
-import Conventions from './Conventions.js';
+import Collaborators from './Collaborators.js';
+// import Conventions from './Conventions.js';
 import CreateChannel from './CreateChannel.js';
 import Branches from './Branches.js';
 import FileView from './FileView.js';
@@ -42,10 +42,10 @@ export default class Home extends Component {
   };
 
   display (array, type) {
-	let counter = 0
+	let counter = 0;
     return array.map(
-        e => {
-		  counter++
+        (e, index) => {
+		      counter++
           let displayValue = type === 'channels'? (
             <div key={counter}>
               <IndividualCreateChannel name={e} addChannel={this.props.addChannel.bind(this,e)}
@@ -53,8 +53,8 @@ export default class Home extends Component {
                 channelView={true}
                 />
             </div>):
-            (<div key={e.id}>
-              <IndividualMember name={e.name} id={e.id} delete={this.props.removeTeamMember.bind(this,e.id)} />
+            (<div key={index}>
+              <IndividualMember name={e} id={e.id} delete={this.props.removeTeamMember.bind(this,e)} />
             </div>)
           return displayValue;
         }
@@ -64,7 +64,8 @@ export default class Home extends Component {
   componentWillMount(){
 	fileWatcher()
 	this.props.loadChannels()
-    this.props.getUserRepos()
+  this.props.getUserRepos()
+  this.props.refreshTeamMembers()
   };
 
   componentWillReceiveProps(nextProps){
@@ -75,11 +76,11 @@ export default class Home extends Component {
   };
 
   render() {
-    const { getRepoTree, switchActive, addRepo, removeRepo, getUserRepos,addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, team, repo } = this.props;
+    const { getRepoTree, switchActive, addRepo, removeRepo, getUserRepos,addTeamMember, removeTeamMember, refreshTeamMembers, changeActiveTeamMember, addCollaborator, team, repo } = this.props;
     const { toggleComponent, ui } = this.props;
     const { logout, auth } = this.props;
     const { updateSettings, addSettings, removeSettings, refreshSettings, settings } = this.props;
-    const { updateConventions, addConventions, removeConventions, refreshConventions, conventions } = this.props;
+    // const { updateConventions, addConventions, removeConventions, refreshConventions, conventions } = this.props;
     const { changeActiveFile,  refreshFiles, changeActiveFileAsync, files } = this.props;
     const { changeActiveBranch,  refreshBranches, branches } = this.props;
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
@@ -125,7 +126,7 @@ export default class Home extends Component {
           <div className={[stylesScss.members, 'orange'].join(" ")}>
 
             <span>Team</span>
-            {this.display(team.team, 'team')}
+            {this.display(team.testTeam[repo.channelName] || team.defaultTeam[1], 'team')}
             <div>
               <form onSubmit={e => {
                 e.preventDefault()
@@ -161,8 +162,8 @@ export default class Home extends Component {
               <li onClick={toggleComponent.bind(null,'Chat')}
                 className="btn">Chat
               </li>
-              <li onClick={toggleComponent.bind(null,'Team')}
-                className="btn">Team
+              <li onClick={toggleComponent.bind(null,'Collaborators')}
+                className="btn">Collaborators
               </li>
               <li onClick={toggleComponent.bind(null,'Channel')}
                 className="btn">New Channel
@@ -203,11 +204,12 @@ export default class Home extends Component {
                           changeActiveMessage = {changeActiveMessage}
                           chat = {chat}
                         />;
-                      case 'Team':
-                        return <Team
+                      case 'Collaborators':
+                        return <Collaborators
                           delete = {removeTeamMember}
+                          addTeamMember = {addTeamMember}
                           changeActiveTeamMember = {changeActiveTeamMember}
-                          team = {team.team}
+                          team = {this.props.repo.activeRepoCollaborators}
                           activeTeamMember = {team.activeTeamMember}
                         />;
                       case 'Channel':

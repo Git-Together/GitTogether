@@ -3,6 +3,7 @@ export const REMOVE_REPO = 'REMOVE_REPO';
 export const SWITCH_ACTIVE_REPO = 'SWITCH_ACTIVE_REPO';
 export const GET_USER_REPOS = 'GET_USER_REPOS';
 export const SWITCH_ACTIVE_TREE = 'SWITCH_ACTIVE_TREE';
+export const GET_COLLABORATORS = 'GET_COLLABORATORS';
 
 //Github API call
 import GitHub from 'github-api';
@@ -22,8 +23,11 @@ export function getUserRepos() {
 export function getRepoTree(repo){
   return (dispatch, getState) => {
 	let repoId;
+  let fetchedRepo;
 	axios.get(`https://api.github.com/repos/${repo}?access_token=${getState().auth.token}`)
-		  .then(fetchedRepo => {
+		  .then(fetched => {
+        fetchedRepo = fetched
+        console.log("fetchedRepo", fetchedRepo)
 			  repoId = fetchedRepo.data.id
 			  return axios.get(`https://api.github.com/repos/${repo}/git/refs/?access_token=${getState().auth.token}`)
 		  })
@@ -42,7 +46,17 @@ export function getRepoTree(repo){
 		  })).then(() => dispatch({
 			  type: TOGGLE_COMPONENT,
 			  component: 'Repo View'
-		  }))
+		  })).then(() => {
+        console.log("fetchedRepo BEFORE WE DO COLLAB CALL", fetchedRepo)
+        axios.get(`https://api.github.com/repos/${repo}/collaborators?access_token=${getState().auth.token}`)
+        .then(collaborators => {
+          console.log("collabs from axios:", collaborators)
+            dispatch({
+             type: GET_COLLABORATORS,
+              collaborators: collaborators.data.map(e => e.login)
+            })
+        })
+    })
   }
 }
 
