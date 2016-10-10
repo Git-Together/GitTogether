@@ -30,7 +30,7 @@ export function setUser(currentUser, token, id) {
 
 				let channels = Object.keys(cachedChannels[currentUser])
 				if (channels.includes(payload.channel)) {
-					new Notification(payload.githubName + ' is editing ' + payload.filepath + ' in ' + payload.branch.current + '.')
+					new Notification(payload.username + ' just ' + payload.event + " " + payload.filepath + ' in ' + payload.branch.current + '.')
 				}
 			})
 			
