@@ -4,7 +4,7 @@ export const LOGIN = "LOGIN"
 export const LOGOUT = "LOGOUT"
 export const SET_USER = "SET_USER"
 import { push } from 'react-router-redux'
-import io from 'socket.io-client'
+import io from 'socket.io-client';
 
 import GitHub from 'github-api';
 import axios from 'axios';
@@ -19,6 +19,22 @@ export function setUser(currentUser, token, id) {
 	if (currentUser) {
 		let socket = io(process.env.SOCKET_URL)
 		socket.emit('passLogin', currentUser)
+		socket.on('fileChanges', payload => {
+			console.log('PAYLOAD', payload);
+			let channels
+			storage.get('channels', (err, cachedChannels) => {
+				if (err) {
+					console.error(err)
+					return
+				}
+
+				let channels = Object.keys(cachedChannels[currentUser])
+				if (channels.includes(payload.channel)) {
+					new Notification(payload.githubName + ' is editing ' + payload.filepath + ' in ' + payload.branch.current + '.')
+				}
+			})
+			
+		})
 		storage.get('channels', (err, result) => {
 			if (err) {
 				console.error(err)
