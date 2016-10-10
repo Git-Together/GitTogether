@@ -35,7 +35,7 @@ export function changeActiveTeamMember(id) {
 
 export function removeTeamMember(id, repoId) {
 		return (dispatch, getState) => {
-			axios.delete(process.env.SERVER_URL + `/api/channels/remove?channelId=${getState().repo.channelName}&userName=${id}`)
+			axios.put(process.env.SERVER_URL + `/api/channels/remove?channelId=${getState().repo.channelName}&userName=${id}`)
 			// return axios.put(`http://localhost:1337/api/channels/remove?channelId=${getState().repo.channelName}&userName=${id}`)
 			.then( () => {
 				dispatch({

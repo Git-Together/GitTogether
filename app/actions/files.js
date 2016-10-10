@@ -37,8 +37,7 @@ export function getFileChanges(name) {
   return (dispatch, getState) => {
   name = name.split('/').join('*');  
   let channelName = getState().repo.channelName.split('/').join('*');
-	axios.get(`https://our-git.herokuapp.com/api/files/${name}?repoId=${channelName}`)
-	// axios.get(`http://localhost:1337/api/files/${name}?repoId=${channelName}`)
+	axios.get(process.env.SERVER_URL + `/api/files/${name}?repoId=${channelName}`)
     .then(fileChanges => {
       dispatch({
           type: GET_FILE_CHANGES,

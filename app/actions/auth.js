@@ -10,6 +10,7 @@ import GitHub from 'github-api';
 import axios from 'axios';
 
 export function setUser(currentUser, token, id) {
+	// storage.clear();
 	var channelStorage
 	storage.set('user', {
 		currentUser: currentUser,

@@ -47,15 +47,17 @@ export function diffParser (readout) {
 		}
 
 		//then declare regexp to capture affected lines
-		let diffChunk = chunkRegexp.exec(readout)[0], lines = [], lineNumbers, lineRegexp = new RegExp('@@ -(\\d+)[,(\\d+)]*', 'g')
+		let diffChunk = chunkRegexp.exec(readout)[0], lines = [], lineNumbers, lineRegexp = new RegExp('@@ ([\\S]+) ([\\S]+) @@', 'g')
 
 		//loop through the chunk of text associated with current filename, grabbing the range in each file (starting and ending lines)
 		//that have changed since last commit
 		while (lineNumbers = lineRegexp.exec(diffChunk)) {
-			let startLine = +lineNumbers[1]
-			let endLine = +lineNumbers[1] + +lineNumbers[0].split(',')[1];
-			if (isNaN(endLine)) endLine = startLine
-			lines.push([startLine, endLine])
+			let origStartLine = +lineNumbers[1].slice(1).split(',')[0]
+			let origEndLine = lineNumbers[1].slice(1).split(',')[1] ? origStartLine + +lineNumbers[1].slice(1).split(',')[1] : null
+			let localStartLine = +lineNumbers[2].slice(1).split(',')[0]
+			let localEndLine = lineNumbers[2].slice(1).split(',')[1] ? origStartLine + +lineNumbers[2].slice(1).split(',')[1] : null
+			if (isNaN(origEndLine)) origEndLine = origStartLine
+			lines.push([origStartLine, origEndLine, localStartLine, localEndLine])
 		}
 		//write the results into the object to be returned at the end of the function, with the name of the file as the key and an array of arrays of line ranges
 		//as the value
