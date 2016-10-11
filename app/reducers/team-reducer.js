@@ -2,17 +2,15 @@ import { CHANGE_ACTIVE_TEAM_MEMBER, ADD_TEAM_MEMBER, REMOVE_TEAM_MEMBER, REFRESH
 
 const initState =  {
   activeTeamMember: 1,
-  defaultTeam: {
-    1: []
-  },
-  testTeam: {
-    1: []
-  },
+  team: [],
   icon: 'glyphicon glyphicon-refresh',
-  panelMessage: {
-    label: "Here Are Your Teams",
-    text: "Teams"
-  }
+  panelMessageArray: [
+    {
+      label: "Here Are Your Teams",
+      text: "Teams"
+   }
+  ],
+  panelMessagePlayIndex: 0,
 };
 
 function activeTeamMember(state = 1, action){

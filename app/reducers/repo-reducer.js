@@ -41,10 +41,15 @@ const initState =
     tree: {},
     activeRepoCollaborators: [],
     icon: 'glyphicon glyphicon-cloud-upload',
-    panelMessage: {
-      label: "This should be picture of",
-      text: "Your Repo"
-    }
+    panelMessageArray: [
+      {
+        label: "Here Are your Repos",
+        text: "Repos"
+     }
+    ],
+    repoList: [],
+    panelMessagePlayIndex: 0,
+    activeRepo: 'repoId',
   };
 
 export default function repo(state = initState, action) {

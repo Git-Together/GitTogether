@@ -6,10 +6,10 @@ import auth from './auth-reducer';
 import channel from './channel-reducer';
 // import chat from './chat-reducer';
 // import file from './file-reducer';
-// import member from './member-reducer';
-// import repo from './repo-reducer';
+import member from './member-reducer';
+import repo from './repo-reducer';
 import repos from './repos-reducer';
-// import team from './team-reducer';
+import team from './team-reducer';
 import ui from './ui-reducer';
 // import watch from './watch-reducer';
 
@@ -18,10 +18,10 @@ const rootReducer = combineReducers({
   channel,
   // chat,
   // file,
-  // member,
-  // repo,
+  member,
+  repo,
   repos,
-	// team,
+	team,
 	ui,
 	// watch,
 	routing,

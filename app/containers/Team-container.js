@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as team from '../actions/team-actions.js';
-import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js';
+// import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js';
+import List from '../components/_shared/List/List-component.js';
 
 function mapStateToProps(state) {
   return {
-    team: state.team,
+    list: state.team.team,
     icon: state.team.icon,
-    panelMessage: state.team.panelMessage
+    panelMessage: state.team.panelMessageArray[state.team.panelMessagePlayIndex] || 'Your current active repo',
+    panelMessageArray: state.team.panelMessageArray,
+    selected: state.team.activeRepoId,
+    uiSelected: state.ui.selected,
+    currentUi: 'team'
   };
 }
 
@@ -16,4 +21,13 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(team, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     changeSelected: bindActionCreators(repos.changeActiveRepo, dispatch),
+//     addSelected: bindActionCreators(repos.addChannel, dispatch),
+//     removeSelected: bindActionCreators(repos.removeChannel, dispatch),
+//     getList: bindActionCreators(repos.getUserRepos, dispatch)
+//   }
+// }
+
+export default connect(mapStateToProps, mapDispatchToProps)(List)
