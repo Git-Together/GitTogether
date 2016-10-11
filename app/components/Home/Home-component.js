@@ -70,27 +70,27 @@ export default class Home extends Component {
           <div id="Body-Content">
 
             <div id="Body-Content-Watch">
-              <Watch testText="Watch"/>
+              <Watch />
             </div> {/* -Body-Content-Watch */}
 
             <div id="Body-Content-Repo">
-              <Repo testText="Repo"/>
+              <Repo />
             </div> {/* -Body-Content-Repo */}
 
             <div id="Body-Content-Member">
-              <Member testText="Member"/>
+              <Member />
             </div> {/* -Body-Content-Member */}
 
             <div id="Body-Content-Channel">
-              <Channel testText="Channel"/>
+              <Channel />
             </div> {/* -Body-Content-Channel */}
 
             <div id="Body-Content-File">
-              <File testText="File"/>
+              <File />
             </div> {/* -Body-Content-File */}
 
             <div id="Body-Content-Chat">
-              <Chat testText="Chat"/>
+              <Chat />
             </div> {/* -Body-Content-Chat */}
 
           </div> {/* -Body-Content */}

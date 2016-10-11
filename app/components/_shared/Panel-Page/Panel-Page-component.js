@@ -17,9 +17,9 @@ export default class PanelPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Panel-Page">
         <Panel icon={this.props.icon} panelMessage={this.props.panelMessage} />
-        <Page />
+        {/*<Page /> */}
       </div>
     )
   }

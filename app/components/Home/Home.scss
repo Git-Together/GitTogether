@@ -1,12 +1,10 @@
 @import '../_shared/_scss/_variables';
-@import '../_shared/_scss/_fonts';
+// @import '../_shared/_scss/_fonts';
 
 * {
 	box-sizing: border-box;
 	// border: 1px solid black;
 }
-
-
 
 #Container{
 	position: fixed;
@@ -116,6 +114,9 @@
 
 #Body-RepoTeam{
 	display: flex;
+	// width: 100%;
+	// justify-content: center;
+	// align-items: center;
 	flex-direction: column;
 	background-color:lightblue;
 	flex: 2.5 0 25%;
@@ -124,6 +125,9 @@
 #Body-RepoTeam-Repos{
 	// display: flex;
 	// flex-direction: column;
+
+	// width: 100%;
+
 	background-color: $mainColor;
 	flex: 2 0 50%;
 }
@@ -131,6 +135,7 @@
 #Body-RepoTeam-Team{
 	// display: flex;
 	// flex-direction: column;
+	// width: 100%;
 	background-color: $mainColor;
 	flex: 2 0 50%;
 }
@@ -138,15 +143,28 @@
 #Body-Content{
 	display: flex;
 	flex-wrap: wrap;
+	// align-items:center;
+	// justify-content: center;
 	// background-color:magenta;
 	flex: 7.5 0 75%;
-	div {
-		width: 50%;
-		height: 33.33%;
-		// border: 1px solid black;
-		color: $mainColor;
-		background-color: $backgroundColor;
+}
+
+#Body-Content div{
+	// display: flex;
+	flex-direction: column;
+	flex: 2 0 50%;
+	width: 50%;
+	height: 33.33%;
+	// border: 1px solid black;
+	color: $mainColor;
+	background-color: $backgroundColor;
+	& div {
+		// display: flex;
+		width: 100%;
+		padding: .5em;
+		// flex: 1 0 auto;
 	}
 }
+
 
 

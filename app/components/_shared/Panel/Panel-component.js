@@ -15,14 +15,12 @@ export default class Panel extends Component {
 
   render() {
     return (
-      <div>
-        <div id='Panel-Icon' className={this.props.icon}></div>
-        <div id='Panel-Message-Label'>
-          {console.log("This.props in panel", this.props)}
+      <div className="Panel">
+        <div className={this.props.icon + ' Panel-Icon'}></div>
+        <div className='Panel-Message-Label'>
           {this.props.panelMessage.label}
-          }
         </div>
-        <div id='Panel-Message-Text'>
+        <div className='Panel-Message-Text'>
           {this.props.panelMessage.text}
         </div>
       </div>
