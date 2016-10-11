@@ -38,7 +38,7 @@ export default class Page extends Component {
     return (
       <div className="Page">
         {this.state.list.length > 0 && <div>
-          <List className="Page-List" list={this.state.list} changeSelected={this.props.changeSelected}/>
+
           <ActiveItem className="Page-ActiveItem" activeItem={this.filter(this.props.selected)[0] || {}}
                     addSelected={this.props.addSelected}
                     removeSelected={this.props.removeSelected}/>

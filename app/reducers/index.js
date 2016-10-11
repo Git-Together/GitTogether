@@ -3,7 +3,7 @@ import { routerReducer as routing } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 
 import auth from './auth-reducer';
-// import channel from './channel-reducer';
+import channel from './channel-reducer';
 // import chat from './chat-reducer';
 // import file from './file-reducer';
 // import member from './member-reducer';
@@ -15,7 +15,7 @@ import ui from './ui-reducer';
 
 const rootReducer = combineReducers({
   auth,
-  // channel,
+  channel,
   // chat,
   // file,
   // member,

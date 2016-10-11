@@ -5,6 +5,9 @@ const initState = 'Dashboard';
 export default function ui(state = {}, action) {
   switch (action.type) {
     case TOGGLE_COMPONENT:
+      if (state.selected === action.component) {
+        return {...state, selected: null }
+      }
       return {...state, selected: action.component }
     default:
       return state;

@@ -6,14 +6,31 @@ import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js'
 
 function mapStateToProps(state) {
   return {
-    list: state.channel, //Page List
+    list: state.channel.channels,
     icon: state.channel.icon, //Page Icon
-    panelMessage: state.channel.panelMessage //Message List
+    panelMessage: state.channel.panelMessageArray[state.channel.panelMessagePlayIndex] || 'Your current active repo',
+    panelMessageArray: state.channel.panelMessageArray,
+    selected: state.channel.activeRepoId,
+    uiSelected: state.ui.selected,
+    currentUi: 'channel'
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(channel, dispatch);
+  return {
+    changeSelected: bindActionCreators(channel.loadChannels, dispatch),
+    addSelected: bindActionCreators(channel.loadChannels, dispatch),
+    removeSelected: bindActionCreators(channel.loadChannels, dispatch),
+    getList: bindActionCreators(channel.loadChannels, dispatch)
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
+
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+
+  }
+}

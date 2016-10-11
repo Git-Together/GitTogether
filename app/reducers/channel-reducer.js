@@ -2,11 +2,16 @@ import { ADD_CHANNEL, REMOVE_CHANNEL, LOAD_CHANNELS } from '../actions/channel-a
 
 export default function channel(state = {
     icon: 'glyphicon glyphicon-tasks',
-    panelMessage: {
-      label: "You are currently in:",
-      text: "This Channel"
-    },
-    list: []
+    panelMessageArray: [
+        {
+          label: "Here Are your Repos",
+          text: "Repos"
+       }
+    ],
+    channels: [],
+    panelMessagePlayIndex: 0,
+    activeChannelId: 'repoOwner/repoName',
+
   }, action) {
   switch (action.type) {
     case ADD_CHANNEL:
