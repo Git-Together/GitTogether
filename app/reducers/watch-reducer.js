@@ -4,8 +4,8 @@ const initState = {
   icon: 'glyphicon glyphicon-eye-open',
   panelMessageArray: [
     {
-      label: "Here Are your Repos",
-      text: "Repos"
+      label: "Here Are your Watches",
+      text: "Watch"
     }
   ],
   watch: [],

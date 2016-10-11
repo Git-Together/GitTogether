@@ -18,19 +18,18 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeSelected: bindActionCreators(channel.loadChannels, dispatch),
-    addSelected: bindActionCreators(channel.loadChannels, dispatch),
-    removeSelected: bindActionCreators(channel.loadChannels, dispatch),
-    getList: bindActionCreators(channel.loadChannels, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     changeSelected: bindActionCreators(channel.loadChannels, dispatch),
+//     addSelected: bindActionCreators(channel.loadChannels, dispatch),
+//     removeSelected: bindActionCreators(channel.loadChannels, dispatch),
+//     getList: bindActionCreators(channel.loadChannels, dispatch)
+//   }
+// }
 
+export default connect(mapStateToProps)(PanelPage)
+// export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
 
-
-function mapDispatchToProps(dispatch) {
-  return {
-
-  }
-}

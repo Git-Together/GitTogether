@@ -4,8 +4,8 @@ export default function channel(state = {
     icon: 'glyphicon glyphicon-tasks',
     panelMessageArray: [
         {
-          label: "Here Are your Repos",
-          text: "Repos"
+          label: "Here Are your Channels",
+          text: "Channel"
        }
     ],
     channels: [],

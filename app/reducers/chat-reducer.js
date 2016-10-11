@@ -17,8 +17,8 @@ const initialState = {
   icon: 'glyphicon glyphicon-comment',
   panelMessageArray: [
       {
-        label: "Here Are your Repos",
-        text: "Repos"
+        label: "Here Are your Chats",
+        text: "Chat"
       }
     ]
 };

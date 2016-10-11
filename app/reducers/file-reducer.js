@@ -20,10 +20,13 @@ const initState = {
     }
   ],
   icon: 'glyphicon glyphicon-file',
-  panelMessage: {
-    label: 'Last File Modified',
-    text: 'This File'
-  },
+   panelMessageArray: [
+      {
+        label: "Here Are your files",
+        text: "file"
+     }
+  ],
+  panelMessagePlayIndex: 0,
   activeEvents: {}
 };
 

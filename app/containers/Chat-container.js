@@ -18,11 +18,17 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeSelected: bindActionCreators(chat.changeActiveRepo, dispatch),
-    addSelected: bindActionCreators(chat.addChannel, dispatch),
-    removeSelected: bindActionCreators(chat.removeChannel, dispatch),
-    getList: bindActionCreators(chat.getUserRepos, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     changeSelected: bindActionCreators(chat.changeActiveRepo, dispatch),
+//     addSelected: bindActionCreators(chat.addChannel, dispatch),
+//     removeSelected: bindActionCreators(chat.removeChannel, dispatch),
+//     getList: bindActionCreators(chat.getUserRepos, dispatch)
+//   }
+// }
+
+export default connect(mapStateToProps)(PanelPage)
+// export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)

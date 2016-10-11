@@ -18,11 +18,18 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeSelected: bindActionCreators(repo.changeActiveRepo, dispatch),
-    addSelected: bindActionCreators(repo.addChannel, dispatch),
-    removeSelected: bindActionCreators(repo.removeChannel, dispatch),
-    getList: bindActionCreators(repo.getUserRepos, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     changeSelected: bindActionCreators(repo.changeActiveRepo, dispatch),
+//     addSelected: bindActionCreators(repo.addChannel, dispatch),
+//     removeSelected: bindActionCreators(repo.removeChannel, dispatch),
+//     getList: bindActionCreators(repo.getUserRepos, dispatch)
+//   }
+// }
+
+export default connect(mapStateToProps)(PanelPage)
+// export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
+

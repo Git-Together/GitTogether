@@ -16,13 +16,19 @@ function mapStateToProps(state) {
   };
 }
 
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     changeSelected: bindActionCreators(watch.changeActiveWatch, dispatch),
+//     addSelected: bindActionCreators(watch.addWatch, dispatch),
+//     removeSelected: bindActionCreators(watch.removeWatch, dispatch),
+//     getList: bindActionCreators(watch.getWatch, dispatch)
+//   }
+// }
+
 function mapDispatchToProps(dispatch) {
   return {
-    changeSelected: bindActionCreators(watch.changeActiveWatch, dispatch),
-    addSelected: bindActionCreators(watch.addWatch, dispatch),
-    removeSelected: bindActionCreators(watch.removeWatch, dispatch),
-    getList: bindActionCreators(watch.getWatch, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
+export default connect(mapStateToProps)(PanelPage)
+// export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)

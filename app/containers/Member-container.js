@@ -19,10 +19,15 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeSelected: bindActionCreators(member.changeActiveMember, dispatch),
-    addSelected: bindActionCreators(member.addMember, dispatch),
-    removeSelected: bindActionCreators(member.removeMember, dispatch),
-    getList: bindActionCreators(member.getMembers, dispatch)
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     changeSelected: bindActionCreators(member.changeActiveMember, dispatch),
+//     addSelected: bindActionCreators(member.addMember, dispatch),
+//     removeSelected: bindActionCreators(member.removeMember, dispatch),
+//     getList: bindActionCreators(member.getMembers, dispatch)
+//   }
+// }
+export default connect(mapStateToProps)(PanelPage)
+// export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)

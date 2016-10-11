@@ -17,8 +17,13 @@ function mapStateToProps(state) {
   };
 }
 
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators(team, dispatch);
+// }
+
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(team, dispatch);
+  return {
+  }
 }
 
 // function mapDispatchToProps(dispatch) {
