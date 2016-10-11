@@ -37,12 +37,15 @@ export default class Page extends Component {
   render() {
     return (
       <div className="Page">
-        {this.state.list.length > 0 && <div>
+          <div className="Page-List">
+            <List  list={this.state.list} changeSelected={this.props.changeSelected}></List>
+          </div>
+          <div className="Page-ActiveItem">
+            <ActiveItem  activeItem={this.filter(this.props.selected)[0] || {}}
+                      addSelected={this.props.addSelected}
+                      removeSelected={this.props.removeSelected}/>
+          </div>
 
-          <ActiveItem className="Page-ActiveItem" activeItem={this.filter(this.props.selected)[0] || {}}
-                    addSelected={this.props.addSelected}
-                    removeSelected={this.props.removeSelected}/>
-            </div>}
       </div>
     )
   }

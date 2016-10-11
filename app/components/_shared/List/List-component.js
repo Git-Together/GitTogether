@@ -4,7 +4,7 @@ import ListItem from './ListItem-component.js'
 
 export default class List extends Component {
   constructor (props) {
-    //Passed down in props 
+    //Passed down in props
     super(props);
     this.state = {
 
@@ -26,7 +26,7 @@ export default class List extends Component {
 
   render() {
     return (
-      <div>{this.display()}</div>
+      <div className="ListComponent">{this.display()}</div>
     )
   }
 }

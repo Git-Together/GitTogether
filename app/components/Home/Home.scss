@@ -101,6 +101,7 @@
 
 .Header-Nav-IconBar-Icons{
 	font-size: 1.5em;
+	color: $backgroundColor;
 	&:hover {
 		color: $highlight;
 	}
@@ -141,29 +142,26 @@
 }
 
 #Body-Content{
+	// border: 4px solid magenta;
 	display: flex;
 	flex-wrap: wrap;
+	flex-direction: row;
 	// align-items:center;
 	// justify-content: center;
 	// background-color:magenta;
 	flex: 7.5 0 75%;
 }
 
-#Body-Content div{
+#Body-Content > div{
 	// display: flex;
-	flex-direction: column;
+	// border: 4px solid red;
+	// flex-direction: column;
 	flex: 2 0 50%;
-	width: 50%;
-	height: 33.33%;
+	// width: 50%;
+	// height: 33.33%;
 	// border: 1px solid black;
 	color: $mainColor;
 	background-color: $backgroundColor;
-	& div {
-		// display: flex;
-		width: 100%;
-		padding: 1em;
-		flex: 1 0 50%;
-	}
 }
 
 

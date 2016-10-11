@@ -10,7 +10,7 @@ function mapStateToProps(state) {
     icon: state.file.icon,
     panelMessage: state.file.panelMessageArray[state.file.panelMessagePlayIndex] || 'Your current active repo',
     panelMessageArray: state.file.panelMessageArray,
-    selected: state.file.activeRepoId,
+    selected: state.file.activeFileId,
     uiSelected: state.ui.selected,
     currentUi: 'file'
   };

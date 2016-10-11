@@ -16,7 +16,7 @@ export default class ActiveItem extends Component {
   render() {
     return (
       <div className="ActiveItem">
-        TEST TEST TEST
+
         <div className="ActiveItem-Name">
 
           <div className="ActiveItem-Name-Text">
@@ -30,16 +30,16 @@ export default class ActiveItem extends Component {
           <div className="ActiveItem-Details-Content">
             {this.props.activeItem.details}
           </div> {/* ActiveItem-Details-Content */}
-          
+
         </div>{/* ActiveItem-Details */}
 
         <div className="ActiveItem-Functionality">
 
-          <div 
+          <div
             onClick={this.props.addSelected}
             className="ActiveItem-Functionality-Add">
           </div> {/* ActiveItem-Functionality-Add */}
-          <div 
+          <div
             onClick={this.props.removeSelected}
             className="ActiveItem-Functionality-Remove">
           </div> {/* ActiveItem-Functionality-Remove */}
@@ -53,7 +53,7 @@ export default class ActiveItem extends Component {
           </div> {/* ActiveItem-Name-MainView-Content */}
 
         </div>{/* ActiveItem-MainView */}
-      
+
       </div>
     )
   }

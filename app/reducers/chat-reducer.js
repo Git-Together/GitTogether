@@ -20,7 +20,8 @@ const initialState = {
         label: "Here Are your Chats",
         text: "Chat"
       }
-    ]
+    ],
+  panelMessagePlayIndex: 0,
 };
 
 export default function chat(state = initialState, action) {

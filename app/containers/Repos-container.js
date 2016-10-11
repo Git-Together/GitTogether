@@ -17,19 +17,19 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-  }
-}
-
 // function mapDispatchToProps(dispatch) {
 //   return {
-//     changeSelected: bindActionCreators(repos.changeActiveRepo, dispatch),
-//     addSelected: bindActionCreators(repos.addChannel, dispatch),
-//     removeSelected: bindActionCreators(repos.removeChannel, dispatch),
-//     getList: bindActionCreators(repos.getUserRepos, dispatch)
 //   }
 // }
 
-export default connect(mapStateToProps)(PanelPage)
-// export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
+function mapDispatchToProps(dispatch) {
+  return {
+    changeSelected: bindActionCreators(repos.changeActiveRepo, dispatch),
+    addSelected: bindActionCreators(repos.addChannel, dispatch),
+    removeSelected: bindActionCreators(repos.removeChannel, dispatch),
+    getList: bindActionCreators(repos.getUserRepos, dispatch)
+  }
+}
+
+// export default connect(mapStateToProps)(PanelPage)
+export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)

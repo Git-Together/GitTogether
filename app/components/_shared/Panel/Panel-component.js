@@ -16,6 +16,7 @@ export default class Panel extends Component {
   render() {
     return (
       <div className="Panel">
+
         <div className={this.props.icon + ' Panel-Icon'}></div>
         <div className='Panel-Message-Label'>
           {this.props.panelMessage.label}

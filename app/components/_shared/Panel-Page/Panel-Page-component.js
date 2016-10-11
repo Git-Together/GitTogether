@@ -18,6 +18,7 @@ export default class PanelPage extends Component {
     console.log("this.props from PanelPage", this.props)
     return (
       <div className="Panel-Page">
+        <Panel icon={this.props.icon} panelMessage={this.props.panelMessage} />
         {this.props.uiSelected===this.props.currentUi &&<Page
               list={this.props.list}
               selected={this.props.selected}
@@ -32,4 +33,4 @@ export default class PanelPage extends Component {
   }
 }
 
-{/*<Panel icon={this.props.icon} panelMessage={this.props.panelMessage} /> */}
+

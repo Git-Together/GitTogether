@@ -44,8 +44,15 @@ export default class Home extends Component {
             </div> {/* -Headder-Nav-Text */}
             <div id="Header-Nav-IconBar">
               {
-                ['glyphicon glyphicon-eye-open', 'glyphicon glyphicon-cloud-upload', 'glyphicon glyphicon-user', 'glyphicon glyphicon-tasks', 'glyphicon glyphicon-file', 'glyphicon glyphicon-comment']
-                .map(e => { return <div key={e} className={`Header-Nav-IconBar-Icons ${e}`} onClick={this.props.toggleComponent.bind(null, 'repos')}></div>})
+                [
+                { icon: 'glyphicon glyphicon-eye-open', name: 'watch' },
+                { icon: 'glyphicon glyphicon-cloud-upload', name: 'repo' },
+                { icon: 'glyphicon glyphicon-user', name: 'member' },
+                { icon: 'glyphicon glyphicon-tasks', name: 'repos' },
+                { icon: 'glyphicon glyphicon-file', name: 'file' },
+                { icon: 'glyphicon glyphicon-comment', name: 'chat' }
+                ]
+                .map(e => { return <div key={e.icon} className={`${e.icon} Header-Nav-IconBar-Icons`} onClick={this.props.toggleComponent.bind(null, `${e.name}`)}></div>})
               }
             </div> {/* -Header-Nav-IconBar */}
 
@@ -81,9 +88,15 @@ export default class Home extends Component {
               <Member />
             </div>    {/* -Body-Content-Member */}
 
-            <div id="Body-Content-Repos">
+            {this.props.ui.selected == 'repos'?
+            (<div id="Body-Content">
               <Repos />
-            </div> {/* -Body-Content-Repos */}
+            </div>)
+            :
+            (<div id="Body-Content-Repos">
+              <Repos />
+            </div>)
+            }
 
             <div id="Body-Content-File">
               <File />
