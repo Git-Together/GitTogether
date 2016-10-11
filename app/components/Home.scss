@@ -1,5 +1,8 @@
+@import '_variables';
+
 * {
 	box-sizing: border-box;
+	// border: 1px solid black;
 }
 
 @font-face {
@@ -73,54 +76,89 @@
 	display: flex;
 	flex-flow: row;
 	background-color:orange;
-	flex: 2 0 20%;
+	flex: 1 0 10%;
 }
 
 #Header-Logo{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color:blue;
+	background-color: $backgroundColor;
 	flex: 2.5 0 25%;
 }
-#FCFFF7ß
 
 #Header-Logo-Image{
+
 	// background-color:red;
 	padding: 1em;
 	// flex: 2 0 20%;
 }
 
 #Header-Logo-Image-Git{
+	color: $mainColor;
 	font-family: OpenSans-Light;
-	font-size: 2em;
-	letter-spacing: 1.33px;
+	font-size: 2.4em;
+	letter-spacing: .1em;
 }
 
 #Header-Logo-Image-Together{
-	font-family: OpenSans-Light;
-	font-size: 2em;
-	color: #FCFFF7;
-	letter-spacing: 1.33px;
+	color: $highlight;
+	font-family: OpenSans-Italic;
+	font-size: 2.4em;
+	letter-spacing: .1em;
 }
 
 #Header-Nav{
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	background-color:green;
 	flex: 7.5 0 75%;
 }
 
 #Header-Nav-Text{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: $mainColor;
+	width: 100%;
+	flex: 6 0 60%;
+
+}
+
+#Header-Nav-Text-Welcome{
+	font-family: OpenSans;
+	font-weight: 900;
+	font-size: 3em;
+	letter-spacing: .05em;
 	// display: flex;
-	background-color:purple;
-	flex: 7 0 70%;
+	color: $backgroundColor;
+}
+#Header-Nav-Text-UN{
+	font-family: OpenSans;
+	font-weight: 900;
+	font-size: 3em;
+	letter-spacing: .05em;
+	margin-left:.5em;
+	// display: flex;
+	color: $highlight;
 }
 
 #Header-Nav-IconBar{
-	// display: flex;
-	background-color:pink;
-	flex: 3 0 30%;
+	display: flex;
+	justify-content: space-around;
+	align-content: space-around;
+	background-color: $mainColor;
+	flex: 4 0 40%;
+	width: 100%;
+}
+
+.Header-Nav-IconBar-Icons{
+	font-size: 1.5em;
+	&:hover {
+		color: $highlight;
+	}
 }
 
 #Body{
@@ -139,27 +177,28 @@
 #Body-RepoTeam-Repo{
 	// display: flex;
 	// flex-direction: column;
-	background-color:green;
+	background-color: $mainColor;
 	flex: 2 0 50%;
 }
 
 #Body-RepoTeam-Team{
 	// display: flex;
 	// flex-direction: column;
-	background-color:orange;
+	background-color: $mainColor;
 	flex: 2 0 50%;
 }
 
 #Body-Content{
 	display: flex;
 	flex-wrap: wrap;
-	background-color:magenta;
+	// background-color:magenta;
 	flex: 7.5 0 75%;
 	div {
 		width: 50%;
 		height: 33.33%;
-		border: 1px solid black;
-		background-color: red;
+		// border: 1px solid black;
+		color: $mainColor;
+		background-color: $backgroundColor;
 	}
 }
 
