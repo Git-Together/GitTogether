@@ -47,10 +47,22 @@ export default validate(merge(baseConfig, {
         test: /^((?!\.global).)*\.scss$/,
         loaders: [
           'style-loader',
-          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-          'sass?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+          // 'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+          // 'sass?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+          'css-loader?',
+          'sass'
         ]
-      }
+      },
+      { test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+            loader: 'file-loader?name=fonts/[name].[ext]' }
+      // {
+      //   test: /\.ttf$|\.eot$/,
+      //   loader: 'file',
+      //   query: {
+      //     name: '[hash].[ext]'
+      //   },
+      //   include: './app/_fonts/open-sans'
+      // }
     ]
   },
 
