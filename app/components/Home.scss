@@ -1,205 +1,81 @@
-@import '_variables';
-
-* {
-	box-sizing: border-box;
-	// border: 1px solid black;
-}
-
-@font-face {
-    font-family: "OpenSans";
-    src: url("../_fonts/open-sans/OpenSans-Regular.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: 'OpenSans';
-  font-style: normal;
-  font-weight: 200;
-  src: url("../_fonts/open-sans/OpenSans-Light.ttf") format("truetype");
-}
-@font-face {
-  font-family: 'OpenSans';
-  font-style: italic;
-  font-weight: 200;
-  src: url("../_fonts/open-sans/OpenSans-LightItalic.ttf") format("truetype");
-}
-@font-face {
-  font-family: 'OpenSans';
-  font-style: normal;
-  font-weight: 400;
-  src: url("../_fonts/open-sans/OpenSans-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: 'OpenSans';
-  font-style: italic;
-  font-weight: 400;
-  src: url("../_fonts/open-sans/OpenSans-Italic.ttf") format("truetype");
-}
-@font-face {
-  font-family: 'OpenSans';
-  font-style: normal;
-  font-weight: 600;
-  src: url("../_fonts/open-sans/OpenSans-Bold.ttf") format("truetype");
-}
-@font-face {
-  font-family: 'OpenSans';
-  font-style: italic;
-  font-weight: 600;
-  src: url("../_fonts/open-sans/OpenSans-BoldItalic.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: 'OpenSans';
-  font-style: normal;
-  font-weight: 800;
-  src: url("../_fonts/open-sans/OpenSans-ExtraBold.ttf") format("truetype");
-}
-@font-face {
-  font-family: 'OpenSans';
-  font-style: italic;
-  font-weight: 800;
-  src: url("../_fonts/open-sans/OpenSans-ExtraBoldItalic.ttf") format("truetype");
-}
-
-
-#Container{
-	position: fixed;
-	flex-flow: column;
+.flex {
 	display: flex;
+	position: absolute;
 	top:0;
 	bottom:0;
 	left:0;
-	right:0;
-	background-color:red;
+	right:0
 }
 
-#Header{
-	display: flex;
-	flex-flow: row;
-	background-color:orange;
-	flex: 1 0 10%;
+.flex > * {
+
 }
 
-#Header-Logo{
+.teams {
+	width: 30%;
 	display: flex;
-	justify-content: center;
+	flex-flow: column;
 	align-items: center;
-	background-color: $backgroundColor;
-	flex: 2.5 0 25%;
-}
-
-#Header-Logo-Image{
-
-	// background-color:red;
 	padding: 1em;
-	// flex: 2 0 20%;
+
+	span {
+		margin-bottom: 1em;
+	}
 }
 
-#Header-Logo-Image-Git{
-	color: $mainColor;
-	font-family: OpenSans-Light;
-	font-size: 2.4em;
-	letter-spacing: .1em;
-}
-
-#Header-Logo-Image-Together{
-	color: $highlight;
-	font-family: OpenSans-Italic;
-	font-size: 2.4em;
-	letter-spacing: .1em;
-}
-
-#Header-Nav{
+.main {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background-color:green;
-	flex: 7.5 0 75%;
-}
-
-#Header-Nav-Text{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: $mainColor;
+	flex-flow: column;
+	justify-content:flex-start;
 	width: 100%;
-	flex: 6 0 60%;
-
+	padding: 20px;
+	height: 100%;
 }
 
-#Header-Nav-Text-Welcome{
-	font-family: OpenSans;
-	font-weight: 900;
-	font-size: 3em;
-	letter-spacing: .05em;
-	// display: flex;
-	color: $backgroundColor;
-}
-#Header-Nav-Text-UN{
-	font-family: OpenSans;
-	font-weight: 900;
-	font-size: 3em;
-	letter-spacing: .05em;
-	margin-left:.5em;
-	// display: flex;
-	color: $highlight;
+.uiSwitch {
+	width: 100%;
+	height: 50vw;
+	padding: 20px;
 }
 
-#Header-Nav-IconBar{
+.repos {
+	width: 100%;
+	flex: 6 0 0;
+	padding: 1em;
+	overflow-y: scroll;
+}
+
+.members {
+	width: 100%;
+	flex: 1 0 auto;
+	padding: 1em;
+}
+
+.nav {
 	display: flex;
 	justify-content: space-around;
-	align-content: space-around;
-	background-color: $mainColor;
-	flex: 4 0 40%;
+	// align-content: space-between;
+	height: 10%;
 	width: 100%;
-}
+	margin-bottom: 20px;
+	// margin: 10px;
 
-.Header-Nav-IconBar-Icons{
-	font-size: 1.5em;
-	&:hover {
-		color: $highlight;
+	ul {
+		height:100%;
+		display: flex;
+		padding: 0px;
+		// justify-content: space-between;
+
+		li {
+			display: inline-block;
+			flex: 0 0 auto;
+			margin: 0 2px;
+			align-self: stretch;
+			max-width: 8em;
+			padding: 20px;
+			background-color: red;
+			height: 100%;
+		}
 	}
 }
-
-#Body{
-	display: flex;
-	background-color:orange;
-	flex: 8 0 80%;
-}
-
-#Body-RepoTeam{
-	display: flex;
-	flex-direction: column;
-	background-color:lightblue;
-	flex: 2.5 0 25%;
-}
-
-#Body-RepoTeam-Repo{
-	// display: flex;
-	// flex-direction: column;
-	background-color: $mainColor;
-	flex: 2 0 50%;
-}
-
-#Body-RepoTeam-Team{
-	// display: flex;
-	// flex-direction: column;
-	background-color: $mainColor;
-	flex: 2 0 50%;
-}
-
-#Body-Content{
-	display: flex;
-	flex-wrap: wrap;
-	// background-color:magenta;
-	flex: 7.5 0 75%;
-	div {
-		width: 50%;
-		height: 33.33%;
-		// border: 1px solid black;
-		color: $mainColor;
-		background-color: $backgroundColor;
-	}
-}
-
 

@@ -59,8 +59,8 @@ function createWindow() {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1000,
-    height: 1000
+    width: 1024,
+    height: 728
   });
 
   mainWindow.loadURL(`file://${__dirname}/app/app.html`);
