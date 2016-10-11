@@ -11,7 +11,7 @@ import channel from './channel-reducer';
 import repos from './repos-reducer';
 // import team from './team-reducer';
 import ui from './ui-reducer';
-// import watch from './watch-reducer';
+import watch from './watch-reducer';
 
 const rootReducer = combineReducers({
   auth,
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
   repos,
 	// team,
 	ui,
-	// watch,
+	watch,
 	routing,
 	form: formReducer,
 });
