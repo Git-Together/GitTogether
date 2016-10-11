@@ -1,8 +1,7 @@
 import { CHANGE_ACTIVE_FILE, REFRESH_FILES, GET_FILE_CHANGES } from '../actions/file-actions';
 
 const initState = {
-  activeFile: 1,
-  activeEvents: {},
+  activeFileId: 1,
   files: [
     {
       fileName: 'Milad.txt',
@@ -18,19 +17,15 @@ const initState = {
       fileName: 'Gil.txt',
       lastUpdated: new Date(),
       id: 3
-    },
-    {
-      fileName: 'app.js',
-      lastUpdated: new Date(),
-      id: 4
-    },
+    }
   ],
   icon: 'glyphicon glyphicon-file',
   panelMessage: {
-    label: "Last File Modified",
-    text: "This File"
-  }
-}
+    label: 'Last File Modified',
+    text: 'This File'
+  },
+  activeEvents: {}
+};
 
 function activeFile(state = 1, action){
   switch (action.type) {
@@ -45,7 +40,7 @@ function activeFile(state = 1, action){
 export default function file(state = initState, action) {
   switch (action.type) {
     case CHANGE_ACTIVE_FILE:
-      return {...state, activeFile: activeFile(state.activeFile, action)};
+      return {...state, activeFileId: activeFile(state.activeFile, action)};
     case REFRESH_FILES:
       return {...state, files: action.files};
     case GET_FILE_CHANGES:

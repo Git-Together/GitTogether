@@ -15,10 +15,12 @@ const initialState = {
     timeStamp: new Date()
   }],
   icon: 'glyphicon glyphicon-comment',
-  panelMessage: {
-    label: "Latest Chat",
-    text: "Milad: What's up"
-  }
+  panelMessageArray: [
+      {
+        label: "Here Are your Repos",
+        text: "Repos"
+      }
+    ]
 };
 
 export default function chat(state = initialState, action) {
