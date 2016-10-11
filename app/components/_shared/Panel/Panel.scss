@@ -1,0 +1,32 @@
+@import '../../_shared/_scss/_variables';
+@import '../_shared/_scss/_fonts';
+
+#Panel-Icon{
+	font-size: 1.5em;
+	padding: 1em;
+}
+
+#Panel-Message-Label{
+	font-size: 1.5em;
+	padding: 1em;
+	font-family: OpenSans;
+	font-weight: 900;
+	font-size: 3em;
+	letter-spacing: .05em;
+	// display: flex;
+	color: $mainColor;
+}
+
+#Panel-Message-Text{
+	font-size: 1.5em;
+	padding: 1em;
+	font-family: OpenSans;
+	font-weight: 900;
+	font-size: 3em;
+	letter-spacing: .05em;
+	margin-left:.5em;
+	// display: flex;
+	color: $highlight;
+}
+
+

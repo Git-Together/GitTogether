@@ -1,4 +1,4 @@
-import { CHANGE_ACTIVE_FILE, REFRESH_FILES, GET_FILE_CHANGES } from '../actions/files';
+import { CHANGE_ACTIVE_FILE, REFRESH_FILES, GET_FILE_CHANGES } from '../actions/file-actions';
 
 const initState = {
   activeFile: 1,
@@ -24,7 +24,12 @@ const initState = {
       lastUpdated: new Date(),
       id: 4
     },
-  ]
+  ],
+  icon: 'glyphicon glyphicon-file',
+  panelMessage: {
+    label: "Last File Modified",
+    text: "This File"
+  }
 }
 
 function activeFile(state = 1, action){
@@ -37,7 +42,7 @@ function activeFile(state = 1, action){
   }
 }
 
-export default function files(state = initState, action) {
+export default function file(state = initState, action) {
   switch (action.type) {
     case CHANGE_ACTIVE_FILE:
       return {...state, activeFile: activeFile(state.activeFile, action)};

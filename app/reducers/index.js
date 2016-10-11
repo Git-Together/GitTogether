@@ -1,34 +1,31 @@
 import { createStore, combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
-import { reducer as formReducer } from'redux-form';
-import team from './team';
-import repo from './repo';
-import ui from './ui';
-import files from './files';
-import settings from './settings';
-// import conventions from './conventions';
-import branches from './branches';
-import chat from './chat';
-import auth from './auth';
-import channels from './channels';
-import comment from './comment';
-import checkout from './checkout';
+import { reducer as formReducer } from 'redux-form';
+
+import auth from './auth-reducer';
+import channel from './channel-reducer';
+import chat from './chat-reducer';
+import file from './file-reducer';
+import member from './member-reducer';
+import repo from './repo-reducer';
+import repos from './repos-reducer';
+import team from './team-reducer';
+import ui from './ui-reducer';
+import watch from './watch-reducer';
 
 const rootReducer = combineReducers({
-	auth,
+  auth,
+  channel,
+  chat,
+  file,
+  member,
+  repo,
+  repos,
 	team,
-	repo,
 	ui,
-	files,
-	settings,
-	// conventions,
-	branches,
+	watch,
 	routing,
-	channels,
 	form: formReducer,
-	chat,
-	comment,
-	checkout
 });
 
 export default rootReducer;

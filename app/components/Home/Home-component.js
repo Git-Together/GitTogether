@@ -1,7 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import './Home.scss';
-import Promise from 'bluebird';
+
+import Channel from '../../containers/Channel-container';
+import Chat from '../../containers/Chat-container';
+import File from '../../containers/File-container';
+import Member from '../../containers/Member-container';
+import Repo from '../../containers/Repo-container';
+import Repos from '../../containers/Repos-container';
+import Team from '../../containers/Team-container';
+import Watch from '../../containers/Watch-container';
 
 export default class Home extends Component {
 	constructor (props) {
@@ -45,37 +53,44 @@ export default class Home extends Component {
 
         </div> {/* -Header */}
 
-        <div id="Body">  {/* +Body */}
+        <div id="Body">
 
           <div id="Body-RepoTeam">
 
-            <div id="Body-RepoTeam-Repo">
-              Body-RepoTeam-Repo
+            <div id="Body-RepoTeam-Repos">
+              <Repos />
             </div> {/* -Body-RepoTeam-Repo */}
+
             <div id="Body-RepoTeam-Team">
-              Body-RepoTeam-Team
+              <Team />
             </div> {/* -Body-RepoTeam-Team */}
 
           </div> {/* -Body-RepoTeam */}
+
           <div id="Body-Content">
 
             <div id="Body-Content-Watch">
-              Body-Content-Watch
+              <Watch testText="Watch"/>
             </div> {/* -Body-Content-Watch */}
+
             <div id="Body-Content-Repo">
-              Body-Content-Repo
+              <Repo testText="Repo"/>
             </div> {/* -Body-Content-Repo */}
+
             <div id="Body-Content-Member">
-              Body-Content-Member
+              <Member testText="Member"/>
             </div> {/* -Body-Content-Member */}
+
             <div id="Body-Content-Channel">
-              Body-Content-Channel
+              <Channel testText="Channel"/>
             </div> {/* -Body-Content-Channel */}
+
             <div id="Body-Content-File">
-              Body-Content-File
+              <File testText="File"/>
             </div> {/* -Body-Content-File */}
+
             <div id="Body-Content-Chat">
-              Body-Content-Chat
+              <Chat testText="Chat"/>
             </div> {/* -Body-Content-Chat */}
 
           </div> {/* -Body-Content */}

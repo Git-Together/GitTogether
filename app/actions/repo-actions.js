@@ -9,7 +9,7 @@ export const GET_COLLABORATORS = 'GET_COLLABORATORS';
 //Github API call
 import GitHub from 'github-api';
 import axios from 'axios';
-import { TOGGLE_COMPONENT } from './ui';
+import { TOGGLE_COMPONENT } from './ui-actions';
 import Promise from 'bluebird';
 const storage = Promise.promisifyAll(require('electron-json-storage'))
 

@@ -1,4 +1,4 @@
-import { POST_MESSAGE, REFRESH_MESSAGES, CHANGE_ACTIVEMESSAGE } from '../actions/chat';
+import { POST_MESSAGE, REFRESH_MESSAGES, CHANGE_ACTIVEMESSAGE } from '../actions/chat-actions';
 
 const initialState = {
   activeMessage: 1,
@@ -13,7 +13,12 @@ const initialState = {
     userId: 2,
     id: 2,
     timeStamp: new Date()
-  }]
+  }],
+  icon: 'glyphicon glyphicon-comment',
+  panelMessage: {
+    label: "Latest Chat",
+    text: "Milad: What's up"
+  }
 };
 
 export default function chat(state = initialState, action) {

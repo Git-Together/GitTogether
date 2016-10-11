@@ -1,6 +1,12 @@
-import { ADD_CHANNEL, REMOVE_CHANNEL, LOAD_CHANNELS } from '../actions/channels';
+import { ADD_CHANNEL, REMOVE_CHANNEL, LOAD_CHANNELS } from '../actions/channel-actions';
 
-export default function channel(state = [], action) {
+export default function channel(state = {
+    icon: 'glyphicon glyphicon-tasks',
+    panelMessage: {
+      label: "You are currently in:",
+      text: "This Channel"
+    }
+  }, action) {
   switch (action.type) {
     case ADD_CHANNEL:
       return [...state, action.channel];

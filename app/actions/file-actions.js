@@ -1,7 +1,7 @@
 export const CHANGE_ACTIVE_FILE = 'CHANGE_ACTIVE_FILE'
 export const REFRESH_FILES = 'REFRESH_FILES'
 export const GET_FILE_CHANGES = 'GET_FILE_CHANGES';
-import {TOGGLE_COMPONENT} from './ui'
+import { TOGGLE_COMPONENT } from './ui-actions'
 import axios from 'axios';
 
 export function changeActiveFile(id, name) {
@@ -35,7 +35,7 @@ export function changeActiveFileAsync(id, fileName){
 // Get last 10 files changes for the given file, ordered.
 export function getFileChanges(name) {
   return (dispatch, getState) => {
-  name = name.split('/').join('*');  
+  name = name.split('/').join('*');
   let channelName = getState().repo.channelName.split('/').join('*');
 	axios.get(`https://our-git.herokuapp.com/api/files/${name}?repoId=${channelName}`)
 	// axios.get(`http://localhost:1337/api/files/${name}?repoId=${channelName}`)

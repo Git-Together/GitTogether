@@ -1,4 +1,4 @@
-import { CHANGE_ACTIVE_TEAM_MEMBER, ADD_TEAM_MEMBER, REMOVE_TEAM_MEMBER, REFRESH_TEAM_MEMBERS } from '../actions/team';
+import { CHANGE_ACTIVE_TEAM_MEMBER, ADD_TEAM_MEMBER, REMOVE_TEAM_MEMBER, REFRESH_TEAM_MEMBERS } from '../actions/team-actions.js';
 
 const initState =  {
   activeTeamMember: 1,
@@ -7,6 +7,11 @@ const initState =  {
   },
   testTeam: {
     1: []
+  },
+  icon: 'glyphicon glyphicon-refresh',
+  panelMessage: {
+    label: "Here Are Your Teams",
+    text: "Teams"
   }
 };
 
@@ -27,7 +32,7 @@ export default function team(state = initState, action) {
 
     case ADD_TEAM_MEMBER:
       if(!state.testTeam[action.repoId]) return {...state, testTeam:{...state.testTeam, [action.repoId]: [action.name]}};
-      return {...state, testTeam:{...state.testTeam, [action.repoId]: [...state.testTeam[action.repoId], action.name]}}; 
+      return {...state, testTeam:{...state.testTeam, [action.repoId]: [...state.testTeam[action.repoId], action.name]}};
     case REMOVE_TEAM_MEMBER:
       let idx = state.testTeam[action.repoId].indexOf(action.id);
       if (idx === -1) return state;

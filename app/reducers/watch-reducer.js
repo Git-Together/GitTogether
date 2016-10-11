@@ -1,8 +1,11 @@
-import { CHECKOUT_FILE, RETURN_FILE } from '../actions/checkout';
+import { CHECKOUT_FILE, RETURN_FILE } from '../actions/watch-actions.js';
 
-const initState = [];
+const initState = { icon: 'glyphicon glyphicon-eye-open', panelMessage: {
+    label: "You are watching:",
+    text: "7 files"
+  } };
 
-export default function checkout(state = initState, action){
+export default function watch(state = initState, action){
   switch (action.type){
     case CHECKOUT_FILE:
       if((state.map(e => e.fileId).indexOf(action.fileId) < 0) && (state.map(e => e.repoId).indexOf(action.repoId) < 0) ){

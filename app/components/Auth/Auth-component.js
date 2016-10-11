@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import styles from './Auth.scss'
-import * as AuthActions from '../actions/Auth.js'
+import * as AuthActions from '../../actions/auth-actions.js'
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux'
 import { connect } from 'react-redux'

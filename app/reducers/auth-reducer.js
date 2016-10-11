@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SET_USER } from '../actions/auth'
+import { LOGIN, LOGOUT, SET_USER } from '../actions/auth-actions'
 
 const initialState = {
 	currentUser: null,

@@ -1,5 +1,4 @@
-
-import { CHANGE_CHANNEL_PATH, ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIVE_TREE, GET_COLLABORATORS } from '../actions/repo';
+import { CHANGE_CHANNEL_PATH, ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USER_REPOS, SWITCH_ACTIVE_TREE, GET_COLLABORATORS } from '../actions/repo-actions.js';
 
 const initState =
   {
@@ -40,7 +39,12 @@ const initState =
       id: 3
     }],
     tree: {},
-    activeRepoCollaborators: []
+    activeRepoCollaborators: [],
+    icon: 'glyphicon glyphicon-cloud-upload',
+    panelMessage: {
+      label: "This should be picture of",
+      text: "Your Repo"
+    }
   };
 
 export default function repo(state = initState, action) {
