@@ -23,7 +23,8 @@ export default class Home extends Component {
           <div id="Header-Logo">  {/* +Header-Logo */}
 
             <div id="Header-Logo-Image">  {/* +Header-Logo-Image */}
-            Header Logo Image
+              <span id="Header-Logo-Image-Git">Git</span>
+              <span id="Header-Logo-Image-Together"><em>Together</em></span>
             </div> {/* -Header-Logo-Image */}
 
           </div> {/* -Header-Logo */}
@@ -53,18 +54,24 @@ export default class Home extends Component {
 
           </div> {/* -Body-RepoTeam */}
           <div id="Body-Content">  {/* +Body-Content  */}
-              Body-Content
+
             <div id="Body-Content-Watch">  {/* +Body-Content-Watch */}
+              Body-Content-Watch
             </div> {/* -Body-Content-Watch */}
             <div id="Body-Content-Repo">  {/* +Body-Content-Repo */}
+              Body-Content-Repo
             </div> {/* -Body-Content-Repo */}
             <div id="Body-Content-Member">  {/* +Body-Content-Member */}
+              Body-Content-Member
             </div> {/* -Body-Content-Member */}
             <div id="Body-Content-Channel">  {/* +Body-Content-Channel */}
+              Body-Content-Channel
             </div> {/* -Body-Content-Channel */}
             <div id="Body-Content-File">  {/* +Body-Content-File */}
+              Body-Content-File
             </div> {/* -Body-Content-File */}
             <div id="Body-Content-Chat">  {/* +Body-Content-Chat */}
+              Body-Content-Chat
             </div> {/* -Body-Content-Chat */}
 
           </div> {/* -Body-Content */}
