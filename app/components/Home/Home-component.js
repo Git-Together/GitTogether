@@ -3,13 +3,13 @@ import { Link } from 'react-router';
 import './Home.scss';
 
 import Channel from '../../containers/Channel-container';
-import Chat from '../../containers/Chat-container';
-import File from '../../containers/File-container';
-import Member from '../../containers/Member-container';
-import Repo from '../../containers/Repo-container';
+// import Chat from '../../containers/Chat-container';
+// import File from '../../containers/File-container';
+// import Member from '../../containers/Member-container';
+// import Repo from '../../containers/Repo-container';
 import Repos from '../../containers/Repos-container';
-import Team from '../../containers/Team-container';
-import Watch from '../../containers/Watch-container';
+// import Team from '../../containers/Team-container';
+// import Watch from '../../containers/Watch-container';
 
 export default class Home extends Component {
 	constructor (props) {
@@ -45,7 +45,7 @@ export default class Home extends Component {
             <div id="Header-Nav-IconBar">
               {
                 ['glyphicon glyphicon-eye-open', 'glyphicon glyphicon-cloud-upload', 'glyphicon glyphicon-user', 'glyphicon glyphicon-tasks', 'glyphicon glyphicon-file', 'glyphicon glyphicon-comment']
-                .map(e => { return <div key={e} className={`Header-Nav-IconBar-Icons ${e}`}></div>})
+                .map(e => { return <div key={e} className={`Header-Nav-IconBar-Icons ${e}`} onClick={this.props.toggleComponent.bind(null, 'repos')}></div>})
               }
             </div> {/* -Header-Nav-IconBar */}
 
@@ -55,43 +55,43 @@ export default class Home extends Component {
 
         <div id="Body">
 
-          <div id="Body-RepoTeam">
-
-            <div id="Body-RepoTeam-Repos">
-              <Repos />
-            </div> {/* -Body-RepoTeam-Repo */}
-
-            <div id="Body-RepoTeam-Team">
+          <div id="Body-ChannelTeam">
+            {/*
+            <div id="Body-ChannelTeam-Channel">
+              <Channel />
+            </div> -Body-ChannelTeam-Channel */}
+            {/*  
+            <div id="Body-ChannelTeam-Team">
               <Team />
-            </div> {/* -Body-RepoTeam-Team */}
+            </div>  -Body-ChannelTeam-Team */}
 
-          </div> {/* -Body-RepoTeam */}
+          </div> {/* -Body-ChannelTeam */}
 
           <div id="Body-Content">
-
+            {/* 
             <div id="Body-Content-Watch">
               <Watch />
-            </div> {/* -Body-Content-Watch */}
-
+            </div> -Body-Content-Watch */}
+            {/*
             <div id="Body-Content-Repo">
               <Repo />
-            </div> {/* -Body-Content-Repo */}
-
+            </div>  -Body-Content-Repo */}
+            {/* 
             <div id="Body-Content-Member">
               <Member />
-            </div> {/* -Body-Content-Member */}
+            </div> -Body-Content-Member */}
 
-            <div id="Body-Content-Channel">
-              <Channel />
-            </div> {/* -Body-Content-Channel */}
-
+            <div id="Body-Content-Repos">
+              <Repos />
+            </div> {/* -Body-Content-Repos */}
+            {/*
             <div id="Body-Content-File">
               <File />
-            </div> {/* -Body-Content-File */}
-
+            </div>  -Body-Content-File */}
+            {/*
             <div id="Body-Content-Chat">
               <Chat />
-            </div> {/* -Body-Content-Chat */}
+            </div>  -Body-Content-Chat */}
 
           </div> {/* -Body-Content */}
 

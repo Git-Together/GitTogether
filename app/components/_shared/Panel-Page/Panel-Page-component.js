@@ -6,8 +6,7 @@ import './Panel-Page.scss';
 export default class PanelPage extends Component {
   constructor (props) {
     super(props);
-    this.state = {
-
+    this.state = {  
     }
   }
 
@@ -16,10 +15,19 @@ export default class PanelPage extends Component {
   };
 
   render() {
+    console.log("this.props from PanelPage", this.props)
     return (
       <div className="Panel-Page">
         <Panel icon={this.props.icon} panelMessage={this.props.panelMessage} />
-        {/*<Page /> */}
+        {this.props.uiSelected===this.props.currentUi && <Page 
+              list={this.props.list} 
+              selected={this.props.selected} 
+              icon={this.props.icon}
+              changeSelected={this.props.changeSelected}
+              addSelected={this.props.addSelected}
+              removeSelected={this.props.removeSelected}
+              getList = {this.props.getList}
+        />}
       </div>
     )
   }

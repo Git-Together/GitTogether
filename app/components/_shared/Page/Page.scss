@@ -1,0 +1,28 @@
+.Page {
+ display: flex;
+ position: fixed;
+ flex-wrap: wrap;
+ flex-direction: row;
+ top: 15%;
+ bottom: 50%;
+ left: 20%;
+ right: 0;
+ overflow: scroll;
+
+}
+
+.Page-List {
+    flex: 2 0 20%;
+}
+
+.Page-ActiveItem {
+    position: fixed;
+    top: 50%;
+    bottom: 0;
+    flex: 2 0 80%;
+    background-color: red;
+    height: 100px;
+    width: 100px;
+
+    
+}

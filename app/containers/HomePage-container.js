@@ -12,7 +12,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ui, dispatch);
+
+  return {
+    toggleComponent: bindActionCreators(ui.toggleComponent, dispatch)
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

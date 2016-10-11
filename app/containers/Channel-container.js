@@ -6,9 +6,9 @@ import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js'
 
 function mapStateToProps(state) {
   return {
-    list: state.channel,
-    icon: state.channel.icon,
-    panelMessage: state.channel.panelMessage
+    list: state.channel, //Page List
+    icon: state.channel.icon, //Page Icon
+    panelMessage: state.channel.panelMessage //Message List
   };
 }
 

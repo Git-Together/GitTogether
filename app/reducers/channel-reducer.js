@@ -5,7 +5,8 @@ export default function channel(state = {
     panelMessage: {
       label: "You are currently in:",
       text: "This Channel"
-    }
+    },
+    list: []
   }, action) {
   switch (action.type) {
     case ADD_CHANNEL:
