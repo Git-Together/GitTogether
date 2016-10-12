@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 
 export default validate(merge(baseConfig, {
   debug: true,
-
+  quiet: true,
   devtool: 'cheap-module-eval-source-map',
 
   entry: [

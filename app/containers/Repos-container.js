@@ -5,7 +5,6 @@ import * as repos from '../actions/repos-actions.js';
 import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js';
 
 function mapStateToProps(state) {
-  console.log("map repo statetoprops", state)
   return {
     list: state.repos.repos,
     icon: state.repos.icon,

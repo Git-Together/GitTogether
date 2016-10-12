@@ -29,11 +29,9 @@ export default class Page extends Component {
 	}
 
 	filter(...args){
-		console.log("args",args)
-		console.log("this.props.list!!!",this.props.list)
 		return this.props.list ? this.props.list.filter(item => {
-			if (item.name) { 
-				return item.name === this.props.selected 
+			if (item.name) {
+				return item.name === this.props.selected
 			} else if (item.path) {
 				return item.path === this.props.selected
 			}

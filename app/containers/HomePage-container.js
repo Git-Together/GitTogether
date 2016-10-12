@@ -8,6 +8,7 @@ function mapStateToProps(state) {
   return {
 	  ui: state.ui,
 	  auth: state.auth,
+	  repo: state.repo
   };
 }
 

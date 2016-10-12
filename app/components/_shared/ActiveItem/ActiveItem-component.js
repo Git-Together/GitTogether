@@ -52,13 +52,22 @@ export default class ActiveItem extends Component {
 
 
   render() {
+	  let style = {}
+	  console.log("ACTIVE ITEM PROPS ", this.props)
+	  if (this.props.activeItem.path) {
+		  style.color = 'darkblue'
+		  style.fontSize = '16px'
+		  style.marginTop = '18px'
+		  style.width = '100%'
+		  style.overflowWrap = 'break-word'
+	  }
     return (
       <div className="ActiveItem">
 
         <div className="ActiveItem-Name">
 
-          <div className="ActiveItem-Name-Text">
-            {this.props.activeItem.name ? this.props.activeItem.name : this.props.activeItem}
+          <div style={style} className="ActiveItem-Name-Text">
+            {this.props.activeItem.name ? this.props.activeItem.name : this.props.activeItem.path}
           </div> {/* ActiveItem-Name-Text */}
 
         </div> {/* ActiveItem-Name */}

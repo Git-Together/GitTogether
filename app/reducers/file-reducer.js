@@ -1,7 +1,7 @@
 import { CHANGE_ACTIVE_FILE, REFRESH_FILES, GET_FILE_CHANGES } from '../actions/file-actions';
 
 const initState = {
-  activeFileId: null,
+  activeFileId: "",
   files: [
     {
       fileName: 'Milad.txt',

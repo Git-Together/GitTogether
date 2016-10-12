@@ -10,7 +10,6 @@ export default class List extends Component {
 
     }
     this.display = this.display.bind(this);
-    console.log('Props at constructor', props);
     
 
   }
@@ -20,7 +19,6 @@ export default class List extends Component {
   };
 
   display(){
-    console.log('Rendering Display of List', this.props);
     return this.props.list? this.props.list.map((e, index) => {
       return <ListItem key={index} item={e} changeSelected={this.props.changeSelected.bind(null, e.name)}/>
     }) : [];
