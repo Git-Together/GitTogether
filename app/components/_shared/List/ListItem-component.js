@@ -21,7 +21,7 @@ export default class List extends Component {
         <div className="ListItem-Name"> 
 
           <span className="ListItem-Name-Text">
-            {this.props.item.name}
+            {this.props.item.name ? this.props.item.name : this.props.item}
           </span> {/* ListItem-Name-Text */}
 
         </div> {/* ListItem-Name */}

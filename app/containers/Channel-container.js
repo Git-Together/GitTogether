@@ -18,6 +18,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    getList: bindActionCreators(channel.loadChannels, dispatch)
   }
 }
 
@@ -30,6 +31,7 @@ function mapDispatchToProps(dispatch) {
 //   }
 // }
 
-export default connect(mapStateToProps)(ListView)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListView)
 // export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
 
