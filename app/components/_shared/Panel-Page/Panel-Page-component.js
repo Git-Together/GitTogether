@@ -26,13 +26,9 @@ export default class PanelPage extends Component {
               list={this.props.list}
               selected={this.props.selected}
               icon={this.props.icon}
-              changeSelected={this.props.changeSelected}
-              addSelected={this.props.addSelected}
-              removeSelected={this.props.removeSelected}
-              getList = {this.props.getList}
         />}
 
-        {this.props.uiSelected===this.props.currentUi && <Page
+        {this.props.uiSelected===this.props.currentUi && !this.props.repo &&<Page
               list={this.props.list}
               selected={this.props.selected}
               icon={this.props.icon}

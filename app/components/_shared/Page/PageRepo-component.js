@@ -45,6 +45,7 @@ export default class PageRepo extends Component {
     //   list: this.props.list || []
     // }
     // this.filter = this.filter.bind(this);
+    console.log('Reached Page Repo');
   }
 
   static propTypes = {
@@ -85,7 +86,6 @@ export default class PageRepo extends Component {
     }
 
   componentWillMount(){
-    this.props.getList();
   }
 
   componentWillReceiveProps(nextProps) {

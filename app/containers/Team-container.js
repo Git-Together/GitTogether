@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as team from '../actions/team-actions.js';
+import * as repo from '../actions/repo-actions.js';
 // import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js';
 import ListView from '../components/_shared/List/ListView-component.js';
 
@@ -23,6 +24,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    changeSelected: bindActionCreators(repo.getRepoTree, dispatch)
   }
 }
 
@@ -35,5 +37,5 @@ function mapDispatchToProps(dispatch) {
 //   }
 // }
 
-export default connect(mapStateToProps)(ListView)
+export default connect(mapStateToProps, mapDispatchToProps)(ListView)
 // export default connect(mapStateToProps, mapDispatchToProps)(List)

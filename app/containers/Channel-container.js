@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as channel from '../actions/channel-actions.js';
+import * as repo from '../actions/repo-actions.js';
 import ListView from '../components/_shared/List/ListView-component.js';
 
 function mapStateToProps(state) {
@@ -18,7 +19,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getList: bindActionCreators(channel.loadChannels, dispatch)
+    getList: bindActionCreators(channel.loadChannels, dispatch),
+    changeSelected: bindActionCreators(repo.getRepoTree, dispatch)
   }
 }
 

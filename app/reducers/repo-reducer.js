@@ -73,7 +73,7 @@ export default function repo(state = initState, action) {
     case GET_USER_REPOS:
       return {...state, repos: action.repos};
     case SWITCH_ACTIVE_TREE:
-      return {...state, tree: action.tree.data};
+      return {...state, repoList: action.tree.data.tree};
 	case CHANGE_CHANNEL_PATH:
 	  return {...state, channelPath: action.path};
     case GET_COLLABORATORS:

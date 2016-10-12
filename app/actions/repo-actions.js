@@ -51,7 +51,7 @@ export function getRepoTree(repo){
 					path: cachedChannels[user][repo]
 				})).then(() => dispatch({
 					type: TOGGLE_COMPONENT,
-					component: 'Repo View'
+					component: 'repo'
 				})).then(() => {
 					return axios.get(`https://api.github.com/repos/${repo}/collaborators?access_token=${getState().auth.token}`)
 				}).then(collaborators => {
