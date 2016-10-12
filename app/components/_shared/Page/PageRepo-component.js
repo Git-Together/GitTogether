@@ -89,7 +89,7 @@ export default class PageRepo extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let visual = changeObjectTreeToKey(nextProps.repos);
+    let visual = changeObjectTreeToKey(nextProps.list);
     this.renderChart(visual);
   }
 

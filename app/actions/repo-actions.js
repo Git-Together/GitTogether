@@ -6,10 +6,11 @@ export const SWITCH_ACTIVE_TREE = 'SWITCH_ACTIVE_TREE';
 export const CHANGE_CHANNEL_PATH = 'CHANGE_CHANNEL_PATH';
 export const GET_COLLABORATORS = 'GET_COLLABORATORS';
 
+
 //Github API call
 import GitHub from 'github-api';
 import axios from 'axios';
-import { TOGGLE_COMPONENT } from './ui-actions';
+import { TOGGLE_COMPONENT, TOGGLE_TREE } from './ui-actions';
 import Promise from 'bluebird';
 const storage = Promise.promisifyAll(require('electron-json-storage'))
 
@@ -50,7 +51,7 @@ export function getRepoTree(repo){
 					type: CHANGE_CHANNEL_PATH,
 					path: cachedChannels[user][repo]
 				})).then(() => dispatch({
-					type: TOGGLE_COMPONENT,
+					type: TOGGLE_TREE,
 					component: 'repo'
 				})).then(() => {
 					return axios.get(`https://api.github.com/repos/${repo}/collaborators?access_token=${getState().auth.token}`)
