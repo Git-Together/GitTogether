@@ -1,0 +1,14 @@
+@import '../_scss/_variables';
+
+.ListView-Icon{
+	// height: 100%;
+	// width: 100%;
+	// flex: 1 0 25%;
+	font-size: 1.2em;
+	color: $backgroundColor;
+	padding: 1em;
+}
+
+.ListViewComponent div{
+	display: block;
+}

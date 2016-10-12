@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as channel from '../actions/channel-actions.js';
-import List from '../components/_shared/List/List-component.js';
+import ListView from '../components/_shared/List/ListView-component.js';
 
 function mapStateToProps(state) {
   return {
@@ -30,6 +30,6 @@ function mapDispatchToProps(dispatch) {
 //   }
 // }
 
-export default connect(mapStateToProps)(List)
+export default connect(mapStateToProps)(ListView)
 // export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
 

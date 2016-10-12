@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as team from '../actions/team-actions.js';
 // import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js';
-import List from '../components/_shared/List/List-component.js';
+import ListView from '../components/_shared/List/ListView-component.js';
 
 function mapStateToProps(state) {
   return {
@@ -35,5 +35,5 @@ function mapDispatchToProps(dispatch) {
 //   }
 // }
 
-export default connect(mapStateToProps)(List)
+export default connect(mapStateToProps)(ListView)
 // export default connect(mapStateToProps, mapDispatchToProps)(List)

@@ -3,12 +3,12 @@
 .ListItem {
 	padding: .5em 1em;
 	display: inline-block;
-	background-color: $mainColor;
-	color: white;
+	background-color: $highlight;
+	color: $backgroundColor;
 	margin: .2em;
 	border-radius: 1em;
 	&:hover {
-		background-color: $highlight;
+		background-color: $backgroundColor;
 		color: $mainColor;
 	}
 }
