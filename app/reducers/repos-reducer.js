@@ -2,7 +2,7 @@ import {GET_USER_REPOS, ADD_CHANNEL, REMOVE_CHANNEL, ADD_MESSAGE_TO_REPO_PANEL, 
 
 export default function repos(state =
   {
-    icon: 'glyphicon glyphicon-th-list',
+    icon: 'glyphicon glyphicon-tasks',
     panelMessageArray: [
       {
         label: "Here Are your Repos",
@@ -14,11 +14,11 @@ export default function repos(state =
     activeRepoId: 'repoOwner/repoName',
   }, action) {
   switch (action.type) {
-    case GET_USER_REPOS: 
+    case GET_USER_REPOS:
       return {...state, repos: action.repos}
-    case ADD_MESSAGE_TO_REPO_PANEL: 
+    case ADD_MESSAGE_TO_REPO_PANEL:
       return {...state, panelMessageArray: [...panelMessageArray, action.message]}
-    case CHANGE_ACTIVE_REPO: 
+    case CHANGE_ACTIVE_REPO:
       return {...state, activeRepoId: action.id}
     default:
       return state;

@@ -15,13 +15,14 @@ export default class List extends Component {
   };
 
   render() {
+    let item = this.props.item.name ? this.props.item.name : this.props.item
     return (
-      <div className="ListItem" onClick={this.props.changeSelected}>
+      <div className="ListItem" onClick={this.props.changeSelected.bind(null, item)}>
 
         <div className="ListItem-Name"> 
 
           <span className="ListItem-Name-Text">
-            {this.props.item.name ? this.props.item.name : this.props.item}
+            {item}
           </span> {/* ListItem-Name-Text */}
 
         </div> {/* ListItem-Name */}

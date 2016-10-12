@@ -1,0 +1,50 @@
+@import '../_scss/_variables';
+
+.PageRepo {
+ display: flex;
+ position: absolute;
+ flex-wrap: wrap;
+ flex-direction: column;
+ z-index: 100;
+ height: 88.90%;
+ width: 75%;
+ // top: 100%;
+ background-color:white;
+ bottom: 0;
+ right: 0;
+ // border: 2px solid blue;
+}
+
+.PageRepo-List {
+	// background-color: orange;
+	// position: absolute;
+	color: $mainColor;
+	z-index: 1000;
+	width: 100%;
+	padding: 1.4em;
+  flex: 2 0 50%;
+  font-family: OpenSans;
+  font-weight: 700;
+  font-size: 1.1em;
+  letter-spacing: .05em;
+  height:50%;
+  overflow: scroll;
+}
+
+.PageRepo-ActiveItem {
+    // position: absolute;
+    // border: 4px solid pink;
+    // top: 0;
+    // bottom: 0;
+    font-family: OpenSans;
+    font-weight: 900;
+    font-size: 1.5em;
+    letter-spacing: .05em;
+    padding: 1em;
+    flex: 2 0 50%;
+    background-color: $highlight;
+    // height: 50%;
+    // width: 50%;
+
+
+}
