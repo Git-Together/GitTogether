@@ -20,6 +20,7 @@ export default class ActiveItem extends Component {
         <div className="ActiveItem-Name">
 
           <div className="ActiveItem-Name-Text">
+            This is a name
             {this.props.activeItem.name}
           </div> {/* ActiveItem-Name-Text */}
 
@@ -29,6 +30,7 @@ export default class ActiveItem extends Component {
 
           <div className="ActiveItem-Details-Content">
             {this.props.activeItem.details}
+            These are some details
           </div> {/* ActiveItem-Details-Content */}
 
         </div>{/* ActiveItem-Details */}
@@ -38,10 +40,13 @@ export default class ActiveItem extends Component {
           <div
             onClick={this.props.addSelected}
             className="ActiveItem-Functionality-Add">
+            +
           </div> {/* ActiveItem-Functionality-Add */}
+
           <div
             onClick={this.props.removeSelected}
             className="ActiveItem-Functionality-Remove">
+            -
           </div> {/* ActiveItem-Functionality-Remove */}
 
         </div>{/* ActiveItem-Functionality */}
