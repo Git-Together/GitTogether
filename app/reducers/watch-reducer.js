@@ -18,18 +18,27 @@ export default function watch(state = initState, action){
   switch (action.type){
 
     case WATCH_FILE:
-      if ((state.watch.map(e => e.name).indexOf(action.fileId) < 0) && (state.watch.map(e => e.id).indexOf(action.repoId) < 0)) {
 
-      let newCheckout = {
-        id: action.repoName,
-        name: action.fileId,
-        userId: action.userId,
-        timeStamp: new Date()
-      };
+    let duplicate = (state.watch.length === 0) ? false: true
 
-    return {...state, watch: [...state.watch, newCheckout] };
-    } else{
-      return state;
+    state.watch.forEach(e => {
+      if(e.id === action.repoName && e.name === action.fileId) {
+        dubplicate = false;
+      }
+    })
+
+    if(duplicate) {
+      return state
+    } else {
+
+        let newWatch = {
+          id: action.repoId,
+          name: action.fileId,
+          userId: action.userId,
+          timeStamp: new Date()
+        };
+
+        return {...state, watch: [...state.watch, newWatch]}
     }
 
     case UNWATCH_FILE:
@@ -44,7 +53,7 @@ export default function watch(state = initState, action){
     return state;
 
     case CHANGE_ACTIVE_WATCH:
-      return {...state, activeWatch: action.name}
+      return {...state, activeWatch: action.fileId}
 
     case GET_WATCH:
       return state;
@@ -53,3 +62,18 @@ export default function watch(state = initState, action){
       return state;
   }
 }
+
+
+    //   if ((state.watch.map(e => e.fileId).indexOf(action.fileId) < 0) && (state.watch.map(e => e.repoId).indexOf(action.repoId) < 0)) {
+
+    //   let newCheckout = {
+    //     id: action.repoId,
+    //     name: action.fileId,
+    //     userId: action.userId,
+    //     timeStamp: new Date()
+    //   };
+
+    // return {...state, watch: [...state.watch, newCheckout] };
+    // } else{
+    //   return state;
+    // }

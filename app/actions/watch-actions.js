@@ -25,7 +25,7 @@ export function watchFile(repoId, fileId) {
   }
 }
 
-export function unwatchFile(repoId, name) {
+export function unwatchFile(repoId, fileId) {
 
   return (dispatch, getState) => {
 
@@ -49,11 +49,11 @@ export function unwatchFile(repoId, name) {
   }
 }
 
-export function changeActiveWatch(name){
+export function changeActiveWatch(fileId){
 
     return {
         type: CHANGE_ACTIVE_WATCH,
-        name
+        fileId
     }
 
 }
@@ -69,11 +69,11 @@ export function getWatch(){
 
        watchFileList.data.forEach((e) => {
 
-        if (e.users.length > 0 && e.users[0].id === userId) {
+        if (e.users[0].id === userId) {
 
           dispatch({
             type: WATCH_FILE,
-            repoName: e.repoId,
+            repoId: e.repoId,
             fileId: e.fileName,
             userId
           })
@@ -87,3 +87,4 @@ export function getWatch(){
 
    }
  }
+
