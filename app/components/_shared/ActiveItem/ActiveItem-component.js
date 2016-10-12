@@ -7,11 +7,49 @@ export default class ActiveItem extends Component {
     this.state = {
 
     }
+    // this.displayRow = this.displayRow.bind(this);
+    // this.displayHeader = this.displayHeader.bind(this);
+    // this.displayData = this.displayData.bind(this);
+
+    // this.props.activeItem.mainView = [{name: 'asdf', last: 'basdffads', message: 'Hello'}];
   }
 
   static propTypes = {
 
   };
+
+  // displayRow(){
+  //   return this.props.activeItem.mainView.length > 0 ? this.props.activeItem.mainView.map((e, index)=> {
+  //     return <tr key={index}> {this.displayData(e)} </tr> }) : ''
+  // }
+
+  // displayHeader(){
+  //   return this.props.activeItem.mainView.length > 0 ? <th> {this.displayData(this.props.activeItem.mainView[0])} </th>  : ''
+  // }
+
+  // displayData(e){
+  //   console.log('Display Data', e);
+  //   let element = [];
+  //   for(var column in e){
+  //     element.push(<td key={column}> {e[column]} </td>);
+  //   }
+  //   console.log('Element Array', element);
+  //   return element;
+  // }
+
+  /*
+    [{
+      firstName: 
+      lastName:
+      age: 
+    }, {
+      firstName:
+      lastName:
+      age:
+    }]
+  */
+
+
 
   render() {
     return (
@@ -20,33 +58,30 @@ export default class ActiveItem extends Component {
         <div className="ActiveItem-Name">
 
           <div className="ActiveItem-Name-Text">
-            This is a name
             {this.props.activeItem.name}
           </div> {/* ActiveItem-Name-Text */}
 
         </div> {/* ActiveItem-Name */}
-
+        {/*
         <div className="ActiveItem-Details">
 
           <div className="ActiveItem-Details-Content">
             {this.props.activeItem.details}
-            These are some details
-          </div> {/* ActiveItem-Details-Content */}
+          </div> 
 
-        </div>{/* ActiveItem-Details */}
-
+        </div>*/}
         <div className="ActiveItem-Functionality">
 
           <div
-            onClick={this.props.addSelected}
+            onClick={this.props.addSelected.bind(null, this.props.activeItem.name)}
             className="ActiveItem-Functionality-Add">
             +
           </div> {/* ActiveItem-Functionality-Add */}
 
           <div
-            onClick={this.props.removeSelected}
+            onClick={this.props.removeSelected.bind(null)}
             className="ActiveItem-Functionality-Remove">
-            -
+          -
           </div> {/* ActiveItem-Functionality-Remove */}
 
         </div>{/* ActiveItem-Functionality */}
@@ -54,6 +89,11 @@ export default class ActiveItem extends Component {
         <div className="ActiveItem-MainView">
 
           <div className="ActiveItem-MainView-Content">
+            <table>
+            {/*
+                {this.displayHeader()}
+                {this.displayRow()} */}
+            </table> 
             {this.props.activeItem.mainView}
           </div> {/* ActiveItem-Name-MainView-Content */}
 

@@ -89,6 +89,7 @@ export function loadChannels() {
 					} else {
 						storage.set('channels', {...channelStorage, [currentUser]: {}})
 					}
+					console.log("CHANNEL STORAGE", channelStorage[currentUser]);
 					channels = Object.keys(channelStorage[currentUser])
 				})
 				.then(() => dispatch({

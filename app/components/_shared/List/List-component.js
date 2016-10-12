@@ -11,6 +11,8 @@ export default class List extends Component {
     }
     this.display = this.display.bind(this);
     console.log('Props at constructor', props);
+    
+
   }
 
   static propTypes = {

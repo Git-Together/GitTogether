@@ -10,7 +10,7 @@ function mapStateToProps(state) {
     icon: state.channel.icon, //Page Icon
     panelMessage: state.channel.panelMessageArray[state.channel.panelMessagePlayIndex] || 'Your current active repo',
     panelMessageArray: state.channel.panelMessageArray,
-    selected: state.channel.activeRepoId,
+    selected: state.channel.activeChannelId,
     uiSelected: state.ui.selected,
     currentUi: 'channel'
   };

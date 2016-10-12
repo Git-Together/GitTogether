@@ -3,6 +3,7 @@ export const ADD_CHANNEL = 'ADD_CHANNEL';
 export const REMOVE_CHANNEL = 'REMOVE_CHANNEL';
 export const ADD_MESSAGE_TO_REPO_PANEL = 'ADD_MESSAGE_TO_REPO_PANEL';
 export const CHANGE_ACTIVE_REPO = 'CHANGE_ACTIVE_REPO';
+export const LOAD_CHANNELS = 'LOAD_CHANNELS';
 
 //Github API call
 import GitHub from 'github-api';
@@ -22,8 +23,10 @@ export function getUserRepos() {
 }
 
 export function addChannel(channel) {
-	let channelName = channel.full_name
+	// let channelName = channel
 	return (dispatch, getState) => {
+		let filteredRepo = getState().repos.repos.filter( e => { return e.name === channel})
+		let channelName = filteredRepo[0].full_name;
 		let currentUser = getState().auth.currentUser
 		let userId = getState().auth.id
 		let repo = getState().repo
@@ -56,6 +59,8 @@ export function addChannel(channel) {
 
 export function removeChannel(id) {
 	return (dispatch, getState) => {
+		let filteredRepo = getState().repos.repos.filter( e => { return e.name === getState().repos.activeRepoId});
+		let id = filteredRepo[0].full_name;
 		let currentUser = getState().auth.currentUser
 		let userId = getState().auth.id
 		let channelStorage
