@@ -2,7 +2,7 @@ import {  } from '../actions/member-actions';
 
 export default function member(state =
   {
-    icon: 'glyphicon glyphicon-th-list',
+    icon: 'glyphicon glyphicon-user',
     panelMessageArray: [
       {
         label: "Here Are your Members",

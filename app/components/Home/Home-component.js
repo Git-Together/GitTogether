@@ -88,15 +88,9 @@ export default class Home extends Component {
               <Member />
             </div>    {/* -Body-Content-Member */}
 
-            {this.props.ui.selected == 'repos'?
-            (<div id="Body-Content">
+            <div id="Body-Content-Repos">
               <Repos />
-            </div>)
-            :
-            (<div id="Body-Content-Repos">
-              <Repos />
-            </div>)
-            }
+            </div>
 
             <div id="Body-Content-File">
               <File />

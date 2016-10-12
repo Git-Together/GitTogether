@@ -43,7 +43,7 @@ const initState =
     icon: 'glyphicon glyphicon-cloud-upload',
     panelMessageArray: [
       {
-        label: "Here Are your Repo",
+        label: "Here is your Repo",
         text: "Repo"
      }
     ],

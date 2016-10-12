@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import * as repo from '../actions/repo-actions.js';
 import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js';
 
-function mapStateToProps(state) {
+function mapStateToProps( state, ownProps = {repo:true} ) {
   return {
+    repo: ownProps.repo,
     list: state.repo.repoList,
-    icon: state.repos.icon,
+    icon: state.repo.icon,
     panelMessage: state.repo.panelMessageArray[state.repo.panelMessagePlayIndex] || 'Your current active repo',
     panelMessageArray: state.repo.panelMessageArray,
     selected: state.repo.activeRepoId,
