@@ -1,4 +1,4 @@
-import { WATCH_FILE, UNWATCH_FILE } from '../actions/watch-actions.js';
+import { WATCH_FILE, UNWATCH_FILE, CHANGE_ACTIVE_WATCH, GET_WATCH } from '../actions/watch-actions.js';
 
 const initState = {
   icon: 'glyphicon glyphicon-eye-open',
@@ -16,23 +16,25 @@ const initState = {
 
 export default function watch(state = initState, action){
   switch (action.type){
+
     case WATCH_FILE:
-      if ((state.map(e => e.fileId).indexOf(action.fileId) < 0) && (state.map(e => e.repoId).indexOf(action.repoId) < 0)) {
+      if ((state.watch.map(e => e.name).indexOf(action.fileId) < 0) && (state.watch.map(e => e.id).indexOf(action.repoId) < 0)) {
 
       let newCheckout = {
-        repoId: action.repoName,
-        fileId: action.fileId,
+        id: action.repoName,
+        name: action.fileId,
         userId: action.userId,
         timeStamp: new Date()
       };
+
     return {...state, watch: [...state.watch, newCheckout] };
     } else{
       return state;
     }
 
     case UNWATCH_FILE:
-    for (let i = 0; i < state.length; i++) {
-      if (state[i].repoId === action.repoName && state[i].fileId === action.fileId && state[i].userId === action.userId){
+    for (let i = 0; i < state.watch.length; i++) {
+      if (state[i].name === action.fileId && state[i].id === action.repoName){
         var indexToDelete = i;
 
         return {...state, watch: [...state.slice(0, indexToDelete), ...state.slice(indexToDelete+1)] }
@@ -40,6 +42,12 @@ export default function watch(state = initState, action){
       }
     }
     return state;
+
+    case CHANGE_ACTIVE_WATCH:
+      return {...state, activeWatch: action.name}
+
+    case GET_WATCH:
+      return state;
 
     default:
       return state;

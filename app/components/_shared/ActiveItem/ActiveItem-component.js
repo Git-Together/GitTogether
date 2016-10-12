@@ -20,7 +20,6 @@ export default class ActiveItem extends Component {
         <div className="ActiveItem-Name">
 
           <div className="ActiveItem-Name-Text">
-            This is a name
             {this.props.activeItem.name}
           </div> {/* ActiveItem-Name-Text */}
 
