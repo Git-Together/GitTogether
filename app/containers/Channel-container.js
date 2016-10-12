@@ -10,7 +10,7 @@ function mapStateToProps(state) {
     icon: state.channel.icon, //Page Icon
     panelMessage: state.channel.panelMessageArray[state.channel.panelMessagePlayIndex] || 'Your current active repo',
     panelMessageArray: state.channel.panelMessageArray,
-    selected: state.channel.activeRepoId,
+    selected: state.channel.activeChannelId,
     uiSelected: state.ui.selected,
     currentUi: 'channel'
   };
@@ -18,6 +18,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    getList: bindActionCreators(channel.loadChannels, dispatch)
   }
 }
 
@@ -30,6 +31,7 @@ function mapDispatchToProps(dispatch) {
 //   }
 // }
 
-export default connect(mapStateToProps)(ListView)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListView)
 // export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
 

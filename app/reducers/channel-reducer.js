@@ -15,12 +15,12 @@ export default function channel(state = {
   }, action) {
   switch (action.type) {
     case ADD_CHANNEL:
-      return [...state, action.channel];
+      return {...state, channels: [...state.channels, action.channel]};
     case REMOVE_CHANNEL:
       let idx = state.map(e => e.id).indexOf(action.id);
-      return [...state.slice(0,idx),...state.slice(idx+1)];
+      return {...state, channels: [...state.channels.slice(0,idx),...state.channels.slice(idx+1)]};
 	case LOAD_CHANNELS:
-		return action.channels
+		return {...state, channels: action.channels}
     default:
       return state;
   }

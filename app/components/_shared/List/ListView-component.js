@@ -17,6 +17,10 @@ export default class List extends Component {
 
   };
 
+  componentWillMount(){
+    if(this.props.currentUi === 'channel') this.props.getList();
+  }
+
   display(){
     console.log('Rendering Display of ListLIST VIEW', this.props);
     return this.props.list? this.props.list.map((e, index) => {
