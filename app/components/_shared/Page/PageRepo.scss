@@ -1,6 +1,6 @@
 @import '../_scss/_variables';
 
-.Page {
+.PageRepo {
  display: flex;
  position: absolute;
  flex-wrap: wrap;
@@ -15,7 +15,7 @@
  // border: 2px solid blue;
 }
 
-.Page-List {
+.PageRepo-List {
 	// background-color: orange;
 	// position: absolute;
 	color: $mainColor;
@@ -31,7 +31,7 @@
   overflow: scroll;
 }
 
-.Page-ActiveItem {
+.PageRepo-ActiveItem {
     // position: absolute;
     // border: 4px solid pink;
     // top: 0;

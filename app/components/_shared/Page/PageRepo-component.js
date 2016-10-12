@@ -95,8 +95,7 @@ export default class PageRepo extends Component {
 
   render() {
     return (
-      <div>
-        THIS IS THE PAGEREPO VIEW!!!!
+      <div className="PageRepo">
       </div>
     )
   }
