@@ -17,7 +17,7 @@ export function watchFile(repoId, fileId) {
       .then(fileWatch => {
         dispatch({
           type: WATCH_FILE,
-          repoName: repoId, //KIN SAYS DO I NEED TO CHANGE THIS TO REPO-ID?
+          repoName: repoId,
           fileId,
           userId: getState().auth.id
         })

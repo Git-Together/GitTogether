@@ -18,7 +18,6 @@ export default function watch(state = initState, action){
   switch (action.type){
 
     case WATCH_FILE:
-
     let duplicate = (state.watch.length === 0) ? false: true
 
     state.watch.forEach(e => {
@@ -37,7 +36,6 @@ export default function watch(state = initState, action){
           userId: action.userId,
           timeStamp: new Date()
         };
-
         return {...state, watch: [...state.watch, newWatch]}
     }
 
