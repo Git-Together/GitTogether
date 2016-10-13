@@ -67,7 +67,6 @@ export function getRepoTree(repo) {
 
                 axios.get(process.env.SERVER_URL + '/api/files/?userId=' + userId)
                     .then((watchFileList) => {
-                        console.log("watchFileList is: ", watchFileList)
 
                         watchFileList.data.forEach((e) => {
 

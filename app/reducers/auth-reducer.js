@@ -1,9 +1,10 @@
-import { LOGIN, LOGOUT, SET_USER } from '../actions/auth-actions'
+import { SOCKETS_STARTED, LOGIN, LOGOUT, SET_USER } from '../actions/auth-actions'
 
 const initialState = {
 	currentUser: null,
 	token: null,
-	id: null
+	id: null,
+	socketsStarted: false
 }
 
 export default function auth(state = initialState, action) {
@@ -13,7 +14,9 @@ export default function auth(state = initialState, action) {
 		case LOGOUT:
 			return state
 		case SET_USER:
-			return { currentUser: action.currentUser, token: action.token, id: action.id}
+			return { socketsStarted: false, currentUser: action.currentUser, token: action.token, id: action.id}
+		case SOCKETS_STARTED:
+			return { ...state, socketsStarted: true }
 		default:
 			return state
 	}
