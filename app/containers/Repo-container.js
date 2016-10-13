@@ -13,7 +13,9 @@ function mapStateToProps( state, ownProps = {repo:true} ) {
     panelMessageArray: state.repo.panelMessageArray,
     selected: state.repo.activeRepoId,
     uiSelected: state.ui.selected,
-    currentUi: 'repo'
+    currentUi: 'repo',
+    state: state.repo,
+    isRepo: true
   };
 }
 

@@ -40,11 +40,27 @@ export default class Page extends Component {
           <div className="Page-List">
             <List list={this.state.list} changeSelected={this.props.changeSelected}></List>
           </div>
+          {this.props.files &&
           <div className="Page-ActiveItem">
             <ActiveItem  activeItem={this.filter(this.props.selected)[0] || {}}
                       addSelected={this.props.addSelected}
                       removeSelected={this.props.removeSelected}/>
           </div>
+          }
+          {this.props.member &&
+          <div className="Page-ActiveItem">
+            <ActiveItem  activeItem={this.filter(this.props.selected)[0] || {}}
+                      addSelected={this.props.addSelected}
+                      removeSelected={this.props.removeSelected}/>
+          </div>
+          }
+
+          <div className="Page-ActiveItem">
+            <ActiveItem  activeItem={this.filter(this.props.selected)[0] || {}}
+                      addSelected={this.props.addSelected}
+                      removeSelected={this.props.removeSelected}/>
+          </div>
+          }
 
       </div>
     )
