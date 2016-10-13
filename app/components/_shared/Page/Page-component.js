@@ -39,7 +39,7 @@ class Page extends Component {
 				return item.path === this.props.selected
 			} else if (typeof item === 'string'){
 				return item === this.props.selected
-			}
+			} 
 		}) : [];
 	}
 

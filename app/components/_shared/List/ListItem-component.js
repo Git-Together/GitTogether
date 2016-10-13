@@ -19,7 +19,7 @@ class List extends Component {
       item = this.props.item;
     } else {
       if(this.props.item.name){
-        item = this.props.item.name;
+          item = this.props.item.name;
       } else if (this.props.item.path){
         item = this.props.item.path
       }

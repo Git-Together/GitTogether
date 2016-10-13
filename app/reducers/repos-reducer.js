@@ -15,6 +15,9 @@ export default function repos(state =
   }, action) {
   switch (action.type) {
     case GET_USER_REPOS:
+      action.repos.forEach(e => {
+        e.name = e.full_name
+      })
       return {...state, repos: action.repos}
     case ADD_MESSAGE_TO_REPO_PANEL:
       return {...state, panelMessageArray: [...panelMessageArray, action.message]}

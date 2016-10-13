@@ -24,7 +24,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeSelected: bindActionCreators( () => { console.log('placeholder')}, dispatch),
+    changeSelected: bindActionCreators(team.changeActiveTeamMember, dispatch),
     getList: bindActionCreators(team.refreshTeamMembers, dispatch)
   }
 }

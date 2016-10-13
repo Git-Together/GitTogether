@@ -6,6 +6,8 @@ export const CHANGE_ACTIVE_TEAM = 'CHANGE_ACTIVE_TEAM'
 
 import GitHub from 'github-api';
 import axios from 'axios';
+import { CHANGE_ACTIVE_MEMBER } from './member-actions';
+import { TOGGLE_TREE } from './ui-actions';
 
 export function addTeamMember(input) {
 	let name
@@ -15,26 +17,37 @@ export function addTeamMember(input) {
 		name = input
 	}
 	return (dispatch, getState) => {
-		axios.post(process.env.SERVER_URL + `/api/channels/${name}`, {repoId: getState().repo.channelName, userName: name})
-		// axios.post(`http://localhost:1337/api/channels/${name}`, {repoId: getState().repo.channelName, userName: name})
-		.then( () => {
-			dispatch({
-				type: ADD_TEAM_MEMBER,
-				repoId: getState().repo.channelName,
-				name,
+		axios.post(process.env.SERVER_URL + `/api/channels/${name}`, { repoId: getState().repo.channelName, userName: name })
+			// axios.post(`http://localhost:1337/api/channels/${name}`, {repoId: getState().repo.channelName, userName: name})
+			.then(() => {
+				dispatch({
+					type: ADD_TEAM_MEMBER,
+					repoId: getState().repo.channelName,
+					name,
+				})
 			})
-		})	
 	};
 }
 
 export function changeActiveTeamMember(id) {
-	return {
-		type: CHANGE_ACTIVE_TEAM_MEMBER,
-		id
-	};
+	return (dispatch) => {
+		 dispatch({
+			type: CHANGE_ACTIVE_TEAM_MEMBER,
+			id
+		});
+		dispatch({
+			type: CHANGE_ACTIVE_MEMBER,
+			id
+		});
+		dispatch({
+			type: TOGGLE_TREE,
+			component: 'member'
+		})
+	}
+
 }
 
-export function changeSelectedTeam(channelId){
+export function changeSelectedTeam(channelId) {
 	return {
 		type: CHANGE_ACTIVE_TEAM,
 		channelId
@@ -42,10 +55,10 @@ export function changeSelectedTeam(channelId){
 }
 
 export function removeTeamMember(id, repoId) {
-		return (dispatch, getState) => {
-			axios.put(process.env.SERVER_URL + `/api/channels/remove?channelId=${getState().repo.channelName}&userName=${id}`)
+	return (dispatch, getState) => {
+		axios.put(process.env.SERVER_URL + `/api/channels/remove?channelId=${getState().repo.channelName}&userName=${id}`)
 			// return axios.put(`http://localhost:1337/api/channels/remove?channelId=${getState().repo.channelName}&userName=${id}`)
-			.then( () => {
+			.then(() => {
 				dispatch({
 					type: REMOVE_TEAM_MEMBER,
 					repoId: getState().repo.channelName,
@@ -56,17 +69,16 @@ export function removeTeamMember(id, repoId) {
 }
 
 export function refreshTeamMembers() {
-	console.log('REFRESH TEAM MEMBERS CALLED');
 	return (dispatch, getState) => {
 		axios.get(process.env.SERVER_URL + `/api/users/${getState().auth.id}`)
-		// axios.get(`http://localhost:1337/api/users/${getState().auth.id}`)
-		.then( user => {
-			console.log('user', user);
-			dispatch({
-				type: REFRESH_TEAM_MEMBERS,
-				channels: user.data.channels,
-				currentUser: getState().auth.currentUser
-			});
-		})
+			// axios.get(`http://localhost:1337/api/users/${getState().auth.id}`)
+			.then(user => {
+				console.log('user', user);
+				dispatch({
+					type: REFRESH_TEAM_MEMBERS,
+					channels: user.data.channels,
+					currentUser: getState().auth.currentUser
+				});
+			})
 	};
 }

@@ -19,9 +19,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeSelected: bindActionCreators(file.changeActiveFile, dispatch),
-	addSelected: bindActionCreators(watch.watchFile, dispatch),
-	removeSelected: bindActionCreators(watch.unwatchFile, dispatch),
+    changeSelected: bindActionCreators(file.changeActiveFileAsync, dispatch),
+	  addSelected: bindActionCreators(watch.watchFile, dispatch),
+	  removeSelected: bindActionCreators(watch.unwatchFile, dispatch),
     // getList: bindActionCreators(file.refreshFiles, dispatch)
   }
 }

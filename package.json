@@ -120,6 +120,7 @@
     "font-awesome": "^4.6.3",
     "github": "^3.1.1",
     "github-api": "^2.3.0",
+    "lodash": "^4.16.4",
     "postcss": "^5.1.2",
     "precss": "^1.4.0",
     "react": "^15.3.2",
