@@ -60,7 +60,8 @@ export default function watch(state = initState, action){
       return {...state, watch:[] }
 
     case GET_ALL_WATCH:
-      return {...state, watch: action.watchList}
+    let extendedWatchList = action.watchList.map(e => {e.name = e.fileName; return e})
+      return {...state, watch: extendedWatchList}
 
     default:
       return state;

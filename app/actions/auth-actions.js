@@ -63,7 +63,7 @@ export function setUser(currentUser, token, id) {
 					}
 				})
 			}
-		})	
+		})
 
 		.catch(err => console.error)
 }
@@ -108,7 +108,7 @@ export function setUser(currentUser, token, id) {
 						.then(response => {
 							dispatch({
 								type: SET_USER,
-								currentUser: response.username, 
+								currentUser: response.username,
 								token: response.token,
 								id: response.id
 							})
