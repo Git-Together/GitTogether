@@ -16,10 +16,14 @@ class ActiveFile extends Component {
 
   render() {
 	  console.log('active item props ', this.props)
-	  let style = {
+	  let pathStyle = {
 		  fontSize: '16px',
 		  width: '100%',
 		  overflowWrap: 'break-word'
+	  }
+	  let buttonStyle = {
+		  textAlign: 'center',
+		  fontSize: '16px'
 	  }
 	  let path = this.props.activeItem.path
 	  const { repoId } = this.props
@@ -28,7 +32,7 @@ class ActiveFile extends Component {
 
 			<div className="ActiveItem-Name">
 
-				<div style={style} className="ActiveItem-Name-Text">
+				<div style={pathStyle} className="ActiveItem-Name-Text">
 					{path}
 				</div> {/* ActiveItem-Name-Text */}
 
@@ -43,16 +47,16 @@ class ActiveFile extends Component {
 		</div>*/}
 		<div className="ActiveItem-Functionality">
 
-		  <div
+		  <div style={buttonStyle}
 			onClick={this.props.addSelected.bind(null, repoId, path)}
 			className="ActiveItem-Functionality-Add">
-			+
+			Subscribe to this file
 		  </div> {/* ActiveItem-Functionality-Add */}
 
-		  <div
+		  <div style={buttonStyle}
 			onClick={this.props.removeSelected.bind(null)}
 			className="ActiveItem-Functionality-Remove">
-		  -
+		  	Unsubscribe from this file
 		  </div> {/* ActiveItem-Functionality-Remove */}
 
 	  </div>{/* ActiveItem-Functionality */}
