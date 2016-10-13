@@ -19,7 +19,7 @@ export default class PanelPage extends Component {
   render() {
     return (
       <div className="Panel-Page">
-        <Panel icon={this.props.icon} currentUi={this.props.currentUi} panelMessage={this.props.panelMessage} />
+        <Panel icon={this.props.icon} state={this.props.state}currentUi={this.props.currentUi} isRepo={this.props.isRepo} panelMessage={this.props.panelMessage} />
         {this.props.uiSelected===this.props.currentUi && this.props.repo && <PageRepo
               list={this.props.list}
               selected={this.props.selected}
