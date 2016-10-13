@@ -25,7 +25,6 @@ export function watchFile(repoId, fileId) {
         })
       })
   }
-}
 
 export function unwatchFile(repoId, fileId) {
 
@@ -49,6 +48,7 @@ export function unwatchFile(repoId, fileId) {
       })
     })
   }
+
 }
 
 export function changeActiveWatch(fileId) {

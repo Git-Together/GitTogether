@@ -39,8 +39,9 @@ export default class Home extends Component {
           <div id="Header-Nav">
 
             <div id="Header-Nav-Text">
-              <span id="Header-Nav-Text-Welcome">Welcome</span>
-              <span id="Header-Nav-Text-UN"><em>Milten Kingil</em></span>
+              <span id="Header-Nav-Text-UN"><em>{this.props.auth.currentUser}</em></span>
+              <span id="Header-Nav-Text-Welcome">&nbsp; looking at</span>
+              <span id="Header-Nav-Text-UN"><em>{this.props.repo.channelName}</em></span>
             </div> {/* -Headder-Nav-Text */}
             <div id="Header-Nav-IconBar">
               {

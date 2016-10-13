@@ -5,7 +5,7 @@ export default function repos(state =
     icon: 'glyphicon glyphicon-tasks',
     panelMessageArray: [
       {
-        label: "Here Are your Repos",
+        label: "Here are your Repos",
         text: "Repos"
      }
     ],

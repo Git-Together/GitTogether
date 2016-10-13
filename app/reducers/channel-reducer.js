@@ -4,7 +4,7 @@ export default function channel(state = {
     icon: 'glyphicon glyphicon-tasks',
     panelMessageArray: [
         {
-          label: "Here Are your Channels",
+          label: "Here are your Channels",
           text: "Channel"
        }
     ],

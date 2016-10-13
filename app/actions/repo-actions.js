@@ -12,7 +12,7 @@ import GitHub from 'github-api';
 import axios from 'axios';
 import { TOGGLE_COMPONENT, TOGGLE_TREE } from './ui-actions';
 import { RESET_WATCH, GET_ALL_WATCH } from './watch-actions';
-// import * as watchActions from './watch-actions'
+import {CHANGE_ACTIVE_TEAM} from './team-actions';
 import Promise from 'bluebird';
 const storage = Promise.promisifyAll(require('electron-json-storage'))
 
@@ -92,6 +92,7 @@ export function getRepoTree(repo) {
                 })
             })
     }
+
 }
 
 export function addRepo(repo) {

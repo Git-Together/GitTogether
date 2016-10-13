@@ -1,7 +1,7 @@
 import { CHANGE_ACTIVE_FILE, REFRESH_FILES, GET_FILE_CHANGES } from '../actions/file-actions';
 
 const initState = {
-  activeFileId: 1,
+  activeFileId: "",
   files: [
     {
       fileName: 'Milad.txt',
@@ -22,7 +22,7 @@ const initState = {
   icon: 'glyphicon glyphicon-file',
    panelMessageArray: [
       {
-        label: "Here Are your files",
+        label: "Here are your Files",
         text: "file"
      }
   ],

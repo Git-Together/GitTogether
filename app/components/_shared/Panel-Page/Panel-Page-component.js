@@ -17,7 +17,6 @@ export default class PanelPage extends Component {
   };
 
   render() {
-    console.log("this.props from PanelPage", this.props)
     return (
       <div className="Panel-Page">
         <Panel icon={this.props.icon} currentUi={this.props.currentUi} panelMessage={this.props.panelMessage} />

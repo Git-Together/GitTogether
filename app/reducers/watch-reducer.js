@@ -4,7 +4,7 @@ const initState = {
   icon: 'glyphicon glyphicon-eye-open',
   panelMessageArray: [
     {
-      label: "Here Are your Watches",
+      label: "Here are your Subscriptions",
       text: "Watch"
     }
   ],
