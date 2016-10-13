@@ -18,7 +18,7 @@ export default class List extends Component {
   };
 
   componentWillMount(){
-    if(this.props.currentUi === 'channel') this.props.getList();
+    this.props.getList();
   }
 
   display(){

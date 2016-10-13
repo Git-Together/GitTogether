@@ -8,11 +8,11 @@ import ListView from '../components/_shared/List/ListView-component.js';
 
 function mapStateToProps(state) {
   return {
-    list: state.team.team,
+    list: state.team.teamObj[state.team.activeTeam] || state.team.team,
     icon: state.team.icon,
     panelMessage: state.team.panelMessageArray[state.team.panelMessagePlayIndex] || 'Your current active repo',
     panelMessageArray: state.team.panelMessageArray,
-    selected: state.team.activeRepoId,
+    selected: state.team.activeTeam,
     uiSelected: state.ui.selected,
     currentUi: 'team'
   };
@@ -24,7 +24,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeSelected: bindActionCreators(repo.getRepoTree, dispatch)
+    changeSelected: bindActionCreators( () => { console.log('placeholder')}, dispatch),
+    getList: bindActionCreators(team.refreshTeamMembers, dispatch)
   }
 }
 

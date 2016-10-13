@@ -79,7 +79,7 @@ export default class ActiveItem extends Component {
           </div> {/* ActiveItem-Functionality-Add */}
 
           <div
-            onClick={this.props.removeSelected.bind(null)}
+            onClick={this.props.removeSelected.bind(null, this.props.activeItem.name)}
             className="ActiveItem-Functionality-Remove">
           -
           </div> {/* ActiveItem-Functionality-Remove */}

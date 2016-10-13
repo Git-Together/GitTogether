@@ -18,9 +18,12 @@ export default function member(state =
   }, action) {
   switch (action.type) {
     case GET_COLLABORATORS:
-      return {...state, members: action.collaborators};
+      let membersMap = action.collaborators.map(e=> {
+        return {name: e}
+      })
+      return {...state, members: membersMap};
     case CHANGE_ACTIVE_MEMBER:
-      return {...state, activeMemberId: }
+      return {...state, activeMemberId: action.id }
     default:
       return state;
   }

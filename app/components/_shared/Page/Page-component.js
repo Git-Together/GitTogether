@@ -27,10 +27,10 @@ export default class Page extends Component {
   }
 
   filter(...args){
-    console.log("args",args)
-    console.log("this.props.list!!!",this.props.list)
     return this.props.list? this.props.list.filter(item => {
-      return item.name === this.props.selected
+      console.log('ITEM', item);
+      console.log("THIS PROPS", this.props.selected);
+      return (item.name === this.props.selected || item === this.props.selected)
     }) : [];
   }
 

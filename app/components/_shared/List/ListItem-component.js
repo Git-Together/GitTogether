@@ -5,9 +5,9 @@ export default class List extends Component {
   constructor (props) {
     super(props);
     this.state = {
-
     }
     console.log('List Item Props', props);
+    
   }
 
   static propTypes = {
@@ -15,7 +15,7 @@ export default class List extends Component {
   };
 
   render() {
-    let item = this.props.item.name ? this.props.item.name : this.props.item
+    let item = this.props.item.name ? this.props.item.name : this.props.item;
     return (
       <div className="ListItem" onClick={this.props.changeSelected.bind(null, item)}>
 
