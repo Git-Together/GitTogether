@@ -10,6 +10,7 @@ export default class Page extends Component {
       list: this.props.list || []
     }
     this.filter = this.filter.bind(this);
+    console.log("!!!!!!!!!!!!!", props)
   }
 
   static propTypes = {
@@ -21,6 +22,7 @@ export default class Page extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log("THIS IS NEXT PROPS FOR PAGE-COMPONENT", nextProps)
     this.setState({
       list: nextProps.list
     })
@@ -35,6 +37,7 @@ export default class Page extends Component {
   }
 
   render() {
+    console.log("passed into list", this.state.list)
     return (
       <div className="Page">
           <div className="Page-List">

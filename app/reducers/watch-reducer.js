@@ -1,4 +1,4 @@
-import { WATCH_FILE, UNWATCH_FILE, CHANGE_ACTIVE_WATCH, GET_WATCH } from '../actions/watch-actions.js';
+import { WATCH_FILE, UNWATCH_FILE, CHANGE_ACTIVE_WATCH, GET_WATCH, RESET_WATCH, GET_ALL_WATCH} from '../actions/watch-actions.js';
 
 const initState = {
   icon: 'glyphicon glyphicon-eye-open',
@@ -55,6 +55,12 @@ export default function watch(state = initState, action){
 
     case GET_WATCH:
       return state;
+
+    case RESET_WATCH:
+      return {...state, watch:[] }
+
+    case GET_ALL_WATCH:
+      return {...state, watch: action.watchList}
 
     default:
       return state;

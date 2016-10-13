@@ -1,6 +1,8 @@
 export const WATCH_FILE = 'WATCH_FILE';
 export const UNWATCH_FILE = 'UNWATCH_FILE';
 export const CHANGE_ACTIVE_WATCH = "CHANGE_ACTIVE_WATCH";
+export const RESET_WATCH = "RESET_WATCH";
+export const GET_ALL_WATCH = "GET_ALL_WATCH";
 import axios from 'axios';
 
 export function watchFile(repoId, fileId) {
@@ -49,7 +51,7 @@ export function unwatchFile(repoId, fileId) {
   }
 }
 
-export function changeActiveWatch(fileId){
+export function changeActiveWatch(fileId) {
 
     return {
         type: CHANGE_ACTIVE_WATCH,
@@ -58,32 +60,36 @@ export function changeActiveWatch(fileId){
 
 }
 
-export function getWatch(){
+export function getWatch() {
 
    return (dispatch, getState) => {
      let userId = getState().auth.id;
      let watchList = [];
+     let channelName = getState().repo.channelName;
+     let watchArray = [];
 
      axios.get(process.env.SERVER_URL + '/api/files/?userId=' + userId)
      .then((watchFileList) => {
+      console.log("watchFileList is: ", watchFileList)
 
        watchFileList.data.forEach((e) => {
 
-        if (e.users[0].id === userId) {
+        if (e.users[0].id === userId && e.repoId === channelName) {
 
-          dispatch({
-            type: WATCH_FILE,
-            repoId: e.repoId,
-            fileId: e.fileName,
-            userId
-          })
-
+          watchArray.push(e)
         }
-
-
        })
 
      })
+     .then(() => {
+      console.log("About to run dispatch.GET_ALL_WATCH")
+        return dispatch({
+          type:GET_ALL_WATCH,
+          watchList: watchArray
+        })
+
+     })
+     .catch(console.error)
 
    }
  }
