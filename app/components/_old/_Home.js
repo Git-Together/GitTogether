@@ -19,6 +19,7 @@ import FileView from './FileView.js';
 import Settings from './Settings.js';
 import { fileWatcher } from '../utils/file-watch.js';
 import { instantiateSockets, stopSockets } from '../utils/incoming-sockets.js';
+import * as AuthActions from '../../actions/auth-actions.js'
 
 export default class Home extends Component {
 	constructor (props) {
@@ -35,6 +36,7 @@ export default class Home extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (!this.props.auth.socketsStarted && nextProps.auth.token)  {
+			this.props.dispatch(AuthActions.socketsStarted)
 			instantiateSockets(this.props.state, this.props.dispatch)
 		}
 	}

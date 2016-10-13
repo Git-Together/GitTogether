@@ -12,6 +12,7 @@ import Team from '../../containers/Team-container';
 import Watch from '../../containers/Watch-container';
 import { fileWatcher } from '../../utils/file-watch.js';
 import { instantiateSockets, stopSockets } from '../../utils/incoming-sockets.js'
+import * as AuthActions from '../../actions/auth-actions.js'
 
 export default class Home extends Component {
 	constructor (props) {
@@ -40,6 +41,7 @@ export default class Home extends Component {
 	};
 
   render() {
+	  const { logout } = this.props
 		return (
       <div id='Container'>
 
@@ -72,6 +74,7 @@ export default class Home extends Component {
                 ]
                 .map(e => { return <div key={e.icon} className={`${e.icon} Header-Nav-IconBar-Icons`} onClick={this.props.toggleComponent.bind(null, `${e.name}`)}></div>})
               }
+			  <div className="glyphicon glyphicon-log-out Header-Nav-IconBar-Icons" onClick={logout}></div>
             </div> {/* -Header-Nav-IconBar */}
 
           </div> {/* -Header-Nav */}

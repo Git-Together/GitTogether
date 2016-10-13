@@ -8,7 +8,6 @@ import { connect } from 'react-redux'
 
 class Page extends Component {
 	constructor (props) {
-		console.log("page props ", props)
 		super(props);
 		this.state = {
 			list: this.props.list || []
