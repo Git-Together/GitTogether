@@ -18,6 +18,7 @@ import Branches from './Branches.js';
 import FileView from './FileView.js';
 import Settings from './Settings.js';
 import { fileWatcher } from '../utils/file-watch.js';
+import { instantiateSockets, stopSockets } from '../utils/incoming-sockets.js';
 
 export default class Home extends Component {
 	constructor (props) {
@@ -26,6 +27,20 @@ export default class Home extends Component {
 		this.state = {
 			repos: []
 		}
+	}
+
+	componentWillMount() {
+		fileWatcher()
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (!this.props.auth.socketsStarted && nextProps.auth.token)  {
+			instantiateSockets(this.props.state, this.props.dispatch)
+		}
+	}
+
+	componentWillUnmount() {
+		stopSockets()
 	}
 
 	static propTypes = {

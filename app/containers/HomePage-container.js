@@ -8,14 +8,16 @@ function mapStateToProps(state) {
   return {
 	  ui: state.ui,
 	  auth: state.auth,
-	  repo: state.repo
+	  repo: state.repo,
+	  state
   };
 }
 
 function mapDispatchToProps(dispatch) {
 
   return {
-    toggleComponent: bindActionCreators(ui.toggleComponent, dispatch)
+	  toggleComponent: bindActionCreators(ui.toggleComponent, dispatch),
+	  dispatch
   }
 }
 

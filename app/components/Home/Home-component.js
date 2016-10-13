@@ -10,12 +10,29 @@ import Repo from '../../containers/Repo-container';
 import Repos from '../../containers/Repos-container';
 import Team from '../../containers/Team-container';
 import Watch from '../../containers/Watch-container';
+import { fileWatcher } from '../../utils/file-watch.js';
+import { instantiateSockets, stopSockets } from '../../utils/incoming-sockets.js'
 
 export default class Home extends Component {
 	constructor (props) {
 		super(props);
+		console.log("HOME PROPS ", props)
 		this.state = {
 		}
+	}
+
+	componentWillMount() {
+		fileWatcher()
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (!this.props.auth.socketsStarted && nextProps.auth.token)  {
+			instantiateSockets(this.props.state, this.props.dispatch)
+		}
+	}
+
+	componentWillUnmount() {
+		stopSockets()
 	}
 
 	static propTypes = {

@@ -2,12 +2,19 @@ import storage from 'electron-json-storage'
 const { BrowserWindow } = require('electron').remote
 export const LOGIN = "LOGIN"
 export const LOGOUT = "LOGOUT"
+export const SOCKETS_STARTED = "SOCKETS_STARTED"
 export const SET_USER = "SET_USER"
 import { push } from 'react-router-redux'
 import io from 'socket.io-client';
 
 import GitHub from 'github-api';
 import axios from 'axios';
+
+export function socketsStarted() {
+	return {
+		type: SOCKETS_STARTED
+	}
+}
 
 export function setUser(currentUser, token, id) {
 	// storage.clear(err => console.error(err));
