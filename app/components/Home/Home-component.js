@@ -27,7 +27,7 @@ export default class Home extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (!this.props.auth.socketsStarted && nextProps.auth.token)  {
-			// instantiateSockets(this.props.state, this.props.dispatch)
+			instantiateSockets(this.props.state, this.props.dispatch)
 		}
 	}
 

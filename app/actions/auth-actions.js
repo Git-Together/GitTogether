@@ -37,23 +37,6 @@ export function setUser(currentUser, token, id) {
 				return storage.getAsync('channels')
 				.then(result => {
 					channelStorage = result
-					let socket = io(process.env.SOCKET_URL)
-
-					socket.emit('passLogin', currentUser)
-
-					socket.on('fileChanges', payload => {
-						let channels
-						storage.getAsync('channels')
-							.then(cachedChannels => {
-								let channels = Object.keys(cachedChannels[currentUser])
-								if (channels.includes(payload.channel)) {
-									new Notification(payload.githubName + ' is editing ' + payload.filepath + ' in ' + payload.branch.current + '.')
-								}
-							})
-							.catch(err => console.error)
-
-					})
-
 					return (dispatch, getState) => {
 						axios.get(process.env.SERVER_URL + `/api/users/${id}`)
 						// axios.get(`http://localhost:1337/api/users/${id}`)
