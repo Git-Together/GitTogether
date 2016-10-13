@@ -25,7 +25,7 @@ export function watchFile(repoId, fileId) {
         })
       })
   }
-
+}
 export function unwatchFile(repoId, fileId) {
 
   return (dispatch, getState) => {

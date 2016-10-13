@@ -20,8 +20,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     changeSelected: bindActionCreators(file.changeActiveFile, dispatch),
-	addSelected: bindActionCreators(watch.checkoutFile, dispatch),
-	removeSelected: bindActionCreators(watch.unsubscribe, dispatch),
+	addSelected: bindActionCreators(watch.watchFile, dispatch),
+	removeSelected: bindActionCreators(watch.unwatchFile, dispatch),
     // getList: bindActionCreators(file.refreshFiles, dispatch)
   }
 }

@@ -58,10 +58,10 @@ export function getRepoTree(repo) {
 				})
 				dispatch({
 					type: CHANGE_ACTIVE_REPO,
-					id: id
+					id: repo
 				})
 				dispatch({
-					type: TOGGLE_COMPONENT,
+					type: TOGGLE_TREE,
 					component: 'repos'
 				})
 			}).then(() => {
