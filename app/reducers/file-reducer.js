@@ -22,7 +22,7 @@ const initState = {
   icon: 'glyphicon glyphicon-file',
    panelMessageArray: [
       {
-        label: "Here Are your files",
+        label: "Here are your Files",
         text: "file"
      }
   ],

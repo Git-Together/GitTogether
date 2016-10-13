@@ -14,7 +14,7 @@ const initState =  {
   icon: 'glyphicon glyphicon-refresh',
   panelMessageArray: [
     {
-      label: "Here Are Your Teams",
+      label: "Here are your Teams",
       text: "Teams"
    }
   ],

@@ -2,9 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import './Page.scss';
 import List from '../List/List-component';
 import ActiveItem from '../ActiveItem/ActiveItem-component';
+import ActiveFile from '../ActiveItem/ActiveFile-component';
+import { connect } from 'react-redux'
 
-export default class Page extends Component {
+class Page extends Component {
 	constructor (props) {
+		console.log("page props ", props)
 		super(props);
 		this.state = {
 			list: this.props.list || []
@@ -39,18 +42,32 @@ export default class Page extends Component {
 	}
 
 	render() {
+		const { currentUi } = this.props
 		return (
 			<div className="Page">
 				<div className="Page-List">
 					<List list={this.state.list} changeSelected={this.props.changeSelected}></List>
 				</div>
 				<div className="Page-ActiveItem">
-					<ActiveItem  activeItem={this.filter(this.props.selected)[0] || {}}
+					{currentUi === "repos" && <ActiveItem  activeItem={this.filter(this.props.selected)[0] || {}}
 						addSelected={this.props.addSelected}
 						removeSelected={this.props.removeSelected}/>
+					}
+					{currentUi === "file" && <ActiveFile  activeItem={this.filter(this.props.selected)[0] || {}}
+						addSelected={this.props.addSelected}
+						removeSelected={this.props.removeSelected}/>
+}
 				</div>
 
 			</div>
 		)
 	}
 }
+
+function mapStateToProps(state) {
+	return { 
+		currentUi: state.ui.selected 
+	}
+}
+
+export default connect(mapStateToProps)(Page)
