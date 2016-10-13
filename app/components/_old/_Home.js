@@ -18,6 +18,8 @@ import Branches from './Branches.js';
 import FileView from './FileView.js';
 import Settings from './Settings.js';
 import { fileWatcher } from '../utils/file-watch.js';
+import { instantiateSockets, stopSockets } from '../utils/incoming-sockets.js';
+import * as AuthActions from '../../actions/auth-actions.js'
 
 export default class Home extends Component {
 	constructor (props) {
@@ -26,6 +28,21 @@ export default class Home extends Component {
 		this.state = {
 			repos: []
 		}
+	}
+
+	componentWillMount() {
+		fileWatcher()
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (!this.props.auth.socketsStarted && nextProps.auth.token)  {
+			this.props.dispatch(AuthActions.socketsStarted)
+			instantiateSockets(this.props.state, this.props.dispatch)
+		}
+	}
+
+	componentWillUnmount() {
+		stopSockets()
 	}
 
 	static propTypes = {
@@ -86,7 +103,7 @@ export default class Home extends Component {
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
     const { addChannel, removeChannel, loadChannels, channels } = this.props;
     const { addComment, editComment, removeComment} = this.props;
-    const { checkoutFile, returnFile, unsubscribe, checkoutList } = this.props;
+    const { checkoutFile, returnFile, unwatchFile, checkoutList } = this.props;
     const { repo } = this.props;
 
 

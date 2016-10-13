@@ -4,7 +4,8 @@ import * as AuthActions from '../../actions/auth-actions.js'
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux'
 import { connect } from 'react-redux'
-import storage from 'electron-json-storage'
+import Promise from 'bluebird'
+const storage = Promise.promisifyAll(require('electron-json-storage'))
 
 class Login extends Component{
 	constructor(props) {
@@ -16,18 +17,19 @@ class Login extends Component{
 	}
 
 	componentWillMount() {
-		storage.get('user', (err, result) => {
-			if (err) console.error(err)
-			AuthActions.setUser(result.currentUser, result.token, result.id)
+		storage.getAsync('user')
+		.then(result => {	
+			this.props.dispatch(AuthActions.setUser(result.currentUser, result.token, result.id))
 			if (result.currentUser) {
-				this.context.router.push('/Home')
+				this.props.dispatch(push('/Home'))
 			}
+
 		})
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.auth.currentUser) {
-			this.context.router.push('/Home')
+			this.props.dispatch(push('/Home'))
 		}
 	}
 
@@ -38,7 +40,7 @@ class Login extends Component{
 	}
 
 	render() {
-		const { login, Auth } = this.props
+		const { Auth, dispatch, login } = this.props
 
 		return (
 			<div>
@@ -54,7 +56,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators(AuthActions, dispatch)
+	return {
+		login: bindActionCreators(AuthActions.login, dispatch),
+		dispatch
+	}
 }
 
 Login.propTypes = {

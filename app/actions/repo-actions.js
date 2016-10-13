@@ -81,9 +81,9 @@ export function getRepoTree(repo) {
 				let channelName = getState().repo.channelName;
 				let watchArray = [];
 
-				axios.get(process.env.SERVER_URL + '/api/files/?userId=' + userId)
-					.then((watchFileList) => {
-						console.log("watchFileList is: ", watchFileList)
+                axios.get(process.env.SERVER_URL + '/api/files/?userId=' + userId)
+                    .then((watchFileList) => {
+
 
 						watchFileList.data.forEach((e) => {
 

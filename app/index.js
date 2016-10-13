@@ -6,27 +6,30 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import routes from './routes';
 import configureStore from './store/configureStore';
 import './app.global.css';
-import storage from 'electron-json-storage';
+import Promise from 'bluebird'
+const storage = Promise.promisifyAll(require('electron-json-storage'))
 
 let state = {
   auth: {}
 };
 // storage.clear(err => console.error)
-storage.get('user', (err, result) => {
-  if (err) console.error(err)
-  state.auth.currentUser = result.currentUser;
-  state.auth.token = result.token;
-  state.auth.id = result.id;
-  const store = configureStore(state);
-  const history = syncHistoryWithStore(hashHistory, store);
+storage.getAsync('user')
+	.then(result => {
+		state.auth.currentUser = result.currentUser;
+		state.auth.token = result.token;
+		state.auth.id = result.id;
+		const store = configureStore(state);
+		const history = syncHistoryWithStore(hashHistory, store);
 
-  render(
-    <Provider store={store}>
-      <Router history={history} routes={routes} />
-    </Provider>,
-    document.getElementById('root')
-  );
+		render(
+			<Provider store={store}>
+				<Router history={history} routes={routes} />
+			</Provider>,
+			document.getElementById('root')
+		);
+	})
+	.catch(err => console.error(err))
 
 
-})
+
 

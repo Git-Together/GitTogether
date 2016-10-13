@@ -17,7 +17,6 @@ class ActiveFile extends Component {
   };
 
 	displayTableData(obj){
-		console.log('DISPLAY TABLE DATA', values(obj));
 		return values(obj) ? values(obj).map((e, index)=> {
 			return (
 				<tr key={index}>
