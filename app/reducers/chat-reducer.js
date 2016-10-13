@@ -17,7 +17,7 @@ const initialState = {
   icon: 'glyphicon glyphicon-comment',
   panelMessageArray: [
       {
-        label: "Here Are your Chats",
+        label: "Here is the Conversation",
         text: "Chat"
       }
     ],

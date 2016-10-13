@@ -2,6 +2,7 @@ export const ADD_TEAM_MEMBER = 'ADD_TEAM_MEMBER';
 export const REMOVE_TEAM_MEMBER = 'REMOVE_TEAM_MEMBER';
 export const REFRESH_TEAM_MEMBERS = 'REFRESH_TEAM_MEMBER';
 export const CHANGE_ACTIVE_TEAM_MEMBER = 'CHANGE_ACTIVE_TEAM_MEMBER'
+export const CHANGE_ACTIVE_TEAM = 'CHANGE_ACTIVE_TEAM'
 
 import GitHub from 'github-api';
 import axios from 'axios';
@@ -33,9 +34,16 @@ export function changeActiveTeamMember(id) {
 	};
 }
 
+export function changeSelectedTeam(channelId){
+	return {
+		type: CHANGE_ACTIVE_TEAM,
+		channelId
+	}
+}
+
 export function removeTeamMember(id, repoId) {
 		return (dispatch, getState) => {
-			axios.delete(process.env.SERVER_URL + `/api/channels/remove?channelId=${getState().repo.channelName}&userName=${id}`)
+			axios.put(process.env.SERVER_URL + `/api/channels/remove?channelId=${getState().repo.channelName}&userName=${id}`)
 			// return axios.put(`http://localhost:1337/api/channels/remove?channelId=${getState().repo.channelName}&userName=${id}`)
 			.then( () => {
 				dispatch({
@@ -48,10 +56,12 @@ export function removeTeamMember(id, repoId) {
 }
 
 export function refreshTeamMembers() {
+	console.log('REFRESH TEAM MEMBERS CALLED');
 	return (dispatch, getState) => {
 		axios.get(process.env.SERVER_URL + `/api/users/${getState().auth.id}`)
 		// axios.get(`http://localhost:1337/api/users/${getState().auth.id}`)
 		.then( user => {
+			console.log('user', user);
 			dispatch({
 				type: REFRESH_TEAM_MEMBERS,
 				channels: user.data.channels,

@@ -58,7 +58,7 @@ export default class ActiveItem extends Component {
         <div className="ActiveItem-Name">
 
           <div className="ActiveItem-Name-Text">
-            {this.props.activeItem.name}
+            {this.props.activeItem.name ? this.props.activeItem.name : this.props.activeItem.path}
           </div> {/* ActiveItem-Name-Text */}
 
         </div> {/* ActiveItem-Name */}
@@ -79,7 +79,7 @@ export default class ActiveItem extends Component {
           </div> {/* ActiveItem-Functionality-Add */}
 
           <div
-            onClick={this.props.removeSelected.bind(null)}
+            onClick={this.props.removeSelected.bind(null, this.props.activeItem.name)}
             className="ActiveItem-Functionality-Remove">
           -
           </div> {/* ActiveItem-Functionality-Remove */}

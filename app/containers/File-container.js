@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as file from '../actions/file-actions.js';
+import * as watch from '../actions/watch-actions.js'
 import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js';
 
 function mapStateToProps(state) {
   return {
-    list: state.file.file,
+    list: state.repo.repoList,
     icon: state.file.icon,
     panelMessage: state.file.panelMessageArray[state.file.panelMessagePlayIndex] || 'Your current active repo',
     panelMessageArray: state.file.panelMessageArray,
@@ -18,16 +19,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    changeSelected: bindActionCreators(file.changeActiveFile, dispatch),
+	addSelected: bindActionCreators(watch.checkoutFile, dispatch),
+	removeSelected: bindActionCreators(watch.unsubscribe, dispatch),
+    // getList: bindActionCreators(file.refreshFiles, dispatch)
   }
 }
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     changeSelected: bindActionCreators(file.changeActiveRepo, dispatch),
-//     addSelected: bindActionCreators(file.addChannel, dispatch),
-//     removeSelected: bindActionCreators(file.removeChannel, dispatch),
-//     getList: bindActionCreators(file.getUserRepos, dispatch)
-//   }
-// }
 
-export default connect(mapStateToProps)(PanelPage)
-// export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
+export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
