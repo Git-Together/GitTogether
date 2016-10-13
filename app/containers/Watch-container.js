@@ -10,25 +10,21 @@ function mapStateToProps(state) {
     icon: state.watch.icon,
     panelMessage: state.watch.panelMessageArray[state.watch.panelMessagePlayIndex] || 'Your current active repo',
     panelMessageArray: state.watch.panelMessageArray,
-    selected: state.watch.activeRepoId,
+    selected: state.watch.activeWatch,
     uiSelected: state.ui.selected,
     currentUi: 'watch'
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     changeSelected: bindActionCreators(watch.changeActiveWatch, dispatch),
-//     addSelected: bindActionCreators(watch.addWatch, dispatch),
-//     removeSelected: bindActionCreators(watch.removeWatch, dispatch),
-//     getList: bindActionCreators(watch.getWatch, dispatch)
-//   }
-// }
-
 function mapDispatchToProps(dispatch) {
   return {
+    changeSelected: bindActionCreators(watch.changeActiveWatch, dispatch),
+    addSelected: bindActionCreators(watch.watchFile, dispatch),
+    removeSelected: bindActionCreators(watch.unwatchFile, dispatch),
+    getList: bindActionCreators(watch.getWatch, dispatch)
   }
 }
 
-export default connect(mapStateToProps)(PanelPage)
-// export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
+
+// export default connect(mapStateToProps)(PanelPage)
+export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
