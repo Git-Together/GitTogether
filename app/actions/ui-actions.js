@@ -7,10 +7,18 @@
 // export const SHOW_FILEVIEW = 'SHOW_FILEVIEW';
 // export const SHOW_SETTINGS = 'SHOW_SETTINGS';
 export const TOGGLE_COMPONENT = 'TOGGLE_COMPONENT';
+export const TOGGLE_TREE = 'TOGGLE_TREE';
 
 export function toggleComponent(component) {
   return {
     type: TOGGLE_COMPONENT,
+    component
+  };
+}
+
+export function toggleTree(component) {
+  return {
+    type: TOGGLE_TREE,
     component
   };
 }
