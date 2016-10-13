@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import './ListItem.scss';
+import { connect } from 'react-redux'
 
-export default class List extends Component {
+class List extends Component {
   constructor (props) {
     super(props);
     this.state = {
     }
-    console.log('List Item Props', props);
-    
   }
 
   static propTypes = {
@@ -31,3 +30,11 @@ export default class List extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+	return {
+		currentUi: state.ui.selected
+	}
+}
+
+export default connect(mapStateToProps)(List)

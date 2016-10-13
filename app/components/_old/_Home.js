@@ -38,7 +38,8 @@ export default class Home extends Component {
 		team: PropTypes.object.isRequired,
 		repo: PropTypes.object.isRequired,
 		ui: PropTypes.string.isRequired,
-		auth: PropTypes.object.isRequired
+		auth: PropTypes.object.isRequired,
+		repo: PropTypes.object.isRequired
 	};
 
   display (array, type) {
@@ -86,6 +87,7 @@ export default class Home extends Component {
     const { addChannel, removeChannel, loadChannels, channels } = this.props;
     const { addComment, editComment, removeComment} = this.props;
     const { checkoutFile, returnFile, unsubscribe, checkoutList } = this.props;
+    const { repo } = this.props;
 
 
 		let uiSwitch;

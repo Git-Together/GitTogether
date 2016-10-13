@@ -58,7 +58,7 @@ export default class ActiveItem extends Component {
         <div className="ActiveItem-Name">
 
           <div className="ActiveItem-Name-Text">
-            {this.props.activeItem.name}
+            {this.props.activeItem.name ? this.props.activeItem.name : this.props.activeItem.path}
           </div> {/* ActiveItem-Name-Text */}
 
         </div> {/* ActiveItem-Name */}

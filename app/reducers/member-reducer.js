@@ -8,7 +8,7 @@ export default function member(state =
     icon: 'glyphicon glyphicon-user',
     panelMessageArray: [
       {
-        label: "Here Are your Members",
+        label: "Here are your Teammates",
         text: "Member"
      }
     ],
