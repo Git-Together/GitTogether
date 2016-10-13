@@ -3,6 +3,8 @@ import './Page.scss';
 import List from '../List/List-component';
 import ActiveItem from '../ActiveItem/ActiveItem-component';
 import ActiveFile from '../ActiveItem/ActiveFile-component';
+import ActiveRepos from '../ActiveItem/ActiveRepos-component';
+import ActiveCollaborator from '../ActiveItem/ActiveCollaborator-component';
 import { connect } from 'react-redux'
 
 class Page extends Component {
@@ -50,7 +52,7 @@ class Page extends Component {
 					<List list={this.state.list} changeSelected={this.props.changeSelected}></List>
 				</div>
 				<div className="Page-ActiveItem">
-					{currentUi === "repos" && <ActiveItem  activeItem={this.filter(this.props.selected)[0] || {}}
+					{currentUi === "repos" && <ActiveRepos  activeItem={this.filter(this.props.selected)[0] || {}}
 						addSelected={this.props.addSelected}
 						removeSelected={this.props.removeSelected}/>
 					}
@@ -58,7 +60,7 @@ class Page extends Component {
 						addSelected={this.props.addSelected}
 						removeSelected={this.props.removeSelected}/>
 					}
-					{currentUi === "member" && <ActiveItem  activeItem={this.filter(this.props.selected)[0] || {}}
+					{currentUi === "member" && <ActiveCollaborator  activeItem={this.filter(this.props.selected)[0] || {}}
 						addSelected={this.props.addSelected}
 						removeSelected={this.props.removeSelected}/>
 					}
