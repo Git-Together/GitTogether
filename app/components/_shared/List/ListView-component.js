@@ -3,37 +3,46 @@ import './ListView.scss';
 import ListItem from './ListItem-component.js'
 
 export default class List extends Component {
-  constructor (props) {
-    //Passed down in props
-    super(props);
-    this.state = {
+	constructor (props) {
+		super(props);
+		this.state = {
 
-    }
-    this.display = this.display.bind(this);
-  }
+		}
+		this.display = this.display.bind(this);
+	}
 
-  static propTypes = {
+	static propTypes = {
 
-  };
+	};
 
-  componentWillMount(){
-    if(this.props.getList) this.props.getList();
-  } 
+	componentWillMount(){
+		if(this.props.getList) { 
+			this.props.getList(); 
+		}
+	} 
 
-  display(){
-    return this.props.list? this.props.list.map((e, index) => {
-      // return <ListItem key={index} item={e} />
-      return <ListItem key={index} item={e} changeSelected={this.props.changeSelected}/>
-    }) : [];
-  }
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.list) {
+			this.setState({
+				list: nextProps.list
+			})
+		}
+	}
 
-  render() {
-    return (
-            <div>
-              <div className={this.props.icon + ' ListView-Icon'}></div>
-              <div className="ListViewComponent">{this.display()}</div>
-            </div>
+	display(){
+		return this.props.list? this.props.list.map((e, index) => {
+			// return <ListItem key={index} item={e} />
+			return <ListItem key={index} item={e} changeSelected={this.props.changeSelected}/>
+		}) : [];
+	}
 
-    )
-  }
+	render() {
+		return (
+			<div>
+				<div className={this.props.icon + ' ListView-Icon'}></div>
+				<div className="ListViewComponent">{this.display()}</div>
+			</div>
+
+		)
+	}
 }
