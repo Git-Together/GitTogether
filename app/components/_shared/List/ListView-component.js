@@ -17,8 +17,8 @@ export default class List extends Component {
   };
 
   componentWillMount(){
-    if(this.props.currentUi != 'team') this.props.getList();
-  }
+    if(this.props.getList) this.props.getList();
+  } 
 
   display(){
     return this.props.list? this.props.list.map((e, index) => {

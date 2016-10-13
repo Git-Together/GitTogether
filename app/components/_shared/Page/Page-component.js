@@ -5,6 +5,7 @@ import ActiveItem from '../ActiveItem/ActiveItem-component';
 import ActiveFile from '../ActiveItem/ActiveFile-component';
 import { connect } from 'react-redux'
 
+
 class Page extends Component {
 	constructor (props) {
 		console.log("page props ", props)
@@ -37,6 +38,8 @@ class Page extends Component {
 				return item.name === this.props.selected
 			} else if (item.path) {
 				return item.path === this.props.selected
+			} else if (typeof item === 'string'){
+				return item === this.props.selected
 			}
 		}) : [];
 	}
@@ -56,7 +59,11 @@ class Page extends Component {
 					{currentUi === "file" && <ActiveFile  activeItem={this.filter(this.props.selected)[0] || {}}
 						addSelected={this.props.addSelected}
 						removeSelected={this.props.removeSelected}/>
-}
+					}
+					{currentUi === "member" && <ActiveItem  activeItem={this.filter(this.props.selected)[0] || {}}
+						addSelected={this.props.addSelected}
+						removeSelected={this.props.removeSelected}/>
+					}
 				</div>
 
 			</div>
