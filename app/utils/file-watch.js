@@ -39,9 +39,6 @@ export function fileWatcher() {
 					ignore: ['**/node_modules/**', 'node_modules/**']
 				}, function(err, watcher) {
 					var watched = this.watched()
-					this.on('ready', function() {
-					})
-
 					//'All' will fire the callback if any files are changed, added, or deleted.
 					this.on('all', function (event, filepath) {
 						let payload = { event, channel, username }
@@ -116,22 +113,4 @@ export function fileWatcher() {
 			})
 		})
 		.catch(err => console.error)
- 	//Logic for handling incoming socket events—this may need to be moved to
-	//a parent react component.
-	/*socket.on('fileChanges', payload => {
-		let channels
-		storage.get('channels', (err, data) => {
-			if (err) {
-				console.error(err)
-				return
-			}
-
-			channels = data
-		})
-
-		if (channels.includes(payload.channel)) {
-			new Notification(payload.githubName + ' is editing ' + payload.filepath + ' in ' + payload.branch.current + '.')
-		}
-	})*/
-
 }
