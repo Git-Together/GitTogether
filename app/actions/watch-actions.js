@@ -12,15 +12,15 @@ export function watchFile(repoId, fileName) {
 		const state = getState()
 		var payload = {
 			fileName: fileName,
-			repoName: repoId,
+			repoId,
 			userId: state.auth.id
 		};
 		axios.post(process.env.SERVER_URL + '/api/files/', payload)
 			.then(fileWatch => {
 				dispatch({
 					type: WATCH_FILE,
-					repoName: repoId,
-					fileName,
+					repoId: repoId,
+					fileId: fileName,
 					userId: state.auth.id
 				})
 			})
@@ -68,14 +68,12 @@ export function getWatch() {
 		let watchList = [];
 		let channelName = getState().repo.channelName;
 		let watchArray = [];
-
+    console.log("ChannelName and userId", channelName, userId)
 		axios.get(process.env.SERVER_URL + '/api/files/?userId=' + userId)
 			.then((watchFileList) => {
 
 				watchFileList.data.forEach((e) => {
-
-					if (e.users[0].id === userId && e.repoId === channelName) {
-
+					if (e.repoId === channelName && e.users.some(j => j.id === userId)) {
 						watchArray.push(e)
 					}
 				})
