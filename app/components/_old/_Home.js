@@ -103,7 +103,7 @@ export default class Home extends Component {
     const { postMessage, refreshMessages, changeActiveMessage, chat } = this.props;
     const { addChannel, removeChannel, loadChannels, channels } = this.props;
     const { addComment, editComment, removeComment} = this.props;
-    const { checkoutFile, returnFile, unsubscribe, checkoutList } = this.props;
+    const { checkoutFile, returnFile, unwatchFile, checkoutList } = this.props;
     const { repo } = this.props;
 
 

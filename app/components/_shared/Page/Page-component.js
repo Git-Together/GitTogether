@@ -66,7 +66,7 @@ class Page extends Component {
 
 			</div>
 		)
-
+	}
 }
 
 function mapStateToProps(state) {

@@ -23,39 +23,42 @@ export function getUserRepos() {
 }
 
 export function addChannel(channel) {
-	// let channelName = channel
 	return (dispatch, getState) => {
-		let filteredRepo = getState().repos.repos.filter( e => { return e.name === channel})
+		let state = getState()
+		let filteredRepo = state.repos.repos.filter( e => { return e.name === channel})
 		let channelName = filteredRepo[0].full_name;
-		let currentUser = getState().auth.currentUser
-		let userId = getState().auth.id
-		let repo = getState().repo
+		let currentUser = state.auth.currentUser
+		let userId = state.auth.id
+		let repo = state.repo
 		let channelStorage
-		storage.get('channels', (err, result) => {
-			if (err) {
-				console.error(err)
-				channelStorage = {}
-			}
-
-			channelStorage = result
-			let userStorage = channelStorage[currentUser]
-			userStorage[channelName] = null
-			storage.set('channels', {...channelStorage, [currentUser]: userStorage})
-			let channels = Object.keys(userStorage)
-
-			return axios.post(process.env.SERVER_URL + `/api/channels/${userId}`, {
-			// return axios.post(`http://localhost:1337/api/channels/${userId}`, {	
-				repoId: channelName
+		let channels, userStorage
+		return storage.getAsync('channels')
+			.then(result => {
+				channelStorage = result
+				if (channelStorage[currentUser]) {
+					userStorage = channelStorage[currentUser]
+				} else {
+					userStorage	= {}
+				}
+				userStorage[channelName] = null
+				return storage.setAsync('channels', {...channelStorage, [currentUser]: userStorage})
 			})
-				.then(createdChannel => {
-					dispatch({
-						type: LOAD_CHANNELS,
-						channels
-					})
+			.then(() => {
+				channels = Object.keys(userStorage)
+
+				return axios.post(process.env.SERVER_URL + `/api/channels/${userId}`, {
+					repoId: channelName
 				})
-		})
+			})
+			.then(createdChannel => {
+				dispatch({
+					type: LOAD_CHANNELS,
+					channels
+				})
+			})
 	}
 }
+
 
 export function removeChannel(id) {
 	return (dispatch, getState) => {

@@ -15,11 +15,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-
 	return {
 		toggleComponent: bindActionCreators(ui.toggleComponent, dispatch),
-		logout: bindActionCreators(AuthActions.logout, dispatch),
-		dispatch
+		logout: bindActionCreators(AuthActions.logout, dispatch)
+		// dispatch
 	}
 }
 

@@ -26,12 +26,10 @@ export function instantiateSockets (state, dispatch) {
 	})
 
 	socket.on('reloadTeam', channelName => {
-		console.log("I'VE BEEN TOLD TO RELOAD", channelName)
 		dispatch(TeamActions.refreshTeamMembers())
 	})
 
 	socket.on('reloadChannels', channelName => {
-		console.log('I was added or removed from a channel')
 		dispatch(ChannelActions.loadChannels())
 	})
 }

@@ -28,12 +28,10 @@ export default class ActiveItem extends Component {
   // }
 
   // displayData(e){
-  //   console.log('Display Data', e);
   //   let element = [];
   //   for(var column in e){
   //     element.push(<td key={column}> {e[column]} </td>);
   //   }
-  //   console.log('Element Array', element);
   //   return element;
   // }
 

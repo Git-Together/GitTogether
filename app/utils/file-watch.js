@@ -40,7 +40,6 @@ export function fileWatcher() {
 				}, function(err, watcher) {
 					var watched = this.watched()
 					this.on('ready', function() {
-						console.log('filewatcher watching')
 					})
 
 					//'All' will fire the callback if any files are changed, added, or deleted.
@@ -109,7 +108,6 @@ export function fileWatcher() {
 								//	}
 							})
 							.then(() => {
-								console.log(payload)
 								socket.emit('fileChanges', payload)
 								return
 							})
@@ -121,7 +119,6 @@ export function fileWatcher() {
  	//Logic for handling incoming socket events—this may need to be moved to
 	//a parent react component.
 	/*socket.on('fileChanges', payload => {
-		console.log('PAYLOAD', payload);
 		let channels
 		storage.get('channels', (err, data) => {
 			if (err) {

@@ -17,7 +17,6 @@ import * as AuthActions from '../../actions/auth-actions.js'
 export default class Home extends Component {
 	constructor (props) {
 		super(props);
-		console.log("HOME PROPS ", props)
 		this.state = {
 		}
 	}
@@ -28,7 +27,7 @@ export default class Home extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (!this.props.auth.socketsStarted && nextProps.auth.token)  {
-			instantiateSockets(this.props.state, this.props.dispatch)
+			// instantiateSockets(this.props.state, this.props.dispatch)
 		}
 	}
 
