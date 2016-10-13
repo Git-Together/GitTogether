@@ -5,7 +5,6 @@ import ActiveItem from '../ActiveItem/ActiveItem-component';
 import ActiveFile from '../ActiveItem/ActiveFile-component';
 import { connect } from 'react-redux'
 
-
 class Page extends Component {
 	constructor (props) {
 		console.log("page props ", props)
@@ -68,12 +67,12 @@ class Page extends Component {
 
 			</div>
 		)
-	}
+
 }
 
 function mapStateToProps(state) {
-	return { 
-		currentUi: state.ui.selected 
+	return {
+		currentUi: state.ui.selected
 	}
 }
 

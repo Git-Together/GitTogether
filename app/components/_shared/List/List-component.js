@@ -10,8 +10,6 @@ export default class List extends Component {
 
     }
     this.display = this.display.bind(this);
-    
-
   }
 
   static propTypes = {
