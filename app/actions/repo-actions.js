@@ -12,6 +12,7 @@ import GitHub from 'github-api';
 import axios from 'axios';
 import { TOGGLE_COMPONENT, TOGGLE_TREE } from './ui-actions';
 import {CHANGE_ACTIVE_TEAM} from './team-actions';
+import {CHANGE_ACTIVE_REPO} from './repos-actions';
 import Promise from 'bluebird';
 const storage = Promise.promisifyAll(require('electron-json-storage'))
 
@@ -51,6 +52,14 @@ export function getRepoTree(repo){
 					dispatch({
 						type: CHANGE_ACTIVE_TEAM,
 						channelId: repo,
+					})
+					dispatch({
+						type: CHANGE_ACTIVE_REPO,
+        				id: id
+					})
+					dispatch({
+						type: TOGGLE_COMPONENT,
+						component: 'repos'
 					})
 				}).then(() => {
 					return storage.getAsync('channels')
