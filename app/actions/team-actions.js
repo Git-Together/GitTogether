@@ -2,7 +2,8 @@ export const ADD_TEAM_MEMBER = 'ADD_TEAM_MEMBER';
 export const REMOVE_TEAM_MEMBER = 'REMOVE_TEAM_MEMBER';
 export const REFRESH_TEAM_MEMBERS = 'REFRESH_TEAM_MEMBERS';
 export const CHANGE_ACTIVE_TEAM_MEMBER = 'CHANGE_ACTIVE_TEAM_MEMBER'
-export const CHANGE_ACTIVE_TEAM = 'CHANGE_ACTIVE_TEAM'
+export const CHANGE_ACTIVE_TEAM = 'CHANGE_ACTIVE_TEAM';
+export const GET_USER_CHANGES = 'GET_USER_CHANGES';
 
 import GitHub from 'github-api';
 import axios from 'axios';
@@ -80,4 +81,26 @@ export function refreshTeamMembers() {
 			});
 		})
 	};
+}
+
+// Get last 10 files changes for the given user, ordered.
+export function getUserChanges(username) {
+  return (dispatch, getState) => {
+		let channelName = getState().repo.channelName.split('/').join('*');
+			axios.get(process.env.SERVER_URL + `/api/events/user/${username}?repoId=${channelName}`)
+			.then(userEvents => {
+			console.log('USER EVENTS', userEvents);	
+			dispatch({
+				type: GET_USER_CHANGES,
+				userEvents: userEvents.data
+			})
+		});
+	};
+}
+
+export function changeActiveTeamMemberAsync(username){
+	return (dispatch, getState) => {
+		dispatch(getUserChanges(username))
+		dispatch(changeActiveTeamMember(username))
+	}
 }

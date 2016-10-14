@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Table from 'rc-table';
 import { connect } from 'react-redux'
 import './ActiveItem.scss';
 import {values} from 'lodash';
@@ -9,34 +10,11 @@ class ActiveFile extends Component {
     this.state = {
 
     }
-		this.displayTableData = this.displayTableData.bind(this);
   }
 
   static propTypes = {
 
   };
-
-	displayTableData(obj){
-		return values(obj) ? values(obj).map((e, index)=> {
-			return (
-				<tr key={index}>
-					<td key={'eventType'}>{e.eventType}</td>
-					<td key={'date'}>{e.createdAt.toString()}</td>
-					<td key={'origLineStart'}>{e.origLineStart}</td>
-					<td key={'origLineEnd'}>{e.origLineEnd}</td>
-					<td key={'localLineStart'}>{e.localLineStart}</td>
-					<td key={'localLineEnd'}>{e.localLineEnd}</td>
-				</tr>
-			)
-		}) : '';
-	}
-
-	displayRow(){
-		console.log('props in active file component', this.props);
-		return this.displayTableData(this.props.events)
-	}
-
-	
 
   render() {
 	  console.log('active item props ', this.props)
@@ -51,6 +29,19 @@ class ActiveFile extends Component {
 	  }
 	  let path = this.props.activeItem.path
 	  const { repoId, events } = this.props
+		const columns = [
+			{ title: 'Event Type', dataIndex: 'eventType', key:'name', width: 200},
+			{ title: 'Date', dataIndex: 'createdAt', key:'createdAt', width: 200},
+			{ title: 'Original Line Start', dataIndex: 'origLineStart', key:'origLineStart', width: 200},
+			{ title: 'Original Line End', dataIndex: 'origLineEnd', key:'origLineEnd', width: 200},
+			{ title: 'Local Line Start', dataIndex: 'localLineStart', key:'localLineStart', width: 200},
+			{ title: 'Local Line End', dataIndex: 'localLineEnd', key:'localLineEnd', width: 200},
+			]
+		let data = events ? events.map(e => {
+			let date = new Date(Date.parse(e.createdAt))
+			e.createdAt = date.toLocaleDateString("en-US");
+			return e
+		}) : [];
 	return (
 		<div className="ActiveItem">
 
@@ -88,14 +79,7 @@ class ActiveFile extends Component {
 	  <div className="ActiveItem-MainView">
 
 		  <div className="ActiveItem-MainView-Content">
-			  <table>
-					<tbody>
-				{this.displayRow()}
-				 </tbody>
-								  {/*
-				{this.displayRow()} */}
-			</table> 
-			{this.props.activeItem.mainView}
+				<Table columns={columns} data={data} />
 		  </div> {/* ActiveItem-Name-MainView-Content */}
 
 	  </div>{/* ActiveItem-MainView */}

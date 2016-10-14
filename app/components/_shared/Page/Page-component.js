@@ -3,6 +3,7 @@ import './Page.scss';
 import List from '../List/List-component';
 import ActiveItem from '../ActiveItem/ActiveItem-component';
 import ActiveFile from '../ActiveItem/ActiveFile-component';
+import ActiveUser from '../ActiveItem/ActiveUser-component';
 import { connect } from 'react-redux'
 
 class Page extends Component {
@@ -58,7 +59,7 @@ class Page extends Component {
 						addSelected={this.props.addSelected}
 						removeSelected={this.props.removeSelected}/>
 					}
-					{currentUi === "member" && <ActiveItem  activeItem={this.filter(this.props.selected)[0] || {}}
+					{currentUi === "member" && <ActiveUser activeItem={this.filter(this.props.selected)[0] || {}}
 						addSelected={this.props.addSelected}
 						removeSelected={this.props.removeSelected}/>
 					}

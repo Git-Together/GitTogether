@@ -123,6 +123,7 @@
     "lodash": "^4.16.4",
     "postcss": "^5.1.2",
     "precss": "^1.4.0",
+    "rc-table": "^5.0.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",

@@ -24,7 +24,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeSelected: bindActionCreators(team.changeActiveTeamMember, dispatch),
+    changeSelected: bindActionCreators(team.changeActiveTeamMemberAsync, dispatch),
     getList: bindActionCreators(team.refreshTeamMembers, dispatch)
   }
 }
