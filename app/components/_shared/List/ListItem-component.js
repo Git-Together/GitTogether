@@ -2,10 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import './ListItem.scss';
 import { connect } from 'react-redux'
 
+
+import {ModalContainer, ModalDialog} from 'react-modal-dialog';
+
+
 class List extends Component {
   constructor (props) {
     super(props);
     this.state = {
+      isShowingModal: false
     }
   }
 
@@ -13,13 +18,16 @@ class List extends Component {
 
   };
 
+  handleClick = () => this.setState({isShowingModal: true})
+  handleClose = () => this.setState({isShowingModal: false})
+
   render() {
     let item;
     if(typeof this.props.item === "string"){
       item = this.props.item;
     } else {
       if(this.props.item.name){
-        item = this.props.item.name;
+          item = this.props.item.name;
       } else if (this.props.item.path){
         item = this.props.item.path
       }
@@ -27,7 +35,16 @@ class List extends Component {
     return (
       <div className="ListItem" onClick={this.props.changeSelected.bind(null, item)}>
 
-        <div className="ListItem-Name"> 
+        <div className="ListItem-Name" onClick={this.handleClick}>
+          {/*{
+          this.state.isShowingModal && 
+          <ModalContainer onClose={this.handleClose}>
+            <ModalDialog onClose={this.handleClose}>
+              <h1>Dialog Content</h1>
+               <p>More Content. Anything goes here</p>
+            </ModalDialog>
+          </ModalContainer>
+        } */}
 
           <span className="ListItem-Name-Text">
             {item}

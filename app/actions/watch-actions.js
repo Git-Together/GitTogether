@@ -5,6 +5,7 @@ export const RESET_WATCH = "RESET_WATCH";
 export const GET_ALL_WATCH = "GET_ALL_WATCH";
 import axios from 'axios';
 
+
 export function watchFile(repoId, fileName) {
 
 	return (dispatch, getState) => {
@@ -67,7 +68,6 @@ export function getWatch() {
 		let watchList = [];
 		let channelName = getState().repo.channelName;
 		let watchArray = [];
-    console.log("ChannelName and userId", channelName, userId)
 		axios.get(process.env.SERVER_URL + '/api/files/?userId=' + userId)
 			.then((watchFileList) => {
 
