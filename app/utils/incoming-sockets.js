@@ -34,7 +34,7 @@ export function instantiateSockets (state, dispatch) {
 
             watchFileList.forEach(e => {
               if(e.fileName === payload.filepath.slice(1)){
-                new Notification(payload.username + ' just ' + payload.event + " " + payload.filepath + ' in ' + payload.branch.current + '.', { silent: 'true' })
+                new Notification(payload.username + ' just ' + payload.event + " " + payload.filepath + ' in ' + payload.channel + '.', { silent: 'true' })
               }
             })
 
@@ -66,3 +66,6 @@ export function stopSockets() {
 	}
 }
 
+export function getOnline(channelName) {
+	socket.emit('getOnline', channelName)
+}

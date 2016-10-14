@@ -3,9 +3,11 @@ import './ListItem.scss';
 import { connect } from 'react-redux'
 import ActiveUser from '../ActiveItem/ActiveUser-component';
 import ActiveRepo from '../ActiveItem/ActiveRepo-component';
+import * as ChannelActions from '../../../actions/repos-actions.js'
+import { bindActionCreators } from 'redux'
 
 
-import {ModalContainer, ModalDialog} from 'react-modal-dialog';
+import { ModalContainer, ModalDialog } from 'react-modal-dialog';
 
 
 class List extends Component {
@@ -24,6 +26,7 @@ class List extends Component {
   handleClose = () => this.setState({isShowingModal: false})
 
   render() {
+	let { removeChannel } = this.props
     let item;
     if(typeof this.props.item === "string"){
       item = this.props.item;
@@ -34,12 +37,20 @@ class List extends Component {
         item = this.props.item.path
       }
     }
+	removeChannel = removeChannel.bind(null, item)
+	let itemStyle = {
+		cursor: 'pointer'
+	}
+	  if (this.props.curUi === "channel") {
+		  console.log('channel props ', this.props)
+	  }
+	
     return (
-      <div className="ListItem" onClick={this.props.changeSelected.bind(null, item)}>
+      <div className="ListItem" style={itemStyle} onClick={this.props.changeSelected.bind(null, item)}>
 
-        <div className="ListItem-Name" onClick={this.handleClick}>
+        <div className="ListItem-Name" onClick={this.props.curUi === "team" && this.handleClick}>
           {
-          this.state.isShowingModal && this.props.isTeam &&
+          this.state.isShowingModal &&
           <ModalContainer onClose={this.handleClose}>
             <ModalDialog onClose={this.handleClose}>
               <h1>Recent Activity for: {item}</h1>
@@ -52,15 +63,33 @@ class List extends Component {
 					<span className="ListItem-Name-Text">
 						{item}
 					</span> {/* ListItem-Name-Text */}
-					{this.props.isTeam && this.props.currentlyOnline.includes(item) &&
+					{this.props.curUi === "team" && this.props.currentlyOnline.includes(item) &&
 						<span className="ListItem-Online pull-right">
 							&nbsp;
 						</span>
 					}
-					{this.props.isTeam && !this.props.currentlyOnline.includes(item) &&
+					{this.props.curUi === "team" && !this.props.currentlyOnline.includes(item) &&
 						<span className="ListItem-Offline pull-right">
 							&nbsp;
 						</span>
+					}
+					{this.props.curUi === "channel" &&
+						<div className="pull-right">
+						<span onClick={this.handleClick} className="ListItem-Offline">
+							&nbsp;
+							{this.state.isShowingModal &&
+							<ModalContainer onClose={this.handleClose}>
+								<ModalDialog onClose={this.handleClose}>
+									<h1>Recent Activity for: {item}</h1>
+									{ this.props.curUi === 'team' && <ActiveUser name={item} addSelected={function(){}} removeSelected={function(){}}/> }
+									{ this.props.curUi === 'channel' && <ActiveRepo name={item} addSelected={function(){}} removeSelected={function(){}}/>}
+								</ModalDialog>
+							</ModalContainer>
+							}
+						</span>
+						<span>&nbsp;</span>
+							<span onClick={removeChannel} className="glyphicon glyphicon-minus"></span>
+						</div>
 					}
 				</div> {/* ListItem-Name */}
 
@@ -76,4 +105,10 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps)(List)
+function mapDispatchToProps(dispatch) {
+	return {
+		removeChannel: bindActionCreators(ChannelActions.removeChannel, dispatch)
+	}
+}
+
+	export default connect(mapStateToProps, mapDispatchToProps)(List)
