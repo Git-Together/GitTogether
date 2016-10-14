@@ -31,10 +31,19 @@ export function instantiateSockets (state, dispatch) {
 	})
 
 	socket.on('reloadTeam', channelName => {
+		console.log('told to reload team')
 		dispatch(TeamActions.refreshTeamMembers())
 	})
 
+	socket.on('refreshOnline', payload => {
+		console.log(`told to reload online. the following people are online: ${payload.currentlyOnline}`)
+		if (state.repo.channelName === payload.channel) {
+			dispatch(TeamActions.refreshOnline(currentlyOnline))
+		}
+	})
+
 	socket.on('reloadChannels', channelName => {
+		console.log('told to reload channels')
 		dispatch(ChannelActions.loadChannels())
 	})
 }
@@ -42,6 +51,7 @@ export function instantiateSockets (state, dispatch) {
 export function stopSockets() {
 	if (socket) {
 		socket.removeAllListeners()
+		socket.disconnect()
 	}
 }
 

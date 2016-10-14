@@ -1,4 +1,4 @@
-import { GET_USER_CHANGES, CHANGE_ACTIVE_TEAM, CHANGE_ACTIVE_TEAM_MEMBER, ADD_TEAM_MEMBER, REMOVE_TEAM_MEMBER, REFRESH_TEAM_MEMBERS } from '../actions/team-actions.js';
+import { REFRESH_ONLINE, GET_USER_CHANGES, CHANGE_ACTIVE_TEAM, CHANGE_ACTIVE_TEAM_MEMBER, ADD_TEAM_MEMBER, REMOVE_TEAM_MEMBER, REFRESH_TEAM_MEMBERS } from '../actions/team-actions.js';
 
 const initState =  {
   activeTeamMember: 1,
@@ -9,11 +9,12 @@ const initState =  {
   panelMessageArray: [
     {
       label: "Here are your Teams",
-      text: "Teams"
+     text: "Teams"
    }
   ],
   panelMessagePlayIndex: 0,
-  teamObj: {}
+	teamObj: {},
+	currentlyOnline: []
 };
 
 function activeTeamMember(state = 1, action){
@@ -41,6 +42,8 @@ export default function team(state = initState, action) {
       return {...state, teamObj: {...state.teamObj, [action.repoId]: [...state.teamObj[action.repoId].slice(0, idx), ...state.teamObj[action.repoId].slice(idx + 1)] }};
     case GET_USER_CHANGES:
       return {...state, activeEvents: action.userEvents}
+	case REFRESH_ONLINE:
+	  return {...state, currentlyOnline: action.currentlyOnline}
     case REFRESH_TEAM_MEMBERS:
       //Get user.data.channels
       let teamObj = {};
