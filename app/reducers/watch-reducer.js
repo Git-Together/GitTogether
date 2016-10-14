@@ -41,10 +41,10 @@ export default function watch(state = initState, action){
 
     case UNWATCH_FILE:
     for (let i = 0; i < state.watch.length; i++) {
-      if (state[i].name === action.fileId && state[i].id === action.repoName){
+      if (state.watch[i].fileName === action.fileName && state.watch[i].repoId === action.repoId){
         var indexToDelete = i;
 
-        return {...state, watch: [...state.slice(0, indexToDelete), ...state.slice(indexToDelete+1)] }
+        return {...state, watch: [...state.watch.slice(0, indexToDelete), ...state.watch.slice(indexToDelete+1)] }
         // [...state.slice(0, indexToDelete), ...state.slice(indexToDelete+1)]
       }
     }

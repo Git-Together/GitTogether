@@ -57,7 +57,7 @@ class ActiveFile extends Component {
 
 		  <div className="ActiveItem-Details-Content">
 			{this.props.activeItem.details}
-		  </div> 
+		  </div>
 
 		</div>*/}
 		<div className="ActiveItem-Functionality">

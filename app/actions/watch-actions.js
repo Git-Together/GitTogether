@@ -27,27 +27,31 @@ export function watchFile(repoId, fileName) {
 	}
 }
 
-export function unwatchFile(repoId, fileId) {
+export function unwatchFile() {
 
 	return (dispatch, getState) => {
 
+    let repoId = getState().repos.activeRepoId;
+    let fileName = getState().watch.activeWatch;
+
 		var payload = {
 			data: {
-				fileName: name,
+				fileName,
 				repoId,
-				userId: getState().auth.id}
-
+				userId: getState().auth.id
+      }
 		};
 
 		axios.delete(process.env.SERVER_URL + '/api/files/', payload)
 			.then(() => {
 				dispatch({
 					type: UNWATCH_FILE,
-					repoName: repoId,
-					fileId,
+					repoId,
+					fileName,
 					userId: getState().auth.id
 				})
 			})
+      .catch(console.error)
 	}
 
 }
