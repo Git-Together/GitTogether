@@ -1,8 +1,9 @@
-import { CHANGE_ACTIVE_TEAM, CHANGE_ACTIVE_TEAM_MEMBER, ADD_TEAM_MEMBER, REMOVE_TEAM_MEMBER, REFRESH_TEAM_MEMBERS } from '../actions/team-actions.js';
+import { GET_USER_CHANGES, CHANGE_ACTIVE_TEAM, CHANGE_ACTIVE_TEAM_MEMBER, ADD_TEAM_MEMBER, REMOVE_TEAM_MEMBER, REFRESH_TEAM_MEMBERS } from '../actions/team-actions.js';
 
 const initState =  {
   activeTeamMember: 1,
   activeTeam: '',
+  activeEvents: [],
   team: [],
   icon: 'glyphicon glyphicon-refresh',
   panelMessageArray: [
@@ -38,7 +39,8 @@ export default function team(state = initState, action) {
       let idx = state.teamObj[action.repoId].indexOf(action.id);
       if (idx === -1) return state;
       return {...state, teamObj: {...state.teamObj, [action.repoId]: [...state.teamObj[action.repoId].slice(0, idx), ...state.teamObj[action.repoId].slice(idx + 1)] }};
-
+    case GET_USER_CHANGES:
+      return {...state, activeEvents: action.userEvents}
     case REFRESH_TEAM_MEMBERS:
       //Get user.data.channels
       let teamObj = {};

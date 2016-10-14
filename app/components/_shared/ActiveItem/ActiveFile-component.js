@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import Table from 'rc-table';
 import { connect } from 'react-redux'
 import './ActiveItem.scss';
+import {values} from 'lodash';
 
 class ActiveFile extends Component {
   constructor (props) {
@@ -15,6 +17,7 @@ class ActiveFile extends Component {
   };
 
   render() {
+	  console.log('active item props ', this.props)
 	  let pathStyle = {
 		  fontSize: '16px',
 		  width: '100%',
@@ -25,7 +28,20 @@ class ActiveFile extends Component {
 		  fontSize: '16px'
 	  }
 	  let path = this.props.activeItem.path
-	  const { repoId } = this.props
+	  const { repoId, events } = this.props
+		const columns = [
+			{ title: 'Event Type', dataIndex: 'eventType', key:'name', width: 200},
+			{ title: 'Date', dataIndex: 'createdAt', key:'createdAt', width: 200},
+			{ title: 'Original Line Start', dataIndex: 'origLineStart', key:'origLineStart', width: 200},
+			{ title: 'Original Line End', dataIndex: 'origLineEnd', key:'origLineEnd', width: 200},
+			{ title: 'Local Line Start', dataIndex: 'localLineStart', key:'localLineStart', width: 200},
+			{ title: 'Local Line End', dataIndex: 'localLineEnd', key:'localLineEnd', width: 200},
+			]
+		let data = events ? events.map(e => {
+			let date = new Date(Date.parse(e.createdAt))
+			e.createdAt = date.toLocaleDateString("en-US");
+			return e
+		}) : [];
 	return (
 		<div className="ActiveItem">
 
@@ -63,12 +79,7 @@ class ActiveFile extends Component {
 	  <div className="ActiveItem-MainView">
 
 		  <div className="ActiveItem-MainView-Content">
-			  <table>
-				  {/*
-				{this.displayHeader()}
-				{this.displayRow()} */}
-			</table> 
-			{this.props.activeItem.mainView}
+				<Table columns={columns} data={data} />
 		  </div> {/* ActiveItem-Name-MainView-Content */}
 
 	  </div>{/* ActiveItem-MainView */}
@@ -76,12 +87,14 @@ class ActiveFile extends Component {
   </div>
   )
   }
-  }
+}
 
 function mapStateToProps(state) {
 	return {
-		repoId: state.repo.channelName
+		repoId: state.repo.channelName,
+		events: state.file.activeEvents.events
 	}
 }
+
 
 export default connect(mapStateToProps)(ActiveFile)
