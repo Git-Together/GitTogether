@@ -18,7 +18,7 @@ class Login extends Component{
 
 	componentWillMount() {
 		storage.getAsync('user')
-		.then(result => {	
+		.then(result => {
 			this.props.dispatch(AuthActions.setUser(result.currentUser, result.token, result.id))
 			if (result.currentUser) {
 				this.props.dispatch(push('/Home'))
@@ -43,9 +43,19 @@ class Login extends Component{
 		const { Auth, dispatch, login } = this.props
 
 		return (
-			<div>
-				<button onClick={login}>Login</button>
-				<div>{this.props.currentUser}</div>
+			<div id="Login-loginBackground">
+            <div id="Login-Header-Logo">
+              <div id="Login-Header-Logo-Image">
+                <span id="Login-Header-Logo-Image-Git">Git</span>
+                <span id="Login-Header-Logo-Image-Together"><em>Together</em></span>
+                {/* -Header-Logo */}
+                <div id="Login-Header-Logo-Button" className="btn btn-primary" onClick={login}>{this.props.currentUser}
+                Login
+                </div>
+              </div> {/* -Header-Logo-Image */}
+            </div>
+
+
 			</div>
 		)
 	}
