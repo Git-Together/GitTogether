@@ -19,7 +19,6 @@ export function socketsStarted() {
 }
 
 export function setUser(currentUser, token, id) {
-	// storage.clear(err => console.error(err));
 	var channelStorage
 	storage.setAsync('user', {
 		currentUser: currentUser,

@@ -7,6 +7,7 @@ export const LOAD_CHANNELS = 'LOAD_CHANNELS';
 
 //Github API call
 import GitHub from 'github-api';
+import * as RepoActions from './repo-actions.js'
 import axios from 'axios';
 import { TOGGLE_COMPONENT } from './ui-actions';
 import Promise from 'bluebird';
@@ -62,11 +63,14 @@ export function addChannel(channel) {
 
 export function removeChannel(id) {
 	return (dispatch, getState) => {
-		let filteredRepo = getState().repos.repos.filter( e => { return e.name === getState().repos.activeRepoId});
+		let state = getState()
+		let filteredRepo = state.repos.repos.filter( e => { return e.name === state.repos.activeRepoId});
 		let id = filteredRepo[0].full_name;
-		let currentUser = getState().auth.currentUser
-		let userId = getState().auth.id
+		let currentUser = state.auth.currentUser
+		let userId = state.auth.id
 		let channelStorage
+
+
 		storage.get('channels', (err, result) => {
 			if (err) {
 				console.error(err)
@@ -83,6 +87,9 @@ export function removeChannel(id) {
 						type: LOAD_CHANNELS,
 						channels
 					})
+					if (state.repo.channelName === id) {
+						dispatch(RepoActions.getRepoTree(state.channel.channels[0]))							
+					}
 				})
 		})
 	}

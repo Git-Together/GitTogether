@@ -39,17 +39,9 @@ export function instantiateSockets (state, dispatch) {
 
 					let channels = Object.keys(cachedChannels[currentUser])
 
-          watchFileList.forEach((e, index) => {
-            if(e.fileName === payload.filepath && e.repoId === payload.branch.current){
-              new Notification(payload.username + ' just ' + payload.event + " " + payload.filepath + ' in ' + payload.branch.current + '.', { silent: 'true' })
-            }
-
-          })
-
-					// if (channels.includes(payload.channel)) {
-					// 	new Notification(payload.username + ' just ' + payload.event + " " + payload.filepath + ' in ' + payload.branch.current + '.', { silent: 'true' })
-					// }
-
+					if (channels.includes(payload.channel)) {
+						new Notification(payload.username + ' just ' + payload.event + " " + payload.filepath + ' in ' + payload.channel + '.', { silent: 'true' })
+					}
 
 				})
 		// } //if statement closes
@@ -79,3 +71,6 @@ export function stopSockets() {
 	}
 }
 
+export function getOnline(channelName) {
+	socket.emit('getOnline', channelName)
+}
