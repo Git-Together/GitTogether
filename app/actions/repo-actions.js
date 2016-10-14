@@ -17,6 +17,12 @@ import { CHANGE_ACTIVE_REPO } from './repos-actions';
 import Promise from 'bluebird';
 const storage = Promise.promisifyAll(require('electron-json-storage'))
 
+export function getCurrentChannel() {
+	return (dispatch, getState) => {
+		return getState().repo.channelName
+	}
+}
+
 export function getUserRepos() {
 	return (dispatch, getState) => {
 		axios.get(`https://api.github.com/user/repos?affiliation=owner,collaborator&per_page=100&access_token=${getState().auth.token}`)
@@ -26,7 +32,6 @@ export function getUserRepos() {
 			}));
 	};
 }
-
 
 export function getRepoTree(repo) {
 	return (dispatch, getState) => {

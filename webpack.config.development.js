@@ -26,6 +26,7 @@ export default validate(merge(baseConfig, {
   },
 
   module: {
+	noParse: ['ws'],
     loaders: [
       {
         test: /\.global\.css$/,
@@ -78,6 +79,8 @@ export default validate(merge(baseConfig, {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     })
   ],
+
+  externals: ['ws'],
 
   // https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
   target: 'electron-renderer'

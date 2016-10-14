@@ -20,3 +20,24 @@
 .ListItem-Name-Text {
 
 }
+
+.ListItem-Offline {
+	line-height: 1em;
+	display: inline-block;
+	border-radius: 1em;
+	border: .1em solid $backgroundColor;
+	background-color: $highlight;
+	width: 1em;
+	height: 1em;
+}
+
+.ListItem-Online {
+	line-height: 1em;
+	display: inline-block;
+	border-radius: 1em;
+	border: .1em solid $backgroundColor;
+	background-color: $mainColor;
+	width: 1em;
+	height: 1em;
+}
+
