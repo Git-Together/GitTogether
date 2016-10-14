@@ -17,8 +17,6 @@ export function fileWatcher() {
 	return storage.getAsync('user')
 		.then(info => {
 			username = info.currentUser
-		})
-		.then(() => {
 			return storage.getAsync('channels') 
 		})
 		.then(cachedChannels => {
@@ -28,8 +26,6 @@ export function fileWatcher() {
 					repoPaths.push(cachedChannels[ username ][channel])
 				}
 			}
-		})
-		.then(() => {
 			channels.forEach((channel, index) => {
 				let repoPath = repoPaths[index]
 				gaze('**/*', {

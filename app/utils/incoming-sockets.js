@@ -3,6 +3,7 @@ import Promise from 'bluebird';
 import * as TeamActions from '../actions/team-actions.js'
 import * as ChannelActions from '../actions/channel-actions.js'
 import * as AuthActions from '../actions/auth-actions.js'
+import * as FileActions from '../actions/file-actions.js'
 const storage = Promise.promisifyAll(require('electron-json-storage'))
 
 let socket = null
@@ -14,6 +15,10 @@ export function instantiateSockets (state, dispatch) {
 
 	socket.on('fileChanges', payload => {
 		let channels
+		dispatch(FileActions.addMessageToFilePanel({
+			label: payload.channel,
+			test: payload.filepath
+		}))
 		if (payload.username != currentUser) {
 			storage.getAsync('channels')
 				.then(cachedChannels => {
@@ -26,7 +31,6 @@ export function instantiateSockets (state, dispatch) {
 	})
 
 	socket.on('reloadTeam', channelName => {
-		console.log("i got added or removed")
 		dispatch(TeamActions.refreshTeamMembers())
 	})
 

@@ -22,11 +22,11 @@ export default class Home extends Component {
 	}
 
 	componentWillMount() {
-		fileWatcher()
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (!this.props.auth.socketsStarted && nextProps.auth.token)  {
+			fileWatcher()
 			instantiateSockets(this.props.state, this.props.dispatch)
 		}
 	}

@@ -17,7 +17,7 @@ export default function repos(state =
     case GET_USER_REPOS:
       return {...state, repos: action.repos}
     case ADD_MESSAGE_TO_REPO_PANEL:
-      return {...state, panelMessageArray: [...panelMessageArray, action.message]}
+      return {...state, panelMessageArray: [action.message]}
     case CHANGE_ACTIVE_REPO:
       return {...state, activeRepoId: action.id}
     default:
