@@ -37,7 +37,7 @@ export function instantiateSockets (state, dispatch) {
 
 	socket.on('refreshOnline', payload => {
 		console.log(`told to reload online. the following people are online: ${payload.currentlyOnline}`)
-		if (state.repo.channelName === payload.channel) {
+		if (state.repo.channelName === payload.channelName) {
 			dispatch(TeamActions.refreshOnline(currentlyOnline))
 		}
 	})

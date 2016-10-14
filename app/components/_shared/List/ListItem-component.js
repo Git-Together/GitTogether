@@ -32,8 +32,14 @@ class List extends Component {
         item = this.props.item.path
       }
     }
+	let style = {}
+	console.log("PROPS ", this.props)
+	if (this.props.currentUi === "team") {
+		style.backgroundColor = "red"
+		style.fontSize = "30px"
+	}
     return (
-      <div className="ListItem" onClick={this.props.changeSelected.bind(null, item)}>
+      <div style={style} className="ListItem" onClick={this.props.changeSelected.bind(null, item)}>
 
         <div className="ListItem-Name" onClick={this.handleClick}>
           {/*{
