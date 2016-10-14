@@ -1,6 +1,7 @@
 // export const ADD_CHANNEL = 'ADD_CHANNEL';
 // export const REMOVE_CHANNEL = 'REMOVE_CHANNEL';
 export const LOAD_CHANNELS = 'LOAD_CHANNELS';
+export const ADD_MESSAGE_TO_CHANNEL_PANEL = 'ADD_MESSAGE_TO_CHANNEL_PANEL'
 
 import Promise from 'bluebird'
 const storage = Promise.promisifyAll(require('electron-json-storage'))
@@ -37,5 +38,12 @@ export function loadChannels() {
 						channels
 					}))
 			}
+}
+
+export function addMessageToChannelPanel(message){
+    return {
+        type: ADD_MESSAGE_TO_CHANNEL_PANEL,
+        message
+    };
 }
 

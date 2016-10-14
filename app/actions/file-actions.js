@@ -1,6 +1,8 @@
 export const CHANGE_ACTIVE_FILE = 'CHANGE_ACTIVE_FILE'
 export const REFRESH_FILES = 'REFRESH_FILES'
 export const GET_FILE_CHANGES = 'GET_FILE_CHANGES';
+export const ADD_MESSAGE_TO_FILE_PANEL = 'ADD_MESSAGE_TO_FILE_PANEL'
+
 import { TOGGLE_COMPONENT } from './ui-actions'
 import axios from 'axios';
 
@@ -46,4 +48,12 @@ export function getFileChanges(name) {
       })
     });
   };
+}
+
+
+export function addMessageToFilePanel(message){
+    return{
+        type: ADD_MESSAGE_TO_FILE_PANEL,
+        message
+    }
 }
