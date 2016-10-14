@@ -19,6 +19,7 @@ class ActiveUser extends Component {
   render() {
     const { events } = this.props
 		const columns = [
+      { title: 'File Name', dataIndex: 'file.fileName', key:'file.fileName', width: 200},
 			{ title: 'Event Type', dataIndex: 'eventType', key:'name', width: 200},
 			{ title: 'Date', dataIndex: 'createdAt', key:'createdAt', width: 200},
 			{ title: 'Original Line Start', dataIndex: 'origLineStart', key:'origLineStart', width: 200},
@@ -33,37 +34,6 @@ class ActiveUser extends Component {
 		}) : [];
     return (
       <div className="ActiveItem">
-
-        <div className="ActiveItem-Name">
-
-          <div className="ActiveItem-Name-Text">
-            {this.props.activeItem.name ? this.props.activeItem.name : this.props.activeItem.path}
-          </div> {/* ActiveItem-Name-Text */}
-
-        </div> {/* ActiveItem-Name */}
-        {/*
-        <div className="ActiveItem-Details">
-
-          <div className="ActiveItem-Details-Content">
-            {this.props.activeItem.details}
-          </div> 
-
-        </div>*/}
-        <div className="ActiveItem-Functionality">
-
-          <div
-            onClick={this.props.addSelected.bind(null, this.props.activeItem.name)}
-            className="ActiveItem-Functionality-Add">
-            +
-          </div> {/* ActiveItem-Functionality-Add */}
-
-          <div
-            onClick={this.props.removeSelected.bind(null, this.props.activeItem.name)}
-            className="ActiveItem-Functionality-Remove">
-          -
-          </div> {/* ActiveItem-Functionality-Remove */}
-
-        </div>{/* ActiveItem-Functionality */}
 
         <div className="ActiveItem-MainView">
 

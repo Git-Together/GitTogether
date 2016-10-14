@@ -1,0 +1,54 @@
+@import '../_shared/_scss/_variables';
+
+#Login-loginBackground{
+	background-color: $backgroundColor;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+#Login-Header-Logo{
+	// display: flex;
+	// justify-content: center;
+	// align-items: center;
+	// background-color: $backgroundColor;
+	// flex: 2.5 0 25%;
+}
+
+#Login-Header-Logo-Image{
+
+	// background-color:red;
+	padding: 1em;
+	// flex: 2 0 20%;
+}
+
+#Login-Header-Logo-Button{
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	align-self: center;
+	background-color:$mainColor;
+	width: 100%;
+	// padding: 1em;
+	// flex: 2 0 20%;
+}
+
+#Login-Header-Logo-Image-Git{
+	color: $mainColor;
+	font-family: OpenSans-Light;
+	font-size: 2.4em;
+	letter-spacing: .1em;
+}
+
+#Login-Header-Logo-Image-Together{
+	color: $highlight;
+	font-family: OpenSans-Italic;
+	font-size: 2.4em;
+	letter-spacing: .1em;
+}

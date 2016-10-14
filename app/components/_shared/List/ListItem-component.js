@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import './ListItem.scss';
 import { connect } from 'react-redux'
+import ActiveUser from '../ActiveItem/ActiveUser-component';
 
 
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
@@ -42,15 +43,15 @@ class List extends Component {
       <div style={style} className="ListItem" onClick={this.props.changeSelected.bind(null, item)}>
 
         <div className="ListItem-Name" onClick={this.handleClick}>
-          {/*{
-          this.state.isShowingModal && 
+          {
+          this.state.isShowingModal && this.props.isTeam &&
           <ModalContainer onClose={this.handleClose}>
             <ModalDialog onClose={this.handleClose}>
-              <h1>Dialog Content</h1>
-               <p>More Content. Anything goes here</p>
+              <h1>Recent Activity for: {item}</h1>
+              <ActiveUser name={item} addSelected={function(){}} removeSelected={function(){}}/>
             </ModalDialog>
           </ModalContainer>
-        } */}
+        } 
 
           <span className="ListItem-Name-Text">
             {item}
