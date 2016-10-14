@@ -3,6 +3,8 @@ import Promise from 'bluebird';
 import * as TeamActions from '../actions/team-actions.js'
 import * as ChannelActions from '../actions/channel-actions.js'
 import * as AuthActions from '../actions/auth-actions.js'
+import * as fileActions from '../actions/file-actions.js'
+import * as memberActions from '../actions/member-actions.js'
 const storage = Promise.promisifyAll(require('electron-json-storage'))
 
 let socket = null
@@ -20,6 +22,7 @@ export function instantiateSockets (state, dispatch) {
 					let channels = Object.keys(cachedChannels[currentUser])
 					if (channels.includes(payload.channel)) {
 						new Notification(payload.username + ' just ' + payload.event + " " + payload.filepath + ' in ' + payload.branch.current + '.', { silent: 'true' })
+            dispatch(fileActions.addMessageToFilePanel(`${payload.filePath}`));
 					}
 				})
 		}
@@ -28,10 +31,12 @@ export function instantiateSockets (state, dispatch) {
 	socket.on('reloadTeam', channelName => {
 		console.log("i got added or removed")
 		dispatch(TeamActions.refreshTeamMembers())
+    dispatch(memberActions.addMessageToMemberPanel(`${payload.filePath}`));
 	})
 
 	socket.on('reloadChannels', channelName => {
 		dispatch(ChannelActions.loadChannels())
+    dispatch(channelActions.addMessageToChannelPanel(`${payload.filePath}`));
 	})
 }
 
