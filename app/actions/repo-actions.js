@@ -51,11 +51,15 @@ export function getRepoTree(repo) {
 					type: SWITCH_ACTIVE_TREE,
 					tree
 				})
-			}).then(() => {
+				let channelName = repo.split('/').join('*');
+				return axios.get(process.env.SERVER_URL + `/api/channels/${channelName}`)
+			}).then((channel) => {
+				let events = channel.data.events
 				dispatch({
 					type: SWITCH_ACTIVE_REPO,
 					id: repoId,
-					name: repo
+					name: repo,
+					events
 				})
 				dispatch({
 					type: CHANGE_ACTIVE_TEAM,
