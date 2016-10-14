@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import './ListItem.scss';
 import { connect } from 'react-redux'
 import ActiveUser from '../ActiveItem/ActiveUser-component';
+import ActiveRepo from '../ActiveItem/ActiveRepo-component';
 
 
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
@@ -42,7 +43,8 @@ class List extends Component {
           <ModalContainer onClose={this.handleClose}>
             <ModalDialog onClose={this.handleClose}>
               <h1>Recent Activity for: {item}</h1>
-              <ActiveUser name={item} addSelected={function(){}} removeSelected={function(){}}/>
+              { this.props.curUi === 'team' && <ActiveUser name={item} addSelected={function(){}} removeSelected={function(){}}/> }
+              { this.props.curUi === 'channel' && <ActiveRepo name={item} addSelected={function(){}} removeSelected={function(){}}/>}
             </ModalDialog>
           </ModalContainer>
         } 
