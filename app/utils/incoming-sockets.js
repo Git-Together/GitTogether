@@ -26,6 +26,7 @@ export function instantiateSockets (state, dispatch) {
 	})
 
 	socket.on('reloadTeam', channelName => {
+		console.log("i got added or removed")
 		dispatch(TeamActions.refreshTeamMembers())
 	})
 
