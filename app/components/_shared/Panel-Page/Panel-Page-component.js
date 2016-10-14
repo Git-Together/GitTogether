@@ -34,6 +34,7 @@ export default class PanelPage extends Component {
               addSelected={this.props.addSelected}
               removeSelected={this.props.removeSelected}
               getList = {this.props.getList}
+              channelName = {this.props.channelName}
         />}
 
       </div>

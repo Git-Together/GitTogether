@@ -93,10 +93,9 @@ export function getRepoTree(repo) {
                 axios.get(process.env.SERVER_URL + '/api/files/?userId=' + userId)
                     .then((watchFileList) => {
 
-
 						watchFileList.data.forEach((e) => {
 
-							if (e.users[0].id === userId && e.repoId === channelName) {
+							if (e.users.some(j => j.id === userId)) { //only add files that user is watching
 
 								watchArray.push(e)
 							}
