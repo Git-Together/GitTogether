@@ -6,7 +6,8 @@ import ActiveFile from '../ActiveItem/ActiveFile-component';
 import ActiveUser from '../ActiveItem/ActiveUser-component';
 import ActiveRepos from '../ActiveItem/ActiveRepos-component';
 import ActiveCollaborator from '../ActiveItem/ActiveCollaborator-component';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import ActiveWatch from '../ActiveItem/ActiveWatch-component';
 
 class Page extends Component {
 	constructor (props) {
@@ -41,7 +42,7 @@ class Page extends Component {
 				return item.path === this.props.selected
 			} else if (typeof item === 'string'){
 				return item === this.props.selected
-			} 
+			}
 		}) : [];
 	}
 
@@ -61,6 +62,10 @@ class Page extends Component {
 						addSelected={this.props.addSelected}
 						removeSelected={this.props.removeSelected}/>
 					}
+
+          {currentUi === "watch" && <ActiveWatch  activeItem={this.filter(this.props.selected)[0] || {}}
+            removeSelected={this.props.removeSelected}/>
+          }
 
 					{/*currentUi === "member" && <ActiveUser activeItem={this.filter(this.props.selected)[0] || {}*/}
 
