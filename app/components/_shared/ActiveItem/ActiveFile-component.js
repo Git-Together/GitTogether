@@ -91,7 +91,7 @@ class ActiveFile extends Component {
 function mapStateToProps(state) {
 	return {
 		repoId: state.repo.channelName,
-		events: state.file.activeEvents.events
+		events: state.file.activeEvents ? state.file.activeEvents.events : []
 	}
 }
 
