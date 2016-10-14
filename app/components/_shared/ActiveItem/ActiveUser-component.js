@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import './ActiveItem.scss';
+import Table from 'rc-table';
+import {values} from 'lodash';
+import { connect } from 'react-redux'
 
-export default class ActiveItem extends Component {
+
+class ActiveUser extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -13,6 +17,20 @@ export default class ActiveItem extends Component {
   };
 
   render() {
+    const { events } = this.props
+		const columns = [
+			{ title: 'Event Type', dataIndex: 'eventType', key:'name', width: 200},
+			{ title: 'Date', dataIndex: 'createdAt', key:'createdAt', width: 200},
+			{ title: 'Original Line Start', dataIndex: 'origLineStart', key:'origLineStart', width: 200},
+			{ title: 'Original Line End', dataIndex: 'origLineEnd', key:'origLineEnd', width: 200},
+			{ title: 'Local Line Start', dataIndex: 'localLineStart', key:'localLineStart', width: 200},
+			{ title: 'Local Line End', dataIndex: 'localLineEnd', key:'localLineEnd', width: 200},
+		]
+		let data = events ? events.map(e => {
+			let date = new Date(Date.parse(e.createdAt))
+			e.createdAt = date.toLocaleDateString("en-US");
+			return e
+		}) : [];
     return (
       <div className="ActiveItem">
 
@@ -50,12 +68,8 @@ export default class ActiveItem extends Component {
         <div className="ActiveItem-MainView">
 
           <div className="ActiveItem-MainView-Content">
-            <table>
-            {/*
-                {this.displayHeader()}
-                {this.displayRow()} */}
-            </table> 
-            {this.props.activeItem.mainView}
+
+            <Table columns={columns} data={data} />
           </div> {/* ActiveItem-Name-MainView-Content */}
 
         </div>{/* ActiveItem-MainView */}
@@ -64,3 +78,12 @@ export default class ActiveItem extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+	return {
+		events: state.team.activeEvents
+	}
+}
+
+
+export default connect(mapStateToProps)(ActiveUser)
