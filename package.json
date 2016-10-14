@@ -111,6 +111,7 @@
   "dependencies": {
     "axios": "^0.14.0",
     "bootstrap": "^3.3.7",
+    "bufferutil": "^1.2.1",
     "css-modules-require-hook": "^4.0.3",
     "d3-state-visualizer": "^1.1.1",
     "dotenv": "^2.0.0",
@@ -128,6 +129,7 @@
     "react-dom": "^15.3.2",
     "react-modal": "^1.5.2",
     "react-modal-dialog": "^3.0.2",
+    "react-motion": "^0.4.5",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.0",
     "react-router-redux": "^4.0.6",
@@ -135,7 +137,9 @@
     "redux-form": "^6.1.0",
     "redux-thunk": "^2.1.0",
     "socket.io": "^1.4.8",
-    "source-map-support": "^0.4.2"
+    "source-map-support": "^0.4.2",
+    "utf-8-validate": "^1.2.1",
+    "vertex": "0.0.5"
   },
   "devEngines": {
     "node": "4.x || 5.x || 6.x",

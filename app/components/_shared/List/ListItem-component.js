@@ -51,12 +51,17 @@ class List extends Component {
               <ActiveUser name={item} addSelected={function(){}} removeSelected={function(){}}/>
             </ModalDialog>
           </ModalContainer>
-        } 
+        }
 
           <span className="ListItem-Name-Text">
             {item}
           </span> {/* ListItem-Name-Text */}
-
+          <span className="ListItem-Online pull-right">
+            &nbsp;
+          </span>
+          <span className="ListItem-Offline pull-right">
+            &nbsp;
+          </span>
         </div> {/* ListItem-Name */}
 
       </div>
