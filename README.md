@@ -5,7 +5,7 @@
 [![Appveyor Build Status][appveyor-image]][appveyor-url]
 [![Dependency Status][david_img]][david_site]
 
-![](./erb-logo.png)
+![](./erb-logo.png) 
 
 > Live editing development on desktop app
 
