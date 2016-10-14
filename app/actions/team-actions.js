@@ -89,7 +89,6 @@ export function getUserChanges(username) {
 		let channelName = getState().repo.channelName.split('/').join('*');
 			axios.get(process.env.SERVER_URL + `/api/events/user/${username}?repoId=${channelName}`)
 			.then(userEvents => {
-			console.log('USER EVENTS', userEvents);	
 			dispatch({
 				type: GET_USER_CHANGES,
 				userEvents: userEvents.data

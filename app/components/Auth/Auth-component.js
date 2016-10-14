@@ -17,13 +17,12 @@ class Login extends Component{
 	}
 
 	componentWillMount() {
-		storage.getAsync('user')
+		return storage.getAsync('user')
 		.then(result => {	
 			this.props.dispatch(AuthActions.setUser(result.currentUser, result.token, result.id))
 			if (result.currentUser) {
 				this.props.dispatch(push('/Home'))
 			}
-
 		})
 	}
 

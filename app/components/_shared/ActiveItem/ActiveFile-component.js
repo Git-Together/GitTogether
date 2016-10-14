@@ -17,7 +17,6 @@ class ActiveFile extends Component {
   };
 
   render() {
-	  console.log('active item props ', this.props)
 	  let pathStyle = {
 		  fontSize: '16px',
 		  width: '100%',
@@ -92,7 +91,7 @@ class ActiveFile extends Component {
 function mapStateToProps(state) {
 	return {
 		repoId: state.repo.channelName,
-		events: state.file.activeEvents.events
+		events: state.file.activeEvents ? state.file.activeEvents.events : []
 	}
 }
 

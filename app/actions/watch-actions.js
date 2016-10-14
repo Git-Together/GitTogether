@@ -68,7 +68,6 @@ export function getWatch() {
 		let watchList = [];
 		let channelName = getState().repo.channelName;
 		let watchArray = [];
-    console.log("ChannelName and userId", channelName, userId)
 		axios.get(process.env.SERVER_URL + '/api/files/?userId=' + userId)
 			.then((watchFileList) => {
 
