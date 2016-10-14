@@ -17,7 +17,6 @@ class ActiveFile extends Component {
   };
 
   render() {
-	  console.log('active item props ', this.props)
 	  let pathStyle = {
 		  fontSize: '16px',
 		  width: '100%',

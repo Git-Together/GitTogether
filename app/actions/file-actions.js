@@ -45,7 +45,6 @@ export function getFileChanges(name) {
 	axios.get(process.env.SERVER_URL + `/api/files/${name}?repoId=${channelName}`)
 	// axios.get(`http://localhost:1337/api/files/${name}?repoId=${channelName}`)
     .then(fileChanges => {
-      console.log('FILECHANGES', fileChanges);
       dispatch({
           type: GET_FILE_CHANGES,
           fileChanges: fileChanges.data
