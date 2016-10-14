@@ -61,11 +61,11 @@ class Page extends Component {
 						addSelected={this.props.addSelected}
 						removeSelected={this.props.removeSelected}/>
 					}
-<<<<<<< HEAD
-					{currentUi === "member" && <ActiveUser activeItem={this.filter(this.props.selected)[0] || {}}
-=======
+
+					{/*currentUi === "member" && <ActiveUser activeItem={this.filter(this.props.selected)[0] || {}*/}
+
 					{currentUi === "member" && <ActiveCollaborator  activeItem={this.filter(this.props.selected)[0] || {}}
->>>>>>> 65059453304e881928cf97905c865729ac67d6f5
+
 						addSelected={this.props.addSelected}
 						removeSelected={this.props.removeSelected}/>
 					}

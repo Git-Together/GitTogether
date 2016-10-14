@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import './ListView.scss';
 import ListItem from './ListItem-component.js'
 
+
+
+
 export default class List extends Component {
 	constructor (props) {
 		super(props);
