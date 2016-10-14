@@ -2,7 +2,6 @@ import { CHANGE_CHANNEL_PATH, ADD_REPO, REMOVE_REPO, SWITCH_ACTIVE_REPO, GET_USE
 
 const initState =
   {
-    activeRepo: 1,
 	channelName: 'none',
 	channelPath: null,
     repos: [{
@@ -50,6 +49,7 @@ const initState =
     repoList: [],
     panelMessagePlayIndex: 0,
     activeRepo: 'repoId',
+    activeRepoEvents: []
   };
 
 export default function repo(state = initState, action) {
@@ -69,7 +69,7 @@ export default function repo(state = initState, action) {
       if (idx === -1) return state;
       return {...state, repos: [...state.repos.slice(0, idx), ...state.repos.slice(idx + 1)]};
     case SWITCH_ACTIVE_REPO:
-      return {...state, activeRepo: action.id, channelName: action.name};
+      return {...state, activeRepo: action.id, channelName: action.name, activeRepoEvents: action.events};
     case GET_USER_REPOS:
       return {...state, repos: action.repos};
     case SWITCH_ACTIVE_TREE:

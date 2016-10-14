@@ -32,7 +32,7 @@ export default class List extends Component {
 	display(){
 		return this.props.list? this.props.list.map((e, index) => {
 			// return <ListItem key={index} item={e} />
-			return <ListItem key={index} item={e} changeSelected={this.props.changeSelected} isTeam={this.props.currentUi==='team'}/>
+			return <ListItem key={index} item={e} changeSelected={this.props.changeSelected} curUi= {this.props.currentUi} isTeam={this.props.currentUi==='team' || this.props.currentUi === 'channel'}/>
 		}) : [];
 	}
 

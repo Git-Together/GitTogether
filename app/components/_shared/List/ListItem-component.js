@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import './ListItem.scss';
 import { connect } from 'react-redux'
 import ActiveUser from '../ActiveItem/ActiveUser-component';
+import ActiveRepo from '../ActiveItem/ActiveRepo-component';
 
 
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
@@ -22,30 +23,31 @@ class List extends Component {
   handleClick = () => this.setState({isShowingModal: true})
   handleClose = () => this.setState({isShowingModal: false})
 
-	render() {
-		let item;
-		if(typeof this.props.item === "string"){
-			item = this.props.item;
-		} else {
-			if(this.props.item.name){
-				item = this.props.item.name;
-			} else if (this.props.item.path){
-				item = this.props.item.path
-			}
-		}
-		return (
-			<div className="ListItem" onClick={this.props.changeSelected.bind(null, item)}>
+  render() {
+    let item;
+    if(typeof this.props.item === "string"){
+      item = this.props.item;
+    } else {
+      if(this.props.item.name){
+          item = this.props.item.name;
+      } else if (this.props.item.path){
+        item = this.props.item.path
+      }
+    }
+    return (
+      <div className="ListItem" onClick={this.props.changeSelected.bind(null, item)}>
 
-				<div className="ListItem-Name" onClick={this.handleClick}>
-					{
-						this.state.isShowingModal && this.props.isTeam &&
-							<ModalContainer onClose={this.handleClose}>
-								<ModalDialog onClose={this.handleClose}>
-									<h1>Recent Activity for: {item}</h1>
-									<ActiveUser name={item} addSelected={function(){}} removeSelected={function(){}}/>
-								</ModalDialog>
-							</ModalContainer>
-					}
+        <div className="ListItem-Name" onClick={this.handleClick}>
+          {
+          this.state.isShowingModal && this.props.isTeam &&
+          <ModalContainer onClose={this.handleClose}>
+            <ModalDialog onClose={this.handleClose}>
+              <h1>Recent Activity for: {item}</h1>
+              { this.props.curUi === 'team' && <ActiveUser name={item} addSelected={function(){}} removeSelected={function(){}}/> }
+              { this.props.curUi === 'channel' && <ActiveRepo name={item} addSelected={function(){}} removeSelected={function(){}}/>}
+            </ModalDialog>
+          </ModalContainer>
+        } 
 
 					<span className="ListItem-Name-Text">
 						{item}
