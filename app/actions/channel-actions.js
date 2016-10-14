@@ -32,7 +32,11 @@ export function loadChannels() {
 				} else {
 					storage.set('channels', {...channelStorage, [currentUser]: {}})
 				}
-				channels = Object.keys(channelStorage[currentUser])
+				if (channelStorage[currentUser]) {
+					channels = Object.keys(channelStorage[currentUser])
+				} else {
+					channels = []
+				}
 			})
 			.then(() => dispatch({
 				type: LOAD_CHANNELS,

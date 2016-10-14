@@ -35,76 +35,81 @@ export function setUser(currentUser, token, id) {
 				}
 			} else {
 				return storage.getAsync('channels')
-				.then(result => {
-					channelStorage = result
-					return (dispatch, getState) => {
-						axios.get(process.env.SERVER_URL + `/api/users/${id}`)
-						// axios.get(`http://localhost:1337/api/users/${id}`)
-							.then(result => {
-								let user = result.data
-								let userStorage = channelStorage[currentUser] ? channelStorage[ currentUser ] : {}
-								if (user.channels) {
-									user.channels.forEach(channel => {
-										if (!userStorage.hasOwnProperty(channel.repoId)) {
-											userStorage[channel.repoId] = null
-										}
-									})
-									storage.set('channels', {...channelStorage, [currentUser]: userStorage})
-								} else {
-									storage.set('channels', {...channelStorage, [currentUser]: {}})
-								}
-							})
-							.then(() => dispatch({
-								type: SET_USER,
-								currentUser,
-								token,
-								id
-							}))
-					}
-				})
-			}
-		})
+					.then(result => {
+						channelStorage = result
+						return (dispatch, getState) => {
+							axios.get(process.env.SERVER_URL + `/api/users/${id}`)
+							// axios.get(`http://localhost:1337/api/users/${id}`)
+								.then(result => {
+									let user = result.data
+									console.log("RESULT ", result)
+									let userStorage = channelStorage[currentUser] ? channelStorage[ currentUser ] : {}
+									console.log("USER STORAGE ", userStorage)
+									if (user.channels) {
+										user.channels.forEach(channel => {
+											if (!userStorage.hasOwnProperty(channel.repoId)) {
+												userStorage[channel.repoId] = null
+											}
+										})
+										console.log("CHANNEL STORAGE ", channelStorage)
+										return storage.setAsync('channels', {...channelStorage, [currentUser]: userStorage})
+									} else {
+										return storage.setAsync('channels', {...channelStorage, [currentUser]: {}})
+									}
+								})
+								.then(() => dispatch({
+									type: SET_USER,
+									currentUser,
+									token,
+									id
+								}))
+								.catch(error => console.error)
+						}
+					})
+				}
+			})
 
-		.catch(err => console.error)
-}
+			.catch(err => console.error)
+	}
 
-	export function login() {
-		return function(dispatch, getState) {
-			let options = {
-				client_id: process.env.CLIENT_ID,
-				scopes: ['repo']
-			}
-
-			let authWindow = new BrowserWindow({ width: 800, height: 600, show: false, 'node-integration': false })
-			let githubUrl = 'https://github.com/login/oauth/authorize?'
-			let authUrl = githubUrl + 'client_id=' + options.client_id + '&scope=' + options.scopes;
-			authWindow.loadURL(authUrl)
-			authWindow.show()
-
-			function handleCallback (url) {
-				var raw_code = /code=([^&]*)/.exec(url) || null;
-				var code = (raw_code && raw_code.length > 1) ? raw_code[1] : null;
-				var error = /\?error=(.+)$/.exec(url);
-
-				if (code || error) {
-					authWindow.destroy();
+		export function login() {
+			return function(dispatch, getState) {
+				let options = {
+					client_id: process.env.CLIENT_ID,
+					scopes: ['repo']
 				}
 
-				if (code) {
-					let fetchRequest = {
+				let authWindow = new BrowserWindow({ width: 800, height: 600, show: false, 'node-integration': false })
+				let githubUrl = 'https://github.com/login/oauth/authorize?'
+				let authUrl = githubUrl + 'client_id=' + options.client_id + '&scope=' + options.scopes;
+				authWindow.loadURL(authUrl)
+				authWindow.show()
+
+				function handleCallback (url) {
+					var raw_code = /code=([^&]*)/.exec(url) || null;
+					var code = (raw_code && raw_code.length > 1) ? raw_code[1] : null;
+					var error = /\?error=(.+)$/.exec(url);
+
+					if (code || error) {
+						authWindow.destroy();
+					}
+
+					if (code) {
+						let fetchRequest = {
 						method: "POST",
 						headers: {
 							'Accept': 'application/json',
 							'Content-Type': 'application/json'
 						},
 						body: JSON.stringify({
-							code: code
+							code
 						})
 					}
 
 					return fetch(process.env.SERVER_URL + '/api/auth/github', fetchRequest)
 					// return fetch('http://localhost:1337/api/auth/github', fetchRequest)
-						.then(r => r.json())
+							.then(r => 
+								r.json())
 						.then(response => {
 							dispatch({
 								type: SET_USER,

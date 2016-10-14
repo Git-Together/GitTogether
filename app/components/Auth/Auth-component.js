@@ -17,6 +17,7 @@ class Login extends Component{
 	}
 
 	componentWillMount() {
+	// storage.clear(err => console.error(err));
 		storage.getAsync('user')
 		.then(result => {	
 			this.props.dispatch(AuthActions.setUser(result.currentUser, result.token, result.id))
