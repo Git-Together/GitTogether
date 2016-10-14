@@ -29,6 +29,7 @@ class ActiveFile extends Component {
 	  let path = this.props.activeItem.path
 	  const { repoId, events } = this.props
 		const columns = [
+			{ title: 'User', dataIndex: 'user.name', key:'user.name', width: 200},
 			{ title: 'Event Type', dataIndex: 'eventType', key:'name', width: 200},
 			{ title: 'Date', dataIndex: 'createdAt', key:'createdAt', width: 200},
 			{ title: 'Original Line Start', dataIndex: 'origLineStart', key:'origLineStart', width: 200},
