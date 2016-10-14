@@ -4,6 +4,7 @@ export const REFRESH_TEAM_MEMBERS = 'REFRESH_TEAM_MEMBERS';
 export const CHANGE_ACTIVE_TEAM_MEMBER = 'CHANGE_ACTIVE_TEAM_MEMBER'
 export const CHANGE_ACTIVE_TEAM = 'CHANGE_ACTIVE_TEAM';
 export const GET_USER_CHANGES = 'GET_USER_CHANGES';
+export const REFRESH_ONLINE = 'REFRESH_ONLINE';
 
 import GitHub from 'github-api';
 import axios from 'axios';
@@ -66,6 +67,13 @@ export function removeTeamMember(id, repoId) {
 					id
 				});
 			})
+	}
+}
+
+export function refreshOnline(currentlyOnline) {
+	return {
+		type: REFRESH_ONLINE,
+		currentlyOnline
 	}
 }
 

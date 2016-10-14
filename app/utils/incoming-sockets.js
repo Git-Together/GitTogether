@@ -4,6 +4,7 @@ import * as TeamActions from '../actions/team-actions.js'
 import * as ChannelActions from '../actions/channel-actions.js'
 import * as AuthActions from '../actions/auth-actions.js'
 import * as FileActions from '../actions/file-actions.js'
+import * as RepoActions from '../actions/repo-actions.js'
 const storage = Promise.promisifyAll(require('electron-json-storage'))
 
 let socket = null
@@ -34,6 +35,13 @@ export function instantiateSockets (state, dispatch) {
 		dispatch(TeamActions.refreshTeamMembers())
 	})
 
+	socket.on('refreshOnline', payload => {
+		let currentChannel = dispatch(RepoActions.getCurrentChannel())
+		if (currentChannel === payload.channelName) {
+			dispatch(TeamActions.refreshOnline(payload.currentlyOnline))
+		}
+	})
+
 	socket.on('reloadChannels', channelName => {
 		dispatch(ChannelActions.loadChannels())
 	})
@@ -42,6 +50,7 @@ export function instantiateSockets (state, dispatch) {
 export function stopSockets() {
 	if (socket) {
 		socket.removeAllListeners()
+		socket.disconnect()
 	}
 }
 

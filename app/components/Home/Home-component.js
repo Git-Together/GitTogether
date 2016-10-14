@@ -25,7 +25,7 @@ export default class Home extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (!this.props.auth.socketsStarted && nextProps.auth.token)  {
+		if (!nextProps.auth.socketsStarted && nextProps.auth.token)  {
 			fileWatcher()
 			instantiateSockets(this.props.state, this.props.dispatch)
 		}

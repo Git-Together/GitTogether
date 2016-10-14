@@ -7,6 +7,7 @@ export const SOCKETS_STARTED = "SOCKETS_STARTED"
 export const SET_USER = "SET_USER"
 import { push } from 'react-router-redux'
 import io from 'socket.io-client';
+import { stopSockets } from '../utils/incoming-sockets.js'
 
 import GitHub from 'github-api';
 import axios from 'axios';
@@ -20,7 +21,7 @@ export function socketsStarted() {
 export function setUser(currentUser, token, id) {
 	// storage.clear(err => console.error(err));
 	var channelStorage
-	return storage.setAsync('user', {
+	storage.setAsync('user', {
 		currentUser: currentUser,
 		token: token,
 		id: id
@@ -137,6 +138,7 @@ export function login() {
 
 export function logout(githubUsername) {
 	return function(dispatch, getState) {
+		stopSockets()
 		dispatch({
 			type: SET_USER,
 			currentUser: null,

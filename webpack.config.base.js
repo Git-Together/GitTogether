@@ -4,9 +4,11 @@
 
 import path from 'path';
 import validate from 'webpack-validator';
+import webpack from 'webpack'
 
 export default validate({
   module: {
+	noParse: ['ws'],
     loaders: [{
       test: /\.jsx?$/,
       loader: 'babel-loader',
@@ -32,10 +34,11 @@ export default validate({
     packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
   },
 
-  plugins: [],
+  plugins: [new webpack.IgnorePlugin(/vertx/)],
 
   externals: [
     'bootstrap',
-    'dotenv'
+	  'dotenv',
+	  'ws'
   ]
 });
