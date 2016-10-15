@@ -5,6 +5,9 @@ import ActiveItem from '../ActiveItem/ActiveItem-component';
 import {tree} from 'd3-state-visualizer';
 import { findDOMNode } from 'react-dom';
 import d3tooltip from 'd3tooltip';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as file from '../../../actions/file-actions';
 
 const DOMNode = document.getElementById('repoTree');
 const root = d3.select(DOMNode);
@@ -37,8 +40,7 @@ vis.selectAll('circle').data("someData").enter()
   });
 
 
-
-export default class PageRepo extends Component {
+class PageRepo extends Component {
   constructor (props) {
     super(props);
     // this.state = {
@@ -78,7 +80,7 @@ export default class PageRepo extends Component {
             nodeSelf = nodeSelf.parent;
           }
           let filePath = fileName.join('/');
-          self.changeActiveFileAsync(null, '/' + filePath);
+          self.changeSelectedAsync(filePath, true);
         }
       });
       this.renderChart();
@@ -120,3 +122,17 @@ let addObjectIntoKey = function(strArray, obj){
   strArray.shift();
   return addObjectIntoKey(strArray, newObj);
 }
+
+function mapDispatchtoProps(dispatch) {
+	return {
+    changeSelectedAsync: bindActionCreators(file.changeActiveFileAsync, dispatch),
+    dispatch: dispatch
+	}
+}
+
+function mapStatetoProps(state){
+  return {};
+}
+
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(PageRepo)

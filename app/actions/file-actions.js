@@ -2,7 +2,7 @@ export const CHANGE_ACTIVE_FILE = 'CHANGE_ACTIVE_FILE'
 export const REFRESH_FILES = 'REFRESH_FILES'
 export const GET_FILE_CHANGES = 'GET_FILE_CHANGES';
 export const ADD_MESSAGE_TO_FILE_PANEL = 'ADD_MESSAGE_TO_FILE_PANEL';
-import { TOGGLE_COMPONENT } from './ui-actions'
+import { TOGGLE_COMPONENT, TOGGLE_TREE } from './ui-actions'
 import axios from 'axios';
 
 export function addMessageToFilePanel(message){
@@ -27,12 +27,18 @@ export function refreshFiles(files) {
   }
 }
 
-export function changeActiveFileAsync(id){
+export function changeActiveFileAsync(id, swtch){
   let fileName = '/' + id;
   return (dispatch, getState) =>{
     //Change active file
     dispatch(changeActiveFile(id, fileName))
     dispatch(getFileChanges(fileName))
+    if(swtch){
+      dispatch({
+        type: TOGGLE_TREE,
+        component: 'file'
+      })
+    }
   }
 }
 
