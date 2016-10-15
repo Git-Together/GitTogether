@@ -133,6 +133,7 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.8.0",
     "react-router-redux": "^4.0.6",
+    "react-search-input": "^0.10.3",
     "redux": "^3.5.2",
     "redux-form": "^6.1.0",
     "redux-thunk": "^2.1.0",
