@@ -18,7 +18,7 @@ export default function watch(state = initState, action){
   switch (action.type){
 
     case WATCH_FILE:
-    let duplicate = (state.watch.length === 0) ? false: true
+    let duplicate = (state.watch.length === 0) ? false : true
 
     state.watch.forEach(e => {
       if(e.id === action.repoName && e.name === action.fileId) {

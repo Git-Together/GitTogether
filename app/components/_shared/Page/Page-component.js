@@ -29,8 +29,15 @@ class Page extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
+    let newList = [];
+     if(nextProps.currentUi === "watch"){
+      newList = nextProps.list.filter(e => e.repoId === nextProps.channelName)
+    } else {
+      newList = nextProps.list
+    }
+
 		this.setState({
-			list: nextProps.list
+			list: newList
 		})
 	}
 

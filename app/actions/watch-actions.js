@@ -76,7 +76,9 @@ export function getWatch() {
 			.then((watchFileList) => {
 
 				watchFileList.data.forEach((e) => {
-					if (e.repoId === channelName && e.users.some(j => j.id === userId)) {
+					// if (e.repoId === channelName && e.users.some(j => j.id === userId)) {
+           if (e.users.some(j => j.id === userId)) {
+
 						watchArray.push(e)
 					}
 				})
@@ -94,3 +96,8 @@ export function getWatch() {
 	}
 }
 
+export function getWatchFiles() {
+  return (dispatch, getState) => {
+    return getState().watch.watch
+  }
+}
