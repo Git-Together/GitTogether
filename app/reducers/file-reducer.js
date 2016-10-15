@@ -23,7 +23,7 @@ const initState = {
 	panelMessageArray: [
 		{
 			label: "Here are your Files",
-			text: "file"
+			text: ""
 		}
 	],
 	panelMessagePlayIndex: 0,

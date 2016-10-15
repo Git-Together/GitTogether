@@ -18,7 +18,7 @@ const initialState = {
   panelMessageArray: [
       {
         label: "Here is the Conversation",
-        text: "Chat"
+        text: ""
       }
     ],
   panelMessagePlayIndex: 0,

@@ -78,6 +78,9 @@
 .Panel-Message-Text{
 	align-self: flex-end;
 	margin: 0px auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: center;
 	// height: 100%;
 	// width: 100%;
 	// padding: 1em;
@@ -85,7 +88,7 @@
 	// align-self: center;
 	font-family: OpenSans;
 	font-weight: 900;
-	font-size: 1.5em;
+	font-size: 1.3em;
 	letter-spacing: .05em;
 	// margin-left:.5em;
 	// display: flex;
