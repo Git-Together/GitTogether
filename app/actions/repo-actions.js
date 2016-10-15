@@ -93,8 +93,9 @@ export function getRepoTree(repo) {
 				userId = state.auth.id;
 				let watchList = [];
 				channelName = state.repo.channelName;
-				getOnline(channelName)	
+				getOnline(channelName)
 				return axios.get(process.env.SERVER_URL + '/api/files/?userId=' + userId)
+
 			})
 			.then(watchFileList => {
 				watchFileList.data.forEach((e) => {
