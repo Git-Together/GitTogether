@@ -5,7 +5,6 @@ import * as watch from '../actions/watch-actions.js';
 import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js';
 
 function mapStateToProps(state) {
-  // console.log("state.repo.channelName", state.repo.channelName)
   return {
     list: state.watch.watch,
     icon: state.watch.icon,

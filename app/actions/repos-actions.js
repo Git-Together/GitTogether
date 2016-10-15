@@ -1,7 +1,7 @@
 export const GET_USER_REPOS = 'GET_USER_REPOS';
 export const ADD_CHANNEL = 'ADD_CHANNEL';
 export const REMOVE_CHANNEL = 'REMOVE_CHANNEL';
-export const ADD_MESSAGE_TO_REPO_PANEL = 'ADD_MESSAGE_TO_REPO_PANEL';
+export const ADD_MESSAGE_TO_REPOS_PANEL = 'ADD_MESSAGE_TO_REPOS_PANEL';
 export const CHANGE_ACTIVE_REPO = 'CHANGE_ACTIVE_REPO';
 export const LOAD_CHANNELS = 'LOAD_CHANNELS';
 
@@ -102,23 +102,9 @@ export function changeActiveRepo(id){
     }
 }
 
-export function addMessageToRepoPanel(message){
+export function addMessageToReposPanel(message){
     return{
-        type: ADD_MESSAGE_TO_REPO_PANEL,
+        type: ADD_MESSAGE_TO_REPOS_PANEL,
         message
     }
 }
-
-// export function addRepo(repo) {
-// 	return {
-// 		type: ADD_REPO,
-// 		repo
-// 	};
-// }
-
-// export function removeRepo(id) {
-// 	return {
-// 		type: REMOVE_REPO,
-// 		id
-// 	};
-// }

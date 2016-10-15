@@ -1,4 +1,4 @@
-import { CHANGE_ACTIVE_MEMBER } from '../actions/member-actions';
+import { ADD_MESSAGE_TO_MEMBER_PANEL, CHANGE_ACTIVE_MEMBER } from '../actions/member-actions';
 import { GET_COLLABORATORS } from '../actions/repo-actions';
 // export const GET_COLLABORATORS = 'GET_COLLABORATORS';
 
@@ -9,7 +9,7 @@ export default function member(state =
     panelMessageArray: [
       {
         label: "Here are your Teammates",
-        text: "Member"
+        text: ""
      }
     ],
     members: [],
@@ -24,6 +24,8 @@ export default function member(state =
       return {...state, members: membersMap};
     case CHANGE_ACTIVE_MEMBER:
       return {...state, activeMemberId: action.id }
+	case ADD_MESSAGE_TO_MEMBER_PANEL:
+	  return {...state, panelMessageArray: [action.message]}
     default:
       return state;
   }

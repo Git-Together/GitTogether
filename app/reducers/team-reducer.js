@@ -9,7 +9,7 @@ const initState =  {
   panelMessageArray: [
     {
       label: "Here are your Teams",
-     text: "Teams"
+     text: ""
    }
   ],
   panelMessagePlayIndex: 0,
@@ -28,7 +28,6 @@ function activeTeamMember(state = 1, action){
 
 export default function team(state = initState, action) {
   switch (action.type) {
-
     case CHANGE_ACTIVE_TEAM_MEMBER:
       return {...state, activeTeamMember: activeTeamMember(state.activeTeamMember, action)};
     case CHANGE_ACTIVE_TEAM:
