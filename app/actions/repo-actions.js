@@ -10,6 +10,7 @@ export const GET_COLLABORATORS = 'GET_COLLABORATORS';
 //Github API call
 import GitHub from 'github-api';
 import axios from 'axios';
+import { getOnline } from '../utils/incoming-sockets.js'
 import { TOGGLE_COMPONENT, TOGGLE_TREE } from './ui-actions';
 import { RESET_WATCH, GET_ALL_WATCH } from './watch-actions';
 import { CHANGE_ACTIVE_TEAM } from './team-actions';
@@ -36,16 +37,20 @@ export function getUserRepos() {
 export function getRepoTree(repo) {
 	return (dispatch, getState) => {
 		let user = getState().auth.currentUser
+		let watchArray = [];
 		let repoId;
+		let channelName
 		let fetchedRepo;
+		let userId
+		let state = getState()
 		let token = getState().auth.token;
-		axios.get(`https://api.github.com/repos/${repo}?access_token=${getState().auth.token}`)
+		axios.get(`https://api.github.com/repos/${repo}?access_token=${state.auth.token}`)
 			.then(fetched => {
 				fetchedRepo = fetched
 				repoId = fetchedRepo.data.id
-				return axios.get(`https://api.github.com/repos/${repo}/git/refs/?access_token=${getState().auth.token}`)
+				return axios.get(`https://api.github.com/repos/${repo}/git/refs/?access_token=${state.auth.token}`)
 			}).then(repoSha => {
-				return axios.get(`https://api.github.com/repos/${repo}/git/trees/${repoSha.data[0].object.sha}?recursive=1&access_token=${getState().auth.token}`);
+				return axios.get(`https://api.github.com/repos/${repo}/git/trees/${repoSha.data[0].object.sha}?recursive=1&access_token=${state.auth.token}`);
 			}).then(tree => {
 				dispatch({
 					type: SWITCH_ACTIVE_TREE,
@@ -85,31 +90,25 @@ export function getRepoTree(repo) {
 				})
 			})
 			.then(() => {
-				let userId = getState().auth.id;
+				userId = state.auth.id;
 				let watchList = [];
-				let channelName = getState().repo.channelName;
-				let watchArray = [];
-
-                axios.get(process.env.SERVER_URL + '/api/files/?userId=' + userId)
-                    .then((watchFileList) => {
-
-
-						watchFileList.data.forEach((e) => {
-
-							if (e.users[0].id === userId && e.repoId === channelName) {
-
-								watchArray.push(e)
-							}
-						})
-						dispatch({
-							type: GET_ALL_WATCH,
-							watchList: watchArray
-						})
-					})
+				channelName = state.repo.channelName;
+				getOnline(channelName)	
+				return axios.get(process.env.SERVER_URL + '/api/files/?userId=' + userId)
 			})
+			.then(watchFileList => {
+				watchFileList.data.forEach((e) => {
 
-			.then(() => {
-				return axios.get(`https://api.github.com/repos/${repo}/collaborators?access_token=${getState().auth.token}`)
+					if (e.users[0].id === userId && e.repoId === channelName) {
+
+						watchArray.push(e)
+					}
+				})
+				dispatch({
+					type: GET_ALL_WATCH,
+					watchList: watchArray
+				})
+				return axios.get(`https://api.github.com/repos/${repo}/collaborators?access_token=${state.auth.token}`)
 			}).then(collaborators => {
 				dispatch({
 					type: GET_COLLABORATORS,

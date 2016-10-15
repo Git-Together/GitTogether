@@ -6,6 +6,7 @@ import Promise from 'bluebird'
 const storage = Promise.promisifyAll(require('electron-json-storage'))
 import GitHub from 'github-api';
 import axios from 'axios';
+
 export function loadChannels() {
 	return (dispatch, getState) => {
 		let userStorage, channelStorage, currentUser, channels

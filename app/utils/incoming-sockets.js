@@ -25,7 +25,7 @@ export function instantiateSockets (state, dispatch) {
 				.then(cachedChannels => {
 					let channels = Object.keys(cachedChannels[currentUser])
 					if (channels.includes(payload.channel)) {
-						new Notification(payload.username + ' just ' + payload.event + " " + payload.filepath + ' in ' + payload.branch.current + '.', { silent: 'true' })
+						new Notification(payload.username + ' just ' + payload.event + " " + payload.filepath + ' in ' + payload.channel + '.', { silent: 'true' })
 					}
 				})
 		}
@@ -54,3 +54,6 @@ export function stopSockets() {
 	}
 }
 
+export function getOnline(channelName) {
+	socket.emit('getOnline', channelName)
+}

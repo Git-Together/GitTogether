@@ -12,7 +12,6 @@ import Team from '../../containers/Team-container';
 import Watch from '../../containers/Watch-container';
 import { fileWatcher } from '../../utils/file-watch.js';
 import { instantiateSockets, stopSockets } from '../../utils/incoming-sockets.js'
-import * as AuthActions from '../../actions/auth-actions.js'
 
 export default class Home extends Component {
 	constructor (props) {
@@ -64,6 +63,7 @@ export default class Home extends Component {
             <div id="Header-Nav-IconBar">
               {
                 [
+				{ icon: 'glyphicon glyphicon-home', name: 'home'},
                 { icon: 'glyphicon glyphicon-eye-open', name: 'watch' },
                 { icon: 'glyphicon glyphicon-cloud-upload', name: 'repo' },
                 { icon: 'glyphicon glyphicon-user', name: 'member' },
