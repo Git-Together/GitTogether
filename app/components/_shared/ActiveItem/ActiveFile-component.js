@@ -65,13 +65,13 @@ class ActiveFile extends Component {
 		  <div style={buttonStyle}
 			onClick={this.props.addSelected.bind(null, repoId, path)}
 			className="ActiveItem-Functionality-Add">
-			Subscribe to this file
+			Subscribe to file
 		  </div> {/* ActiveItem-Functionality-Add */}
 
 		  <div style={buttonStyle}
 			onClick={this.props.removeSelected.bind(null)}
 			className="ActiveItem-Functionality-Remove">
-		  	Unsubscribe from this file
+		  	Unsubscribe from file
 		  </div> {/* ActiveItem-Functionality-Remove */}
 
 	  </div>{/* ActiveItem-Functionality */}

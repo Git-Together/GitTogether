@@ -40,6 +40,10 @@
 	letter-spacing: .05em;
 	// display: flex;
 	color: $highlight;
+	&:hover {
+		color: $mainHighlight;
+		cursor: pointer;
+	}
 }
 
 .Panel-top div {
@@ -72,7 +76,7 @@
 	// align-self: center;
 	font-family: OpenSans;
 	font-weight: 900;
-	font-size: 1.5em;
+	font-size: 1.2em;
 	letter-spacing: .05em;
 	// display: flex;
 	color: $mainColor;
@@ -90,8 +94,8 @@
 	flex: 2 0 50%;
 	// align-self: center;
 	font-family: OpenSans;
-	font-weight: 900;
-	font-size: 1.3em;
+	font-weight: 700;
+	font-size: 1.2em;
 	letter-spacing: .05em;
 	// margin-left:.5em;
 	// display: flex;

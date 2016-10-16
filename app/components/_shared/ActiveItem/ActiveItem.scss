@@ -40,6 +40,7 @@
 
 .ActiveItem-Functionality{
 	display: flex;
+	margin: .2;
 	flex: 8 0 auto;
 	width: 33%;
 	height: 25%;
@@ -57,7 +58,7 @@
 	border-radius: 1em;
 	flex: 1 0 50%;
 	margin-right: .5em;
-	padding: 1em;
+	padding: .5em;
 	&:hover {
 		cursor: pointer;
 		background-color: $backgroundColor;
@@ -73,7 +74,7 @@
 	color: $backgroundColor;
 	background-color: $mainColor;
 	flex: 1 0 50%;
-	padding: 1em;
+	padding: .5em;
 	&:hover {
 		cursor: pointer;
 		background-color: $backgroundColor;

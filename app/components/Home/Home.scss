@@ -108,7 +108,7 @@
 	font-size: 1.5em;
 	color: $backgroundColor;
 	&:hover {
-		color: $highlight;
+		color: $mainHighlight;
 
 	}
 }
@@ -174,6 +174,6 @@
 }
 
 .active {
-	color: $mainHighlight;
+	color: $highlight;
 }
 
