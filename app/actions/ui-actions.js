@@ -8,12 +8,21 @@
 // export const SHOW_SETTINGS = 'SHOW_SETTINGS';
 export const TOGGLE_COMPONENT = 'TOGGLE_COMPONENT';
 export const TOGGLE_TREE = 'TOGGLE_TREE';
+export const ACTIVE_COMPONENT = 'ACTIVE_COMPONENT';
 
 export function toggleComponent(component) {
-  return {
-    type: TOGGLE_COMPONENT,
-    component
-  };
+  return (dispatch) => {
+    dispatch({
+      type: TOGGLE_COMPONENT,
+      component
+    });
+    dispatch({
+      type: ACTIVE_COMPONENT,
+      component
+    });
+
+  }
+
 }
 
 export function toggleTree(component) {

@@ -3,7 +3,10 @@
 
 * {
 	box-sizing: border-box;
-	// border: 1px solid black;
+}
+
+.active {
+	color: $highlight;
 }
 
 #Container{
@@ -58,13 +61,14 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color:green;
+	background-color: $mainColor;
 	flex: 7.5 0 75%;
 }
 
 #Header-Nav-Text{
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
+	padding: 1em;
 	align-items: center;
 	background-color: $mainColor;
 	width: 100%;
@@ -75,7 +79,7 @@
 #Header-Nav-Text-Welcome{
 	font-family: OpenSans;
 	font-weight: 900;
-	font-size: 3em;
+	font-size: 2em;
 	letter-spacing: .05em;
 	// display: flex;
 	color: $backgroundColor;
@@ -83,7 +87,7 @@
 #Header-Nav-Text-UN{
 	font-family: OpenSans;
 	font-weight: 900;
-	font-size: 3em;
+	font-size: 2em;
 	letter-spacing: .05em;
 	margin-left:.5em;
 	// display: flex;
@@ -92,11 +96,14 @@
 
 #Header-Nav-IconBar{
 	display: flex;
+	align-self: flex-start;
 	justify-content: space-around;
-	align-content: space-around;
 	background-color: $mainColor;
+	border-radius: 1em;
 	flex: 4 0 40%;
+	padding: 0em;
 	width: 100%;
+	cursor: pointer;
 }
 
 .Header-Nav-IconBar-Icons{
@@ -104,6 +111,7 @@
 	color: $backgroundColor;
 	&:hover {
 		color: $highlight;
+
 	}
 }
 

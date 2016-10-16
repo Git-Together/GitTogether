@@ -23,7 +23,7 @@ export default class Panel extends Component {
             </span>
           </div>
         </div>
-        <hr />
+
         {
           !this.props.isRepo &&
             <div className="Panel-Message">
@@ -37,7 +37,7 @@ export default class Panel extends Component {
         }
         {
           this.props.isRepo &&
-          <div>
+          <div className="Panel-Message">
             <PathChoose repo={this.props.state} />
           </div>
         }
