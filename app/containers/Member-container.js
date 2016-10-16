@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as member from '../actions/member-actions.js';
+import * as ui from '../actions/ui-actions.js';
 import * as team from '../actions/team-actions.js';
 import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js';
+
 
 function mapStateToProps(state) {
   return {
@@ -13,13 +15,15 @@ function mapStateToProps(state) {
     panelMessageArray: state.member.panelMessageArray,
     selected: state.member.activeMemberId,
     uiSelected: state.ui.selected,
-    currentUi: 'member'
+    currentUi: 'member',
+    activeUi: state.ui.activeUi
   };
 
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    toggleComponent: bindActionCreators(ui.toggleComponent, dispatch),
     changeSelected: bindActionCreators(member.changeActiveMember, dispatch),
     addSelected: bindActionCreators(team.addTeamMember, dispatch),
     removeSelected: bindActionCreators(team.removeTeamMember, dispatch),

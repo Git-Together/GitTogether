@@ -11,6 +11,7 @@ export const TOGGLE_TREE = 'TOGGLE_TREE';
 export const ACTIVE_COMPONENT = 'ACTIVE_COMPONENT';
 
 export function toggleComponent(component) {
+  console.log("componenet", component)
   return (dispatch) => {
     dispatch({
       type: TOGGLE_COMPONENT,

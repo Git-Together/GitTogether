@@ -5,10 +5,6 @@
 	box-sizing: border-box;
 }
 
-.active {
-	color: $highlight;
-}
-
 #Container{
 	position: fixed;
 	flex-flow: column;
@@ -28,6 +24,8 @@
 }
 
 #Header-Logo{
+	border-right: 3px solid $mainHighlight;
+	border-bottom: 3px solid $mainHighlight;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -128,6 +126,7 @@
 	// align-items: center;
 	flex-direction: column;
 	background-color:lightblue;
+
 	flex: 2.5 0 25%;
 }
 
@@ -151,6 +150,8 @@
 
 #Body-Content{
 	// border: 4px solid magenta;
+	border-top: 4px solid $mainHighlight;
+	border-left: 4px solid $mainHighlight;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
@@ -172,5 +173,7 @@
 	background-color: $backgroundColor;
 }
 
-
+.active {
+	color: $mainHighlight;
+}
 

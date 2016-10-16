@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as team from '../actions/team-actions.js';
 import * as repo from '../actions/repo-actions.js';
+import * as ui from '../actions/ui-actions.js';
 // import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js';
 import ListView from '../components/_shared/List/ListView-component.js';
 
@@ -14,7 +15,8 @@ function mapStateToProps(state) {
     panelMessageArray: state.team.panelMessageArray,
     selected: state.team.activeTeam,
     uiSelected: state.ui.selected,
-    currentUi: 'team'
+    currentUi: 'team',
+    activeUi: state.ui.activeUi
   };
 }
 
@@ -24,6 +26,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    toggleComponent: bindActionCreators(ui.toggleComponent, dispatch),
     changeSelected: bindActionCreators(team.changeActiveTeamMemberAsync, dispatch),
     getList: bindActionCreators(team.refreshTeamMembers, dispatch)
   }

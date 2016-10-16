@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as repo from '../actions/repo-actions.js';
+import * as ui from '../actions/ui-actions.js';
 import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js';
 
 function mapStateToProps( state, ownProps = {repo:true} ) {
@@ -15,12 +16,14 @@ function mapStateToProps( state, ownProps = {repo:true} ) {
     uiSelected: state.ui.selected,
     currentUi: 'repo',
     state: state.repo,
-    isRepo: true
+    isRepo: true,
+    activeUi: state.ui.activeUi
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    toggleComponent: bindActionCreators(ui.toggleComponent, dispatch),
   }
 }
 
@@ -33,6 +36,6 @@ function mapDispatchToProps(dispatch) {
 //   }
 // }
 
-export default connect(mapStateToProps)(PanelPage)
+export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
 // export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
 

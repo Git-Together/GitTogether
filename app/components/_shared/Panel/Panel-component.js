@@ -15,10 +15,11 @@ export default class Panel extends Component {
   };
 
   render() {
+    console.log("panel", this.props)
     return (
       <div className="Panel-Base">
         <div className="Panel">
-          <div className="Panel-Message-Heading">
+          <div className="Panel-Message-Heading" onClick={this.props.toggleComponent.bind(null, `${this.props.currentUi}`)}>
             <span className="pull-left" > <span className={this.props.icon + ' Panel-Icon '}></span>{this.props.currentUi.toUpperCase()}
             </span>
           </div>

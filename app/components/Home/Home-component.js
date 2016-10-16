@@ -41,6 +41,15 @@ export default class Home extends Component {
   render() {
 
 	  const { logout } = this.props
+    let navArray = [
+      { icon: 'glyphicon glyphicon-home', name: 'home' },
+      { icon: 'glyphicon glyphicon-eye-open', name: 'watch' },
+      { icon: 'glyphicon glyphicon-cloud-upload', name: 'repo' },
+      { icon: 'glyphicon glyphicon-user', name: 'member' },
+      { icon: 'glyphicon glyphicon-tasks', name: 'repos' },
+      { icon: 'glyphicon glyphicon-file', name: 'file' },
+      { icon: 'glyphicon glyphicon-comment', name: 'chat' }
+    ];
 		return (
       <div id='Container'>
 
@@ -62,21 +71,18 @@ export default class Home extends Component {
               <span id="Header-Nav-Text-UN"><em>{this.props.repo.channelName}</em></span>
             </div> {/* -Headder-Nav-Text */}
             <div id="Header-Nav-IconBar">
+              {console.log("this.props.activeUi",this.props.activeUi)}
               {
-                console.log("uiActive", this.props)
+                navArray.map(e => {
 
-                [
-  				        { icon: 'glyphicon glyphicon-home', name: 'home' },
-                  { icon: 'glyphicon glyphicon-eye-open', name: 'watch' },
-                  { icon: 'glyphicon glyphicon-cloud-upload', name: 'repo' },
-                  { icon: 'glyphicon glyphicon-user', name: 'member' },
-                  { icon: 'glyphicon glyphicon-tasks', name: 'repos' },
-                  { icon: 'glyphicon glyphicon-file', name: 'file' },
-                  { icon: 'glyphicon glyphicon-comment', name: 'chat' }
-                ].map(e => {
-                  console.log("IN E")
 
-                  return (<div key={e.icon} onClick={this.props.toggleComponent.bind(null, `${e.name}`)}></div>)
+                  return <div
+                    key={e.icon}
+                    className={this.props.activeUi === e.name?
+                      `${e.icon} Header-Nav-IconBar-Icons active`:
+                      `${e.icon} Header-Nav-IconBar-Icons`
+                    }
+                    onClick={this.props.toggleComponent.bind(null, `${e.name}`)}></div>
                   })
               }
 			  <div className="glyphicon glyphicon-log-out Header-Nav-IconBar-Icons" onClick={logout}></div>

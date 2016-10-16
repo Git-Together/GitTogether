@@ -21,7 +21,7 @@
 	// flex: 0, 0, auto;
 }
 
-.Panel-Message-Heading {
+.Panel-Message-Heading, {
 	// margin-right: auto;
 	text-align: center;
 	// position: relative;
@@ -42,6 +42,11 @@
 	color: $highlight;
 }
 
+.Panel-top div {
+		cursor: pointer;
+		color: $mainColor;
+}
+
 .Panel-Icon {
 	// height: 100%;
 	// width: 100%;
@@ -49,6 +54,7 @@
 	flex: 2 0 10%;
 	font-size: .9em;
 	padding: .3em;
+
 }
 
 .Panel-Message {

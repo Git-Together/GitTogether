@@ -13,7 +13,7 @@ export default function ui(state = {activeUi: 'home', selected:null}, action) {
     case TOGGLE_TREE:
       return {...state, selected: action.component }
     case ACTIVE_COMPONENT:
-      return {...state, activeUi: action.componenet}
+      return {...state, activeUi: action.component }
     default:
       return state;
   }
