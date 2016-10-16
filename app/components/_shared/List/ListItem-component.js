@@ -26,7 +26,8 @@ class List extends Component {
   handleClose = () => this.setState({isShowingModal: false})
 
   render() {
-	let { removeChannel } = this.props
+	let { removeChannel, currentlyOnline } = this.props
+	if (!currentlyOnline) currentlyOnline = []
     let item;
     if(typeof this.props.item === "string"){
       item = this.props.item;

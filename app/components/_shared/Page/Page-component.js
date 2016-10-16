@@ -74,9 +74,6 @@ class Page extends Component {
 						removeSelected={this.props.removeSelected}/>
 					}
 
-					{currentUi === "chat" && <ChatBar />
-					}
-
 					{currentUi === "member" && <ActiveCollaborator  activeItem={this.filter(this.props.selected)[0] || {}}
 						addSelected={this.props.addSelected}
 						removeSelected={this.props.removeSelected}/>
