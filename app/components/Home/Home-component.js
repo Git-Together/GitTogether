@@ -40,6 +40,9 @@ export default class Home extends Component {
 
   render() {
 	  const { logout } = this.props
+	  let panelStyle = {
+		  cursor: 'pointer'
+	  }
 		return (
       <div id='Container'>
 
@@ -96,27 +99,27 @@ export default class Home extends Component {
 
           <div id="Body-Content">
 
-            <div id="Body-Content-Watch">
+            <div style={panelStyle} id="Body-Content-Watch">
               <Watch />
             </div>  {/* -Body-Content-Watch */}
 
-            <div id="Body-Content-Repo">
+            <div style={panelStyle} id="Body-Content-Repo">
               <Repo />
             </div>   {/* -Body-Content-Repo */}
 
-            <div id="Body-Content-Member">
+            <div style={panelStyle} id="Body-Content-Member">
               <Member />
             </div>    {/* -Body-Content-Member */}
 
-            <div id="Body-Content-Repos">
+            <div style={panelStyle} id="Body-Content-Repos">
               <Repos />
             </div>
 
-            <div id="Body-Content-File">
+            <div style={panelStyle} id="Body-Content-File">
               <File />
             </div>     {/*-Body-Content-File */}
 
-            <div id="Body-Content-Chat">
+            <div style={panelStyle} id="Body-Content-Chat">
               <Chat />
             </div>    {/*-Body-Content-Chat */}
 

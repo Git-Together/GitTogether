@@ -16,6 +16,16 @@
 	height: 25%
 }
 
+.ChatField{
+	display: block;
+	background-color: $highlight;
+	border: .5em solid $mainColor;
+	flex: 2 0 auto;
+	aign-self: flex-end;
+	width: 34%;
+	height: 25%
+}
+
 .ActiveItem-Name-Text{
 
 }
@@ -40,7 +50,14 @@
 	height: 25%;
 	background-color: $highlight;
 	border: .5em solid $mainColor;
+}
 
+.ChatBar-Functionality{
+	display: flex;
+	width: 15%;
+	height: 25%;
+	background-color: $highlight;
+	border: .5em solid $mainColor;
 }
 
 .ActiveItem-Functionality-Add{

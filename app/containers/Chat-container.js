@@ -6,7 +6,7 @@ import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js'
 
 function mapStateToProps(state) {
   return {
-    list: state.chat.chat,
+    list: state.chat.messages,
     icon: state.chat.icon,
     panelMessage: state.chat.panelMessageArray[state.chat.panelMessagePlayIndex] || 'Your current active chat',
     panelMessageArray: state.chat.panelMessageArray,
@@ -14,10 +14,11 @@ function mapStateToProps(state) {
     uiSelected: state.ui.selected,
     currentUi: 'chat'
   };
-}
+	}
 
 function mapDispatchToProps(dispatch) {
   return {
+	  addSelected: bindActionCreators(chat.sendMessage, dispatch)
   }
 }
 
@@ -30,5 +31,5 @@ function mapDispatchToProps(dispatch) {
 //   }
 // }
 
-export default connect(mapStateToProps)(PanelPage)
+export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
 // export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
