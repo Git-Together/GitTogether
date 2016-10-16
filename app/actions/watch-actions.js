@@ -3,8 +3,15 @@ export const UNWATCH_FILE = 'UNWATCH_FILE';
 export const CHANGE_ACTIVE_WATCH = "CHANGE_ACTIVE_WATCH";
 export const RESET_WATCH = "RESET_WATCH";
 export const GET_ALL_WATCH = "GET_ALL_WATCH";
+export const ADD_MESSAGE_TO_WATCH_PANEL = 'ADD_MESSAGE_TO_WATCH_PANEL';
 import axios from 'axios';
 
+export function addMessageToWatchPanel(message){
+    return{
+        type: ADD_MESSAGE_TO_WATCH_PANEL,
+        message
+    }
+}
 
 export function watchFile(repoId, fileName) {
 
@@ -76,7 +83,9 @@ export function getWatch() {
 			.then((watchFileList) => {
 
 				watchFileList.data.forEach((e) => {
-					if (e.repoId === channelName && e.users.some(j => j.id === userId)) {
+					// if (e.repoId === channelName && e.users.some(j => j.id === userId)) {
+           if (e.users.some(j => j.id === userId)) {
+
 						watchArray.push(e)
 					}
 				})
@@ -94,3 +103,8 @@ export function getWatch() {
 	}
 }
 
+export function getWatchFiles() {
+  return (dispatch, getState) => {
+    return getState().watch.watch
+  }
+}

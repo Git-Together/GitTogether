@@ -11,6 +11,7 @@ function mapStateToProps(state) {
     panelMessage: state.watch.panelMessageArray[state.watch.panelMessagePlayIndex] || 'Your current active repo',
     panelMessageArray: state.watch.panelMessageArray,
     selected: state.watch.activeWatch,
+    channelName: state.repo.channelName,
     uiSelected: state.ui.selected,
     currentUi: 'watch'
   };

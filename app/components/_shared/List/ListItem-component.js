@@ -41,9 +41,6 @@ class List extends Component {
 	let itemStyle = {
 		cursor: 'pointer'
 	}
-	  if (this.props.curUi === "channel") {
-		  console.log('channel props ', this.props)
-	  }
 	
     return (
       <div className="ListItem" style={itemStyle} onClick={this.props.changeSelected.bind(null, item)}>

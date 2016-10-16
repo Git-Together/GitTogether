@@ -36,14 +36,15 @@ export function getUserRepos() {
 
 export function getRepoTree(repo) {
 	return (dispatch, getState) => {
-		let user = getState().auth.currentUser
+		let state = getState()
+		let user = state.auth.currentUser
+		let token = state.auth.token;
+		let currentView = state.ui.selected
 		let watchArray = [];
 		let repoId;
 		let channelName
 		let fetchedRepo;
 		let userId
-		let state = getState()
-		let token = getState().auth.token;
 		axios.get(`https://api.github.com/repos/${repo}?access_token=${state.auth.token}`)
 			.then(fetched => {
 				fetchedRepo = fetched
@@ -76,34 +77,26 @@ export function getRepoTree(repo) {
 				})
 				dispatch({
 					type: TOGGLE_TREE,
-					component: 'repos'
+					component: currentView
 				})
 			}).then(() => {
 				return storage.getAsync('channels')
-			}).then(cachedChannels => dispatch({
-				type: CHANGE_CHANNEL_PATH,
-				path: cachedChannels[user][repo]
-			}))
-			.then(() => {
+			}).then(cachedChannels => {
+				dispatch({
+					type: CHANGE_CHANNEL_PATH,
+					path: cachedChannels[user][repo]
+				})
 				dispatch({
 					type: RESET_WATCH
 				})
-			})
-			.then(() => {
 				userId = state.auth.id;
 				let watchList = [];
-				channelName = state.repo.channelName;
-				getOnline(channelName)	
+				getOnline(repo)
 				return axios.get(process.env.SERVER_URL + '/api/files/?userId=' + userId)
+
 			})
 			.then(watchFileList => {
-				watchFileList.data.forEach((e) => {
-
-					if (e.users[0].id === userId && e.repoId === channelName) {
-
-						watchArray.push(e)
-					}
-				})
+				let watchArray = watchFileList.data.filter(e => e.repoId === channelName) 
 				dispatch({
 					type: GET_ALL_WATCH,
 					watchList: watchArray

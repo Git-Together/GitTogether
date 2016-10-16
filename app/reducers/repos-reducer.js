@@ -1,4 +1,4 @@
-import {GET_USER_REPOS, ADD_CHANNEL, REMOVE_CHANNEL, ADD_MESSAGE_TO_REPO_PANEL, CHANGE_ACTIVE_REPO } from '../actions/repos-actions';
+import {GET_USER_REPOS, ADD_CHANNEL, REMOVE_CHANNEL, ADD_MESSAGE_TO_REPOS_PANEL, CHANGE_ACTIVE_REPO } from '../actions/repos-actions';
 
 export default function repos(state =
   {
@@ -6,7 +6,7 @@ export default function repos(state =
     panelMessageArray: [
       {
         label: "Here are your Repos",
-        text: "Repos"
+        text: ""
      }
     ],
     repos: [],
@@ -19,7 +19,7 @@ export default function repos(state =
         e.name = e.full_name
       })
       return {...state, repos: action.repos}
-    case ADD_MESSAGE_TO_REPO_PANEL:
+    case ADD_MESSAGE_TO_REPOS_PANEL:
       return {...state, panelMessageArray: [action.message]}
     case CHANGE_ACTIVE_REPO:
       return {...state, activeRepoId: action.id}
