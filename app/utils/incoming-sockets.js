@@ -8,6 +8,7 @@ import * as FileActions from '../actions/file-actions.js'
 import * as RepoActions from '../actions/repo-actions.js'
 import * as ReposActions from '../actions/repos-actions.js'
 import * as WatchActions from '../actions/watch-actions.js'
+import * as ChatActions from '../actions/chat-actions.js'
 import moment from 'moment'
 const storage = Promise.promisifyAll(require('electron-json-storage'))
 
@@ -18,6 +19,13 @@ export function instantiateSockets (state, dispatch) {
 	let currentUser = state.auth.currentUser
 
 	socket.emit('passLogin', currentUser)
+
+	socket.on('receiveMessage', body => {
+		let currentChannel = dispatch(RepoActions.getCurrentChannel())
+		if (body.channelName === currentChannel) {
+			dispatch()
+		}	
+	})
 
 	socket.on('fileChanges', payload => {
 		let changeTime = moment().format('h:mm a, MMMM Do')
@@ -80,4 +88,8 @@ export function stopSockets() {
 
 export function getOnline(channelName) {
 	socket.emit('getOnline', channelName)
+}
+
+export function sendChat(message, currentUser, channelName) {
+	socket.emit('sendChat', { message, currentUser, channelName })
 }

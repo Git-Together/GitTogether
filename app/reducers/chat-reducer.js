@@ -1,16 +1,15 @@
-import { POST_MESSAGE, REFRESH_MESSAGES, CHANGE_ACTIVEMESSAGE } from '../actions/chat-actions';
+import { LOAD_MESSAGES, ADD_MESSAGE } from '../actions/chat-actions';
 
 const initialState = {
-  activeMessage: 1,
   messages: [{
     message: 'This is the initial message',
-    userId: 1,
+    author: "Jane",
     id: 1,
     timeStamp: new Date()
   },
   {
     message: 'This is the second message',
-    userId: 2,
+    author: "Joe",
     id: 2,
     timeStamp: new Date()
   }],
@@ -25,14 +24,31 @@ const initialState = {
 };
 
 export default function chat(state = initialState, action) {
-  switch (action.type) {
-    case POST_MESSAGE:
-      return { ...state, messages: [...state.messages, {message: action.message, userId: action.userId, id: action.id, timeStamp: action.timeStamp}] };
-    case REFRESH_MESSAGES:
-      return { ...state, messages: [...action.messages] };
-    case CHANGE_ACTIVEMESSAGE:
-      return { ...state, activeMessage: action.id };
-    default:
-      return state;
-  }
+	switch (action.type) {
+		case ADD_MESSAGE:
+			let panelText = `${action.message.author}: ${action.message.message}`	
+			return {...state, 
+				messages: [...state.messages, action.message], 
+				panelMessageArray: [{
+					label: "Most recent message:",
+					text: panelText
+				}]}
+		case LOAD_MESSAGES: {
+			return {
+				...state, 
+				messages: action.chatHistory, 
+				panelMessageArray: action.chatHistory[0] ? 
+				[{
+					label: "Most recent message:",
+					text: action.chatHistory[action.chatHistory.length - 1].message
+				}] : 
+				[{
+					label: "No messages in this channel yet.",
+					text: ""
+				}]
+			}
+		}
+		default:
+			return state;
+	}
 }
