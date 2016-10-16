@@ -30,7 +30,7 @@ class Page extends Component {
 
 	componentWillReceiveProps(nextProps) {
     let newList = [];
-     if(nextProps.currentUi === "watch"){
+     if(nextProps.currentUi === "watch"){ //this filters the list of files watching to the one only in active repo
       newList = nextProps.list.filter(e => e.repoId === nextProps.channelName)
     } else {
       newList = nextProps.list

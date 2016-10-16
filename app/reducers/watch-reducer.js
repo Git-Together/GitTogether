@@ -40,7 +40,6 @@ export default function watch(state = initState, action){
 					var indexToDelete = i;
 
 					return {...state, watch: [...state.watch.slice(0, indexToDelete), ...state.watch.slice(indexToDelete+1)] }
-					// [...state.slice(0, indexToDelete), ...state.slice(indexToDelete+1)]
 				}
 			}
 			return state;
@@ -59,18 +58,3 @@ export default function watch(state = initState, action){
 			return state;
 	}
 }
-
-
-//   if ((state.watch.map(e => e.fileId).indexOf(action.fileId) < 0) && (state.watch.map(e => e.repoId).indexOf(action.repoId) < 0)) {
-
-//   let newCheckout = {
-//     id: action.repoId,
-//     name: action.fileId,
-//     userId: action.userId,
-//     timeStamp: new Date()
-//   };
-
-// return {...state, watch: [...state.watch, newCheckout] };
-// } else{
-//   return state;
-// }

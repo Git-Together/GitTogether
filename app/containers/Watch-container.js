@@ -19,7 +19,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeSelected: bindActionCreators(watch.changeActiveWatch, dispatch),
+    changeSelected: bindActionCreators(watch.changeActiveWatchAsync, dispatch),
     addSelected: bindActionCreators(watch.watchFile, dispatch),
     removeSelected: bindActionCreators(watch.unwatchFile, dispatch),
     getList: bindActionCreators(watch.getWatch, dispatch)
