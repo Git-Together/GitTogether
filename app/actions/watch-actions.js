@@ -5,6 +5,7 @@ export const RESET_WATCH = "RESET_WATCH";
 export const GET_ALL_WATCH = "GET_ALL_WATCH";
 export const ADD_MESSAGE_TO_WATCH_PANEL = 'ADD_MESSAGE_TO_WATCH_PANEL';
 import axios from 'axios';
+import * as FileActions from './file-actions.js';
 
 export function addMessageToWatchPanel(message){
     return{
@@ -106,5 +107,13 @@ export function getWatch() {
 export function getWatchFiles() {
   return (dispatch, getState) => {
     return getState().watch.watch
+  }
+}
+
+export function changeActiveWatchAsync(fileId){
+  let fileName = '/' + fileId;
+  return (dispatch) => {
+    dispatch(changeActiveWatch(fileId))
+    dispatch(FileActions.getFileChanges(fileName))
   }
 }

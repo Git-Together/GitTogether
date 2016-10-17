@@ -1,18 +1,7 @@
 import { LOAD_MESSAGES, ADD_MESSAGE } from '../actions/chat-actions';
 
 const initialState = {
-  messages: [{
-    message: 'This is the initial message',
-    author: "Jane",
-    id: 1,
-    timeStamp: new Date()
-  },
-  {
-    message: 'This is the second message',
-    author: "Joe",
-    id: 2,
-    timeStamp: new Date()
-  }],
+  messages: [],
   icon: 'glyphicon glyphicon-comment',
   panelMessageArray: [
       {
