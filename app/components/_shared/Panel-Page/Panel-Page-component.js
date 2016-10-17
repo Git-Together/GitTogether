@@ -19,21 +19,22 @@ export default class PanelPage extends Component {
 
   render() {
 	  let isChat = this.props.uiSelected === "chat"
+	  let isRepo = this.props.uiSelected === "repo"
     return (
 		<div className="Panel-Page">
 			<Panel icon={this.props.icon} state={this.props.state} currentUi={this.props.currentUi} isRepo={this.props.isRepo} panelMessage={this.props.panelMessage} />
-			{this.props.uiSelected===this.props.currentUi && this.props.isRepo && <PageRepo
+			{this.props.uiSelected===this.props.currentUi && isRepo && !isChat && <PageRepo
 				list={this.props.list}
 				selected={this.props.selected}
 				icon={this.props.icon}
 			/>}
 
-			{this.props.uiSelected===this.props.currentUi && isChat && <PageChat
+			{this.props.uiSelected===this.props.currentUi && !isRepo && isChat && <PageChat
 				selected={this.props.selected}
 				icon={this.props.icon}
 			/>}
 
-			{this.props.uiSelected===this.props.currentUi && !isChat && <Page
+			{this.props.uiSelected===this.props.currentUi && !isChat && !isRepo && <Page
 				list={this.props.list}
 				selected={this.props.selected}
 				icon={this.props.icon}

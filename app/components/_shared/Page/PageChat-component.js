@@ -3,10 +3,12 @@ import './Page.scss';
 import List from '../List/List-component';
 import ChatBar from '../ActiveItem/ChatBar-component';
 import { connect } from 'react-redux';
+import moment from 'moment'
 
 class PageChat extends Component {
 	constructor (props) {
 		super(props);
+		this.displayMessages = this.displayMessages.bind(this)
 		this.state = {
 			list: this.props.list || []
 		}
@@ -18,15 +20,26 @@ class PageChat extends Component {
 
 	componentWillMount(){}
 
-	componentWillReceiveProps(nextProps) {}
+	displayMessages(messages) {
+		let textStyle = {
+			fontSize: '16px'
+		}
+		//TODO: add timestamp
+		return messages ? messages.map((messageObj, index) => {
+			return <p style={textStyle} key={index}>{messageObj.author}: {messageObj.message}</p> 
+		}) : []
+	}
 
+	componentWillReceiveProps(nextProps) {}
 
 	render() {
 		const { currentUi, messages } = this.props
 		return (
 			<div className="ChatPage">
 				<div className="ChatPage-List">
-					hey
+					{
+						this.displayMessages(messages)
+					}
 				</div>
 				<div className="ChatPage-Bar">
 					<ChatBar />

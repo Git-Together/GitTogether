@@ -21,9 +21,12 @@ export function instantiateSockets (state, dispatch) {
 	socket.emit('passLogin', currentUser)
 
 	socket.on('receiveMessage', body => {
+		let message = body.message
+		let author = body.author
+		let timeStamp = body.timeStamp
 		let currentChannel = dispatch(RepoActions.getCurrentChannel())
 		if (body.channelName === currentChannel) {
-			dispatch()
+			dispatch(ChatActions.addMessage({ message, author, timeStamp }))
 		}	
 	})
 

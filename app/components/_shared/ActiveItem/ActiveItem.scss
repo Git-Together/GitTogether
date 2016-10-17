@@ -16,18 +16,16 @@
 	height: 25%
 }
 
-.ChatField{
+.ChatField {
 	display: block;
-	background-color: $highlight;
-	border: .5em solid $mainColor;
+	background-color: white;
 	flex: 2 0 auto;
 	aign-self: flex-end;
 	width: 34%;
-	height: 25%
-}
-
-.ActiveItem-Name-Text{
-
+	margin-top: 4px;
+	height: 25%;
+	margin-right: 10px;
+	color: black;
 }
 
 .ActiveItem-Details{
@@ -37,10 +35,6 @@
 	flex: 8 0 auto;
 	width: 33%;
 	height: 25%
-}
-
-.ActiveItem-Details-Content{
-
 }
 
 .ActiveItem-Functionality{
@@ -57,7 +51,6 @@
 	width: 15%;
 	height: 25%;
 	background-color: $highlight;
-	border: .5em solid $mainColor;
 }
 
 .ActiveItem-Functionality-Add{
@@ -66,6 +59,18 @@
 	color: $backgroundColor;
 	border-radius: 1em;
 	flex: 1 0 50%;
+	margin: 0 auto;
+}
+
+.ChatBar-Send{
+	border: .1em solid $backgroundColor;
+	background-color: $mainColor;
+	color: $backgroundColor;
+	border-radius: 1em;
+	margin-left: 5px;
+	flex: 1 0 80%;
+	height: 40px;
+	padding-top: 8px;
 	margin: 0 auto;
 }
 

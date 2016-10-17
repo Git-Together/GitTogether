@@ -47,36 +47,33 @@
 }
 
 .ChatPage-List {
-	// background-color: orange;
-	// position: absolute;
-	color: $mainColor;
+	color: black;
 	z-index: 1000;
 	width: 100%;
 	padding: 1.4em;
-  flex: 2 0 50%;
-  font-family: OpenSans;
-  font-weight: 700;
-  font-size: 1.1em;
-  letter-spacing: .05em;
-  height: 100px;
-  overflow: scroll;
+	flex: 2 0 50%;
+	font-family: OpenSans;
+	font-size: 12px;
+	letter-spacing: .05em;
+	overflow: scroll;
 }
 
 .Page-ActiveItem {
-    font-family: OpenSans;
-    font-weight: 900;
-    font-size: 1.5em;
-    letter-spacing: .05em;
-    padding: 1em;
-    flex: 2 0 50%;
-    background-color: $highlight;
+	font-family: OpenSans;
+	font-weight: 900;
+	font-size: 1.5em;
+	letter-spacing: .05em;
+	padding: 1em;
+	flex: 2 0 50%;
+	background-color: $highlight;
 }
 
 .ChatPage-Bar {
-    font-family: OpenSans;
-    font-weight: 900;
-    font-size: 1.5em;
-    letter-spacing: .05em;
-    flex: 2 0 20;
-    background-color: $highlight;
+	font-family: OpenSans;
+	font-weight: 900;
+	font-size: 1.5em;
+	letter-spacing: .05em;
+	padding: 5px;
+	flex: 2 0 40;
+	background-color: $highlight;
 }

@@ -14,19 +14,6 @@ export function addMessage(message) {
 	}
 }
 
-export function sendMessage(message) {
-	return (getState, dispatch) => {
-		let state = getState()
-		let currentUser = state.auth.currentUser
-		let channelName = state.repo.channelName
-		dispatch({
-			type: ADD_MESSAGE,
-			message
-		})
-		sendChat(message, currentUser, channelName)
-	}
-}
-
 export function loadMessages(channelName) {
 	return (getState, dispatch) => {
 		axios.get(`${process.env.SERVER_URL}/api/chat/${channelName}`)
@@ -48,28 +35,3 @@ export function loadMessages(channelName) {
 	}
 }
 
-// creates an action to post message
-// export function postMessage(message, userId, postId) {
-//   return {
-//     type: POST_MESSAGE,
-//     message,
-//     userId,
-//     postId,
-//     timeStamp: new Date()
-//   };
-// }
-
-// // creates an action to refresh messages
-// export function refreshMessages(messages) {
-//   return {
-//     type: REFRESH_MESSAGES,
-//     messages
-//   };
-// }
-
-// export function changeActiveMessage(id) {
-//   return {
-//     type: CHANGE_ACTIVEMESSAGE,
-//     id
-//   };
-// }

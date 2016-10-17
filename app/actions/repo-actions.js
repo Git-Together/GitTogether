@@ -61,7 +61,6 @@ export function getRepoTree(repo) {
 				let channelName = repo.split('/').join('*');
 				return axios.get(process.env.SERVER_URL + `/api/channels/${channelName}`)
 			}).then((channel) => {
-				console.log('FETCHED CHANNEL ', channel.data)
 				let events = channel.data.events
 				let chatHistory = channel.data.chats.map(chat => {
 					return {

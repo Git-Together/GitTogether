@@ -16,11 +16,11 @@ function mapStateToProps(state) {
   };
 	}
 
-function mapDispatchToProps(dispatch) {
-  return {
-	  addSelected: bindActionCreators(chat.sendMessage, dispatch)
-  }
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+// 	  addSelected: bindActionCreators(chat.sendMessage, dispatch)
+//   }
+// }
 
 // function mapDispatchToProps(dispatch) {
 //   return {
@@ -31,5 +31,5 @@ function mapDispatchToProps(dispatch) {
 //   }
 // }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
+export default connect(mapStateToProps)(PanelPage)
 // export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
