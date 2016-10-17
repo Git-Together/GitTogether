@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as repos from '../actions/repos-actions.js';
+import * as ui from '../actions/ui-actions.js';
 import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js';
 
 function mapStateToProps(state) {
@@ -12,7 +13,8 @@ function mapStateToProps(state) {
     panelMessageArray: state.repos.panelMessageArray,
     selected: state.repos.activeRepoId,
     uiSelected: state.ui.selected,
-    currentUi: 'repos'
+    currentUi: 'repos',
+    activeUi: state.ui.activeUi
   };
 }
 
@@ -23,6 +25,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    toggleComponent: bindActionCreators(ui.toggleComponent, dispatch),
     changeSelected: bindActionCreators(repos.changeActiveRepo, dispatch),
     addSelected: bindActionCreators(repos.addChannel, dispatch),
     removeSelected: bindActionCreators(repos.removeChannel, dispatch),

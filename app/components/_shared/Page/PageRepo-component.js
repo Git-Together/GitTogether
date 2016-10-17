@@ -64,11 +64,11 @@ class PageRepo extends Component {
         state: testObject,//CURRENTLY USING TEST OBJECT
         id: 'repoTree',
         size: 1000,
-        aspectRatio: 0.5,
+        aspectRatio: 1.5,
         isSorted: false,
-        widthBetweenNodesCoeff: 1.5,
-        heightBetweenNodesCoeff: 2,
-        style: { border: '1px solid blue' },
+        widthBetweenNodesCoeff: 1.0,
+        heightBetweenNodesCoeff: 1.0,
+        style: { border: '1px solid blue', height: '100%'},
         tooltipOptions: { offset: { left: 100, top: 100 }, indentationSize: 2 },
         rootKeyName: '/',
         onClickText: function(){
