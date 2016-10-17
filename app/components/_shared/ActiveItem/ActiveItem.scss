@@ -21,8 +21,16 @@
 	height: 25%
 }
 
-.ActiveItem-Name-Text{
-
+.ChatField {
+	display: block;
+	background-color: white;
+	flex: 2 0 auto;
+	aign-self: flex-end;
+	width: 34%;
+	margin-top: 4px;
+	height: 25%;
+	margin-right: 10px;
+	color: black;
 }
 
 .ActiveItem-Details{
@@ -32,10 +40,6 @@
 	flex: 8 0 auto;
 	width: 33%;
 	height: 25%
-}
-
-.ActiveItem-Details-Content{
-
 }
 
 .ActiveItem-Functionality{
@@ -48,7 +52,13 @@
 	justify-content: center;
 	align-items: center;
 	// border: .1em solid $mainColor;
+}
 
+.ChatBar-Functionality{
+	display: flex;
+	width: 15%;
+	height: 25%;
+	background-color: $highlight;
 }
 
 .ActiveItem-Functionality-Add{
@@ -65,6 +75,18 @@
 		color: $mainColor;
 		// border: .1em solid $backgroundColor;
 	}
+}
+
+.ChatBar-Send{
+	border: .1em solid $backgroundColor;
+	background-color: $mainColor;
+	color: $backgroundColor;
+	border-radius: 1em;
+	margin-left: 5px;
+	flex: 1 0 80%;
+	height: 40px;
+	padding-top: 8px;
+	margin: 0 auto;
 }
 
 .ActiveItem-Functionality-Remove{

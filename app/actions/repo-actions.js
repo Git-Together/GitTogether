@@ -15,6 +15,7 @@ import { TOGGLE_COMPONENT, TOGGLE_TREE } from './ui-actions';
 import { RESET_WATCH, GET_ALL_WATCH } from './watch-actions';
 import { CHANGE_ACTIVE_TEAM } from './team-actions';
 import { CHANGE_ACTIVE_REPO } from './repos-actions';
+import { LOAD_MESSAGES } from './chat-actions.js';
 import Promise from 'bluebird';
 const storage = Promise.promisifyAll(require('electron-json-storage'))
 
@@ -61,6 +62,14 @@ export function getRepoTree(repo) {
 				return axios.get(process.env.SERVER_URL + `/api/channels/${channelName}`)
 			}).then((channel) => {
 				let events = channel.data.events
+				let chatHistory = channel.data.chats.map(chat => {
+					return {
+						message: chat.message,
+						author: chat.authorName,
+						id: chat.id,
+						timeStamp: chat.createdAt
+					}
+				})
 				dispatch({
 					type: SWITCH_ACTIVE_REPO,
 					id: repoId,
@@ -78,6 +87,10 @@ export function getRepoTree(repo) {
 				dispatch({
 					type: TOGGLE_TREE,
 					component: currentView
+				})
+				dispatch({
+					type: LOAD_MESSAGES,
+					chatHistory
 				})
 			}).then(() => {
 				return storage.getAsync('channels')

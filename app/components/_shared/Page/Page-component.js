@@ -29,12 +29,12 @@ class Page extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-    let newList = [];
-     if(nextProps.currentUi === "watch"){ //this filters the list of files watching to the one only in active repo
-      newList = nextProps.list.filter(e => e.repoId === nextProps.channelName)
-    } else {
-      newList = nextProps.list
-    }
+		let newList = [];
+		if(nextProps.currentUi === "watch"){
+			newList = nextProps.list.filter(e => e.repoId === nextProps.channelName)
+		} else {
+			newList = nextProps.list
+		}
 
 		this.setState({
 			list: newList
@@ -70,14 +70,11 @@ class Page extends Component {
 						removeSelected={this.props.removeSelected}/>
 					}
 
-          {currentUi === "watch" && <ActiveWatch  activeItem={this.filter(this.props.selected)[0] || {}}
-            removeSelected={this.props.removeSelected}/>
-          }
-
-					{/*currentUi === "member" && <ActiveUser activeItem={this.filter(this.props.selected)[0] || {}*/}
+					{currentUi === "watch" && <ActiveWatch  activeItem={this.filter(this.props.selected)[0] || {}}
+						removeSelected={this.props.removeSelected}/>
+					}
 
 					{currentUi === "member" && <ActiveCollaborator  activeItem={this.filter(this.props.selected)[0] || {}}
-
 						addSelected={this.props.addSelected}
 						removeSelected={this.props.removeSelected}/>
 					}

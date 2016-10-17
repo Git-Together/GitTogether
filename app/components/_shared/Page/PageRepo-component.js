@@ -68,7 +68,7 @@ class PageRepo extends Component {
         isSorted: false,
         widthBetweenNodesCoeff: 1.0,
         heightBetweenNodesCoeff: 1.0,
-        style: { border: '1px solid blue', height: '100%'},
+        style: { height: '100%'},
         tooltipOptions: { offset: { left: 100, top: 100 }, indentationSize: 2 },
         rootKeyName: '/',
         onClickText: function(){

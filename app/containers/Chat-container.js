@@ -7,7 +7,7 @@ import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js'
 
 function mapStateToProps(state) {
   return {
-    list: state.chat.chat,
+    list: state.chat.messages,
     icon: state.chat.icon,
     panelMessage: state.chat.panelMessageArray[state.chat.panelMessagePlayIndex] || 'Your current active chat',
     panelMessageArray: state.chat.panelMessageArray,
@@ -16,7 +16,7 @@ function mapStateToProps(state) {
     currentUi: 'chat',
     activeUi: state.ui.activeUi
   };
-}
+	}
 
 function mapDispatchToProps(dispatch) {
   return {

@@ -71,7 +71,6 @@ export default class Home extends Component {
               <span id="Header-Nav-Text-UN"><em>{this.props.repo.channelName}</em></span>
             </div> {/* -Headder-Nav-Text */}
             <div id="Header-Nav-IconBar">
-              {console.log("this.props.activeUi",this.props.activeUi)}
               {
                 navArray.map(e => {
 

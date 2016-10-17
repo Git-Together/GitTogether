@@ -15,7 +15,9 @@ export default class Panel extends Component {
   };
 
   render() {
-    console.log("panel", this.props)
+	let labelStyle = {
+		textAlign: 'center'
+	}
     return (
       <div className="Panel-Base">
         <div className="Panel">
@@ -28,7 +30,7 @@ export default class Panel extends Component {
         {
           !this.props.isRepo &&
             <div className="Panel-Message">
-              <div className='Panel-Message-Label'>
+              <div style={labelStyle} className='Panel-Message-Label'>
                 {this.props.panelMessage.label}
               </div>
               <div className='Panel-Message-Text'>
