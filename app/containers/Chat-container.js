@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as chat from '../actions/chat-actions.js';
+import * as ui from '../actions/ui-actions.js';
 import PanelPage from '../components/_shared/Panel-Page/Panel-Page-component.js';
 
 function mapStateToProps(state) {
@@ -12,12 +13,14 @@ function mapStateToProps(state) {
     panelMessageArray: state.chat.panelMessageArray,
     selected: state.chat.activeRepoId,
     uiSelected: state.ui.selected,
-    currentUi: 'chat'
+    currentUi: 'chat',
+    activeUi: state.ui.activeUi
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    toggleComponent: bindActionCreators(ui.toggleComponent, dispatch),
   }
 }
 
@@ -30,5 +33,5 @@ function mapDispatchToProps(dispatch) {
 //   }
 // }
 
-export default connect(mapStateToProps)(PanelPage)
+export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)
 // export default connect(mapStateToProps, mapDispatchToProps)(PanelPage)

@@ -1,9 +1,9 @@
-import { TOGGLE_TREE, TOGGLE_COMPONENT } from '../actions/ui-actions.js';
+import { TOGGLE_TREE, TOGGLE_COMPONENT, ACTIVE_COMPONENT } from '../actions/ui-actions.js';
 
 
 const initState = 'Dashboard';
 
-export default function ui(state = {}, action) {
+export default function ui(state = {activeUi: 'home', selected:null}, action) {
   switch (action.type) {
     case TOGGLE_COMPONENT:
       if (state.selected === action.component) {
@@ -12,6 +12,8 @@ export default function ui(state = {}, action) {
       return {...state, selected: action.component }
     case TOGGLE_TREE:
       return {...state, selected: action.component }
+    case ACTIVE_COMPONENT:
+      return {...state, activeUi: action.component }
     default:
       return state;
   }
