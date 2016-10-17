@@ -8,10 +8,10 @@
  z-index: 100;
  height: 88.90%;
  width: 75%;
- // top: 100%;
- background-color:white;
+ background-color: $backgroundColor;
  bottom: 0;
  right: 0;
+ 	border-left: 3px solid $mainHighlight;
  // border: 2px solid blue;
 }
 
@@ -33,11 +33,12 @@
 .Page-List {
 	// background-color: orange;
 	// position: absolute;
+	border-top: 3px solid $mainHighlight;
 	color: $mainColor;
 	z-index: 1000;
 	width: 100%;
-	padding: 1.4em;
-  flex: 2 0 50%;
+	padding: 2em;
+  flex: 2 0 65%;
   font-family: OpenSans;
   font-weight: 700;
   font-size: 1.1em;
@@ -59,14 +60,25 @@
 }
 
 .Page-ActiveItem {
-	font-family: OpenSans;
-	font-weight: 900;
-	font-size: 1.5em;
-	letter-spacing: .05em;
-	padding: 1em;
-	flex: 2 0 50%;
-	background-color: $highlight;
+    // position: absolute;
+    // border: 4px solid pink;
+    // top: 0;
+    // bottom: 0;
+    border-top: 4px $backgroundColor solid;
+    border-bottom: 4px $backgroundColor solid;
+    font-family: OpenSans;
+    margin-left: .30em;
+    margin-right: .30em;
+    font-weight: 900;
+    font-size: 1.5em;
+    letter-spacing: .05em;
+    padding: 1em;
+    flex: 2 0 35%;
+    background-color: $highlight;
+    // height: 50%;
+    // width: 50%;
 }
+
 
 .ChatPage-Bar {
 	font-family: OpenSans;

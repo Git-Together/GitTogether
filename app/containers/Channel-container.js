@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as channel from '../actions/channel-actions.js';
 import * as repo from '../actions/repo-actions.js';
+import * as ui from '../actions/ui-actions.js';
 import ListView from '../components/_shared/List/ListView-component.js';
 
 function mapStateToProps(state) {
@@ -13,12 +14,14 @@ function mapStateToProps(state) {
     panelMessageArray: state.channel.panelMessageArray,
     selected: state.channel.activeChannelId,
     uiSelected: state.ui.selected,
-    currentUi: 'channel'
+    currentUi: 'channel',
+    activeUi: state.ui.activeUi
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    toggleComponent: bindActionCreators(ui.toggleComponent, dispatch),
     getList: bindActionCreators(channel.loadChannels, dispatch),
     changeSelected: bindActionCreators(repo.getRepoTree, dispatch)
   }

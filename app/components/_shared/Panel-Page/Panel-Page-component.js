@@ -22,7 +22,7 @@ export default class PanelPage extends Component {
 	  let isRepo = this.props.uiSelected === "repo"
     return (
 		<div className="Panel-Page">
-			<Panel icon={this.props.icon} state={this.props.state} currentUi={this.props.currentUi} isRepo={this.props.isRepo} panelMessage={this.props.panelMessage} />
+			<Panel icon={this.props.icon} toggleComponent={this.props.toggleComponent} state={this.props.state} currentUi={this.props.currentUi} isRepo={this.props.isRepo} panelMessage={this.props.panelMessage} />
 			{this.props.uiSelected===this.props.currentUi && isRepo && !isChat && <PageRepo
 				list={this.props.list}
 				selected={this.props.selected}
@@ -47,6 +47,28 @@ export default class PanelPage extends Component {
 
 	</div>
 	)
+    // return (
+    //   <div className="Panel-Page">
+    //     <Panel icon={this.props.icon}  state={this.props.state} currentUi={this.props.currentUi} isRepo={this.props.isRepo} panelMessage={this.props.panelMessage} />
+    //     {this.props.uiSelected===this.props.currentUi && this.props.repo && <PageRepo
+    //           list={this.props.list}
+    //           selected={this.props.selected}
+    //           icon={this.props.icon}
+    //     />}
+
+    //     {this.props.uiSelected===this.props.currentUi && !this.props.repo &&<Page
+    //           list={this.props.list}
+    //           selected={this.props.selected}
+    //           icon={this.props.icon}
+    //           changeSelected={this.props.changeSelected}
+    //           addSelected={this.props.addSelected}
+    //           removeSelected={this.props.removeSelected}
+    //           getList = {this.props.getList}
+    //           channelName = {this.props.channelName}
+    //     />}
+
+    //   </div>
+    // )
   }
 }
 

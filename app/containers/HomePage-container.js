@@ -8,14 +8,17 @@ import Home from '../components/Home/Home-component.js';
 function mapStateToProps(state) {
 	return {
 		ui: state.ui,
+    activeUi: state.ui.activeUi,
 		auth: state.auth,
 		repo: state.repo,
-		state
+		state,
+    activeUi: state.ui.activeUi
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
+
 		toggleComponent: bindActionCreators(ui.toggleComponent, dispatch),
 		logout: bindActionCreators(AuthActions.logout, dispatch),
 		dispatch

@@ -4,12 +4,17 @@
 	display: flex;
 	flex-wrap: wrap;
 	height: 100%;
+	border-radius: 1em;
+	font-family: OpenSans;
+	font-weight: 600;
+	font-size: .75em;
+	letter-spacing: .05em;
 }
 
 .ActiveItem-Name{
 	display: block;
 	background-color: $highlight;
-	border: .5em solid $mainColor;
+	// border: .1em solid $mainColor;
 	flex: 2 0 auto;
 	aign-self: flex-end;
 	width: 34%;
@@ -31,7 +36,7 @@
 .ActiveItem-Details{
 	display: block;
 	background-color: $highlight;
-	border: .5em solid $mainColor;
+	// border: .1em solid $mainColor;
 	flex: 8 0 auto;
 	width: 33%;
 	height: 25%
@@ -39,11 +44,14 @@
 
 .ActiveItem-Functionality{
 	display: flex;
+	margin: .2;
 	flex: 8 0 auto;
 	width: 33%;
 	height: 25%;
 	background-color: $highlight;
-	border: .5em solid $mainColor;
+	justify-content: center;
+	align-items: center;
+	// border: .1em solid $mainColor;
 }
 
 .ChatBar-Functionality{
@@ -54,12 +62,19 @@
 }
 
 .ActiveItem-Functionality-Add{
-	border: .5em solid $backgroundColor;
+	// border: .5em solid $backgroundColor;
 	background-color: $mainColor;
 	color: $backgroundColor;
 	border-radius: 1em;
 	flex: 1 0 50%;
-	margin: 0 auto;
+	margin-right: .5em;
+	padding: .5em;
+	&:hover {
+		cursor: pointer;
+		background-color: $backgroundColor;
+		color: $mainColor;
+		// border: .1em solid $backgroundColor;
+	}
 }
 
 .ChatBar-Send{
@@ -76,17 +91,24 @@
 
 .ActiveItem-Functionality-Remove{
 	margin: 0 auto;
-	border: .5em solid $backgroundColor;
+	// border: .5em solid $backgroundColor;
 	border-radius: 1em;
 	color: $backgroundColor;
 	background-color: $mainColor;
 	flex: 1 0 50%;
+	padding: .5em;
+	&:hover {
+		cursor: pointer;
+		background-color: $backgroundColor;
+		color: $mainColor;
+		// border: .1em solid $backgroundColor;
+	}
 }
 
 .ActiveItem-MainView{
 	display: block;
 	background-color: $highlight;
-	border: .5em solid $backgroundColor;
+	// border: .1em solid $backgroundColor;
 	width: 100%;
 	height: 75%;
 	&:before {
