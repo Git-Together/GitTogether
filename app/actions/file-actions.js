@@ -49,7 +49,6 @@ export function getFileChanges(name) {
   name = name.split('/').join('*');
   let channelName = getState().repo.channelName.split('/').join('*');
 	axios.get(process.env.SERVER_URL + `/api/files/${name}?repoId=${channelName}`)
-	// axios.get(`http://localhost:1337/api/files/${name}?repoId=${channelName}`)
     .then(fileChanges => {
       dispatch({
           type: GET_FILE_CHANGES,

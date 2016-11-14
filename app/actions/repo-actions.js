@@ -6,7 +6,6 @@ export const SWITCH_ACTIVE_TREE = 'SWITCH_ACTIVE_TREE';
 export const CHANGE_CHANNEL_PATH = 'CHANGE_CHANNEL_PATH';
 export const GET_COLLABORATORS = 'GET_COLLABORATORS';
 
-
 //Github API call
 import GitHub from 'github-api';
 import axios from 'axios';
@@ -137,12 +136,3 @@ export function removeRepo(id) {
 		id
 	};
 }
-
-
-//NOTE: THIS IS NOW INCLUDED WITH getRepoTree
-// export function switchActive(id){
-//   return {
-//     type: SWITCH_ACTIVE_REPO,
-//     id
-//   }
-// }

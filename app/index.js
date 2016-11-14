@@ -12,7 +12,7 @@ const storage = Promise.promisifyAll(require('electron-json-storage'))
 let state = {
   auth: {}
 };
-storage.clear(err => console.error)
+// storage.clear(err => console.error)
 storage.getAsync('user')
 	.then(result => {
 		state.auth.currentUser = result.currentUser;

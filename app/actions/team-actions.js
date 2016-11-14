@@ -20,7 +20,6 @@ export function addTeamMember(input) {
 	}
 	return (dispatch, getState) => {
 		axios.post(process.env.SERVER_URL + `/api/channels/${name}`, { repoId: getState().repo.channelName, userName: name })
-			// axios.post(`http://localhost:1337/api/channels/${name}`, {repoId: getState().repo.channelName, userName: name})
 			.then(() => {
 				dispatch({
 					type: ADD_TEAM_MEMBER,
@@ -59,7 +58,6 @@ export function changeSelectedTeam(channelId) {
 export function removeTeamMember(id, repoId) {
 	return (dispatch, getState) => {
 		axios.put(process.env.SERVER_URL + `/api/channels/remove?channelId=${getState().repo.channelName}&userName=${id}`)
-			// return axios.put(`http://localhost:1337/api/channels/remove?channelId=${getState().repo.channelName}&userName=${id}`)
 			.then(() => {
 				dispatch({
 					type: REMOVE_TEAM_MEMBER,
@@ -80,7 +78,6 @@ export function refreshOnline(currentlyOnline) {
 export function refreshTeamMembers() {
 	return (dispatch, getState) => {
 		axios.get(process.env.SERVER_URL + `/api/users/${getState().auth.id}`)
-		// axios.get(`http://localhost:1337/api/users/${getState().auth.id}`)
 		.then( user => {
 			dispatch({
 				type: REFRESH_TEAM_MEMBERS,
