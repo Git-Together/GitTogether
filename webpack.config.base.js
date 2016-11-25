@@ -7,38 +7,44 @@ import validate from 'webpack-validator';
 import webpack from 'webpack'
 
 export default validate({
-  module: {
-	noParse: ['ws'],
-    loaders: [{
-      test: /\.jsx?$/,
-      loader: 'babel-loader',
-    exclude: /node_modules/,
-    query: { presets: ['es2015', 'react', 'stage-0'] }
-    }, {
-      test: /\.json$/,
-      loader: 'json-loader'
-    }]
-  },
+	module: {
+		noParse: ['ws'],
+		loaders: [{
+			test: /\.jsx?$/,
+			loader: 'babel-loader',
+			exclude: /node_modules/,
+			query: { presets: ['es2015', 'react', 'stage-0'] }
+		}, {
+			test: /\.json$/,
+			loader: 'json-loader'
+		}, {
+			test: /\.(png|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+			loader: 'url-loader'
+		}, {
+			test: /\.scss$/,
+			loaders: ["style-loader", "css-loader", "sass-loader"]
+		}]
+	},
 
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+	output: {
+		path: path.join(__dirname, 'dist'),
+		filename: 'bundle.js',
 
-    // https://github.com/webpack/webpack/issues/1114
-    libraryTarget: 'commonjs2'
-  },
+		// https://github.com/webpack/webpack/issues/1114
+		libraryTarget: 'commonjs2'
+	},
 
-  // https://webpack.github.io/docs/configuration.html#resolve
-  resolve: {
-    extensions: ['', '.js', '.jsx', '.json'],
-    packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
-  },
+	// https://webpack.github.io/docs/configuration.html#resolve
+	resolve: {
+		extensions: ['', '.js', '.jsx', '.json'],
+		packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
+	},
 
-  plugins: [new webpack.IgnorePlugin(/vertx/)],
+	plugins: [new webpack.IgnorePlugin(/vertx/)],
 
-  externals: [
-    'bootstrap',
-	  'dotenv',
-	  'ws'
-  ]
+	externals: [
+		'bootstrap',
+		'dotenv',
+		'ws'
+	]
 });

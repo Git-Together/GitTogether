@@ -16,7 +16,7 @@ import { CHANGE_ACTIVE_TEAM } from './team-actions';
 import { CHANGE_ACTIVE_REPO } from './repos-actions';
 import { LOAD_MESSAGES } from './chat-actions.js';
 import Promise from 'bluebird';
-const storage = Promise.promisifyAll(require('electron-json-storage'))
+var storage = Promise.promisifyAll(require('electron-json-storage'))
 
 export function getCurrentChannel() {
 	return (dispatch, getState) => {

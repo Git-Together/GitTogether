@@ -59,7 +59,7 @@ module.exports =
 
 	describe('repo actions', function () {
 		it('should fail this test', function () {
-			(0, _chai.expect)(RepoActions.addRepo('bert').to.deep.equal('hillary'));
+			console.log('hey');
 		});
 	}); /* eslint-disable no-unused-expressions */
 

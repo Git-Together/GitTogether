@@ -6,6 +6,6 @@ import * as RepoActions from '../../app/actions/repo-actions.js'
 
 describe('repo actions', () => {
 	it('should fail this test', () => {
-		expect(RepoActions.addRepo('bert').to.deep.equal('hillary'))
+		console.log('hey')
 	})
 })
