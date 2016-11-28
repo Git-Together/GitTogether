@@ -88,7 +88,7 @@ export function stopSockets() {
 }
 
 export function getOnline(channelName) {
-	socket.emit('getOnline', channelName)
+	if (socket) socket.emit('getOnline', channelName)
 }
 
 export function sendChat(message, currentUser, channelName) {

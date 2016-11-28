@@ -33,10 +33,11 @@ function getUserReposSuccess(repos) {
 
 export function getUserRepos() {
 	return (dispatch, getState) => {
-		console.log('in dispatch')
 		return axios.get(`https://api.github.com/user/repos?affiliation=owner,collaborator&per_page=100&access_token=${getState().auth.token}`)
-			.then(repos => dispatch(getUserReposSuccess(repos.data)))
-			.catch(err => console.error)
+			.then(repos => { 
+				dispatch(getUserReposSuccess(repos.data)) 
+			})
+			.catch(err => console.log(err))
 	};
 }
 
@@ -51,7 +52,7 @@ export function getRepoTree(repo) {
 		let channelName
 		let fetchedRepo;
 		let userId
-		axios.get(`https://api.github.com/repos/${repo}?access_token=${state.auth.token}`)
+		return axios.get(`https://api.github.com/repos/${repo}?access_token=${state.auth.token}`)
 			.then(fetched => {
 				fetchedRepo = fetched
 				repoId = fetchedRepo.data.id
@@ -61,7 +62,7 @@ export function getRepoTree(repo) {
 			}).then(tree => {
 				dispatch({
 					type: SWITCH_ACTIVE_TREE,
-					tree
+					tree: tree.data
 				})
 				let channelName = repo.split('/').join('*');
 				return axios.get(process.env.SERVER_URL + `/api/channels/${channelName}`)
