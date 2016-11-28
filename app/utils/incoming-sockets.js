@@ -44,12 +44,10 @@ export function instantiateSockets (state, dispatch) {
 			label: "Last active teammate:",
 			text: `${payload.username}`
 		}))
-		// if (payload.username != currentUser) {
-
 
 		let watchFileList = dispatch(WatchActions.getWatchFiles())
 		let watchingFile = watchFileList.map(e => e.name).includes(payload.filepath.slice(1)) 
-
+	
 		if (watchingFile && payload.username != currentUser) {
 			dispatch(WatchActions.addMessageToWatchPanel({
 				label: "Last change to watched file:",
@@ -90,7 +88,7 @@ export function stopSockets() {
 }
 
 export function getOnline(channelName) {
-	socket.emit('getOnline', channelName)
+	if (socket) socket.emit('getOnline', channelName)
 }
 
 export function sendChat(message, currentUser, channelName) {

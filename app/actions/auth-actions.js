@@ -102,10 +102,10 @@ export function login() {
 					})
 				}
 
-				return fetch(process.env.SERVER_URL + '/api/auth/github', fetchRequest)
-				// return fetch('http://localhost:1337/api/auth/github', fetchRequest)
+				return fetch('http://localhost:1337/api/auth/github', fetchRequest)
 					.then(r => r.json())
 					.then(response => {
+						console.log(response)
 						dispatch({
 							type: SET_USER,
 							currentUser: response.username,

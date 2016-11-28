@@ -22,7 +22,6 @@ export function toggleComponent(component) {
     });
 
   }
-
 }
 
 export function toggleTree(component) {

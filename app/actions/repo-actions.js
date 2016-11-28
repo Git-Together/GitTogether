@@ -6,7 +6,6 @@ export const SWITCH_ACTIVE_TREE = 'SWITCH_ACTIVE_TREE';
 export const CHANGE_CHANNEL_PATH = 'CHANGE_CHANNEL_PATH';
 export const GET_COLLABORATORS = 'GET_COLLABORATORS';
 
-
 //Github API call
 import GitHub from 'github-api';
 import axios from 'axios';
@@ -17,7 +16,7 @@ import { CHANGE_ACTIVE_TEAM } from './team-actions';
 import { CHANGE_ACTIVE_REPO } from './repos-actions';
 import { LOAD_MESSAGES } from './chat-actions.js';
 import Promise from 'bluebird';
-const storage = Promise.promisifyAll(require('electron-json-storage'))
+var storage = Promise.promisifyAll(require('electron-json-storage'))
 
 export function getCurrentChannel() {
 	return (dispatch, getState) => {
@@ -25,13 +24,20 @@ export function getCurrentChannel() {
 	}
 }
 
+function getUserReposSuccess(repos) { 
+	return {
+		type: GET_USER_REPOS,
+		repos
+	}
+}
+
 export function getUserRepos() {
 	return (dispatch, getState) => {
-		axios.get(`https://api.github.com/user/repos?affiliation=owner,collaborator&per_page=100&access_token=${getState().auth.token}`)
-			.then(repos => dispatch({
-				type: GET_USER_REPOS,
-				repos: repos.data
-			}));
+		return axios.get(`https://api.github.com/user/repos?affiliation=owner,collaborator&per_page=100&access_token=${getState().auth.token}`)
+			.then(repos => { 
+				dispatch(getUserReposSuccess(repos.data)) 
+			})
+			.catch(err => console.log(err))
 	};
 }
 
@@ -46,7 +52,7 @@ export function getRepoTree(repo) {
 		let channelName
 		let fetchedRepo;
 		let userId
-		axios.get(`https://api.github.com/repos/${repo}?access_token=${state.auth.token}`)
+		return axios.get(`https://api.github.com/repos/${repo}?access_token=${state.auth.token}`)
 			.then(fetched => {
 				fetchedRepo = fetched
 				repoId = fetchedRepo.data.id
@@ -56,7 +62,7 @@ export function getRepoTree(repo) {
 			}).then(tree => {
 				dispatch({
 					type: SWITCH_ACTIVE_TREE,
-					tree
+					tree: tree.data
 				})
 				let channelName = repo.split('/').join('*');
 				return axios.get(process.env.SERVER_URL + `/api/channels/${channelName}`)
@@ -137,12 +143,3 @@ export function removeRepo(id) {
 		id
 	};
 }
-
-
-//NOTE: THIS IS NOW INCLUDED WITH getRepoTree
-// export function switchActive(id){
-//   return {
-//     type: SWITCH_ACTIVE_REPO,
-//     id
-//   }
-// }
