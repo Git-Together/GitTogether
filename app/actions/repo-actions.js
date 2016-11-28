@@ -24,13 +24,19 @@ export function getCurrentChannel() {
 	}
 }
 
+function getUserReposSuccess(repos) { 
+	return {
+		type: GET_USER_REPOS,
+		repos
+	}
+}
+
 export function getUserRepos() {
 	return (dispatch, getState) => {
-		axios.get(`https://api.github.com/user/repos?affiliation=owner,collaborator&per_page=100&access_token=${getState().auth.token}`)
-			.then(repos => dispatch({
-				type: GET_USER_REPOS,
-				repos: repos.data
-			}));
+		console.log('in dispatch')
+		return axios.get(`https://api.github.com/user/repos?affiliation=owner,collaborator&per_page=100&access_token=${getState().auth.token}`)
+			.then(repos => dispatch(getUserReposSuccess(repos.data)))
+			.catch(err => console.error)
 	};
 }
 
